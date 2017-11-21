@@ -38,7 +38,7 @@ public class PDFMaker {
 
     // creates a pdf from the list of images
     // https://stackoverflow.com/questions/22358478/java-create-pdf-pages-from-images-using-pdfbox-library
-    public void createPDF() {
+    private void imagesToPDF() {
         try {
             if (pdf != null)
                 pdf.close();
@@ -62,6 +62,7 @@ public class PDFMaker {
 
     public void savePDF(String path){
         try {
+            imagesToPDF();
             File newPdf = new File(path);
             pdf.save(newPdf);
         } catch (IOException e) {

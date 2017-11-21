@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Hello world!
+ * Selenium script
  *
  */
 public class App
@@ -32,7 +32,7 @@ public class App
         PDFMaker pdfMaker = new PDFMaker();
         Selenium localBrowser = new Selenium();
         //localBrowser.setRemoteServer("http://0.0.0.0:4444/wd/hub");
-        localBrowser.start(false);
+        localBrowser.start(true);
 
         localBrowser.get("https://www.perjeta.com/patient/site-map.html");
         //pdfMaker.addImg(localBrowser.getVisibleScreenshot());
@@ -52,8 +52,8 @@ public class App
             pdfMaker.addImg(localBrowser.getFullPageScreenshot());
         }
 
-        pdfMaker.createPDF();
-        pdfMaker.savePDF("perjetaDesktop.pdf");
+
+        pdfMaker.savePDF("perjetaMobile.pdf");
         try {
             pdfMaker.close();
         } catch (IOException e) {
