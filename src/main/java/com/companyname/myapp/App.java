@@ -21,7 +21,7 @@ public class App
     private static String REMOVE_IMSAFETY_SCRIPT;
     static{
         try {
-            REMOVE_IMSAFETY_SCRIPT = new Scanner(new File("src/com/test/javascript/remove_imsafety.js")).useDelimiter("\\Z").next();
+            REMOVE_IMSAFETY_SCRIPT = new Scanner(new File("src/main/java/com/companyname/myapp/javascript/remove_imsafety.js")).useDelimiter("\\Z").next();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -39,7 +39,7 @@ public class App
 
         List<String> links = null;
         try {
-            links = (List<String>) localBrowser.runJS(new Scanner(new File("src/com/test/javascript/get_all_links.js")).useDelimiter("\\Z").next());
+            links = (List<String>) localBrowser.runJS(new Scanner(new File("src/main/java/com/companyname/myapp/javascript/get_all_links.js")).useDelimiter("\\Z").next());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
