@@ -60,7 +60,7 @@ public class App
             localBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
             localBrowser.saveFullPageScreenshot(String.valueOf(i));
             //pdfMaker.addImg(localBrowser.getFullPageScreenshot());
-
+            i++;
         }
 
 
