@@ -53,7 +53,7 @@ public class App
         int i = 0;
         for (String page : links) {
             //break;
-            if(i == 0)
+            if(i > 4)
                 break;
             localBrowser.get(page);
             //localBrowser.runJS(" document.getElementById('mobile-uh-wrapper').style = 'position:absolute!important;';");
