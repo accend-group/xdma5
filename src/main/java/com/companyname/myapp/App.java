@@ -31,7 +31,7 @@ public class App
     {
         PDFMaker pdfMaker = new PDFMaker();
         Selenium localBrowser = new Selenium();
-        //localBrowser.setRemoteServer("http://0.0.0.0:4444/wd/hub");
+        localBrowser.setRemoteServer("http://0.0.0.0:4444/wd/hub");
         localBrowser.start(true);
 
         localBrowser.get("https://www.perjeta.com/patient/site-map.html");
