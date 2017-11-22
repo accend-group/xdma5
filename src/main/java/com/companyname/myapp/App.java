@@ -1,5 +1,12 @@
 package com.companyname.myapp;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.*;
+import com.amazonaws.services.s3.model.ObjectListing;
 import com.companyname.myapp.pdf.PDFMaker;
 import com.companyname.myapp.selenium.Selenium;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +36,7 @@ public class App
 
     public static void main( String[] args )
     {
-        PDFMaker pdfMaker = new PDFMaker();
+        //PDFMaker pdfMaker = new PDFMaker();
         Selenium localBrowser = new Selenium();
         localBrowser.setRemoteServer("http://0.0.0.0:4444/wd/hub");
         localBrowser.start(true);
@@ -43,22 +50,29 @@ public class App
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        /*for (String page : links) {
+        int i = 0;
+        for (String page : links) {
+            //break;
+            if(i == 0)
+                break;
             localBrowser.get(page);
             //localBrowser.runJS(" document.getElementById('mobile-uh-wrapper').style = 'position:absolute!important;';");
 
-            pdfMaker.addImg(localBrowser.getVisibleScreenshot());
+            //pdfMaker.addImg(localBrowser.getVisibleScreenshot());
+            localBrowser.saveVisibleScreenshot(String.valueOf(i));
             localBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
-            pdfMaker.addImg(localBrowser.getFullPageScreenshot());
-        }*/
+            localBrowser.saveFullPageScreenshot(String.valueOf(i));
+            //pdfMaker.addImg(localBrowser.getFullPageScreenshot());
+            i++;
+        }
 
 
-        //pdfMaker.savePDF("perjetaMobile.pdf");
+        /*pdfMaker.savePDF("perjetaMobile.pdf");
         try {
             pdfMaker.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         localBrowser.stop();
     }

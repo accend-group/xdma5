@@ -220,7 +220,7 @@ public class Selenium {
         imgName = correctImgNameFormat(imgName);
         Shutterbug.shootPage(driver, ScrollStrategy.BOTH_DIRECTIONS,400, true)
                 .withName(imgName)
-                .save(isMobile ? "/Users/anthony/desktop/test_source/screenshots/entirePage/mobile/" : "/Users/anthony/desktop/test_source/screenshots/entirePage/desktop/");
+                .save(isMobile ? "screenshots/entirePage/mobile/" : "screenshots/entirePage/desktop/");
     }
 
     public BufferedImage getVisibleScreenshot(){
