@@ -43,17 +43,17 @@ public class App
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        for (String page : links) {
+        /*for (String page : links) {
             localBrowser.get(page);
             //localBrowser.runJS(" document.getElementById('mobile-uh-wrapper').style = 'position:absolute!important;';");
 
             pdfMaker.addImg(localBrowser.getVisibleScreenshot());
             localBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
             pdfMaker.addImg(localBrowser.getFullPageScreenshot());
-        }
+        }*/
 
 
-        pdfMaker.savePDF("perjetaMobile.pdf");
+        //pdfMaker.savePDF("perjetaMobile.pdf");
         try {
             pdfMaker.close();
         } catch (IOException e) {
