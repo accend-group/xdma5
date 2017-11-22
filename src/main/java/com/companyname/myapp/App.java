@@ -52,9 +52,6 @@ public class App
         }
         int i = 0;
         for (String page : links) {
-            //break;
-            if(i > 4)
-                break;
             localBrowser.get(page);
             //localBrowser.runJS(" document.getElementById('mobile-uh-wrapper').style = 'position:absolute!important;';");
 
@@ -63,7 +60,7 @@ public class App
             localBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
             localBrowser.saveFullPageScreenshot(String.valueOf(i));
             //pdfMaker.addImg(localBrowser.getFullPageScreenshot());
-            i++;
+
         }
 
 
@@ -80,9 +77,6 @@ public class App
 
         i = 0;
         for (String page : links) {
-            //break;
-            if(i > 4)
-                break;
             localBrowser.get(page);
             //localBrowser.runJS(" document.getElementById('mobile-uh-wrapper').style = 'position:absolute!important;';");
 
