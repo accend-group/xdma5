@@ -15,7 +15,7 @@ public class PostRun {
     public static void main(String [] args){
 
 
-        // create pdf from mobile site images
+        // create pdf from mobile/desktop images
         PDFMaker mobilePDF = new PDFMaker();
         PDFMaker desktopPDF = new PDFMaker();
 
@@ -41,7 +41,7 @@ public class PostRun {
                 continue;
             for (int i = 0; i < images[x].length / 2; ++i) {
                 File t = images[x][i];
-                images[x][i] = images[i][images[i].length - 1 - i];
+                images[x][i] = images[x][images[i].length - 1 - i];
                 images[x][images[x].length - 1 - i] = t;
             }
         }
@@ -68,7 +68,7 @@ public class PostRun {
                     // add desktop image after visible image
                     desktopPDF.addImg(images[3][i]);
                 }
-                desktopPDF.savePDF("mobile.pdf");
+                desktopPDF.savePDF("desktop.pdf");
             }
         } catch (IOException e) {
             e.printStackTrace();

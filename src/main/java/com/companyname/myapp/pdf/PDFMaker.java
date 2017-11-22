@@ -13,10 +13,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+// create a pdf from images. Each image is a single page
+
 public class PDFMaker {
 
     private LinkedList<BufferedImage> images = new LinkedList<>();
-        private PDDocument pdf;
+    private PDDocument pdf;
 
     public void addImg(BufferedImage img){
         images.add(img);

@@ -75,5 +75,25 @@ public class App
         }*/
 
         localBrowser.stop();
+        localBrowser.setRemoteServer("http://0.0.0.0:4444/wd/hub");
+        localBrowser.start(false);
+
+        i = 0;
+        for (String page : links) {
+            //break;
+            if(i > 4)
+                break;
+            localBrowser.get(page);
+            //localBrowser.runJS(" document.getElementById('mobile-uh-wrapper').style = 'position:absolute!important;';");
+
+            //pdfMaker.addImg(localBrowser.getVisibleScreenshot());
+            localBrowser.saveVisibleScreenshot(String.valueOf(i));
+            localBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
+            localBrowser.saveFullPageScreenshot(String.valueOf(i));
+            //pdfMaker.addImg(localBrowser.getFullPageScreenshot());
+            i++;
+        }
+
+        localBrowser.stop();
     }
 }
