@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
-//webdriver wrapper class, current set to chrome webdriver
+//webdriver wrapper class, currently set to chrome webdriver
 public class Selenium {
 
     private static final boolean IS_FIREFOX = false;

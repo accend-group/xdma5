@@ -34,16 +34,10 @@ public class App
         }
     }
 
-    public static void main( String[] args )
-    {
-        //PDFMaker pdfMaker = new PDFMaker();
+    public static void main( String[] args ) {
         Selenium localBrowser = new Selenium();
-        //localBrowser.setRemoteServer("http://0.0.0.0:4444/wd/hub");
         localBrowser.start(true);
-
         localBrowser.get("https://www.perjeta.com/patient/site-map.html");
-        //pdfMaker.addImg(localBrowser.getVisibleScreenshot());
-
         List<String> links = null;
         try {
             links = (List<String>) localBrowser.runJS(new Scanner(new File("src/main/java/com/companyname/myapp/javascript/get_all_links.js")).useDelimiter("\\Z").next());
@@ -53,41 +47,25 @@ public class App
         int i = 0;
         for (String page : links) {
             localBrowser.get(page);
-            //localBrowser.runJS(" document.getElementById('mobile-uh-wrapper').style = 'position:absolute!important;';");
-
-            //pdfMaker.addImg(localBrowser.getVisibleScreenshot());
-            localBrowser.saveVisibleScreenshot(String.valueOf(i));
-            localBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
-            localBrowser.saveFullPageScreenshot(String.valueOf(i));
-            //pdfMaker.addImg(localBrowser.getFullPageScreenshot());
+            takeImages(localBrowser, String.valueOf(i));
             i++;
         }
 
-
-        /*pdfMaker.savePDF("perjetaMobile.pdf");
-        try {
-            pdfMaker.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
         localBrowser.stop();
-        //localBrowser.setRemoteServer("http://0.0.0.0:4444/wd/hub");
         localBrowser.start(false);
-
         i = 0;
         for (String page : links) {
             localBrowser.get(page);
-            //localBrowser.runJS(" document.getElementById('mobile-uh-wrapper').style = 'position:absolute!important;';");
-
-            //pdfMaker.addImg(localBrowser.getVisibleScreenshot());
-            localBrowser.saveVisibleScreenshot(String.valueOf(i));
-            localBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
-            localBrowser.saveFullPageScreenshot(String.valueOf(i));
-            //pdfMaker.addImg(localBrowser.getFullPageScreenshot());
+            takeImages(localBrowser, String.valueOf(i));
             i++;
         }
 
         localBrowser.stop();
+    }
+
+    private static void takeImages(Selenium testBrowser, String imgName){
+        testBrowser.saveVisibleScreenshot(imgName);
+        testBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
+        testBrowser.saveFullPageScreenshot(imgName);
     }
 }

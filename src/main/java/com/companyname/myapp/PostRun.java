@@ -17,7 +17,6 @@ public class PostRun {
 
     public static void main(String [] args){
 
-
         // create pdf from mobile/desktop images
         PDFMaker mobilePDF = new PDFMaker();
         PDFMaker desktopPDF = new PDFMaker();
@@ -81,12 +80,10 @@ public class PostRun {
 
         // send pdf to s3 server
         AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-                .withCredentials(new ProfileCredentialsProvider())//new EnvironmentVariableCredentialsProvider())
+                .withCredentials(new ProfileCredentialsProvider())
                 .withRegion(Regions.US_EAST_1)
                 .build();
 
-        //if(!s3.doesBucketExist(bucketPDF))
-          //  s3.createBucket(bucketPDF);
         try {
             if(images[0] != null && images[1] != null)
                 s3.putObject(bucketPDF, "perjeta_mobile", new File("mobile.pdf"));
