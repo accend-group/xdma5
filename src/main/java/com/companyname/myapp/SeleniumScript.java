@@ -22,9 +22,9 @@ import java.util.Scanner;
  * Selenium script
  *
  */
-public class App
+public class SeleniumScript
 {
-
+    // used to set the scroll imsafety link to the bottom
     private static String REMOVE_IMSAFETY_SCRIPT;
     static{
         try {
@@ -35,8 +35,11 @@ public class App
     }
 
     public static void main( String[] args ) {
+        // a remote session is doable with setRemoteServer("address-to-server") before the start method is called
         Selenium localBrowser = new Selenium();
         localBrowser.start(true);
+
+        // gets every link on the perjeta site-map page and store the links in a list
         localBrowser.get("https://www.perjeta.com/patient/site-map.html");
         List<String> links = null;
         try {
@@ -44,13 +47,16 @@ public class App
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        // create images for each page, a visible image then a whole page screenshot
+        // mobile
         int i = 0;
         for (String page : links) {
             localBrowser.get(page);
             takeImages(localBrowser, String.valueOf(i));
             i++;
         }
-
+        // desktop
         localBrowser.stop();
         localBrowser.start(false);
         i = 0;
@@ -59,7 +65,6 @@ public class App
             takeImages(localBrowser, String.valueOf(i));
             i++;
         }
-
         localBrowser.stop();
     }
 
