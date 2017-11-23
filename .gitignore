@@ -1,0 +1,12 @@
+.project
+.classpath
+.settings/
+target/
+.vlt
+.DS_Store
+bin/
+.idea/
+screenshots/
+*.png
+*.pdf
+*.iml
