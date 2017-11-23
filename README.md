@@ -1,2 +1,0 @@
-# genentech-screenshots
-
