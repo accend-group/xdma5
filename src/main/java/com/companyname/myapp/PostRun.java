@@ -45,7 +45,7 @@ public class PostRun {
                 continue;
             for (int i = 0; i < images[x].length / 2; ++i) {
                 File t = images[x][i];
-                images[x][i] = images[x][images[i].length - 1 - i];
+                images[x][i] = images[x][images[x].length - 1 - i];
                 images[x][images[x].length - 1 - i] = t;
             }
         }
