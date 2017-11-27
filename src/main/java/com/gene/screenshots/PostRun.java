@@ -76,14 +76,13 @@ public class PostRun {
             if(arg.contains("pdfOutput="))
                 pdfOutputPath = arg.substring(10, arg.length());
 
-
             if(arg.contains("pdfName="))
                 pdfName = arg.substring(8, arg.length());
 
             if(arg.contains("s3=true") || arg.contains("s3=\"true\""))
                 ifS3 = true;
 
-            if(arg.contains("aws-local"))
+            if(arg.contains("aws-local=true") || arg.contains("aws-local=\"true\""))
                 awsLocalCredentials = true;
 
             if(arg.contains("aws-accesskey="))
@@ -95,7 +94,7 @@ public class PostRun {
             if(arg.contains("s3-bucket="))
                 bucketName = arg.substring(10, arg.length());
 
-            if(arg.contains("s3-petKey="))
+            if(arg.contains("s3-pdfKey="))
                 pdfKey = arg.substring(10, arg.length());
 
             if(arg.contains("s3-region="))
