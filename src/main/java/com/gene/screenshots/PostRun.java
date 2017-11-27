@@ -19,19 +19,22 @@ import java.util.LinkedList;
  * Arguments are:
  *
  * logPath="log.txt path" - where the images and log path are saved at. log file must be named log.txt
- * pdfOutput="pdf output path" - where the pdf saved. default pdf name is postRun.pdf
+ * pdfOutput="pdf output path" - where the pdf saved. 
  *
  * (optional)
- * pdfName="name of pdf"
+ * pdfName="name of pdf" - default is postRun.pdf
  *
  * --------------------------------------------------------------------------------------
  *
- * If storing the pdf to a S3 server all three arguments must be given and credentials must be set
+ * If storing the pdf to a S3 server all 3 arguments below must be given and credentials must be set
  * s3="true" - if storing pdf at s3 server
  * s3-bucket="bucket name where pdf will be stored"
  * s3-pdfKey="key for storing pdf"
  *
- * Either local or both credentials
+ * (optional)
+ * s3-region="region location" - default is us-east-1
+ *
+ * Either local or both credentials must be set
  * aws-local - uses aws credentials stored in user's credential file.
  * aws-accesskey="access key"
  * aws-secretakey="secret access key"
@@ -51,25 +54,31 @@ public class PostRun {
         String logPath = null;
         String pdfOutputPath = null;
         String pdfName = "postRun.pdf";
+
         String awsAccessKey = null;
         String awsSecretAccessKey = null;
+
         String bucketName = null;
         String pdfKey = null;
+        String region = null;
+
         PDFMaker newPdf = new PDFMaker();
         LinkedList<String> imageNames = new LinkedList<>();
-        boolean ifS3 = false, awsLocalCredentials = false;
+
+        boolean ifS3 = false;
+        boolean awsLocalCredentials = false;
 
         for(String arg : args) {
 
             if(arg.contains("logPath="))
-                logPath = arg.substring(7, arg.length()).replaceAll("\"", "");
+                logPath = arg.substring(8, arg.length());
 
             if(arg.contains("pdfOutput="))
-                pdfOutputPath = arg.substring(9, arg.length()).replaceAll("\"", "");
+                pdfOutputPath = arg.substring(10, arg.length());
 
 
             if(arg.contains("pdfName="))
-                pdfName = arg.substring(8, arg.length()).replaceAll("\"", "");
+                pdfName = arg.substring(8, arg.length());
 
             if(arg.contains("s3=true") || arg.contains("s3=\"true\""))
                 ifS3 = true;
@@ -78,17 +87,19 @@ public class PostRun {
                 awsLocalCredentials = true;
 
             if(arg.contains("aws-accesskey="))
-                awsAccessKey = arg.substring(13, arg.length()).replaceAll("\"", "");
+                awsAccessKey = arg.substring(14, arg.length());
 
             if(arg.contains("aws-secretkey="))
-                awsSecretAccessKey = arg.substring(13, arg.length()).replaceAll("\"", "");
+                awsSecretAccessKey = arg.substring(14, arg.length());
 
             if(arg.contains("s3-bucket="))
-                bucketName = arg.substring(9, arg.length()).replaceAll("\"", "");
+                bucketName = arg.substring(10, arg.length());
 
             if(arg.contains("s3-petKey="))
-                pdfKey = arg.substring(9, arg.length()).replaceAll("\"", "");
+                pdfKey = arg.substring(10, arg.length());
 
+            if(arg.contains("s3-region="))
+                region = arg.substring(10, arg.length());
 
         }
 
@@ -97,7 +108,7 @@ public class PostRun {
             System.out.println("No log path set!");
             System.exit(1);
         }
-
+        System.out.println(logPath);
         try {
             File logFile = new File(logPath);
             FileReader reader = new FileReader(logFile + "/log.txt");
@@ -123,31 +134,25 @@ public class PostRun {
                 newPdf.addImg(logPath + "/" + imageName + ".png");
             }
             newPdf.savePDF(pdfOutputPath + "/" + pdfName);
+            newPdf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if(!awsLocalCredentials)
+        if(!ifS3)
             return;
 
-        String bucketPDF = "pdf-screenshot-test";
+        //String bucketPDF = "pdf-screenshot-test";
 
         System.out.println("Connecting to S3...");
-        AmazonS3 s3;
-        if(awsLocalCredentials)
-            s3 = AmazonS3ClientBuilder.standard()
-                .withCredentials(new ProfileCredentialsProvider())
-                .withRegion(Regions.US_EAST_1)
+        AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(awsLocalCredentials ? new ProfileCredentialsProvider() : new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretAccessKey)))
+                .withRegion(region == null ? Regions.US_EAST_1.getName() : region)
                 .build();
-        else
-            s3 = AmazonS3ClientBuilder.standard()
-                    .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretAccessKey)))
-                    .withRegion(Regions.US_EAST_1)
-                    .build();
-
+        
         System.out.println("Sending pdf...");
         try {
-            s3.putObject(bucketPDF, pdfKey, new File(pdfOutputPath + "/" + pdfName));
+            s3.putObject(bucketName, pdfKey, new File(pdfOutputPath + "/" + pdfName));
             System.out.println("pdf sent!");
         } catch (Exception e) {
             e.printStackTrace();
