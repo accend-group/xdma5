@@ -13,8 +13,9 @@ Configure Jenkins with a Job listening for repo commits of Selenium testing code
 Have the Jenkins Job do another build or post build to execute PostRun with the specified arguments. PostRun will generate the pdf from the log file.
 
 ```
-compile exec;
-java -D exec.mainClass=com.gene.screenshots.PostRun -Dexec.cleanupDaemonThreads=false "-Dexec.args=logPath=/Users/anthony/Desktop/SeleniumScriptLog pdfName=mypdf.pdf s3=true s3-bucket=pdf-screenshot-test s3-pdfKey=pdfkey aws-local=true"
+// sample run reading log file and uploading the pdf using local aws credentials
+mvn compile;
+mvn exec:java -Dexec.mainClass="com.gene.screenshots.PostRun" -Dexec.cleanupDaemonThreads=false "-Dexec.args=logPath=/Users/anthony/Desktop/SeleniumScriptLog pdfName=mypdf.pdf s3=true s3-bucket=pdf-screenshot-test s3-pdfKey=pdfkey aws-local=true"
 ```
 
 Arguments are:
