@@ -29,7 +29,6 @@ If storing the pdf to amazon S3 all 3 arguments below must be given and credenti
 - s3-bucket="bucket name where pdf will be stored"
 - s3-pdfKey="key for storing pdf"
 
-
 - s3-region="region location" - (optional) default is us-east-1
 
 Either local or manual credentials must be set
