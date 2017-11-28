@@ -1,5 +1,6 @@
 package com.gene.screenshots;
 
+import com.amazonaws.regions.Regions;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
 import com.gene.screenshots.selenium.Selenium;
@@ -45,12 +46,11 @@ public class SeleniumScript
     public static void main( String[] args ) {
 
         // some place postrun can access
-        String savePath = "/Users/anthony/Desktop/SeleniumScriptLog";
+        String savePath = "/Users/anthony/Desktop/SeleniumScriptLog/";
 
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         WebDriver chromeDriver = new ChromeDriver();
         chromeDriver.manage().window().setSize(new Dimension(1600,1200));
-
 
         // save image names
         LinkedList<String> imagesNames = new LinkedList<>();
@@ -73,8 +73,6 @@ public class SeleniumScript
         imageName = "google_homepage_full";
         Shutterbug.shootPage(chromeDriver, ScrollStrategy.BOTH_DIRECTIONS, 350, true).withName(imageName).save(savePath);
         imagesNames.add(imageName);
-
-
 
         // get visible and full page screenshots of perjeta's homepage
         chromeDriver.get("http://www.perjeta.com");
@@ -104,42 +102,6 @@ public class SeleniumScript
         }
         chromeDriver.close();
         chromeDriver.quit();
-
-
-        //
-
-        /*
-        // a remote session is doable with setRemoteServer("address-to-server") before the start method is called
-        Selenium localBrowser = new Selenium();
-        localBrowser.start(true);
-
-        // gets every link on the perjeta site-map page and store the links in a list
-        localBrowser.get("https://www.perjeta.com/patient/site-map.html");
-        List<String> links = null;
-        try {
-            links = (List<String>) localBrowser.runJS(new Scanner(new File("src/main/java/com/companyname/myapp/javascript/get_all_links.js")).useDelimiter("\\Z").next());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // create images for each page, a visible image then a whole page screenshot
-        // mobile
-        int i = 0;
-        for (String page : links) {
-            localBrowser.get(page);
-            takeImages(localBrowser, String.valueOf(i));
-            i++;
-        }
-        // desktop
-        localBrowser.stop();
-        localBrowser.start(false);
-        i = 0;
-        for (String page : links) {
-            localBrowser.get(page);
-            takeImages(localBrowser, String.valueOf(i));
-            i++;
-        }
-        localBrowser.stop();*/
     }
 
     private static void takeImages(Selenium testBrowser, String imgName){
