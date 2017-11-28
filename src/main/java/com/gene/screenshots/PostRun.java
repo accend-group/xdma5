@@ -10,7 +10,6 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.gene.screenshots.pdf.PDFMaker;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 
@@ -37,7 +36,7 @@ import java.util.LinkedList;
  * Either local or both credentials must be set
  * aws-local - uses aws credentials stored in user's credential file.
  * aws-accesskey="access key"
- * aws-secretakey="secret access key"
+ * aws-secretkey="secret access key"
  *
  * --------------------------------------------------------------------------------------
  */
@@ -140,8 +139,6 @@ public class PostRun {
 
         if(!ifS3)
             return;
-
-        //String bucketPDF = "pdf-screenshot-test";
 
         System.out.println("Connecting to S3...");
         AmazonS3 s3 = AmazonS3ClientBuilder.standard()
