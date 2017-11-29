@@ -73,7 +73,7 @@ public class SeleniumScript
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("mobileEmulation", mobileEmulation);
 
-        WebDriver chromeDriver = new ChromeDriver(options);
+        WebDriver chromeDriver = new ChromeDriver();
         chromeDriver.manage().window().setSize(new Dimension(1600,1200));
 
         // save image names
