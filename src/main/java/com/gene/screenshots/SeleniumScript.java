@@ -46,7 +46,10 @@ public class SeleniumScript
     public static void main( String[] args ) {
 
         // some place postrun can access
+
         String savePath = "/Users/anthony/Desktop/SeleniumScriptLog/";
+        if(args.length > 0)
+            savePath = args[0];
 
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         WebDriver chromeDriver = new ChromeDriver();
