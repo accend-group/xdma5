@@ -10,13 +10,16 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -57,7 +60,20 @@ public class SeleniumScript
             chromeDriverPath = args[1];
 
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        WebDriver chromeDriver = new ChromeDriver();
+
+
+        // setup mobile chrome driver
+        Map<String, Object> mobileMetrics = new HashMap<>();
+        mobileMetrics.put("width", 320);
+        mobileMetrics.put("height", 720);
+        mobileMetrics.put("pixelRatio", 1.0);
+        Map<String, Object> mobileEmulation = new HashMap<>();
+        mobileEmulation.put("deviceMetrics", mobileMetrics);
+        mobileEmulation.put("userAgent", "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("mobileEmulation", mobileEmulation);
+
+        WebDriver chromeDriver = new ChromeDriver(options);
         chromeDriver.manage().window().setSize(new Dimension(1600,1200));
 
         // save image names
