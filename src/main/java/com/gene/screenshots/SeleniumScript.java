@@ -51,7 +51,12 @@ public class SeleniumScript
         if(args.length > 0)
             savePath = args[0];
 
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+
+        String chromeDriverPath = "src/main/resources/chromedriver";
+        if(args.length > 1)
+            chromeDriverPath = args[1];
+
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         WebDriver chromeDriver = new ChromeDriver();
         chromeDriver.manage().window().setSize(new Dimension(1600,1200));
 
