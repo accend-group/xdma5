@@ -6,7 +6,6 @@ target/
 .DS_Store
 bin/
 .idea/
-screenshots/
 *.png
 *.pdf
 *.iml
