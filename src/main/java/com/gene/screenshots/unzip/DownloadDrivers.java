@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.zip.GZIPInputStream;
 
-// downloads correct chrome driver and gecko driver
+// downloads correct chrome driver and gecko driver, 64bit only for now
 public class DownloadDrivers {
     public static void main(String[] args) {
 
@@ -93,6 +93,7 @@ public class DownloadDrivers {
                 zipFiles = (ZipArchiveEntry) ais.getNextEntry();
             while(zipFiles != null){
                 File outputFile = new File(".", zipFiles.getName());   // don't do this anonymously, need it for the list
+                outputFile.setExecutable(true);
                 OutputStream os = new FileOutputStream(outputFile);
 
                 IOUtils.copy(ais, os);  // copy from the archiveinputstream to the output stream
