@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.zip.GZIPInputStream;
 
-// downloads correct chrome driver and gecko driver, 64bit only for now
+// downloads correct chrome driver and gecko driver, 64bit only for now except windows chrome driver
 public class DownloadDrivers {
 
     public static void main(String[] args) {
@@ -44,7 +44,7 @@ public class DownloadDrivers {
             URL url = new URL("https://chromedriver.storage.googleapis.com/LATEST_RELEASE");
             Scanner s = new Scanner(url.openStream());
             String chromeVersion = s.nextLine();
-            String chromeDriverDownloadURL = "https://chromedriver.storage.googleapis.com/" + chromeVersion + "/chromedriver_" + userOS + "64.zip";
+            String chromeDriverDownloadURL = "https://chromedriver.storage.googleapis.com/" + chromeVersion + "/chromedriver_" + userOS + (userOS.contains("win") ? "32.zip" : "64.zip");
             System.out.println(chromeDriverDownloadURL);
 
             String filename = "chromedriver_" + userOS + "64.zip";
@@ -65,7 +65,8 @@ public class DownloadDrivers {
                 if(name.contains(userOS)) {
                     String downloadURL = geckoOS.getString("browser_download_url");
                     System.out.println(downloadURL);
-                    downloadFromURL(downloadURL, "tar.gz");
+                    // windows drivers are zip files
+                    downloadFromURL(downloadURL, userOS.contains("win") ? "zip" : "tar.gz");
                     break;
                 }
             }
@@ -75,7 +76,7 @@ public class DownloadDrivers {
     }
 
     // downloads content in zip/tar.gz
-    public static void downloadFromURL(String url, String type){
+    private static void downloadFromURL(String url, String type){
         try {
             InputStream zipStream = null;
             HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
@@ -86,18 +87,20 @@ public class DownloadDrivers {
                 System.exit(1);
             }
 
-            List<File> archiveContents = new ArrayList<File>();
             ArchiveInputStream ais = type.contains("gz") ? new TarArchiveInputStream(new GZIPInputStream(zipStream)): new ArchiveStreamFactory().createArchiveInputStream(type, zipStream);
             ArchiveEntry zipFiles = ais.getNextEntry();
             while(zipFiles != null){
-                File outputFile = new File(".", zipFiles.getName());   // don't do this anonymously, need it for the list
-                outputFile.setExecutable(true);
+                File outputFile = new File(".", zipFiles.getName());
+
+                if(outputFile.setExecutable(true)){
+                    System.out.println("Error: can't sent permissions!");
+                    System.exit(1);
+                }
+
                 OutputStream os = new FileOutputStream(outputFile);
 
                 IOUtils.copy(ais, os);
                 os.close();
-
-                archiveContents.add(outputFile);
                 zipFiles = ais.getNextEntry();
             }
             ais.close();
