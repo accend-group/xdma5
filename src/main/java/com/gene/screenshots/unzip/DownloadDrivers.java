@@ -94,7 +94,7 @@ public class DownloadDrivers {
 
                 if(outputFile.setExecutable(true)){
                     System.out.println("Error: can't sent permissions!");
-                    //System.exit(1);
+                    System.exit(1);
                 }
 
                 OutputStream os = new FileOutputStream(outputFile);
