@@ -265,7 +265,6 @@ public class Selenium {
         browserRunning = false;
         isRemote = false;
         if(driver != null) {
-           // driver.close();
             driver.quit();
         }
     }
