@@ -10,3 +10,4 @@ screenshots/
 *.png
 *.pdf
 *.iml
+/node_modules/
