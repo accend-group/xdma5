@@ -1,6 +1,12 @@
-# genentech-screenshots
+# Genentech-Screenshots
 
-Jenkins (optionally a Selenium Standalone Server) and access to a S3 service are needed.
+###Pre-requisites:
+1) Node JS (>v4): `brew install node`
+
+2) Jenkins: `brew install jenkins`
+
+### Set up
+Jenkins (optionally a Selenium Standalone Server) and access to a S3 service are required.
 
 Configure Jenkins with a Job listening for repo commits of Selenium testing code. The testing code must create a log file storing the screenshot names (no image extensions) in sequence of how it will appear in a pdf.
 
@@ -13,6 +19,8 @@ Configure Jenkins with a Job listening for repo commits of Selenium testing code
 Have the Jenkins Job do another build or post build to execute PostRun with the specified arguments. PostRun will generate the pdf from the log file.
 
 ```
+// download chromedriver and geckoderiver
+npm install
 // sample run reading log file and uploading the pdf using local aws credentials
 mvn compile;
 mvn exec:java -Dexec.mainClass="com.gene.screenshots.PostRun" -Dexec.cleanupDaemonThreads=false "-Dexec.args=logPath=/Users/anthony/Desktop/SeleniumScriptLog pdfName=mypdf.pdf s3=true s3-bucket=pdf-screenshot-test s3-pdfKey=pdfkey aws-local=true"

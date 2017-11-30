@@ -2,7 +2,6 @@
   "name": "genentech-screenshots",
   "version": "1.0.0",
   "description": "Genentech Screenshots Tool",
-  "main": "gulpfile.js",
   "repository": "https://github.com/ips-genentech/genentech-screenshots",
   "license": "UNLICENSED",
   "engines": {
