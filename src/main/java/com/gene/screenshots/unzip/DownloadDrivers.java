@@ -44,10 +44,10 @@ public class DownloadDrivers {
             URL url = new URL("https://chromedriver.storage.googleapis.com/LATEST_RELEASE");
             Scanner s = new Scanner(url.openStream());
             String chromeVersion = s.nextLine();
-            String chromeDriverDownloadURL = "https://chromedriver.storage.googleapis.com/" + chromeVersion + "/chromedriver_" + userOS + (userOS.contains("win") ? "32.zip" : "64.zip");
-            System.out.println(chromeDriverDownloadURL);
 
-            String filename = "chromedriver_" + userOS + "64.zip";
+            String filename = "chromedriver_" + userOS + (userOS.contains("win") ? "32.zip" : "64.zip");
+            String chromeDriverDownloadURL = "https://chromedriver.storage.googleapis.com/" + chromeVersion + "/" + filename;
+            System.out.println(chromeDriverDownloadURL);
             downloadFromURL(chromeDriverDownloadURL, "zip");
 
         } catch (Exception e) {
