@@ -26,6 +26,7 @@ import java.util.zip.GZIPInputStream;
 
 // downloads correct chrome driver and gecko driver, 64bit only for now
 public class DownloadDrivers {
+
     public static void main(String[] args) {
 
         String OS = System.getProperty("os.name").toLowerCase();
@@ -73,6 +74,7 @@ public class DownloadDrivers {
         }
     }
 
+    // downloads content in zip/tar.gz
     public static void downloadFromURL(String url, String type){
         try {
             InputStream zipStream = null;
@@ -86,21 +88,17 @@ public class DownloadDrivers {
 
             List<File> archiveContents = new ArrayList<File>();
             ArchiveInputStream ais = type.contains("gz") ? new TarArchiveInputStream(new GZIPInputStream(zipStream)): new ArchiveStreamFactory().createArchiveInputStream(type, zipStream);
-            ArchiveEntry zipFiles;
-            if( type.contains("gz"))
-                zipFiles = (TarArchiveEntry) ais.getNextEntry();
-            else
-                zipFiles = (ZipArchiveEntry) ais.getNextEntry();
+            ArchiveEntry zipFiles = ais.getNextEntry();
             while(zipFiles != null){
                 File outputFile = new File(".", zipFiles.getName());   // don't do this anonymously, need it for the list
                 outputFile.setExecutable(true);
                 OutputStream os = new FileOutputStream(outputFile);
 
-                IOUtils.copy(ais, os);  // copy from the archiveinputstream to the output stream
-                os.close();     // close the output stream
+                IOUtils.copy(ais, os);
+                os.close();
 
                 archiveContents.add(outputFile);
-                zipFiles = (ZipArchiveEntry) ais.getNextEntry();
+                zipFiles = ais.getNextEntry();
             }
             ais.close();
             zipStream.close();
