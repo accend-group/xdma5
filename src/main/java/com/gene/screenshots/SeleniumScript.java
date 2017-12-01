@@ -75,7 +75,7 @@ public class SeleniumScript
         options.setHeadless(true);
         options.setExperimentalOption("mobileEmulation", mobileEmulation);
 
-        WebDriver chromeDriver = new ChromeDriver();
+        WebDriver chromeDriver = new ChromeDriver(options);
         chromeDriver.manage().window().setSize(new Dimension(1600,1200));
 
         // save image names
