@@ -62,11 +62,11 @@ public class HeadlessTest {
 
         System.setProperty("webdriver.gecko.driver", "geckodriver");
 
-        //FirefoxBinary firefoxBinary = new FirefoxBinary();
-        //firefoxBinary.addCommandLineOptions("--headless");
+        FirefoxBinary firefoxBinary = new FirefoxBinary(new File("~/home/anthony/firefox/firefox"));
+        firefoxBinary.addCommandLineOptions("--headless");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setHeadless(true);
-        //firefoxOptions.setBinary(firefoxBinary);
+        //firefoxOptions.setHeadless(true);
+        firefoxOptions.setBinary(firefoxBinary);
 
         //options.setBinary("/Applications/Google Chrome/Contents/MacOS/Google Chrome");
 
