@@ -15,6 +15,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class HeadlessTest {
@@ -28,8 +30,17 @@ public class HeadlessTest {
         options.addArguments("--headless");
 
 
+        Map<String, Object> mobileMetrics = new HashMap<>();
+        mobileMetrics.put("width", 320);
+        mobileMetrics.put("height", 720);
+        mobileMetrics.put("pixelRatio", 1.0);
+        Map<String, Object> mobileEmulation = new HashMap<>();
+        mobileEmulation.put("deviceMetrics", mobileMetrics);
+        mobileEmulation.put("userAgent", "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
+        options.setExperimentalOption("mobileEmulation", mobileEmulation);
+
         WebDriver chromeDriver = new ChromeDriver(options);
-        chromeDriver.manage().window().setSize(new Dimension(1600,1200));
+        //chromeDriver.manage().window().setSize(new Dimension(320,1200));
         chromeDriver.get("http://www.google.com");
 
 
@@ -51,16 +62,17 @@ public class HeadlessTest {
 
         System.setProperty("webdriver.gecko.driver", "geckodriver");
 
-        FirefoxBinary firefoxBinary = new FirefoxBinary();
-        firefoxBinary.addCommandLineOptions("--headless");
+        //FirefoxBinary firefoxBinary = new FirefoxBinary();
+        //firefoxBinary.addCommandLineOptions("--headless");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setBinary(firefoxBinary);
+        firefoxOptions.setHeadless(true);
+        //firefoxOptions.setBinary(firefoxBinary);
+
         //options.setBinary("/Applications/Google Chrome/Contents/MacOS/Google Chrome");
 
 
-
         WebDriver geckoDriver = new FirefoxDriver(firefoxOptions);
-        geckoDriver.manage().window().setSize(new Dimension(1600,1200));
+        //geckoDriver.manage().window().setSize(new Dimension(320,1200));
         geckoDriver.get("http://www.mozilla.org");
 
 
