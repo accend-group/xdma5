@@ -92,7 +92,8 @@ public class DownloadDrivers {
             while(zipFiles != null){
                 File outputFile = new File(".", zipFiles.getName());
 
-                if(!outputFile.setExecutable(true)){
+                // set permission only to current user
+                if(!outputFile.setExecutable(true, true)){
                     System.out.println("Error: can't sent permissions!");
                     System.exit(1);
                 }
