@@ -49,7 +49,7 @@ public class SeleniumScript
 
         // some place postrun can access
 
-        String savePath = "/Users/anthony/Desktop/SeleniumScriptLog/";
+        String savePath = "target/screenshots/";
         if(args.length > 0)
             savePath = args[0];
 

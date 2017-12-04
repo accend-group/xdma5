@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.gene.screenshots</groupId>
-    <artifactId>seleniumtest</artifactId>
+    <artifactId>genentech-screenshots</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>seleniumtest</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>genentech-screenshots</name>
     <url>http://maven.apache.org</url>
 
     <properties>
