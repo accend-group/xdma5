@@ -3,7 +3,6 @@ package com.gene.screenshots;
 import com.amazonaws.regions.Regions;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
-import com.gene.screenshots.selenium.Selenium;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
@@ -130,10 +129,5 @@ public class SeleniumScript
         chromeDriver.close();
         chromeDriver.quit();
     }
-
-    private static void takeImages(Selenium testBrowser, String imgName){
-        testBrowser.saveVisibleScreenshot(imgName);
-        testBrowser.runJS(REMOVE_IMSAFETY_SCRIPT);
-        testBrowser.saveFullPageScreenshot(imgName);
-    }
+    
 }
