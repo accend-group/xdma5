@@ -6,7 +6,6 @@ target/
 .DS_Store
 bin/
 .idea/
-*.png
 *.pdf
 *.iml
 /node_modules/
