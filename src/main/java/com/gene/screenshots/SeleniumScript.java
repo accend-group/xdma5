@@ -63,20 +63,24 @@ public class SeleniumScript
 
 
         // setup mobile chrome driver
-        Map<String, Object> mobileMetrics = new HashMap<>();
+        /*Map<String, Object> mobileMetrics = new HashMap<>();
         mobileMetrics.put("width", 320);
         mobileMetrics.put("height", 720);
         mobileMetrics.put("pixelRatio", 1.0);
         Map<String, Object> mobileEmulation = new HashMap<>();
         mobileEmulation.put("deviceMetrics", mobileMetrics);
         mobileEmulation.put("userAgent", "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
+        */
         ChromeOptions options = new ChromeOptions();
-
-        options.setHeadless(true);
-        options.setExperimentalOption("mobileEmulation", mobileEmulation);
-
+        options.addArguments("--headless");
+        //options.addArguments("--disable-gpu");
+        options.addArguments("--disable-gpu-watchdog");
+        //options.addArguments("--window-size=1200,1200");
         WebDriver chromeDriver = new ChromeDriver(options);
-        chromeDriver.manage().window().setSize(new Dimension(1600,1200));
+        chromeDriver.manage().window().setSize(new Dimension(1200, 1200));
+
+        // desktop option
+        //chromeDriver.manage().window().setSize(new Dimension(1600,1200));
 
         // save image names
         LinkedList<String> imagesNames = new LinkedList<>();
@@ -129,5 +133,4 @@ public class SeleniumScript
         chromeDriver.close();
         chromeDriver.quit();
     }
-    
 }
