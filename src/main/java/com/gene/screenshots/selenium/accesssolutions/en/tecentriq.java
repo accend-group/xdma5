@@ -26,18 +26,18 @@ public class tecentriq {
 		Actions actions = new Actions(driver);
 		// ---->> ituxan_nhl_cll <<---- // 38 screenshots
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-0.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-0.0");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/how-we-help-you.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-1.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-1.0");
 	
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-1.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-1.0-tab1");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-1.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-1.0-tab2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div[2]/div[1]")).click();
@@ -46,7 +46,7 @@ public class tecentriq {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-1.0-GATCF-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-1.0-GATCF-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -54,99 +54,99 @@ public class tecentriq {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-1.0-GATCF-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-1.0-GATCF-2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("How do I enroll?")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-1.0-step1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-1.0-step1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("What will we find out?")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-1.0-step2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-1.0-step2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("What options are there?")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-1.0-step3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-1.0-step3");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/forms-and-documents.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-2.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-2.0");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-2.0-esubmit");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-2.0-esubmit");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-2.0-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-2.0-more-info-1");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-2.0-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-2.0-more-info-2");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/frequently-asked-questions.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab1");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab2");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_817793439']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab3");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab4");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab4");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab5");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab5");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab6");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab6");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab7");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab7");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab8");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab8");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab9");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab9");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab10");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab10");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-3.0-tab11");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-3.0-tab11");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/patient-assistance-tool-page.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-part1");
 		
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-part2");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-1-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-1-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[4]/div/p[6]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-1-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-1-part2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -154,15 +154,15 @@ public class tecentriq {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-more-info-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-more-info-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-2-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-2-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[3]/div/p[6]"))).build().perform();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-2-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-2-part2");
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		
@@ -170,22 +170,22 @@ public class tecentriq {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-more-info-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-more-info-2");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-3-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-3-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[2]/div/p[6]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-pat-3-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-pat-3-part2");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/search.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-tecentriq-search");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-tecentriq-search");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/site-map.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-tecentriq-sitemap");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-tecentriq-sitemap");
 		
 	}
 	public static void tecentriq_mobile(WebDriver driver) throws InterruptedException{
@@ -195,18 +195,18 @@ public class tecentriq {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		// ---->> ituxan_nhl_cll <<---- // 38 screenshots
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-0.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-0.0");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/how-we-help-you.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0");
 
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-tab1");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-tab2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div[2]/div[1]")).click();
@@ -214,34 +214,34 @@ public class tecentriq {
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF1-yes");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF1-yes");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF3-yes");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF3-yes");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF4-yes");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF4-yes");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF1-no");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF1-no");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF2-no");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF2-no");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF3-no");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF3-no");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();	
@@ -249,7 +249,7 @@ public class tecentriq {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF2-yes");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF2-yes");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -258,7 +258,7 @@ public class tecentriq {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF4-no");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-GATCF4-no");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -269,115 +269,115 @@ public class tecentriq {
 		driver.findElement(By.linkText("How do I enroll?")).click();
 		jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')",element);
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-step1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-step1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("What will we find out?")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-step2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-step2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("What options are there?")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-step3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-1.0-step3");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/forms-and-documents.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-2.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-2.0");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/frequently-asked-questions.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab1");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab2");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_817793439']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab3");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab4");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab4");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab5");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab5");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab6");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab6");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab7");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab7");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab8");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab8");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab9");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab9");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab10");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab10");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab11");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-3.0-tab11");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/patient-assistance-tool-page.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat1-no");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat1-no");
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat1-yes");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat1-yes");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat2-no");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat2-no");
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat2-yes");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat2-yes");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat3-yes");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat3-yes");
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat3-no");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat3-no");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat4-yes");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat4-yes");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-pat4-no");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-pat4-no");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/search.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-tecentriq-search");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-tecentriq-search");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tecentriq/site-map.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-tecentriq-sitemap");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-tecentriq-sitemap");
 	}
 	public static void movecursor(WebDriver driver) {
 		

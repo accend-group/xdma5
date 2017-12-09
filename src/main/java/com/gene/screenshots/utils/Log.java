@@ -7,9 +7,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 
+
+// holds the image paths for a pdf
 public class Log {
     private LinkedList<String> items = new LinkedList<>();
     private String logName = "log";
+
+    public void setList(LinkedList<String> list){
+        items = list;
+    }
 
     public void add(String item){
         items.add(item);

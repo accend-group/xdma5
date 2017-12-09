@@ -28,14 +28,14 @@ public class es_pulmozyme {
 
         //---->> pulmozyme <<---- 42 screenshot for pulmozyme
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-0.0");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-0.0");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/how-we-help-you.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-1.0");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-1.0");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-1.0-tab1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-1.0-tab1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -44,7 +44,7 @@ public class es_pulmozyme {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-1.0-GATCF-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-1.0-GATCF-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -52,131 +52,131 @@ public class es_pulmozyme {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-1.0-GATCF-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-1.0-GATCF-2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�C�mo me inscribo?")).click();
-		screenshots.full(driver, savePath,  "accesssolutions-patient-pulmozyme-1.0-step1");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-pulmozyme-1.0-step1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� averiguaremos?")).click();
-		screenshots.full(driver, savePath,  "accesssolutions-patient-pulmozyme-1.0-step2");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-pulmozyme-1.0-step2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� opciones hay?")).click();
-		screenshots.full(driver, savePath,  "accesssolutions-patient-pulmozyme-1.0-step3");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-pulmozyme-1.0-step3");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/forms-and-documents.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-2.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-2.0");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-2.0-esubmit");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-2.0-esubmit");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-2.0-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-2.0-more-info-1");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-2.0-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-2.0-more-info-2");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/frequently-asked-questions.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
 		movecursor(driver);
 		driver.manage().window().setSize(new Dimension(1621,780));
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab2");
 		
 		driver.manage().window().maximize();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_1936681847']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab3");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_1936681847']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab4");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab4");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab5");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab5");
 	
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab6");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab6");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab7");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab7");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab8");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab8");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab9");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab9");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab10");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab10");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab11");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab11");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab12");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-3.0-tab12");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/patient-assistance-tool-page.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-part1");
 		
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-part2");
 		
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[6]/div[2]/fieldset/button[1]"))).build().perform();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-part3");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-part3");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-1-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-1-part1");
 		
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[4]/div/p[6]"))).build().perform();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-1-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-1-part2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-pat-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-pat-more-info-1");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-2-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-2-part1");
 		
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[3]/div/p[6]"))).build().perform();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-2-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-2-part2");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pulmozyme-pat-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pulmozyme-pat-more-info-2");
 	
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
@@ -184,16 +184,16 @@ public class es_pulmozyme {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[6]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-3-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-3-part1");
 		
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[2]/div/p[6]"))).build().perform();
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-pat-3-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-pat-3-part2");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/search.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-search");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-search");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/site-map.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pulmozyme-sitemap");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pulmozyme-sitemap");
 	}
 	public static void pulmozyme_mobile(WebDriver driver) throws InterruptedException{
 		// TODO Auto-generated method stub
@@ -202,14 +202,14 @@ public class es_pulmozyme {
 
 		//---->> pulmozyme <<---- 42 screenshot for pulmozyme
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-0.0");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-0.0");
 
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/how-we-help-you.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-1.0");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-1.0");
 
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-1.0-tab1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-1.0-tab1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -218,7 +218,7 @@ public class es_pulmozyme {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -226,7 +226,7 @@ public class es_pulmozyme {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF-2");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -237,109 +237,109 @@ public class es_pulmozyme {
 		driver.findElement(By.linkText("�C�mo me inscribo?")).click();
 //		jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')",element);
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-1.0-step1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-1.0-step1");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� averiguaremos?")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-1.0-step2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-1.0-step2");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� opciones hay?")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-1.0-step3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-1.0-step3");
 
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/forms-and-documents.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-2.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-2.0");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-2.0-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-2.0-more-info-1");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-2.0-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-2.0-more-info-2");
 
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/frequently-asked-questions.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab1");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab2");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_1936681847']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab3");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_1936681847']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab4");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab4");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab5");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab5");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab6");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab6");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab7");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab7");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab8");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab8");
 
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab9");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab9");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab10");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab10");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab11");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab11");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab12");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-3.0-tab12");
 
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/patient-assistance-tool-page.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-pat");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-pat");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-pat-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-pat-1");
 			
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-pat-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-pat-more-info-1");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-pat-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-pat-2");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pulmozyme-pat-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pulmozyme-pat-more-info-2");
 	
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
@@ -347,13 +347,13 @@ public class es_pulmozyme {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[6]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-pat-3");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-pat-3");
 
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/search.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-search");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-search");
 
 		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/pulmozyme/site-map.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pulmozyme-sitemap");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pulmozyme-sitemap");
 	}
 	public static void movecursor(WebDriver driver) {
 		

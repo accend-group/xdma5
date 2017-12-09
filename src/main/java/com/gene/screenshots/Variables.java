@@ -30,36 +30,43 @@ public class Variables {
     private static boolean mobilePDF = false;
     private static boolean bothPDF = true;
 
+    // defaults to sequential test run
     private static boolean useTheads = false;
+    private static int threadCount = 1;
 
     public static void main(String [] args){
 
         for(String arg : args) {
-            if(arg.contains("logpath=")) {
+            if(arg.contains("logpath=") && arg.indexOf("logpath=") == 0) {
                 savePath = arg.substring(8, arg.length());
                 File dir = new File(savePath);
                 dir.mkdir();
             }
-            if(arg.contains("pdfoutput=")) {
+            if(arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
                 pdfOutputPath = arg.substring(10, arg.length());
-                File dir = new File(pdfOutputPath);
-                dir.mkdir();
+                if(pdfOutputPath == null || pdfOutputPath.equals(""))
+                    pdfOutputPath = null;
+                else {
+                    File dir = new File(pdfOutputPath);
+                    dir.mkdir();
+                }
             }
-            if(arg.contains("pdfname="))
+            if(arg.contains("pdfname=") && arg.indexOf("pdfname=") == 0)
                 pdfName = arg.substring(8, arg.length());
+
             if(arg.equals("s3=true"))
                 s3 = true;
             if(arg.equals("aws-local=true"))
                 s3Local = true;
-            if(arg.contains("aws-accesskey="))
+            if(arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
-            if(arg.contains("aws-secretkey="))
+            if(arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
-            if(arg.contains("s3-bucket="))
+            if(arg.contains("s3-bucket=") && arg.indexOf("s3-bucket=") == 0)
                 bucketName = arg.substring(10, arg.length());
-            if(arg.contains("s3-pdfkey="))
+            if(arg.contains("s3-pdfkey=") && arg.indexOf("s3-pdfkey=") == 0)
                 pdfKey = arg.substring(10, arg.length());
-            if(arg.contains("s3-region="))
+            if(arg.contains("s3-region=") && arg.indexOf("s3-region=") == 0)
                 region = arg.substring(10, arg.length());
             if(arg.equals("access-solutions=true"))
                 accessSolutions = true;
@@ -67,10 +74,12 @@ public class Variables {
                 kadcylaHCP = true;
             if(arg.equals("kadcyla-patient=true"))
                 kadcylaPatient = true;
-            if(arg.contains("chromedriver="))
+            if(arg.contains("chromedriver=") && arg.indexOf("chromedriver=") == 0)
                 chromedriverPath = arg.substring(13, arg.length());
             if(arg.equals("threads=true"))
                 useTheads = true;
+            if(arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0)
+                threadCount = Integer.parseInt(arg.substring(12, arg.length()));
         }
     }
 
@@ -88,6 +97,10 @@ public class Variables {
 
     public static String getChromedriverPath(){
         return chromedriverPath;
+    }
+
+    public static String getPdfOutputPath(){
+        return pdfOutputPath;
     }
 
     public static String getAwsSecretKey(){
@@ -124,5 +137,9 @@ public class Variables {
 
     public static boolean isUseTheads(){
         return useTheads;
+    }
+
+    public static int getThreadCount(){
+        return threadCount;
     }
 }

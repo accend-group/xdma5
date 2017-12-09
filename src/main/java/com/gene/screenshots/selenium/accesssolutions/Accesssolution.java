@@ -10,7 +10,7 @@ import java.io.IOException;
  *  Arguments:
  *
  *  savePath - where all the images and log files will be placed at.
- *  chromedriverPath - path to chromedriver, optional defaults to latest chromedriver
+ *  chromedriverPath - path to chromedriver, true, optional defaults to latest chromedriver
  *
  */
 

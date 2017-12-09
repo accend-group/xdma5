@@ -1,7 +1,6 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
 import com.gene.screenshots.Variables;
-import com.gene.screenshots.selenium.kadcyla.patient.desktop;
 import com.gene.screenshots.utils.Screenshots;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,43 +24,43 @@ public class patient {
         //---->> patient <<---- 12 screenshot for patient homepage
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
 		driver.findElement(By.id("select-treatment")).click();
-		screenshots.visible(driver, savePath,   "accesssolutions-patient-select-treatment");
+		screenshots.visible(driver, true, savePath,   "accesssolutions-patient-select-treatment");
 		
 		Thread.sleep(1000);
 		driver.findElement(By.className("product-popup")).click();
-		screenshots.visible(driver, savePath,   "accesssolutions-patient-product-popup");
+		screenshots.visible(driver, true, savePath,   "accesssolutions-patient-product-popup");
 		
 		driver.findElement(By.xpath("//*[@id='product-selector']/div/div/div[2]/div/div/ul/li[16]/a")).click();
-		screenshots.visible(driver, savePath,    "accesssolutions-patient-rituxan-popup");
+		screenshots.visible(driver, true, savePath,    "accesssolutions-patient-rituxan-popup");
 		driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
 		
 		Thread.sleep(1000);
 		driver.findElement(By.linkText("For US Healthcare Professionals")).click();
-		screenshots.visible(driver, savePath,   "accesssolutions-patient-hcp-modal");
+		screenshots.visible(driver, true, savePath,   "accesssolutions-patient-hcp-modal");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-0.0");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-0.0");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/home.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-home");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-home");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/home/patient-assistance-tool-page.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-pat");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-pat");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/search.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-search");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-search");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/pan.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-pan");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-pan");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/biooncology.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-biooncology");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-biooncology");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/rheumatology.html");
-		screenshots.full(driver, savePath,    "accesssolutions-patient-rheumatology");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-rheumatology");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/contact-us.html");
-		screenshots.full(driver, savePath,   "accesssolutions-patient-contact-us");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-contact-us");
 	}
 	public static void patient_mobile(WebDriver driver) throws InterruptedException{
 		
@@ -71,49 +70,49 @@ public class patient {
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
 		driver.findElement(By.id("select-treatment")).click();
-		screenshots.visible(driver, savePath,   "accesssolutions-mobile-patient-select-treatment");
+		screenshots.visible(driver, true, savePath,   "accesssolutions-mobile-patient-select-treatment");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
 		driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]/div[1]/div[2]/button")).click();;
-		screenshots.visible(driver, savePath,    "accesssolutions-mobile-patient-navigation");
+		screenshots.visible(driver, true, savePath,    "accesssolutions-mobile-patient-navigation");
 		
 		Thread.sleep(1000);
 		driver.findElement(By.className("product-popup")).click();
-		screenshots.visible(driver, savePath,   "accesssolutions-mobile-patient-product-popup");
+		screenshots.visible(driver, true, savePath,   "accesssolutions-mobile-patient-product-popup");
 		
 		driver.findElement(By.xpath("//*[@id='product-selector']/div/div/div[2]/div/div/ul/li[16]/a")).click();
-		screenshots.visible(driver, savePath,    "accesssolutions-mobile-patient-rituxan-popup");
+		screenshots.visible(driver, true, savePath,    "accesssolutions-mobile-patient-rituxan-popup");
 		driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
 		
 		Thread.sleep(1000);
 		driver.findElement(By.linkText("US Healthcare Professionals")).click();
-		screenshots.visible(driver, savePath,   "accesssolutions-mobile-patient-hcp-modal");
+		screenshots.visible(driver, true, savePath,   "accesssolutions-mobile-patient-hcp-modal");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-0.0");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-0.0");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/home.html");
 		Thread.sleep(500);
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-home");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-home");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/home/patient-assistance-tool-page.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-pat");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-pat");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/search.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-search");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-search");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/pan.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-pan");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-pan");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/biooncology.html");
 		movecursor(driver);
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-biooncology");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-biooncology");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/rheumatology.html");
-		screenshots.full(driver, savePath,    "accesssolutions-mobile-patient-rheumatology");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-rheumatology");
 		
 		driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/contact-us.html");
-		screenshots.full(driver, savePath,   "accesssolutions-mobile-patient-contact-us");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-contact-us");
 	}
 	public static void movecursor(WebDriver driver) {
 		
