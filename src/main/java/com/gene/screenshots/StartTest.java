@@ -25,7 +25,6 @@ public class StartTest {
 
     private static List<Thread> screenshotThreads = new LinkedList<>();
     private static List<Thread> pdfThreads = new LinkedList<>();
-
     private static AmazonS3 s3 = null;
 
     public static void main(String [] args) throws IOException, InterruptedException {
@@ -42,8 +41,13 @@ public class StartTest {
 
         System.out.println("Save path is: " + savePath);
 
-        if (chromedriverPath == null)
-            chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
+        if (chromedriverPath == null) {
+            String OS = System.getProperty("os.name").toLowerCase();
+            if(OS.contains("win"))
+                chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
+            else
+                chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
+        }
         System.out.println("Chromedrive path is: " + chromedriverPath);
         SeleniumTest.setChomeSystemProperty(chromedriverPath);
 
@@ -94,6 +98,7 @@ public class StartTest {
         }
     }
 
+    // english access solutions
     private static List<SeleniumTest> createAccessSolutionsTestList(){
         List<SeleniumTest> result = new LinkedList<>();
         result.add(new Actemra());
@@ -108,6 +113,19 @@ public class StartTest {
         result.add(new Kadcyla());
         result.add(new Lucentis());
         result.add(new Ocrevus());
+        result.add(new Patient());
+        result.add(new Pegasys());
+        result.add(new Perjeta());
+        result.add(new Pulmozyme());
+        result.add(new RituxanGPAMPA());
+        result.add(new RituxanNHLCLL());
+        result.add(new RituxanRA());
+        result.add(new RituxanHycela());
+        result.add(new Tarceva());
+        result.add(new Tecentriq());
+        result.add(new Venclexta());
+        result.add(new Xolair());
+        result.add(new Zelboraf());
         return result;
     }
 

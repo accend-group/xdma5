@@ -5,35 +5,34 @@ import com.gene.screenshots.selenium.SeleniumTest;
 import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 import com.gene.screenshots.utils.Screenshots;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class Kadcyla extends SeleniumTest {
+public class Pulmozyme extends SeleniumTest {
 
-	@Override
 	public void desktopAutomationTest(String savePath) {
-
 		WebDriver driver = makeDesktopDriver();
 		try {
-			// TODO Auto-generated method stub
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			Actions actions = new Actions(driver);
 
-			//---->> kadcyla <<---- 28 screenshot for kadcyla
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla.html");
-			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-0.0");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/how-we-help-you.html");
+			//---->> pulmozyme <<---- 42 screenshot for pulmozyme
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme.html");
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-0.0");
+
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/how-we-help-you.html");
+			Thread.sleep(1000);
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0");
 
 			driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 			movecursor(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0-tab1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0-tab1");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -43,7 +42,7 @@ public class Kadcyla extends SeleniumTest {
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0-GATCF-1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0-GATCF-1");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.className("start-over")).click();
@@ -52,174 +51,182 @@ public class Kadcyla extends SeleniumTest {
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0-GATCF-2");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0-GATCF-2");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.className("start-over")).click();
+
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.linkText("How do I enroll?")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0-step1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0-step1");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.linkText("What will we find out?")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0-step2");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0-step2");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.linkText("What options are there?")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0-step3");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0-step3");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/forms-and-documents.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/forms-and-documents.html");
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-2.0");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-2.0");
 
 			driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-2.0-esubmit");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-2.0-esubmit");
 
 			driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-2.0-more-info-1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-2.0-more-info-1");
 
 			driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-2.0-more-info-2");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-2.0-more-info-2");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/frequently-asked-questions.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/frequently-asked-questions.html");
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 			movecursor(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab1");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
 			movecursor(driver);
+			driver.manage().window().setSize(new Dimension(1621, 780));
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab2");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab2");
 
+			driver.manage().window().maximize();
 			jse.executeScript("window.scrollTo(0, 0)");
-			driver.findElement(By.xpath("//*[@id='accordion_519706794']/div/div[1]")).click();
+			driver.findElement(By.xpath("//*[@id='accordion_1936681847']/div[1]/div[1]")).click();
 			movecursor(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab3");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab3");
+
+			jse.executeScript("window.scrollTo(0, 0)");
+			driver.findElement(By.xpath("//*[@id='accordion_1936681847']/div[2]/div[1]")).click();
+			movecursor(driver);
+			Thread.sleep(1000);
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab4");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-			movecursor(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab4");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab5");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
+			movecursor(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab5");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab6");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 			movecursor(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab6");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab7");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 			movecursor(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab7");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab8");
 
-			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 			movecursor1(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab8");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab9");
 
+			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
 			movecursor1(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab9");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab10");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
 			movecursor1(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab10");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab11");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
 			movecursor(driver);
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab11");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab12");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/patient-assistance-tool-page.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/patient-assistance-tool-page.html");
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-part1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-part1");
 
 			actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
 			Thread.sleep(1000);
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-part2");
+
+			actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[6]/div[2]/fieldset/button[1]"))).build().perform();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-part2");
-			jse.executeScript("window.scrollTo(0, 0)");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-part3");
 
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-1-part1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-1-part1");
 
 			actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[4]/div/p[6]"))).build().perform();
 			Thread.sleep(1000);
-			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-1-part2");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-1-part2");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.className("start-over")).click();
-			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-more-info-1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-more-info-1");
 
-			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-2-part1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-2-part1");
 
-			jse.executeScript("window.scrollTo(0, 0)");
 			actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[3]/div/p[6]"))).build().perform();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-2-part2");
-			Thread.sleep(500);
-			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-2-part2");
 
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-more-info-2");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-more-info-2");
 
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
+			Thread.sleep(500);
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")).click();
+			Thread.sleep(500);
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[6]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-3-part1");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-3-part1");
 
-			jse.executeScript("window.scrollTo(0, 0)");
 			actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[2]/div/p[6]"))).build().perform();
 			Thread.sleep(1000);
-			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-3-part2");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-3-part2");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/search.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/search.html");
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-search");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-search");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/site-map.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/site-map.html");
 			Thread.sleep(1000);
-			full(driver, true, savePath, "accesssolutions-patient-kadcyla-site-map");
+			full(driver, true, savePath, "accesssolutions-patient-pulmozyme-site-map");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
@@ -228,24 +235,29 @@ public class Kadcyla extends SeleniumTest {
 		}
 	}
 
+	@Override
 	public void mobileAutomationTest(String savePath) {
+
 		WebDriver driver = makeMobileDriver();
 		try {
+			// TODO Auto-generated method stub
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-			//---->> kadcyla <<---- 28 screenshot for kadcyla
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla.html");
-			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-0.0");
+			
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/how-we-help-you.html");
+			//---->> pulmozyme <<---- 42 screenshot for pulmozyme
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme.html");
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-0.0");
+
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/how-we-help-you.html");
+			Thread.sleep(1000);
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0");
 
 			driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-tab1");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-tab1");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -253,34 +265,34 @@ public class Kadcyla extends SeleniumTest {
 			Thread.sleep(500);
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-GATCF1-yes");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF1-yes");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-GATCF3-yes");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF3-yes");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-GATCF4-yes");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF4-yes");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.className("start-over")).click();
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-GATCF1-no");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF1-no");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-GATCF2-no");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF2-no");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-GATCF3-no");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF3-no");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.className("start-over")).click();
@@ -288,7 +300,7 @@ public class Kadcyla extends SeleniumTest {
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-GATCF2-yes");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF2-yes");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.className("start-over")).click();
@@ -296,7 +308,7 @@ public class Kadcyla extends SeleniumTest {
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-GATCF4-no");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-GATCF4-no");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.className("start-over")).click();
@@ -308,149 +320,173 @@ public class Kadcyla extends SeleniumTest {
 			jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-step1");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-step1");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.linkText("What will we find out?")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-step2");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-step2");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.linkText("What options are there?")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-step3");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-step3");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/forms-and-documents.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/forms-and-documents.html");
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-2.0");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-2.0");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/frequently-asked-questions.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/frequently-asked-questions.html");
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab1");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab1");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab2");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab2");
 
 			jse.executeScript("window.scrollTo(0, 0)");
-			driver.findElement(By.xpath("//*[@id='accordion_519706794']/div/div[1]")).click();
+			driver.findElement(By.xpath("//*[@id='accordion_1936681847']/div[1]/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab3");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab3");
+
+			jse.executeScript("window.scrollTo(0, 0)");
+			driver.findElement(By.xpath("//*[@id='accordion_1936681847']/div[2]/div[1]")).click();
+			movecursorm(driver);
+			Thread.sleep(1000);
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab4");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab4");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab5");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
+			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab5");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab6");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab6");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab7");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab7");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab8");
 
-			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab8");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab9");
 
+			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab9");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab10");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab10");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab11");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
 			movecursorm(driver);
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab11");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab12");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/patient-assistance-tool-page.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/patient-assistance-tool-page.html");
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat");
 			jse.executeScript("window.scrollTo(0, 0)");
 
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat1-no");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat1-no");
+
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.className("start-over")).click();
-
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat1-yes");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat1-yes");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat2-no");
-			Thread.sleep(1000);
-			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat2-no");
 
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat2-yes");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat2-yes");
 
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat3-yes");
-			Thread.sleep(1000);
-			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat3-yes");
 
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat3-no");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat3-no");
 
-			jse.executeScript("window.scrollTo(0, 0)");
-			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat4-yes");
-
-			jse.executeScript("window.scrollTo(0, 0)");
-			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 			jse.executeScript("window.scrollTo(0, 0)");
 			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat4-no");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat4-no");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/search.html");
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
+			jse.executeScript("window.scrollTo(0, 0)");
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-search");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat4-yes");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/kadcyla/site-map.html");
+			jse.executeScript("window.scrollTo(0, 0)");
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[2]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-site-map");
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat5-no");
+
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
+			jse.executeScript("window.scrollTo(0, 0)");
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")).click();
+			Thread.sleep(1000);
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat5-yes");
+
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[6]/div[2]/fieldset/button[2]")).click();
+			Thread.sleep(1000);
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat6-no");
+
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
+			jse.executeScript("window.scrollTo(0, 0)");
+			driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[6]/div[2]/fieldset/button[1]")).click();
+			Thread.sleep(1000);
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat6-yes");
+
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/search.html");
+			Thread.sleep(1000);
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-search");
+
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/site-map.html");
+			Thread.sleep(1000);
+			full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-site-map");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {

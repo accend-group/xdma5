@@ -8,7 +8,11 @@ public class QuickTest extends SeleniumTest{
     public void start(){
         String chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
-        System.setProperty("webdriver.chrome.driver", chromedriverPath);
+        String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.contains("win"))
+            chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
+        else
+            chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
 
         WebDriver driver = makeDesktopDriver();
         try {
