@@ -7,26 +7,26 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.gene.screenshots.pdf.PDFMaker;
+import com.gene.screenshots.selenium.SeleniumTest;
 import com.gene.screenshots.selenium.accesssolutions.en.*;
 import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
 import com.gene.screenshots.utils.Log;
-import com.gene.screenshots.utils.Screenshots;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  *  Starts the screenshot process from a jenkins job.
+ *  All selenium code is expected to support a headless browser
  */
 
 public class StartTest {
+
+    private static List<Thread> screenshotThreads = new LinkedList<>();
+    private static List<Thread> pdfThreads = new LinkedList<>();
+
+    private static AmazonS3 s3 = null;
 
     public static void main(String [] args) throws IOException, InterruptedException {
 
@@ -34,7 +34,6 @@ public class StartTest {
 
         // pass in jenkins parameters, most important being savePath and chromedriverPath
         Variables.main(args);
-
 
         final int threadCount = Variables.getThreadCount();
         String chromedriverPath = Variables.getChromedriverPath();
@@ -45,111 +44,123 @@ public class StartTest {
 
         if (chromedriverPath == null)
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
+        System.out.println("Chromedrive path is: " + chromedriverPath);
+        SeleniumTest.setChomeSystemProperty(chromedriverPath);
 
-        System.setProperty("webdriver.chrome.driver", chromedriverPath);
-
-        LinkedList<Thread> threads = new LinkedList<>();
 
         KadcylaPatient patientTest = new KadcylaPatient();
         KadcylaHCP hcpTest = new KadcylaHCP();
+        List<SeleniumTest> accessSolutionsTest = createAccessSolutionsTestList();
 
-        if (Variables.isAccessSolutions()) {
+        if (Variables.isAccessSolutions())
+            for(SeleniumTest accessTest : accessSolutionsTest)
+                createDesktopMobileThreads(accessTest);
 
-        }
+        if (Variables.isKadyclaHCP())
+            createDesktopMobileThreads(hcpTest);
 
-        if (Variables.isKadyclaHCP()) {
-            // if 2 pdfs are needed for mobile/desktop change to add/set 2 logs
-            Log pdfLog = new Log();
-            hcpTest.setLog(pdfLog);
+        if (Variables.isKadcylaPatient())
+            createDesktopMobileThreads(patientTest);
 
-            threads.add(new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("Kadcyla HCP desktop screenshot automation started!");
-                    hcpTest.desktopAutomationTest(Variables.getSavePath() + "/desktop/kadcylaHCP");
-                }
-            }));
-            threads.add(new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("Kadcyla HCP mobile screenshot automation started!");
-                    hcpTest.mobileAutomationTest(Variables.getSavePath() + "/mobile/kadcylaHCP");
-                }
-            }));
-        }
 
-        if (Variables.isKadcylaPatient()) {
-            Log pdfLog = new Log();
-            patientTest.setLog(pdfLog);
-            threads.add(new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("Kadcyla Patient desktop screenshot automation started!");
-                    patientTest.desktopAutomationTest(Variables.getSavePath() + "/desktop/kadcylaPatient");
-                }
-            }));
-
-            threads.add(new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("Kadcyla Patient mobile screenshot automation started!");
-                    patientTest.mobileAutomationTest(Variables.getSavePath() + "/mobile/kadcylaPatient");
-                }
-            }));
+        // if sending pdf to s3
+        if(Variables.isS3()) {
+            System.out.println("Connecting to S3...");
+            s3 = AmazonS3ClientBuilder.standard()
+                    .withCredentials(Variables.isS3Local() ? new ProfileCredentialsProvider() : new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
+                    .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
+                    .build();
         }
 
         // start automation job(s)
         //TODO limit number of threads
         if(Variables.isUseTheads()) {
             // concurrent run
-            int startedThreads = 0;
-            for (Thread thread : threads)
+            screenshotThreads.addAll(pdfThreads);
+            for (Thread thread : screenshotThreads)
                 thread.start();
-            for (Thread thread : threads)
+            for (Thread thread : pdfThreads)
                 thread.join();
-
         } else {
             // sequential run
-            for(Thread thread : threads){
+            for(Thread thread : screenshotThreads){
+                thread.start();
+                thread.join();
+            }
+            for(Thread thread : pdfThreads){
                 thread.start();
                 thread.join();
             }
         }
-
-        // read logs and create pdfs
-        if(Variables.isKadcylaPatient()) {
-            patientTest.setLogName("kadcyla_patient");
-            patientTest.saveLog(savePath);
-            createPDFandSend(savePath + "/kadcyla_patient.txt", "kadcyla_patient", null);
-        }
-
-        if(Variables.isKadyclaHCP()) {
-            hcpTest.setLogName("kadcyla_hcp");
-            hcpTest.saveLog(savePath);
-            createPDFandSend(savePath + "/kadcyla_hcp.txt", "kadcyla_hcp", null);
-        }
     }
 
-    private static void createPDFandSend(String logPath, String pdfName, String pdfOutputPath){
+    private static List<SeleniumTest> createAccessSolutionsTestList(){
+        List<SeleniumTest> result = new LinkedList<>();
+        result.add(new Actemra());
+        result.add(new Alecensa());
+        result.add(new Avastin());
+        result.add(new Cotellic());
+        result.add(new Erivedge());
+        result.add(new Esbriet());
+        result.add(new Gazyva());
+        result.add(new Hemlibra());
+        result.add(new Herceptin());
+        result.add(new Kadcyla());
+        result.add(new Lucentis());
+        result.add(new Ocrevus());
+        return result;
+    }
+
+    // mobile and desktop threads have to complete before the pdf thread starts
+    private static void createDesktopMobileThreads(SeleniumTest test) {
+
+        // if 2 pdfs are needed for mobile/desktop change to add/set 2 logs
+        Log pdfLog = new Log();
+        test.setLog(pdfLog);
+        String testName = test.getClass().getSimpleName();
+        Thread[] deskMobThreads = new Thread[]{
+                new Thread(() -> {
+                    System.out.println(testName + " mobile screenshot automation started!");
+                    test.mobileAutomationTest(Variables.getSavePath() + "/mobile/" + testName);
+                }),
+                new Thread(() -> {
+                    System.out.println(testName + " desktop screenshot automation started!");
+                    test.desktopAutomationTest(Variables.getSavePath() + "/desktop/" + testName);
+                })
+        };
+        screenshotThreads.add(deskMobThreads[0]);
+        screenshotThreads.add(deskMobThreads[1]);
+        pdfThreads.add(new Thread(() -> {
+            try {
+                deskMobThreads[0].join();
+                deskMobThreads[1].join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            createPDFandSendThread(test, testName, null);
+        }));
+    }
+
+    private static void createPDFandSendThread(SeleniumTest test, String pdfName, String pdfOutputPath) {
+
+        String savePath = Variables.getSavePath();
+        String testName = test.getClass().getSimpleName();
+        String logPath = savePath + "/logs/" + testName + ".txt";
+
+        // saveLog merges desktop/mobile into 1 log file
+        test.setLogName(testName);
+        test.saveLog(savePath + "/logs");
 
         PDFMaker newPdf = new PDFMaker();
         LinkedList<String> imageNames = new LinkedList<>();
-
-        // read in images from log
-        if(logPath == null) {
-            System.out.println("No log path set!");
-            System.exit(1);
-        }
-        System.out.println(logPath);
         try {
             File logFile = new File(logPath);
             FileReader reader = new FileReader(logFile);
             BufferedReader buffer = new BufferedReader(reader);
             String line;
-            while((line = buffer.readLine()) != null)
+            while ((line = buffer.readLine()) != null)
                 imageNames.add(line);
         } catch (IOException e) {
-            //e.printStackTrace();
             if (e instanceof FileNotFoundException)
                 System.out.println("No log file found at path!");
             else
@@ -157,32 +168,28 @@ public class StartTest {
             System.exit(1);
         }
 
-        // create pdf from images
         if(pdfOutputPath == null)
-            pdfOutputPath = ".";
+            pdfOutputPath = savePath;
         try {
-            for(String imagePath : imageNames){
+            for (String imagePath : imageNames) {
                 newPdf.addImg(imagePath);
             }
             newPdf.savePDF(pdfOutputPath + "/" + pdfName + ".pdf");
             newPdf.close();
+            System.out.println(pdfName + ".pdf created!");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         // if sending pdf to s3
-        if(!Variables.isS3())
+        if (s3 == null)
             return;
 
-        System.out.println("Connecting to S3...");
-        AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-                .withCredentials(Variables.isS3Local() ? new ProfileCredentialsProvider() : new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
-                .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
-                .build();
-
-        System.out.println("Sending pdf...");
+        System.out.println("Sending " + pdfName + ".pdf...");
         try {
-            s3.putObject(Variables.getBucketName(), Variables.getPdfKey(), new File(pdfOutputPath + "/" + pdfName + ".pdf"));
+            s3.putObject(Variables.getBucketName(),
+                    Variables.getPdfKey(),
+                    new File((pdfOutputPath == null ? "." : pdfOutputPath) + "/" + (pdfName == null ? testName : pdfName) + ".pdf"));
             System.out.println("pdf sent!");
         } catch (Exception e) {
             e.printStackTrace();

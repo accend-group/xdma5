@@ -1,5 +1,6 @@
 package com.gene.screenshots.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -33,6 +34,7 @@ public class Log {
     public void save(String savePath){
         // store string items names in log file
         try {
+            new File(savePath).mkdirs();
             Path file = Paths.get(savePath + "/"  +logName +".txt");
             Files.write(file, items, Charset.forName("UTF-8"));
         }catch(IOException e){

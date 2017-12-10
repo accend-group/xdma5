@@ -10,15 +10,22 @@ public class QuickTest extends SeleniumTest{
 
         System.setProperty("webdriver.chrome.driver", chromedriverPath);
 
-        WebDriver driver = mobileDriver();
-        driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/safety.html");///http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
-
+        WebDriver driver = makeDesktopDriver();
         try {
-            full(driver, false, "." , "mobileTest");
+        driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/safety.html");///http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+        System.out.println("x: " + getCurrentScrollX(driver) + " y: "+ getCurrentScrollY(driver));
+
+        scrollTo(driver,0, 500);
+        visible(driver, false, ".", "mobileTestVisible");
+        System.out.println("x: " + getCurrentScrollX(driver) + " y: "+ getCurrentScrollY(driver));
+
+
+            full(driver, false, "." , "mobileTestFull");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        driver.quit();
+
+        driver.close(); driver.quit();
     }
 
     public static void main(String [] args){

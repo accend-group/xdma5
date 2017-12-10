@@ -24,19 +24,19 @@ public class es_erivedge {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Actions actions = new Actions(driver);
 
-        String savePath = Variables.getSavePath() + "/desktop/es/erivedge";
+        String savePath = Variables.getSavePath() + "/desktop/es/Erivedge";
 
 
-        // ---->> erivedge <<---- // 38 screenshots
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-0.0");
+        // ---->> Erivedge <<---- // 38 screenshots
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-0.0");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/how-we-help-you.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-1.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/how-we-help-you.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-1.0");
 	
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-1.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-1.0-tab1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -45,7 +45,7 @@ public class es_erivedge {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-1.0-GATCF-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-1.0-GATCF-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -53,103 +53,103 @@ public class es_erivedge {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-1.0-GATCF-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-1.0-GATCF-2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�C�mo me inscribo?")).click();
-		screenshots.full(driver, true, savePath,  "accesssolutions-patient-erivedge-1.0-step1");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-Erivedge-1.0-step1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� averiguaremos?")).click();
-		screenshots.full(driver, true, savePath,  "accesssolutions-patient-erivedge-1.0-step2");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-Erivedge-1.0-step2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� opciones hay?")).click();
-		screenshots.full(driver, true, savePath,  "accesssolutions-patient-erivedge-1.0-step3");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-Erivedge-1.0-step3");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/forms-and-documents.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-2.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/forms-and-documents.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-2.0");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-2.0-esubmit");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-2.0-esubmit");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-2.0-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-2.0-more-info-1");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-2.0-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-2.0-more-info-2");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/frequently-asked-questions.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/frequently-asked-questions.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab1");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
 		movecursor(driver);
 		driver.manage().window().setSize(new Dimension(1621,780));
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab2");
 		
 		driver.manage().window().maximize();
 		driver.findElement(By.xpath("//*[@id='accordion_1018444656']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab3");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_1018444656']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab4");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab4");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab5");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab5");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab6");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab6");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab7");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab7");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab8");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab8");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab9");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab9");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab10");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab10");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab11");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab11");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-3.0-tab12");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-3.0-tab12");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/patient-assistance-tool-page.html");
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-part1");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/patient-assistance-tool-page.html");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-part1");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-part2");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-1-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-1-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[4]/div/p[6]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-1-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-1-part2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -157,15 +157,15 @@ public class es_erivedge {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-more-info-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-more-info-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-2-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-2-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[3]/div/p[6]"))).build().perform();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-2-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-2-part2");
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		
@@ -173,38 +173,38 @@ public class es_erivedge {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-more-info-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-more-info-2");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-3-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-3-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[2]/div/p[6]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-pat-3-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-pat-3-part2");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/search.html");
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-erivedge-search");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/search.html");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Erivedge-search");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/site-map.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-erivedge-sitemap");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/site-map.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Erivedge-sitemap");
 		
 	}
 	public static void erivedge_mobile(WebDriver driver) throws InterruptedException{
-        String savePath = Variables.getSavePath() + "/mobile/es/erivedge";
+        String savePath = Variables.getSavePath() + "/mobile/es/Erivedge";
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-		// ---->> erivedge <<---- // 38 screenshots
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-0.0");
+		// ---->> Erivedge <<---- // 38 screenshots
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-0.0");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/how-we-help-you.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-1.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/how-we-help-you.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-1.0");
 	
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-1.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-1.0-tab1");
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		
 		jse.executeScript("window.scrollTo(0, 0)");
@@ -212,7 +212,7 @@ public class es_erivedge {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-1.0-GATCF-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-1.0-GATCF-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -220,7 +220,7 @@ public class es_erivedge {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-1.0-GATCF-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-1.0-GATCF-2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -231,84 +231,84 @@ public class es_erivedge {
 		driver.findElement(By.linkText("�C�mo me inscribo?")).click();
 //		jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')",element);
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-1.0-step1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-1.0-step1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� averiguaremos?")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-1.0-step2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-1.0-step2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� opciones hay?")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-1.0-step3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-1.0-step3");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/forms-and-documents.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-2.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/forms-and-documents.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-2.0");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-2.0-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-2.0-more-info-1");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-2.0-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-2.0-more-info-2");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/frequently-asked-questions.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/frequently-asked-questions.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab1");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab2");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_1018444656']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab3");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_1018444656']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab4");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab4");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab5");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab5");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab6");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab6");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab7");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab7");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab8");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab8");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab9");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab9");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab10");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab10");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab11");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab11");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-3.0-tab12");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-3.0-tab12");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/patient-assistance-tool-page.html");
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-pat");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/patient-assistance-tool-page.html");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-pat");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-pat-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-pat-1");
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		
@@ -316,28 +316,28 @@ public class es_erivedge {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-pat-more-info-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-pat-more-info-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-pat-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-pat-2");
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-pat-more-info-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-pat-more-info-2");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-pat-3");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-pat-3");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/search.html");
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-erivedge-search");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/search.html");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Erivedge-search");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/erivedge/site-map.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-erivedge-sitemap");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Erivedge/site-map.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Erivedge-sitemap");
 	}
 	public static void movecursor(WebDriver driver) {
 		

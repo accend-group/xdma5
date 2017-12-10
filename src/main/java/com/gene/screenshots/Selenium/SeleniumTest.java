@@ -2,12 +2,10 @@ package com.gene.screenshots.selenium;
 
 import com.gene.screenshots.utils.Screenshots;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.gene.screenshots.Constants.*;
 
@@ -20,8 +18,15 @@ import static com.gene.screenshots.Constants.*;
 
 public abstract class SeleniumTest extends Screenshots {
 
+    // TODO optimize mobiledriver/desktop with limited thread count?
+    protected WebDriver desktopDriver;
+    protected WebDriver mobileDriver;
 
-    public static WebDriver desktopDriver(){
+    public static void setChomeSystemProperty(String chromedriverPath){
+        System.setProperty("webdriver.chrome.driver", chromedriverPath);
+    }
+
+    public static WebDriver makeDesktopDriver(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         //options.addArguments("window-size="+ DESKTOP_WIDTH + "," + DESKTOP_HEIGHT);
@@ -37,7 +42,7 @@ public abstract class SeleniumTest extends Screenshots {
         return driver;
     }
 
-    public static WebDriver mobileDriver(){
+    public static WebDriver makeMobileDriver(){
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
@@ -69,9 +74,12 @@ public abstract class SeleniumTest extends Screenshots {
     }
 
     public void desktopAutomationTest(String savePath){
+        desktopDriver = makeDesktopDriver();
     }
 
 
     public void mobileAutomationTest(String savePath) {
+        mobileDriver = makeMobileDriver();
     }
+
 }

@@ -11,7 +11,7 @@ public class KadcylaPatient extends SeleniumTest {
     @Override
     public void desktopAutomationTest(String savePath) {
 
-        WebDriver driver = desktopDriver();
+        WebDriver driver = makeDesktopDriver();
 
         try {
             Consumer<WebDriver> movecursor = (d) -> {
@@ -251,14 +251,14 @@ public class KadcylaPatient extends SeleniumTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            driver.quit();
+            driver.close(); driver.quit();
         }
     }
 
     @Override
     public void mobileAutomationTest(String savePath) {
 
-        WebDriver driver = mobileDriver();
+        WebDriver driver = makeMobileDriver();
 
         Consumer<WebDriver> movemouse = (d) -> {
             Actions action = new Actions(d);
@@ -406,7 +406,8 @@ public class KadcylaPatient extends SeleniumTest {
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/patient/support-resources/financial-resources.html");
             remove(driver);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
+            System.out.println("x: " + getCurrentScrollX(driver) + " y: "+ getCurrentScrollY(driver));
+            driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat1-yes");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -483,8 +484,10 @@ public class KadcylaPatient extends SeleniumTest {
             full(driver, false, savePath, "kadcyla-mobile-3.2-tab6");
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            driver.close();
+            driver.quit();
         }
-        driver.quit();
     }
 
     private void remove(WebDriver driver) {

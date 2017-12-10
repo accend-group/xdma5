@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.LinkedList;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static com.gene.screenshots.Constants.*;
 import static java.lang.Math.toIntExact;
@@ -30,6 +31,7 @@ public class Screenshots {
     private Log log;
     private LinkedList<String> desktopScreenshots = new LinkedList<>();
     private LinkedList<String> mobileScreenshots = new LinkedList<>();
+
 
     public void setLog(Log log){
         this.log = log;
@@ -71,48 +73,43 @@ public class Screenshots {
         }
     }
 
-    private int getDocWidth(WebDriver driver){
+    protected int getDocWidth(WebDriver driver){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);");
         return toIntExact(result);
     }
 
-    private int getDocHeight(WebDriver driver){
+    protected int getDocHeight(WebDriver driver){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
         return toIntExact(result);
     }
 
-    private int getViewportWidth(WebDriver driver){
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        long result = (Long) jse.executeScript("return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;");
-        return toIntExact(result);
-    }
-
-    private int getViewportHeight(WebDriver driver){
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        long result = (Long) jse.executeScript("return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;");
-        return toIntExact(result);
-    }
-
-    private int getCurrentScrollX(WebDriver driver){
+    protected int getCurrentScrollX(WebDriver driver){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.round(Math.max(document.documentElement.scrollLeft, document.body.scrollLeft));");
         return toIntExact(result);
     }
 
-    private int getCurrentScrollY(WebDriver driver){
+    protected int getCurrentScrollY(WebDriver driver){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result =  (Long) jse.executeScript("return Math.round(Math.max(document.documentElement.scrollTop, document.body.scrollTop));");
         return toIntExact(result);
     }
 
-    private void scrollTo(WebDriver driver, int x, int y){
+    protected void scrollTo(WebDriver driver, int x, int y){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollTo(arguments[0], arguments[1]);", x, y);
     }
 
-    private void fullScreenshot(WebDriver driver, boolean ifDesktop, String location, String fileName){
+
+    // full site body screenshot
+    // need to store current scroll position
+    protected void fullScreenshot(WebDriver driver, boolean ifDesktop, String location, String fileName){
+
+        int xPos = getCurrentScrollX(driver);
+        int yPos = getCurrentScrollY(driver);
+
         File screenshotFile = new File(location);
         if(!screenshotFile.exists()) {
             screenshotFile.mkdirs();
@@ -124,8 +121,12 @@ public class Screenshots {
         else
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT));
 
+        // scroll to the previous position before resize
+        scrollTo(driver, xPos, yPos);
+
     }
 
+    // viewport screenshot
     //  ===================== SHUTTERBUG code modified =====================================
     private BufferedImage takeScreenshot(WebDriver driver) {
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -141,13 +142,14 @@ public class Screenshots {
         }
     }
 
+    // resize entire window to fit entire body of webpage
     //  ===================== SHUTTERBUG code modified =====================================
     private BufferedImage takeScreenshotEntirePage(WebDriver driver) {
 
         int _docWidth = getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
 
-        System.out.println("WIDTH: " + _docWidth + " SYS WIDTH: " + driver.manage().window().getSize().width);
+        //System.out.println("WIDTH: " + _docWidth + " SYS WIDTH: " + driver.manage().window().getSize().width);
         driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
 
         return takeScreenshot(driver);

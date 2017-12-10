@@ -22,18 +22,18 @@ public class es_cotellic {
 		// TODO Auto-generated method stub
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Actions actions = new Actions(driver);
-        String savePath = Variables.getSavePath() + "/desktop/es/cotellic";
+        String savePath = Variables.getSavePath() + "/desktop/es/Cotellic";
 
 
-        // ---->> cotellic <<---- // 38 screenshots
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-0.0");
+        // ---->> Cotellic <<---- // 38 screenshots
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-0.0");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/how-we-help-you.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-1.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/how-we-help-you.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-1.0");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-1.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-1.0-tab1");
 
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -42,7 +42,7 @@ public class es_cotellic {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-1.0-GATCF-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-1.0-GATCF-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -50,103 +50,103 @@ public class es_cotellic {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-1.0-GATCF-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-1.0-GATCF-2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�C�mo me inscribo?")).click();
-		screenshots.full(driver, true, savePath,  "accesssolutions-patient-cotellic-1.0-step1");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-Cotellic-1.0-step1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� averiguaremos?")).click();
-		screenshots.full(driver, true, savePath,  "accesssolutions-patient-cotellic-1.0-step2");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-Cotellic-1.0-step2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� opciones hay?")).click();
-		screenshots.full(driver, true, savePath,  "accesssolutions-patient-cotellic-1.0-step3");
+		screenshots.full(driver, true, savePath,  "accesssolutions-patient-Cotellic-1.0-step3");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/forms-and-documents.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-2.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/forms-and-documents.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-2.0");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-2.0-esubmit");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-2.0-esubmit");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-2.0-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-2.0-more-info-1");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-2.0-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-2.0-more-info-2");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/frequently-asked-questions.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/frequently-asked-questions.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab1");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_5']/div/div[1]")).click();
 		movecursor(driver);
 		driver.manage().window().setSize(new Dimension(1621,780));
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab2");
 		
 		driver.manage().window().maximize();
 		driver.findElement(By.xpath("//*[@id='accordion_1789943255']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab3");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_1789943255']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab4");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab4");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab5");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab5");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab6");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab6");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab7");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab7");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div[1]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab8");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab8");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div[2]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab9");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab9");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div[3]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab10");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab10");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 		movecursor1(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab11");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab11");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 		movecursor(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-3.0-tab12");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-3.0-tab12");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/patient-assistance-tool-page.html");
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-part1");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/patient-assistance-tool-page.html");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-part1");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-part2");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-1-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-1-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[4]/div/p[6]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-1-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-1-part2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -154,15 +154,15 @@ public class es_cotellic {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-more-info-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-more-info-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-2-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-2-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[3]/div/p[6]"))).build().perform();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-2-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-2-part2");
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		
@@ -170,40 +170,40 @@ public class es_cotellic {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-more-info-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-more-info-2");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-3-part1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-3-part1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[2]/div/p[6]"))).build().perform();
 		Thread.sleep(1000);
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-pat-3-part2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-pat-3-part2");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/search.html");
-		screenshots.full(driver, true, savePath,   "accesssolutions-patient-cotellic-search");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/search.html");
+		screenshots.full(driver, true, savePath,   "accesssolutions-patient-Cotellic-search");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/site-map.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-patient-cotellic-sitemap");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/site-map.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-patient-Cotellic-sitemap");
 		
 	}
 	public static void cotellic_mobile(WebDriver driver) throws InterruptedException{
 		// TODO Auto-generated method stub
 		JavascriptExecutor jse	 = (JavascriptExecutor)driver;
 
-        String savePath = Variables.getSavePath() + "/mobile/es/cotellic";
+        String savePath = Variables.getSavePath() + "/mobile/es/Cotellic";
 
-        // ---->> cotellic <<---- // 38 screenshots
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-0.0");
+        // ---->> Cotellic <<---- // 38 screenshots
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-0.0");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/how-we-help-you.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-1.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/how-we-help-you.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-1.0");
 		
 		movecursorm(driver);
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-1.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-1.0-tab1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -212,7 +212,7 @@ public class es_cotellic {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-1.0-GATCF-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-1.0-GATCF-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -220,7 +220,7 @@ public class es_cotellic {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-1.0-GATCF-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-1.0-GATCF-2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
@@ -231,84 +231,84 @@ public class es_cotellic {
 		driver.findElement(By.linkText("�C�mo me inscribo?")).click();
 //		jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')",element);
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-1.0-step1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-1.0-step1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� averiguaremos?")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-1.0-step2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-1.0-step2");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.linkText("�Qu� Opciones Hay?")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-1.0-step3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-1.0-step3");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/forms-and-documents.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-2.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/forms-and-documents.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-2.0");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-2.0-more-info-1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-2.0-more-info-1");
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-2.0-more-info-2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-2.0-more-info-2");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/frequently-asked-questions.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/frequently-asked-questions.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0");
 		
 		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab1");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab1");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_5']/div/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab2");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab2");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_1789943255']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab3");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab3");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_1789943255']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab4");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab4");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab5");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab5");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab6");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab6");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab7");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab7");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab8");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab8");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab9");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab9");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_0']/div[3]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab10");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab10");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab11");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab11");
 		
 		driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
 		movecursorm(driver);
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-3.0-tab12");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-3.0-tab12");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/patient-assistance-tool-page.html");
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-pat");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/patient-assistance-tool-page.html");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-pat");
 		jse.executeScript("window.scrollTo(0, 0)");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-pat-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-pat-1");
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.className("start-over")).click();
 		
@@ -316,28 +316,28 @@ public class es_cotellic {
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-pat-more-info-1");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-pat-more-info-1");
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-pat-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-pat-2");
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 		
 		jse.executeScript("window.scrollTo(0, 0)");
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-pat-more-info-2");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-pat-more-info-2");
 		
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-pat-3");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-pat-3");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/search.html");
-		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-cotellic-search");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/search.html");
+		screenshots.full(driver, true, savePath,   "accesssolutions-mobile-patient-Cotellic-search");
 		
-		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/cotellic/site-map.html");
-		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-cotellic-sitemap");
+		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/Cotellic/site-map.html");
+		screenshots.full(driver, true, savePath,    "accesssolutions-mobile-patient-Cotellic-sitemap");
 	}
 	public static void movecursor(WebDriver driver) {
 		

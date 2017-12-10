@@ -30,6 +30,10 @@ public class Variables {
     private static boolean mobilePDF = false;
     private static boolean bothPDF = true;
 
+    private enum TestUrl{
+        PROD, DEV, QA,
+    }
+
     // defaults to sequential test run
     private static boolean useTheads = false;
     private static int threadCount = 1;
@@ -40,7 +44,7 @@ public class Variables {
             if(arg.contains("logpath=") && arg.indexOf("logpath=") == 0) {
                 savePath = arg.substring(8, arg.length());
                 File dir = new File(savePath);
-                dir.mkdir();
+                dir.mkdirs();
             }
             if(arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
                 pdfOutputPath = arg.substring(10, arg.length());

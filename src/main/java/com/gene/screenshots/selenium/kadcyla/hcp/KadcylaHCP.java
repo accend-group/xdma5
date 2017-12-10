@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-
 public class KadcylaHCP extends SeleniumTest {
 
 
@@ -16,13 +15,12 @@ public class KadcylaHCP extends SeleniumTest {
     public void desktopAutomationTest(String savePath) {
 
 
-        WebDriver driver = desktopDriver();
+        WebDriver driver = makeDesktopDriver();
 
         try {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions action = new Actions(driver);
             WebElement element;
-
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/hcp.html");
             remove(driver);
@@ -281,7 +279,7 @@ public class KadcylaHCP extends SeleniumTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            driver.quit();
+            driver.close(); driver.quit();
         }
     }
     
@@ -290,7 +288,7 @@ public class KadcylaHCP extends SeleniumTest {
     @Override
     public void mobileAutomationTest(String savePath) {
 
-        WebDriver driver = mobileDriver();
+        WebDriver driver = makeMobileDriver();
         try {
 
             JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -350,7 +348,7 @@ public class KadcylaHCP extends SeleniumTest {
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1");
 
-            //jse.executeScript("window.scrollTo(0, 0)");
+            ///jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat1-yes");
@@ -543,10 +541,10 @@ public class KadcylaHCP extends SeleniumTest {
             Thread.sleep(1000);
             visible(driver, false, savePath, "kadcyla-hcp-mobile-link-modal");
 
-            driver.quit();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            driver.close();
             driver.quit();
         }
     }
