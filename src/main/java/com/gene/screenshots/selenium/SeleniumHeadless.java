@@ -8,6 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import static com.gene.screenshots.Constants.*;
 
 /** Abstract class for screenshot automation code
@@ -23,11 +26,21 @@ public abstract class SeleniumHeadless extends Screenshots {
     protected WebDriver desktopDriver;
     protected WebDriver mobileDriver;
 
+    // suppress selenium console log
+    static {
+        final Logger[] pin;
+        pin = new Logger[]{
+                Logger.getLogger("com.gargoylesoftware.htmlunit"),
+                Logger.getLogger("org.apache.commons.httpclient"),
+                Logger.getLogger("org.openqa.selenium.remote.ProtocolHandshake")
+        };
+        for (Logger l : pin) {
+            l.setLevel(Level.OFF);
+        }
+    }
+
     public static void setChromeSystemProperty(String chromedriverPath){
-       // System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
         System.setProperty("webdriver.chrome.driver", chromedriverPath);
-        //System.setProperty("webdriver.chrome.args", "--disable-logging");
-        //System.setProperty("webdriver.chrome.silentOutput", "true");
     }
 
     public static WebDriver makeDesktopDriver(){
@@ -40,7 +53,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("disable-infobars");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-        WebDriver driver = new ChromeDriver(options);//new ChromeDriverService.Builder().withSilent(true).usingAnyFreePort().build(), options);
+        WebDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
         return driver;
     }
@@ -56,7 +69,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--no-sandbox");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-        return new ChromeDriver(options);//new ChromeDriverService.Builder().withSilent(true).usingAnyFreePort().build(), options);
+        return new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
     }
 
     public void desktopAutomationTest(String savePath){
