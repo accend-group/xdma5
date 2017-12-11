@@ -13,8 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import static com.gene.screenshots.Constants.DESKTOP_WIDTH;
-import static com.gene.screenshots.Constants.MOBILE_WIDTH;
 
 // create a pdf from images. Each image is a single page
 public class PDFMaker {
@@ -23,17 +21,10 @@ public class PDFMaker {
     private LinkedList<String> images = new LinkedList<>();
     private PDDocument pdf;
 
-    /*public void addImg(BufferedImage img){
-        images.add(img);
-    }*/
-
-    public void addImg(String imgFilePath) throws IOException{
+    public void addImg(String imgFilePath){
         images.add(imgFilePath);
     }
 
-    //public void addImg(File imgFile) throws IOException{
-      //  images.add(ImageIO.read(imgFile));
-    //}
 
     public void close() throws IOException{
         if(pdf != null)
@@ -54,7 +45,7 @@ public class PDFMaker {
         try {
             for (String filePath : images) {
                 BufferedImage img = ImageIO.read(new File(filePath));
-                PDPage page = new PDPage(new PDRectangle(img.getWidth(), img.getHeight()));//new PDRectangle(img.getWidth() >= DESKTOP_WIDTH ? DESKTOP_WIDTH : MOBILE_WIDTH, img.getHeight()));
+                PDPage page = new PDPage(new PDRectangle(img.getWidth(), img.getHeight()));
                 pdf.addPage(page);
                 PDImageXObject pdImage = LosslessFactory.createFromImage(pdf, img);
                 PDPageContentStream pageContentStream = new PDPageContentStream(pdf, page);

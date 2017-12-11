@@ -1,16 +1,13 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
-import com.gene.screenshots.Variables;
-import com.gene.screenshots.selenium.SeleniumTest;
-import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
-import com.gene.screenshots.utils.Screenshots;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class Herceptin extends SeleniumTest {
+public class Herceptin extends SeleniumHeadless {
 	
 	public void desktopAutomationTest(String savePath){
 		WebDriver driver = makeDesktopDriver();
@@ -226,7 +223,7 @@ full(driver, true, savePath, "accesssolutions-patient-herceptin-search");
 			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/herceptin/site-map.html");
 			Thread.sleep(1000);
 full(driver, true, savePath, "accesssolutions-patient-herceptin-site-map");
-		}catch(InterruptedException e){
+		}catch(Exception e){
 			e.printStackTrace();
 		}finally {
 			driver.close();
@@ -464,7 +461,7 @@ full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-search")
 			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/herceptin/site-map.html");
 			Thread.sleep(1000);
 full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-site-map");
-		}catch (InterruptedException e){
+		}catch (Exception e){
 			e.printStackTrace();
 		}finally {
 			driver.close();

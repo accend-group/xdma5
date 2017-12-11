@@ -1,9 +1,7 @@
 package com.gene.screenshots.utils;
 
-import com.assertthat.selenium_shutterbug.core.Shutterbug;
+
 import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
-import com.assertthat.selenium_shutterbug.utils.image.ImageProcessor;
-import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
 import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
@@ -13,18 +11,15 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.LinkedList;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static com.gene.screenshots.Constants.*;
 import static java.lang.Math.toIntExact;
 
-// used Shutterbug as starting basis, instead of scroll and stitch, the main browser window is resized to match the
+// used Shutterbug as starting basis but now instead of scroll and stitch to get a fullscreenshot the main browser window is resized to match the
 // entire site body height for fullscreen pages.
 public class Screenshots {
 

@@ -31,7 +31,7 @@ public class Variables {
     private static boolean bothPDF = true;
 
     private enum TestUrl{
-        PROD, DEV, QA,
+        PRODUCTION, DEV, QA, AUTHOR
     }
 
     // defaults to sequential test run
@@ -82,8 +82,11 @@ public class Variables {
                 chromedriverPath = arg.substring(13, arg.length());
             if(arg.equals("threads=true"))
                 useTheads = true;
-            if(arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0)
+            if(arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
                 threadCount = Integer.parseInt(arg.substring(12, arg.length()));
+                if(threadCount <= 0)
+                    System.out.println("Warning: set thread count is less that 1! Using single thread!");
+            }
         }
     }
 

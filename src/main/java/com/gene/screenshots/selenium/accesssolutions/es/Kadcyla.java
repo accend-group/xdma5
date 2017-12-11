@@ -1,15 +1,13 @@
 package com.gene.screenshots.selenium.accesssolutions.es;
 
-import com.gene.screenshots.Variables;
-import com.gene.screenshots.selenium.SeleniumTest;
-import com.gene.screenshots.utils.Screenshots;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class Kadcyla extends SeleniumTest {
+public class Kadcyla extends SeleniumHeadless {
 
 	public void desktopAutomationTest(String savePath) {
 		WebDriver driver = makeDesktopDriver();
@@ -217,7 +215,7 @@ public class Kadcyla extends SeleniumTest {
 			driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/kadcyla/site-map.html");
 			Thread.sleep(1000);
 			full(driver, true, savePath, "accesssolutions-patient-kadcyla-sitemap");
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			driver.close();
@@ -411,7 +409,7 @@ public class Kadcyla extends SeleniumTest {
 			driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/kadcyla/site-map.html");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-sitemap");
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			driver.close();

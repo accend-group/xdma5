@@ -1,16 +1,13 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
-import com.gene.screenshots.Variables;
-import com.gene.screenshots.selenium.SeleniumTest;
-import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
-import com.gene.screenshots.utils.Screenshots;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class Pegasys extends SeleniumTest {
+public class Pegasys extends SeleniumHeadless {
 
 	public void desktopAutomationTest(String savePath){
 		
@@ -170,7 +167,7 @@ full(driver, true, savePath, "accesssolutions-patient-pegasys-search");
 			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/site-map.html");
 			Thread.sleep(1000);
 full(driver, true, savePath, "accesssolutions-patient-pegasys-site-map");
-		}catch (InterruptedException e){
+		}catch (Exception e){
 			e.printStackTrace();
 		}finally {
 			driver.close();
@@ -365,7 +362,7 @@ full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-search");
 			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/site-map.html");
 			Thread.sleep(1000);
 full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-site-map");
-		}catch (InterruptedException e){
+		}catch (Exception e){
 			e.printStackTrace();
 		}finally {
 			driver.close();

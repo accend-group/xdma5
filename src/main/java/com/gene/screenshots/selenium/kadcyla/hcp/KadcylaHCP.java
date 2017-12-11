@@ -1,14 +1,14 @@
 package com.gene.screenshots.selenium.kadcyla.hcp;
 
 
-import com.gene.screenshots.selenium.SeleniumTest;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class KadcylaHCP extends SeleniumTest {
+public class KadcylaHCP extends SeleniumHeadless {
 
 
     @Override
@@ -276,7 +276,7 @@ public class KadcylaHCP extends SeleniumTest {
             jse.executeScript("window.scrollTo(0,0)", "");
             Thread.sleep(1000);
             visible(driver, true, savePath, "kadcyla-hcp-link-modal");
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             driver.close(); driver.quit();
@@ -541,7 +541,7 @@ public class KadcylaHCP extends SeleniumTest {
             Thread.sleep(1000);
             visible(driver, false, savePath, "kadcyla-hcp-mobile-link-modal");
 
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             driver.close();

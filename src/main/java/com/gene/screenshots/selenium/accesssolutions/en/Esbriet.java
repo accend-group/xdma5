@@ -1,16 +1,13 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
-import com.gene.screenshots.Variables;
-import com.gene.screenshots.selenium.SeleniumTest;
-import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
-import com.gene.screenshots.utils.Screenshots;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class Esbriet extends SeleniumTest {
+public class Esbriet extends SeleniumHeadless {
 
 	@Override
 	public void desktopAutomationTest(String savePath) {
@@ -219,7 +216,7 @@ full(driver, true, savePath, "accesssolutions-patient-esbriet-search");
 			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/site-map.html");
 			Thread.sleep(1000);
 full(driver, true, savePath, "accesssolutions-patient-esbriet-sitemap");
-		}catch(InterruptedException e){
+		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			driver.close(); driver.quit();
@@ -469,7 +466,7 @@ full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-search");
 			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/site-map.html");
 			Thread.sleep(1000);
 full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-sitemap");
-		}catch (InterruptedException e){
+		}catch (Exception e){
 			e.printStackTrace();
 		}finally{
 			driver.close(); driver.quit();

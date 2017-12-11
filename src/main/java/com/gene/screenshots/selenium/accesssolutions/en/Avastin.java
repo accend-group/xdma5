@@ -1,6 +1,6 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
-import com.gene.screenshots.selenium.SeleniumTest;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class Avastin extends SeleniumTest {
+public class Avastin extends SeleniumHeadless {
 
 	@Override
 	public void desktopAutomationTest(String savePath) {
@@ -243,7 +243,7 @@ public class Avastin extends SeleniumTest {
 			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/site-map.html");
 			Thread.sleep(1000);
 			full(driver, true, savePath, "accesssolutions-patient-avastin-sitemap");
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			driver.close();
@@ -457,7 +457,7 @@ public class Avastin extends SeleniumTest {
 			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/site-map.html");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-sitemap");
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			driver.close();

@@ -1,12 +1,12 @@
 package com.gene.screenshots.selenium.kadcyla.patient;
 
-import com.gene.screenshots.selenium.SeleniumTest;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.function.Consumer;
 
-public class KadcylaPatient extends SeleniumTest {
+public class KadcylaPatient extends SeleniumHeadless {
 
     @Override
     public void desktopAutomationTest(String savePath) {
@@ -248,7 +248,7 @@ public class KadcylaPatient extends SeleniumTest {
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-glossary");
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             driver.close(); driver.quit();
@@ -482,7 +482,7 @@ public class KadcylaPatient extends SeleniumTest {
             driver.findElement(By.className("gene-component--accordionTabs__item--q6")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-tab6");
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             driver.close();

@@ -7,7 +7,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.gene.screenshots.pdf.PDFMaker;
-import com.gene.screenshots.selenium.SeleniumTest;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import com.gene.screenshots.selenium.accesssolutions.en.*;
 import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
@@ -15,6 +15,8 @@ import com.gene.screenshots.utils.Log;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *  Starts the screenshot process from a jenkins job.
@@ -27,14 +29,20 @@ public class StartTest {
     private static List<Thread> pdfThreads = new LinkedList<>();
     private static AmazonS3 s3 = null;
 
-    public static void main(String [] args) throws IOException, InterruptedException {
+    private static Semaphore threadLock;
 
-        System.out.println("Starting Jenkins Job!");
+    public static void main(String [] args) throws InterruptedException{
+
+        System.out.println("Reading Jenkins parameters!");
 
         // pass in jenkins parameters, most important being savePath and chromedriverPath
         Variables.main(args);
 
-        final int threadCount = Variables.getThreadCount();
+        if(Variables.isUseTheads() && Variables.getThreadCount() > 1)
+            System.out.println("Using threads! Thread count: " + Variables.getThreadCount());
+        else
+            System.out.println("Single thread use!");
+        threadLock = new Semaphore(Variables.getThreadCount(), true);
         String chromedriverPath = Variables.getChromedriverPath();
         String savePath = Variables.getSavePath();
         String pdfOutputPath = Variables.getPdfOutputPath();
@@ -44,27 +52,27 @@ public class StartTest {
         if (chromedriverPath == null) {
             String OS = System.getProperty("os.name").toLowerCase();
             if(OS.contains("win"))
-                chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
-            else
                 chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
+            else
+                chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
         }
         System.out.println("Chromedrive path is: " + chromedriverPath);
-        SeleniumTest.setChomeSystemProperty(chromedriverPath);
+        SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
 
 
         KadcylaPatient patientTest = new KadcylaPatient();
         KadcylaHCP hcpTest = new KadcylaHCP();
-        List<SeleniumTest> accessSolutionsTest = createAccessSolutionsTestList();
+        List<SeleniumHeadless> accessSolutionsTest = createAccessSolutionsTestList();
 
         if (Variables.isAccessSolutions())
-            for(SeleniumTest accessTest : accessSolutionsTest)
-                createDesktopMobileThreads(accessTest);
+            for(SeleniumHeadless accessTest : accessSolutionsTest)
+                createThreads(accessTest);
 
         if (Variables.isKadyclaHCP())
-            createDesktopMobileThreads(hcpTest);
+            createThreads(hcpTest);
 
         if (Variables.isKadcylaPatient())
-            createDesktopMobileThreads(patientTest);
+            createThreads(patientTest);
 
 
         // if sending pdf to s3
@@ -77,7 +85,6 @@ public class StartTest {
         }
 
         // start automation job(s)
-        //TODO limit number of threads
         if(Variables.isUseTheads()) {
             // concurrent run
             screenshotThreads.addAll(pdfThreads);
@@ -99,15 +106,15 @@ public class StartTest {
     }
 
     // english access solutions
-    private static List<SeleniumTest> createAccessSolutionsTestList(){
-        List<SeleniumTest> result = new LinkedList<>();
+    private static List<SeleniumHeadless> createAccessSolutionsTestList(){
+        List<SeleniumHeadless> result = new LinkedList<>();
         result.add(new Actemra());
         result.add(new Alecensa());
-        result.add(new Avastin());
+        //result.add(new Avastin());
         result.add(new Cotellic());
         result.add(new Erivedge());
         result.add(new Esbriet());
-        result.add(new Gazyva());
+        //result.add(new Gazyva());
         result.add(new Hemlibra());
         result.add(new Herceptin());
         result.add(new Kadcyla());
@@ -129,37 +136,54 @@ public class StartTest {
         return result;
     }
 
-    // mobile and desktop threads have to complete before the pdf thread starts
-    private static void createDesktopMobileThreads(SeleniumTest test) {
+    // mobile, desktop, and pdf threads created
+    private static void createThreads(SeleniumHeadless test) {
 
-        // if 2 pdfs are needed for mobile/desktop change to add/set 2 logs
+        //TODO if 2 pdfs are needed for mobile/desktop change to add another log
         Log pdfLog = new Log();
         test.setLog(pdfLog);
         String testName = test.getClass().getSimpleName();
         Thread[] deskMobThreads = new Thread[]{
                 new Thread(() -> {
+                    if(Variables.isUseTheads()) {
+                        try {
+                            threadLock.acquire();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     System.out.println(testName + " mobile screenshot automation started!");
                     test.mobileAutomationTest(Variables.getSavePath() + "/mobile/" + testName);
+                    threadLock.release();
                 }),
                 new Thread(() -> {
+                    if(Variables.isUseTheads()) {
+                        try {
+                            threadLock.acquire();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     System.out.println(testName + " desktop screenshot automation started!");
                     test.desktopAutomationTest(Variables.getSavePath() + "/desktop/" + testName);
+                    threadLock.release();
                 })
         };
         screenshotThreads.add(deskMobThreads[0]);
         screenshotThreads.add(deskMobThreads[1]);
         pdfThreads.add(new Thread(() -> {
             try {
+                // wait for the threads to finish to read in the log file
                 deskMobThreads[0].join();
                 deskMobThreads[1].join();
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             createPDFandSendThread(test, testName, null);
         }));
     }
 
-    private static void createPDFandSendThread(SeleniumTest test, String pdfName, String pdfOutputPath) {
+    private static void createPDFandSendThread(SeleniumHeadless test, String pdfName, String pdfOutputPath) {
 
         String savePath = Variables.getSavePath();
         String testName = test.getClass().getSimpleName();

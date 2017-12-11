@@ -1,9 +1,6 @@
 package com.gene.screenshots.selenium.accesssolutions.es;
 
-import com.gene.screenshots.Variables;
-import com.gene.screenshots.selenium.SeleniumTest;
-import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
-import com.gene.screenshots.utils.Screenshots;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class Zelboraf extends SeleniumTest{
+public class Zelboraf extends SeleniumHeadless {
 
 	public void desktopAutomationTest(String savePath) {
 		WebDriver driver = makeDesktopDriver();
@@ -217,7 +214,7 @@ public class Zelboraf extends SeleniumTest{
 			driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/zelboraf/site-map.html");
 			Thread.sleep(1000);
 			full(driver, true, savePath, "accesssolutions-patient-zelboraf-sitemap");
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			driver.close();
@@ -405,7 +402,7 @@ public class Zelboraf extends SeleniumTest{
 			driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/zelboraf/site-map.html");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "accesssolutions-mobile-patient-zelboraf-sitemap");
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			driver.close();
