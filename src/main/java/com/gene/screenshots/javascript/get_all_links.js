@@ -1,14 +1,12 @@
-
-
 // gets all links related to the perjeta site that point to a html page
 var currentPageURL = window.location.href;
 var links = new Set();
 var aTags = document.getElementsByTagName("a");
-for(var i = 0; i < aTags.length; ++i){
+for (var i = 0; i < aTags.length; ++i) {
     var url = aTags[i].href;
-    if(url[0] == '/')
+    if (url[0] == '/')
         url = curentPageURL + url;
-    if(url.includes("www.perjeta.com") && !url.includes("#"))
+    if (url.includes("www.perjeta.com") && !url.includes("#"))
         links.add(aTags[i].href);
 }
 

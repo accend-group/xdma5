@@ -28,25 +28,25 @@ public class Screenshots {
     private LinkedList<String> mobileScreenshots = new LinkedList<>();
 
 
-    public void setLog(Log log){
+    public void setLog(Log log) {
         this.log = log;
     }
 
-    public void setLogName(String logName){
+    public void setLogName(String logName) {
         log.setLogName(logName);
     }
 
     // append mobile screenshots to desktopscreenshots for output log
-    public void saveLog(String savePath){
+    public void saveLog(String savePath) {
         desktopScreenshots.addAll(mobileScreenshots);
         log.setList(desktopScreenshots);
         log.save(savePath);
     }
 
-    public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName) throws InterruptedException{
+    public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName) throws InterruptedException {
         fullScreenshot(driver, ifDesktop, path, screenshotName);
         File outputImg = new File(path + "/" + screenshotName + ".png");
-        if(ifDesktop)
+        if (ifDesktop)
             desktopScreenshots.add(outputImg.getAbsolutePath());
         else
             mobileScreenshots.add(outputImg.getAbsolutePath());
@@ -54,45 +54,44 @@ public class Screenshots {
 
     public void visible(WebDriver driver, boolean ifDesktop, String path, String screenshotName) {
         try {
-            TakesScreenshot ts =(TakesScreenshot)driver;
+            TakesScreenshot ts = (TakesScreenshot) driver;
             File source = ts.getScreenshotAs(OutputType.FILE);
-            File outputImg = new File( path + "/" + screenshotName+".png");
+            File outputImg = new File(path + "/" + screenshotName + ".png");
             FileUtils.copyFile(source, outputImg);
-            if(ifDesktop)
+            if (ifDesktop)
                 desktopScreenshots.add(outputImg.getAbsolutePath());
             else
                 mobileScreenshots.add(outputImg.getAbsolutePath());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Exception while taking visible part screenshot" + e.getMessage());
         }
     }
 
-    protected int getDocWidth(WebDriver driver){
+    protected int getDocWidth(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);");
         return toIntExact(result);
     }
 
-    protected int getDocHeight(WebDriver driver){
+    protected int getDocHeight(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
         return toIntExact(result);
     }
 
-    protected int getCurrentScrollX(WebDriver driver){
+    protected int getCurrentScrollX(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.round(Math.max(document.documentElement.scrollLeft, document.body.scrollLeft));");
         return toIntExact(result);
     }
 
-    protected int getCurrentScrollY(WebDriver driver){
+    protected int getCurrentScrollY(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        long result =  (Long) jse.executeScript("return Math.round(Math.max(document.documentElement.scrollTop, document.body.scrollTop));");
+        long result = (Long) jse.executeScript("return Math.round(Math.max(document.documentElement.scrollTop, document.body.scrollTop));");
         return toIntExact(result);
     }
 
-    protected void scrollTo(WebDriver driver, int x, int y){
+    protected void scrollTo(WebDriver driver, int x, int y) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollTo(arguments[0], arguments[1]);", x, y);
     }
@@ -100,23 +99,22 @@ public class Screenshots {
 
     // full site body screenshot
     // need to store current scroll position
-    protected void fullScreenshot(WebDriver driver, boolean ifDesktop, String location, String fileName){
+    protected void fullScreenshot(WebDriver driver, boolean ifDesktop, String location, String fileName) {
 
         int xPos = getCurrentScrollX(driver);
         int yPos = getCurrentScrollY(driver);
 
         File screenshotFile = new File(location);
-        if(!screenshotFile.exists()) {
+        if (!screenshotFile.exists()) {
             screenshotFile.mkdirs();
         }
-        File outputImg = new File( location + "/" + fileName + ".png");
+        File outputImg = new File(location + "/" + fileName + ".png");
 
-        if(ifDesktop) {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver,DESKTOP_WIDTH), "PNG", outputImg);
+        if (ifDesktop) {
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, DESKTOP_WIDTH), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
-        }
-        else {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver,MOBILE_WIDTH), "PNG", outputImg);
+        } else {
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, MOBILE_WIDTH), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT));
         }
 

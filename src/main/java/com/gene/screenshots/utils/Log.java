@@ -14,30 +14,30 @@ public class Log {
     private LinkedList<String> items = new LinkedList<>();
     private String logName = "log";
 
-    public void setList(LinkedList<String> list){
+    public void setList(LinkedList<String> list) {
         items = list;
     }
 
-    public void add(String item){
+    public void add(String item) {
         items.add(item);
     }
 
-    public void clear(){
+    public void clear() {
         items.clear();
     }
 
-    public Log setLogName(String name){
+    public Log setLogName(String name) {
         logName = name;
         return this;
     }
 
-    public void save(String savePath){
+    public void save(String savePath) {
         // store string items names in log file
         try {
             new File(savePath).mkdirs();
-            Path file = Paths.get(savePath + "/"  +logName +".txt");
+            Path file = Paths.get(savePath + "/" + logName + ".txt");
             Files.write(file, items, Charset.forName("UTF-8"));
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -30,7 +30,7 @@ public class Variables {
     private static boolean mobilePDF = false;
     private static boolean bothPDF = true;
 
-    private enum TestUrl{
+    private enum TestUrl {
         PRODUCTION, DEV, QA, AUTHOR
     }
 
@@ -38,115 +38,115 @@ public class Variables {
     private static boolean useTheads = false;
     private static int threadCount = 1;
 
-    public static void main(String [] args){
+    public static void main(String[] args) {
 
-        for(String arg : args) {
-            if(arg.contains("logpath=") && arg.indexOf("logpath=") == 0) {
+        for (String arg : args) {
+            if (arg.contains("savepath=") && arg.indexOf("logpath=") == 0) {
                 savePath = arg.substring(8, arg.length());
                 File dir = new File(savePath);
                 dir.mkdirs();
             }
-            if(arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
+            if (arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
                 pdfOutputPath = arg.substring(10, arg.length());
-                if(pdfOutputPath == null || pdfOutputPath.equals(""))
+                if (pdfOutputPath == null || pdfOutputPath.equals(""))
                     pdfOutputPath = null;
                 else {
                     File dir = new File(pdfOutputPath);
                     dir.mkdir();
                 }
             }
-            if(arg.contains("pdfname=") && arg.indexOf("pdfname=") == 0)
+            if (arg.contains("pdfname=") && arg.indexOf("pdfname=") == 0)
                 pdfName = arg.substring(8, arg.length());
 
-            if(arg.equals("s3=true"))
+            if (arg.equals("s3=true"))
                 s3 = true;
-            if(arg.equals("aws-local=true"))
+            if (arg.equals("aws-local=true"))
                 s3Local = true;
-            if(arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
+            if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
-            if(arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
+            if (arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
-            if(arg.contains("s3-bucket=") && arg.indexOf("s3-bucket=") == 0)
+            if (arg.contains("s3-bucket=") && arg.indexOf("s3-bucket=") == 0)
                 bucketName = arg.substring(10, arg.length());
-            if(arg.contains("s3-pdfkey=") && arg.indexOf("s3-pdfkey=") == 0)
+            if (arg.contains("s3-pdfkey=") && arg.indexOf("s3-pdfkey=") == 0)
                 pdfKey = arg.substring(10, arg.length());
-            if(arg.contains("s3-region=") && arg.indexOf("s3-region=") == 0)
+            if (arg.contains("s3-region=") && arg.indexOf("s3-region=") == 0)
                 region = arg.substring(10, arg.length());
-            if(arg.equals("access-solutions=true"))
+            if (arg.equals("access-solutions=true"))
                 accessSolutions = true;
-            if(arg.equals("kadcyla-hcp=true"))
+            if (arg.equals("kadcyla-hcp=true"))
                 kadcylaHCP = true;
-            if(arg.equals("kadcyla-patient=true"))
+            if (arg.equals("kadcyla-patient=true"))
                 kadcylaPatient = true;
-            if(arg.contains("chromedriver=") && arg.indexOf("chromedriver=") == 0)
+            if (arg.contains("chromedriver=") && arg.indexOf("chromedriver=") == 0)
                 chromedriverPath = arg.substring(13, arg.length());
-            if(arg.equals("threads=true"))
+            if (arg.equals("threads=true"))
                 useTheads = true;
-            if(arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
+            if (arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
                 threadCount = Integer.parseInt(arg.substring(12, arg.length()));
-                if(threadCount <= 0)
+                if (threadCount <= 0)
                     System.out.println("Warning: set thread count is less that 1! Using single thread!");
             }
         }
     }
 
-    public static boolean isAccessSolutions(){
+    public static boolean isAccessSolutions() {
         return accessSolutions;
     }
 
-    public static boolean isKadyclaHCP(){
+    public static boolean isKadyclaHCP() {
         return kadcylaHCP;
     }
 
-    public static boolean isKadcylaPatient(){
+    public static boolean isKadcylaPatient() {
         return kadcylaPatient;
     }
 
-    public static String getChromedriverPath(){
+    public static String getChromedriverPath() {
         return chromedriverPath;
     }
 
-    public static String getPdfOutputPath(){
+    public static String getPdfOutputPath() {
         return pdfOutputPath;
     }
 
-    public static String getAwsSecretKey(){
+    public static String getAwsSecretKey() {
         return awsSecretKey;
     }
 
-    public static String getAwsAccessKey(){
+    public static String getAwsAccessKey() {
         return awsAccessKey;
     }
 
-    public static String getBucketName(){
+    public static String getBucketName() {
         return bucketName;
     }
 
-    public static String getPdfKey(){
+    public static String getPdfKey() {
         return pdfKey;
     }
 
-    public static String getSavePath(){
+    public static String getSavePath() {
         return savePath;
     }
 
-    public static String getRegion(){
+    public static String getRegion() {
         return region;
     }
 
-    public static boolean isS3(){
+    public static boolean isS3() {
         return s3;
     }
 
-    public static boolean isS3Local(){
+    public static boolean isS3Local() {
         return s3Local;
     }
 
-    public static boolean isUseTheads(){
+    public static boolean isUseTheads() {
         return useTheads;
     }
 
-    public static int getThreadCount(){
+    public static int getThreadCount() {
         return threadCount;
     }
 }

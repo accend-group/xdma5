@@ -19,8 +19,8 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- *  Starts the screenshot process from a jenkins job.
- *  All selenium code is expected to support a headless browser
+ * Starts the screenshot process from a jenkins job.
+ * All selenium code is expected to support a headless browser
  */
 
 public class StartTest {
@@ -31,14 +31,14 @@ public class StartTest {
 
     private static Semaphore threadLock;
 
-    public static void main(String [] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
 
         System.out.println("Reading Jenkins parameters!");
 
         // pass in jenkins parameters, most important being savePath and chromedriverPath
         Variables.main(args);
 
-        if(Variables.isUseTheads() && Variables.getThreadCount() > 1)
+        if (Variables.isUseTheads() && Variables.getThreadCount() > 1)
             System.out.println("Using threads! Thread count: " + Variables.getThreadCount());
         else
             System.out.println("Single thread use!");
@@ -51,7 +51,7 @@ public class StartTest {
 
         if (chromedriverPath == null) {
             String OS = System.getProperty("os.name").toLowerCase();
-            if(OS.contains("win"))
+            if (OS.contains("win"))
                 chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
             else
                 chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
@@ -65,7 +65,7 @@ public class StartTest {
         List<SeleniumHeadless> accessSolutionsTest = createAccessSolutionsTestList();
 
         if (Variables.isAccessSolutions())
-            for(SeleniumHeadless accessTest : accessSolutionsTest)
+            for (SeleniumHeadless accessTest : accessSolutionsTest)
                 createThreads(accessTest);
 
         if (Variables.isKadyclaHCP())
@@ -76,7 +76,7 @@ public class StartTest {
 
 
         // if sending pdf to s3
-        if(Variables.isS3()) {
+        if (Variables.isS3()) {
             System.out.println("Connecting to S3...");
             s3 = AmazonS3ClientBuilder.standard()
                     .withCredentials(Variables.isS3Local() ? new ProfileCredentialsProvider() : new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
@@ -85,7 +85,7 @@ public class StartTest {
         }
 
         // start automation job(s)
-        if(Variables.isUseTheads()) {
+        if (Variables.isUseTheads()) {
             // concurrent run
             screenshotThreads.addAll(pdfThreads);
             for (Thread thread : screenshotThreads)
@@ -94,11 +94,11 @@ public class StartTest {
                 thread.join();
         } else {
             // sequential run
-            for(Thread thread : screenshotThreads){
+            for (Thread thread : screenshotThreads) {
                 thread.start();
                 thread.join();
             }
-            for(Thread thread : pdfThreads){
+            for (Thread thread : pdfThreads) {
                 thread.start();
                 thread.join();
             }
@@ -106,7 +106,7 @@ public class StartTest {
     }
 
     // english access solutions
-    private static List<SeleniumHeadless> createAccessSolutionsTestList(){
+    private static List<SeleniumHeadless> createAccessSolutionsTestList() {
         List<SeleniumHeadless> result = new LinkedList<>();
         result.add(new Actemra());
         result.add(new Alecensa());
@@ -145,7 +145,7 @@ public class StartTest {
         String testName = test.getClass().getSimpleName();
         Thread[] deskMobThreads = new Thread[]{
                 new Thread(() -> {
-                    if(Variables.isUseTheads()) {
+                    if (Variables.isUseTheads()) {
                         try {
                             threadLock.acquire();
                         } catch (InterruptedException e) {
@@ -157,7 +157,7 @@ public class StartTest {
                     threadLock.release();
                 }),
                 new Thread(() -> {
-                    if(Variables.isUseTheads()) {
+                    if (Variables.isUseTheads()) {
                         try {
                             threadLock.acquire();
                         } catch (InterruptedException e) {
@@ -210,7 +210,7 @@ public class StartTest {
             System.exit(1);
         }
 
-        if(pdfOutputPath == null)
+        if (pdfOutputPath == null)
             pdfOutputPath = savePath;
         try {
             for (String imagePath : imageNames) {

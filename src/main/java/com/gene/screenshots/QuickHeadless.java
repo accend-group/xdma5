@@ -17,8 +17,8 @@ import java.util.logging.Logger;
 public class QuickHeadless extends SeleniumHeadless {
 
 
-
     private static final Logger[] pin;
+
     static {
         pin = new Logger[]{
                 Logger.getLogger("com.gargoylesoftware.htmlunit"),
@@ -31,7 +31,7 @@ public class QuickHeadless extends SeleniumHeadless {
         }
     }
 
-    public void start(){
+    public void start() {
         String chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
         String OS = System.getProperty("os.name").toLowerCase();
@@ -43,12 +43,12 @@ public class QuickHeadless extends SeleniumHeadless {
         //System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
 
         SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
-        SeleniumHeadless test = new Xolair();
+        SeleniumHeadless test = new Gazyva();
         test.desktopAutomationTest("TEST_PATH/desktop");
         test.mobileAutomationTest("TEST_PATH/mobile");
     }
 
-    public static void main(String [] args){
+    public static void main(String[] args) {
         new QuickHeadless().start();
     }
 }

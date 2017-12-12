@@ -13,14 +13,15 @@ import java.util.logging.Logger;
 import static com.gene.screenshots.Constants.*;
 
 
-/** Abstract class for screenshot automation code
- *  Create another class that extends SeleniumHeadless
- *  each class represents a selenium test that produces screenshots.
- *  each screenshot is saved in a log file that is used to create a PDF.
- *  The mobile and desktop automated test functions must quit the driver at the end.
+/**
+ * Abstract class for screenshot automation code
+ * Create another class that extends SeleniumHeadless
+ * each class represents a selenium test that produces screenshots.
+ * each screenshot is saved in a log file that is used to create a PDF.
+ * The mobile and desktop automated test functions must quit the driver at the end.
  */
 
-public abstract class SeleniumHeadless extends Screenshots implements OutputResult{
+public abstract class SeleniumHeadless extends Screenshots implements OutputResult {
 
     // https://stackoverflow.com/a/4403822
     private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView();";
@@ -42,11 +43,11 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         }
     }
 
-    public static void setChromeSystemProperty(String chromedriverPath){
+    public static void setChromeSystemProperty(String chromedriverPath) {
         System.setProperty("webdriver.chrome.driver", chromedriverPath);
     }
 
-    public static WebDriver makeDesktopDriver(){
+    public static WebDriver makeDesktopDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         //options.addArguments("window-size="+ DESKTOP_WIDTH + "," + DESKTOP_HEIGHT);
@@ -78,7 +79,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         return driver;
     }
 
-    public void desktopAutomationTest(String savePath){
+    public void desktopAutomationTest(String savePath) {
         desktopDriver = makeDesktopDriver();
     }
 
@@ -88,34 +89,30 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
     }
 
 
-    protected static void clickAt(WebDriver driver, String xpath){
+    protected static void clickAt(WebDriver driver, String xpath) {
         WebElement e = driver.findElement(By.xpath(xpath));
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, xpath);
-        //scrollTo(driver, e.getLocation().getX(), e.getLocation().getY());
-        e.click();
+        clickAt(driver, e);
     }
 
 
-
-    protected static void clickAt(WebDriver driver, WebElement e){
+    protected static void clickAt(WebDriver driver, WebElement e) {
         ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, getXPath(driver, e));
         e.click();
     }
 
-    public void createResult(){
+    public void createResult() {
 
     }
 
-    public void sendResult(){
+    public void sendResult() {
 
     }
 
-    protected static void scrollToElement(WebDriver driver, WebElement e){
+    protected static void scrollToElement(WebDriver driver, WebElement e) {
 
     }
 
-    protected static void scrollToElement(WebDriver driver, String xpath){
+    protected static void scrollToElement(WebDriver driver, String xpath) {
 
     }
 
@@ -130,6 +127,6 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
                 "  return stack.join('/');" +
                 "}" +
                 "return getPathTo(arguments[0]);";
-        return (String) ((JavascriptExecutor)driver).executeScript(jscript, e);
+        return (String) ((JavascriptExecutor) driver).executeScript(jscript, e);
     }
 }

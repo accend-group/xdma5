@@ -138,18 +138,24 @@ public class KadcylaPatient extends SeleniumHeadless {
             full(driver, true, savePath, "kadcyla-3.2-pat3-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
+
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-pat4-yes");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.className("start-over")).click();
+            //jse.executeScript("window.scrollTo(0, 0)");
+
+            clickAt(driver, driver.findElement(By.className("start-over")));
+            //driver.findElement(By.className("start-over")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-pat1-no");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.className("start-over")).click();
+            //jse.executeScript("window.scrollTo(0, 0)");
+
+            clickAt(driver, driver.findElement(By.className("start-over")));
+            //driver.findElement(By.className("start-over")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
@@ -165,14 +171,14 @@ public class KadcylaPatient extends SeleniumHeadless {
             full(driver, true, savePath, "kadcyla-3.2-pat3-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.className("start-over")).click();
+            clickAt(driver, driver.findElement(By.className("start-over")));//.click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             //scrollTo(driver, 0,500);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
 
-            clickAt(driver,"//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             movecursor.accept(driver);
@@ -181,8 +187,9 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/patient/support-resources/financial-resources.html");
             remove(driver);
-            scrollTo(driver, 0,500);
-            driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
+
+            clickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
+            //driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-tab1");
             driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
@@ -267,7 +274,8 @@ public class KadcylaPatient extends SeleniumHeadless {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            driver.close(); driver.quit();
+            driver.close();
+            driver.quit();
         }
     }
 
@@ -423,14 +431,12 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.get("http://localhost:4503/content/kadcyla/en_us/patient/support-resources/financial-resources.html");
             remove(driver);
             WebElement e = driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]"));
-            System.out.println("x: " + getCurrentScrollX(driver) + " y: "+ getCurrentScrollY(driver));
-            scrollTo(driver, e.getLocation().getX(), e.getLocation().getY());
             e.click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat1-yes");
             //jse.executeScript("window.scrollTo(0, 0)");
 
-            clickAt(driver,"//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button");
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat2-yes");
@@ -444,7 +450,8 @@ public class KadcylaPatient extends SeleniumHeadless {
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat4-yes");
             //jse.executeScript("window.scrollTo(0, 0)");
 
-            driver.findElement(By.className("start-over")).click();
+            clickAt(driver, driver.findElement(By.className("start-over")));
+            //driver.findElement(By.className("start-over")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat1-no");
@@ -524,7 +531,6 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.quit();
         }
     }
-
 
 
     private void remove(WebDriver driver) {

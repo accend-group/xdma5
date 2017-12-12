@@ -76,7 +76,9 @@ public class KadcylaHCP extends SeleniumHeadless {
 
             //driver.manage().window().setSize(new Dimension(1612,750));
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
+
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-pat1-yes");
 
@@ -104,7 +106,8 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-pat2-no");
 
-            driver.findElement(By.className("start-over")).click();
+            clickAt(driver,  driver.findElement(By.className("start-over")));
+            //driver.findElement(By.className("start-over")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
@@ -285,11 +288,11 @@ public class KadcylaHCP extends SeleniumHeadless {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            driver.close(); driver.quit();
+            driver.close();
+            driver.quit();
         }
     }
-    
-    
+
 
     @Override
     public void mobileAutomationTest(String savePath) {
@@ -370,7 +373,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat3-yes");
 
-            //jse.executeScript("window.scrollTo(0, 0)");
+            jse.executeScript("window.scrollTo(0, 0)");
             clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
@@ -438,7 +441,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             remove(driver);
             jse.executeScript("window.scrollBy(0,900)", "");
 
-            clickAt(driver ,driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
+            clickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
             //driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab1");
@@ -567,14 +570,15 @@ public class KadcylaHCP extends SeleniumHeadless {
     }
 
 
-    public static void remove(WebDriver driver) throws InterruptedException{
+    public static void remove(WebDriver driver) throws InterruptedException {
 
         /*JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement element = driver.findElement(By.className("gene-component--spotlight"));
         js.executeScript("arguments[0].setAttribute('style', 'height:0% !important;')",element);*/
 
     }
-    public static void movecursor(WebDriver driver){
+
+    public static void movecursor(WebDriver driver) {
         Actions actions = new Actions(driver);
         WebElement mainMenu = driver.findElement(By.name("q"));
         actions.moveToElement(mainMenu);

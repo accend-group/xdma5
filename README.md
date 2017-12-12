@@ -1,20 +1,21 @@
 # Genentech-Screenshots
 Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sites.
 
-###Pre-requisites:
+### Pre-requisites:
 1) Node JS (>v4): `brew install node`
+3) Maven
 2) Jenkins: `brew install jenkins`
 
 ### Set up
 
-Create a Jenkins Job that has the following parameters. 
+Create a Jenkins Job that clones this repo and has the following parameters. 
 
 |  Name            |  Type |Description | 
 | -------------    | --- |--- | 
 | ACCESS_SOLUTIONS | boolean | The job creates the pdfs for the access solultion site |
 | KADCYLA_HCP | boolean | The job creates the pdf for the kadcyla hcp site |
 | KADCYLA_PATIENT |boolean | The job creates the pdf the the kadcyla patient site |
-| CHROMEDRIVER_PATH| string |Path to the chromedriver. If not set defaults to the [latest](https://www.npmjs.com/package/chromedriver) |
+| CHROMEDRIVER_PATH| string |Path to the chromedriver. If not set defaults to the [latest](https://www.npmjs.com/package/chromedriver) from ```npm install``` |
 | SAVE_PATH         | string |Path where the screenshots and logs are saved |
 | PDF_OUTPUT_PATH  | string |Path to created PDF. If not set defaults to SAVE_PATH | 
 | PDF_NAME         | string |Name of PDF. If not set defaults to automation class name|
@@ -33,14 +34,31 @@ If the [local aws credential file](http://docs.aws.amazon.com/sdk-for-java/v1/de
 | ACCESS_KEY | Username Variable |
 | SECRET_KEY | Password Variable |
 
-    
+
 Have the Jenkins Job build this in the shell/bash
 
+> Downloads chromedriver
 ```
-// downloads chromedriver
 npm install
-
-//  builds and runs the automation job(s) 
-mvn compile exec:java "-Dexec.args=savepath=$SAVE_PATH pdfoutput=$PDF_OUTPUT_PATH s3=$S3 aws-local=$AWS_LOCAL s3-bucket=$S3_BUCKET s3-pdfkey=$S3_PDF_KEY s3-region=$S3_REGION access-solutions=$ACCESS_SOLUTION kadcyla-hcp=$KADCYLA_HCP kadcyla-patient=$KADCYLA_PAITENT threads=$THREADS threadcount=$THREAD_COUNT"
 ```
-
+> Build and run the automation job(s), remove the ACCESS_KEY and SECRET_KEY if they are not set. 
+```
+mvn compile exec:java \
+    -Dexec.cleanupDaemonThreads=false \
+    -Dexec.args=" \
+        savepath=$SAVE_PATH \
+        pdfoutput=$PDF_OUTPUT_PATH \ 
+        s3=$S3 \
+        aws-local=$AWS_LOCAL \ 
+        s3-bucket=$S3_BUCKET \
+        s3-pdfkey=$S3_PDF_KEY \
+        s3-region=$S3_REGION \
+        access-solutions=$ACCESS_SOLUTION \ 
+        kadcyla-hcp=$KADCYLA_HCP \
+        kadcyla-patient=$KADCYLA_PAITENT \
+        threads=$THREADS \
+        threadcount=$THREAD_COUNT \ 
+        aws-accesskey=$ACCESS_KEY \
+        aws-secretkey=$SECRET_KEY" \
+```
+Now modify the Build Triggers for your needs.

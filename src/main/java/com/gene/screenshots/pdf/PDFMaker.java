@@ -21,13 +21,13 @@ public class PDFMaker {
     private LinkedList<String> images = new LinkedList<>();
     private PDDocument pdf;
 
-    public void addImg(String imgFilePath){
+    public void addImg(String imgFilePath) {
         images.add(imgFilePath);
     }
 
 
-    public void close() throws IOException{
-        if(pdf != null)
+    public void close() throws IOException {
+        if (pdf != null)
             pdf.close();
         images.clear();
     }
@@ -57,7 +57,7 @@ public class PDFMaker {
         }
     }
 
-    public void savePDF(String path){
+    public void savePDF(String path) {
         try {
             imagesToPDF();
             File newPdf = new File(path);
