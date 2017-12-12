@@ -227,7 +227,7 @@ public class Alecensa extends SeleniumHeadless {
 		}
 	}
 
-	public void mobileAutomatedTest(String savePath) {
+	public void mobileAutomationTest(String savePath) {
 
 		WebDriver driver = makeMobileDriver();
 		try {

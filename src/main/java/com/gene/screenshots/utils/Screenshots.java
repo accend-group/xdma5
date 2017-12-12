@@ -110,11 +110,15 @@ public class Screenshots {
             screenshotFile.mkdirs();
         }
         File outputImg = new File( location + "/" + fileName + ".png");
-        FileUtil.writeImage(takeScreenshotEntirePage(driver), "PNG", outputImg);
-        if(ifDesktop)
+
+        if(ifDesktop) {
+            FileUtil.writeImage(takeScreenshotEntirePage(driver,DESKTOP_WIDTH), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
-        else
+        }
+        else {
+            FileUtil.writeImage(takeScreenshotEntirePage(driver,MOBILE_WIDTH), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT));
+        }
 
         // scroll to the previous position before resize
         scrollTo(driver, xPos, yPos);
@@ -139,9 +143,9 @@ public class Screenshots {
 
     // resize entire window to fit entire body of webpage
     //  ===================== SHUTTERBUG code modified =====================================
-    private BufferedImage takeScreenshotEntirePage(WebDriver driver) {
+    private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width) {
 
-        int _docWidth = getDocWidth(driver);
+        int _docWidth = width;//getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
 
         //System.out.println("WIDTH: " + _docWidth + " SYS WIDTH: " + driver.manage().window().getSize().width);

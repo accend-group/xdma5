@@ -216,7 +216,7 @@ public class Hemlibra extends SeleniumHeadless {
 
 	public void mobileAutomationTest(String savePath) {
 
-		WebDriver driver = makeDesktopDriver();
+		WebDriver driver = makeMobileDriver();
 		try {
 
 			// TODO Auto-generated method stub

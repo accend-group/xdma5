@@ -176,7 +176,7 @@ public class Avastin extends SeleniumHeadless {
 			Thread.sleep(1000);
 			full(driver, true, savePath, "accesssolutions-patient-avastin-3.0-tab11");
 
-			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/Alecensa/patient-assistance-tool-page.html");
+			driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/patient-assistance-tool-page.html");
 			Thread.sleep(1000);
 			full(driver, true, savePath, "accesssolutions-patient-avastin-pat-part1");
 			jse.executeScript("window.scrollTo(0, 0)");

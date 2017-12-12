@@ -169,8 +169,11 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
+            //scrollTo(driver, 0,500);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
+
+            clickAt(driver,"//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             movecursor.accept(driver);
             Thread.sleep(1000);
@@ -178,29 +181,42 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/patient/support-resources/financial-resources.html");
             remove(driver);
+            scrollTo(driver, 0,500);
             driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-tab1");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-tab2");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-tab3");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-tab4");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-tab5");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q6")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-3.2-tab6");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q6")).click();
+
 
             //driver.manage().window().maximize();
             driver.get("http://localhost:4503/content/kadcyla/en_us/patient/support-resources/herconnection-support-program.html");
@@ -406,31 +422,36 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/patient/support-resources/financial-resources.html");
             remove(driver);
+            WebElement e = driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]"));
             System.out.println("x: " + getCurrentScrollX(driver) + " y: "+ getCurrentScrollY(driver));
-            driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
+            scrollTo(driver, e.getLocation().getX(), e.getLocation().getY());
+            e.click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat1-yes");
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
+            //jse.executeScript("window.scrollTo(0, 0)");
+
+            clickAt(driver,"//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat2-yes");
-            jse.executeScript("window.scrollTo(0, 0)");
+            //jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat3-no");
-            jse.executeScript("window.scrollTo(0, 0)");
+            //jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat4-yes");
-            jse.executeScript("window.scrollTo(0, 0)");
+            //jse.executeScript("window.scrollTo(0, 0)");
 
             driver.findElement(By.className("start-over")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat1-no");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.className("start-over")).click();
+            //jse.executeScript("window.scrollTo(0, 0)");
+            clickAt(driver, driver.findElement(By.className("start-over")));
+            //driver.findElement(By.className("start-over")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
@@ -445,8 +466,9 @@ public class KadcylaPatient extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat3-yes");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.className("start-over")).click();
+            //jse.executeScript("window.scrollTo(0, 0)");
+            //driver.findElement(By.className("start-over")).click();
+            clickAt(driver, driver.findElement(By.className("start-over")));
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
@@ -459,29 +481,42 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/patient/support-resources/financial-resources.html");
             remove(driver);
-            driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
+            clickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
+            //driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-tab1");
+            clickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-tab2");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-tab3");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-tab4");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-tab5");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
+
 
             driver.findElement(By.className("gene-component--accordionTabs__item--q6")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-tab6");
+            driver.findElement(By.className("gene-component--accordionTabs__item--q6")).click();
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -489,6 +524,8 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.quit();
         }
     }
+
+
 
     private void remove(WebDriver driver) {
         /*JavascriptExecutor js = (JavascriptExecutor) driver;

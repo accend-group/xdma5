@@ -110,7 +110,7 @@ public class StartTest {
         List<SeleniumHeadless> result = new LinkedList<>();
         result.add(new Actemra());
         result.add(new Alecensa());
-        //result.add(new Avastin());
+        result.add(new Avastin());
         result.add(new Cotellic());
         result.add(new Erivedge());
         result.add(new Esbriet());

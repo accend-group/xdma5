@@ -118,7 +118,12 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button")).click();
+
+
+            //clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button");
+            WebElement e = driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button"));//.click();
+
+
             Thread.sleep(1000);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
@@ -165,7 +170,8 @@ public class KadcylaHCP extends SeleniumHeadless {
             remove(driver);
             jse.executeScript("window.scrollBy(0,1200)");
             movecursor(driver);
-            driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
+            clickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q3")));
+            //driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-tab3");
 
@@ -349,7 +355,8 @@ public class KadcylaHCP extends SeleniumHeadless {
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1");
 
             ///jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat1-yes");
 
@@ -364,7 +371,8 @@ public class KadcylaHCP extends SeleniumHeadless {
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat3-yes");
 
             //jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat4-yes");
 
@@ -388,7 +396,9 @@ public class KadcylaHCP extends SeleniumHeadless {
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button")).click();
+
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat5-yes");
 
@@ -405,7 +415,9 @@ public class KadcylaHCP extends SeleniumHeadless {
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
+
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat4-no");
 
@@ -416,14 +428,18 @@ public class KadcylaHCP extends SeleniumHeadless {
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button[2]")).click();
+
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button[2]");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat5-no");
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,900)", "");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
+
+            clickAt(driver ,driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
+            //driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab1");
 
@@ -532,11 +548,12 @@ public class KadcylaHCP extends SeleniumHeadless {
             driver.findElement(By.xpath("//nav/div/div[2]/div/ul/li[6]/a/i")).click();
             Thread.sleep(1000);
             visible(driver, false, savePath, "kadcyla-hcp-mobile-hover-6.0");
-            System.out.println("start");
+
             driver.navigate().refresh();
-            System.out.println("done");
+
             jse.executeScript("window.scrollTo(0,document.body.scrollHeight);");
-            driver.findElement(By.linkText("www.fda.gov/medwatch")).click();
+            clickAt(driver, driver.findElement(By.linkText("www.fda.gov/medwatch")));
+            //driver.findElement(By.linkText("www.fda.gov/medwatch")).click();
             jse.executeScript("window.scrollTo(0,0)", "");
             Thread.sleep(1000);
             visible(driver, false, savePath, "kadcyla-hcp-mobile-link-modal");

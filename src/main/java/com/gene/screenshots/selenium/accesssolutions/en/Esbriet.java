@@ -12,7 +12,7 @@ public class Esbriet extends SeleniumHeadless {
 	@Override
 	public void desktopAutomationTest(String savePath) {
 		
-		WebDriver driver = makeMobileDriver();
+		WebDriver driver = makeDesktopDriver();
 		try {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			Actions actions = new Actions(driver);

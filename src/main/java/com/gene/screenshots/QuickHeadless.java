@@ -1,6 +1,10 @@
 package com.gene.screenshots;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
+import com.gene.screenshots.selenium.accesssolutions.en.Avastin;
+import com.gene.screenshots.selenium.accesssolutions.en.Gazyva;
+import com.gene.screenshots.selenium.accesssolutions.en.Xolair;
+import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class QuickHeadless extends SeleniumHeadless {
+
 
 
     private static final Logger[] pin;
@@ -25,6 +30,7 @@ public class QuickHeadless extends SeleniumHeadless {
             l.setLevel(Level.OFF);
         }
     }
+
     public void start(){
         String chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
@@ -35,33 +41,11 @@ public class QuickHeadless extends SeleniumHeadless {
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
         //System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
-        System.setProperty("webdriver.chrome.driver", chromedriverPath);
 
-        for(int i = 0; i < 1; ++i) {
-
-
-            // System.setProperty("webdriver.chrome.args", "--disable-logging");
-            //System.setProperty("webdriver.chrome.silentOutput", "true");
-            WebDriver driver = makeMobileDriver();
-            try {
-                driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/safety.html");///http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
-                driver.findElement(By.className("cheese")).click();
-                System.out.println("x: " + getCurrentScrollX(driver) + " y: " + getCurrentScrollY(driver));
-
-                scrollTo(driver, 0, 500);
-                visible(driver, false, ".", "mobileTestVisible");
-                System.out.println("x: " + getCurrentScrollX(driver) + " y: " + getCurrentScrollY(driver));
-
-
-                full(driver, false, ".", "mobileTestFull");
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                driver.close();
-                driver.quit();
-            }
-
-        }
+        SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
+        SeleniumHeadless test = new Xolair();
+        test.desktopAutomationTest("TEST_PATH/desktop");
+        test.mobileAutomationTest("TEST_PATH/mobile");
     }
 
     public static void main(String [] args){

@@ -1,9 +1,8 @@
 package com.gene.screenshots.selenium;
 
+import com.gene.screenshots.utils.OutputResult;
 import com.gene.screenshots.utils.Screenshots;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,6 +12,7 @@ import java.util.logging.Logger;
 
 import static com.gene.screenshots.Constants.*;
 
+
 /** Abstract class for screenshot automation code
  *  Create another class that extends SeleniumHeadless
  *  each class represents a selenium test that produces screenshots.
@@ -20,7 +20,10 @@ import static com.gene.screenshots.Constants.*;
  *  The mobile and desktop automated test functions must quit the driver at the end.
  */
 
-public abstract class SeleniumHeadless extends Screenshots {
+public abstract class SeleniumHeadless extends Screenshots implements OutputResult{
+
+    // https://stackoverflow.com/a/4403822
+    private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView();";
 
     // TODO optimize mobiledriver/desktop with limited thread count?
     protected WebDriver desktopDriver;
@@ -53,15 +56,16 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("disable-infobars");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-        WebDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
+        ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
+        //System.out.println(driver.getSessionId());
         return driver;
     }
 
-    public static WebDriver makeMobileDriver(){
+    public static WebDriver makeMobileDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        options.addArguments("window-size="+ MOBILE_WIDTH + "," + MOBILE_HEIGHT);
+        options.addArguments("window-size=" + MOBILE_WIDTH + "," + MOBILE_HEIGHT);
         options.addArguments("--use-mobile-user-agent=true");
         options.addArguments("--user-agent=Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
         options.addArguments("disable-infobars");
@@ -69,7 +73,9 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--no-sandbox");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-        return new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
+        ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
+        //System.out.println(driver.getSessionId());
+        return driver;
     }
 
     public void desktopAutomationTest(String savePath){
@@ -79,5 +85,51 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     public void mobileAutomationTest(String savePath) {
         mobileDriver = makeMobileDriver();
+    }
+
+
+    protected static void clickAt(WebDriver driver, String xpath){
+        WebElement e = driver.findElement(By.xpath(xpath));
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, xpath);
+        //scrollTo(driver, e.getLocation().getX(), e.getLocation().getY());
+        e.click();
+    }
+
+
+
+    protected static void clickAt(WebDriver driver, WebElement e){
+        ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, getXPath(driver, e));
+        e.click();
+    }
+
+    public void createResult(){
+
+    }
+
+    public void sendResult(){
+
+    }
+
+    protected static void scrollToElement(WebDriver driver, WebElement e){
+
+    }
+
+    protected static void scrollToElement(WebDriver driver, String xpath){
+
+    }
+
+
+    protected static String getXPath(WebDriver driver, WebElement e) {
+        String jscript = "function getPathTo(node) {" +
+                "  var stack = [];" +
+                "  while(node.parentNode !== null) {" +
+                "    stack.unshift(node.tagName);" +
+                "    node = node.parentNode;" +
+                "  }" +
+                "  return stack.join('/');" +
+                "}" +
+                "return getPathTo(arguments[0]);";
+        return (String) ((JavascriptExecutor)driver).executeScript(jscript, e);
     }
 }
