@@ -114,7 +114,7 @@ public class StartTest {
         result.add(new Cotellic());
         result.add(new Erivedge());
         result.add(new Esbriet());
-        //result.add(new Gazyva());
+        result.add(new Gazyva());
         result.add(new Hemlibra());
         result.add(new Herceptin());
         result.add(new Kadcyla());
