@@ -82,7 +82,13 @@ public class Variables {
             if (arg.equals("threads=true"))
                 useTheads = true;
             if (arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
-                threadCount = Integer.parseInt(arg.substring(12, arg.length()));
+
+                try {
+                    threadCount = Integer.parseInt(arg.substring(12, arg.length()));
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    threadCount = 1;
+                }
                 if (threadCount <= 0)
                     System.out.println("Warning: set thread count is less that 1! Using single thread!");
             }
