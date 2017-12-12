@@ -32,20 +32,33 @@ public class QuickHeadless extends SeleniumHeadless {
     }
 
     public void start() {
-        String chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
+        final StringBuffer chromedriverPath = new StringBuffer();
+        chromedriverPath.append("node_modules/chromedriver/lib/chromedriver/chromedriver");
 
         String OS = System.getProperty("os.name").toLowerCase();
-        if (OS.contains("win"))
-            chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
-        else
-            chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
+        if (OS.contains("win")) {
+            chromedriverPath.setLength(0);
+            chromedriverPath.append("node_modules/chromedriver/lib/chromedriver/chromedriver.exe");
+        }
+        else {
+            chromedriverPath.setLength(0);
+            chromedriverPath.append("node_modules/chromedriver/lib/chromedriver/chromedriver");
+        }
 
         //System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
 
-        SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
-        SeleniumHeadless test = new Gazyva();
-        test.desktopAutomationTest("TEST_PATH/desktop");
-        test.mobileAutomationTest("TEST_PATH/mobile");
+        Thread thread = new Thread(() -> {
+            SeleniumHeadless.setChromeSystemProperty(chromedriverPath.toString());
+            SeleniumHeadless test = new Gazyva();
+            test.desktopAutomationTest("TEST_PATH/desktop");
+            test.mobileAutomationTest("TEST_PATH/mobile");
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

@@ -312,12 +312,7 @@ public class Gazyva extends SeleniumHeadless {
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
-            jse.executeScript("window.scrollTo(0, 0)");
-            Thread.sleep(1000);
-            WebElement element = driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[5]/div/div/div[2]/div/div/div[1]/div"));
-            jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:50px;')", element);
-            driver.findElement(By.linkText("How do I enroll?")).click();
-            jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
+
             movecursorm(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-1.0-step1");

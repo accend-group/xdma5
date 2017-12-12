@@ -169,9 +169,12 @@ public class StartTest {
                     threadLock.release();
                 })
         };
+        deskMobThreads[0].setDaemon(true);
+        deskMobThreads[1].setDaemon(true);
         screenshotThreads.add(deskMobThreads[0]);
         screenshotThreads.add(deskMobThreads[1]);
-        pdfThreads.add(new Thread(() -> {
+
+        Thread pdfThread = new Thread(() -> {
             try {
                 // wait for the threads to finish to read in the log file
                 deskMobThreads[0].join();
@@ -180,7 +183,9 @@ public class StartTest {
                 e.printStackTrace();
             }
             createPDFandSendThread(test, testName, null);
-        }));
+        });
+        pdfThread.setDaemon(true);
+        pdfThreads.add(pdfThread);
     }
 
     private static void createPDFandSendThread(SeleniumHeadless test, String pdfName, String pdfOutputPath) {
