@@ -41,8 +41,8 @@ public class Variables {
     public static void main(String[] args) {
 
         for (String arg : args) {
-            if (arg.contains("savepath=") && arg.indexOf("logpath=") == 0) {
-                savePath = arg.substring(8, arg.length());
+            if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
+                savePath = arg.substring(9, arg.length());
                 File dir = new File(savePath);
                 dir.mkdirs();
             }
@@ -57,7 +57,6 @@ public class Variables {
             }
             if (arg.contains("pdfname=") && arg.indexOf("pdfname=") == 0)
                 pdfName = arg.substring(8, arg.length());
-
             if (arg.equals("s3=true"))
                 s3 = true;
             if (arg.equals("aws-local=true"))
