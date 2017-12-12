@@ -2,11 +2,11 @@ package com.gene.screenshots.selenium.kadcyla.hcp;
 
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+
+import static com.gene.screenshots.Constants.MOBILE_HEIGHT;
+import static com.gene.screenshots.Constants.MOBILE_WIDTH;
 
 public class KadcylaHCP extends SeleniumHeadless {
 
@@ -373,7 +373,8 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat3-yes");
 
-            jse.executeScript("window.scrollTo(0, 0)");
+            //jse.executeScript("window.scrollTo(0, 0)");
+            driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
             clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
