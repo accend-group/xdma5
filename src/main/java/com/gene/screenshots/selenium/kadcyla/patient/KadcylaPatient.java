@@ -430,8 +430,10 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/patient/support-resources/financial-resources.html");
             remove(driver);
-            WebElement e = driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]"));
-            e.click();
+
+            clickAt(driver, "/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]");
+            //WebElement e = driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]"));
+            //e.click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat1-yes");
             //jse.executeScript("window.scrollTo(0, 0)");
