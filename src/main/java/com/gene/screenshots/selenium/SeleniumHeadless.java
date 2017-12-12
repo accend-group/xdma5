@@ -96,7 +96,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
 
 
     protected static void clickAt(WebDriver driver, WebElement e) {
-        ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, getXPath(driver, e));
+        scrollToElement(driver, e);
         e.click();
     }
 
@@ -109,11 +109,11 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
     }
 
     protected static void scrollToElement(WebDriver driver, WebElement e) {
-
+        ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, getXPath(driver, e));
     }
 
     protected static void scrollToElement(WebDriver driver, String xpath) {
-
+        ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, xpath);
     }
 
 
