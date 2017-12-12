@@ -69,8 +69,11 @@ public class Variables {
                 bucketName = arg.substring(10, arg.length());
             if (arg.contains("s3-pdfkey=") && arg.indexOf("s3-pdfkey=") == 0)
                 pdfKey = arg.substring(10, arg.length());
-            if (arg.contains("s3-region=") && arg.indexOf("s3-region=") == 0)
+            if (arg.contains("s3-region=") && arg.indexOf("s3-region=") == 0) {
                 region = arg.substring(10, arg.length());
+                if(region.equals(""))
+                    region = null;
+            }
             if (arg.equals("access-solutions=true"))
                 accessSolutions = true;
             if (arg.equals("kadcyla-hcp=true"))
@@ -82,11 +85,10 @@ public class Variables {
             if (arg.equals("threads=true"))
                 useTheads = true;
             if (arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
-
                 try {
                     threadCount = Integer.parseInt(arg.substring(12, arg.length()));
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                    System.out.println("Warning: invalid/empty thread count, Set to default of 1");
                     threadCount = 1;
                 }
                 if (threadCount <= 0)
