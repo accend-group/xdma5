@@ -11,6 +11,9 @@ Create a Jenkins Job that has the following parameters.
 
 |  Name            |  Type |Description | 
 | -------------    | --- |--- | 
+| ACCESS_SOLUTIONS | boolean | The job creates the pdfs for the access solultion site |
+| KADCYLA_HCP | boolean | The job creates the pdf for the kadcyla hcp site |
+| KADCYLA_PATIENT |boolean | The job creates the pdf the the kadcyla patient site |
 | CHROMEDRIVER_PATH| string |Path to the chromedriver. If not set defaults to the [latest](https://www.npmjs.com/package/chromedriver) |
 | SAVE_PATH         | string |Path where the screenshots and logs are saved |
 | PDF_OUTPUT_PATH  | string |Path to created PDF. If not set defaults to SAVE_PATH | 
@@ -20,48 +23,24 @@ Create a Jenkins Job that has the following parameters.
 | S3_PDF_KEY       | string |Name of key for PDF |
 | S3_REGION        | string |Region where the bucket is at. Defaults to us-east-1 |
 | AWS_LOCAL        | boolean |Uses local AWS credentials if TRUE |
-| THREADS | boolean | If utilizing threads. Default is false |
-| THREAD_COUNT | string | Integer value representing the number of allowed threads of WebDriver workers | 
+| THREADS | boolean | If utilizing threads. Default is FALSE |
+| THREAD_COUNT | string | Integer value representing the number of allowed threads of WebDriver workers. Default value is 1. Make sure the value is reasonable for the system. | 
 
-```
-/save-path/
-    /desktop
-        /TestClass    
-            - png images...
-   
-    /mobile
-        /TestClass
-            - png images...
-   
-    /logs
-        TestClass.txt
-    
-    TestClass.pdf
-```
+If the [local aws credential file](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting) is not being used the automation job can take in the access key and secret access key with the [Credentials Binding plugin](https://wiki.jenkins.io/display/JENKINS/Credentials+Binding+Plugin). Create a credential and bind the separated username and password.
+
+| Name | Type |
+| --- | --- |
+| ACCESS_KEY | Username Variable |
+| SECRET_KEY | Password Variable |
+
     
 Have the Jenkins Job build this in the shell/bash
 
 ```
-// download chromedriver and geckoderiver
+// downloads chromedriver
 npm install
-// 
-mvn compile exec:java "-Dexec.args=logpath=/Users/anthony/Documents/pics pdfoutput=testpath s3=false aws-local=true  s3-bucket=pdf-screenshots-test s3-pdfkey=newtest s3-region=us-east-1 access-solutions=true kadcyla-hcp=true kadcyla-patient=true threads=true threadcount=7"```
+
+//  builds and runs the automation job(s) 
+mvn compile exec:java "-Dexec.args=savepath=$SAVE_PATH pdfoutput=$PDF_OUTPUT_PATH s3=$S3 aws-local=$AWS_LOCAL s3-bucket=$S3_BUCKET s3-pdfkey=$S3_PDF_KEY s3-region=$S3_REGION access-solutions=$ACCESS_SOLUTION kadcyla-hcp=$KADCYLA_HCP kadcyla-patient=$KADCYLA_PAITENT threads=$THREADS threadcount=$THREAD_COUNT"
 ```
-
-Arguments for StartTest:
-
-- logPath="log.txt path" - where the images and log file are saved at.
-- pdfOutput="pdf output path" - where the pdf is saved.
-- pdfName="my_pdf_name.pdf" - (optional) default is postRun.pdf
-
-If storing the pdf to amazon S3 all 3 arguments below must be given and credentials must be set
-- s3="true" - if storing pdf at s3 server
-- s3-bucket="bucket name where pdf will be stored"
-- s3-pdfKey="key for storing pdf"
-- s3-region="region location" - (optional) default is us-east-1
-
-Either local or manual credentials must be set
-- aws-local="true" - uses aws credentials stored in user's credential file.
-- aws-accesskey="access key"
-- aws-secretkey="secret access key"
 
