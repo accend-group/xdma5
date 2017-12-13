@@ -31,8 +31,10 @@ public class Variables {
     private static boolean bothPDF = true;
 
     private enum TestUrl {
-        PRODUCTION, DEV, QA, AUTHOR
+        PRODUCTION, DEV, STAGE, LOCAL
     }
+
+    private static TestUrl domain = null;
 
     // defaults to sequential test run
     private static boolean useTheads = false;
@@ -54,6 +56,10 @@ public class Variables {
                     File dir = new File(pdfOutputPath);
                     dir.mkdir();
                 }
+            }
+
+            if(arg.contains("domain=") && arg.indexOf("domaine=") == 0) {
+
             }
 
             if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
@@ -95,17 +101,22 @@ public class Variables {
                 kadcylaPatient = true;
             if (arg.contains("chromedriver=") && arg.indexOf("chromedriver=") == 0)
                 chromedriverPath = arg.substring(13, arg.length());
-            if (arg.equals("threads=true"))
-                useTheads = true;
+
+            //if (arg.equals("threads=true"))
+            //    useTheads = true;
             if (arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
                 try {
                     threadCount = Integer.parseInt(arg.substring(12, arg.length()));
+                    useTheads = true;
                 } catch (NumberFormatException e) {
                     System.out.println("Warning: invalid/empty thread count, Set to default of 1");
                     threadCount = 1;
+                    useTheads = false;
                 }
-                if (threadCount <= 0)
+                if (threadCount <= 0) {
                     System.out.println("Warning: set thread count is less that 1! Using single thread!");
+                    useTheads = false;
+                }
             }
         }
     }
@@ -162,7 +173,7 @@ public class Variables {
         return s3Local;
     }
 
-    public static boolean isUseTheads() {
+    public static boolean isUseThreads() {
         return useTheads;
     }
 

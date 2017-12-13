@@ -16,7 +16,6 @@ import com.gene.screenshots.utils.Log;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Starts the screenshot process from a jenkins job.
@@ -38,7 +37,7 @@ public class StartTest {
         // pass in jenkins parameters, most important being savePath and chromedriverPath
         Variables.main(args);
 
-        if (Variables.isUseTheads() && Variables.getThreadCount() > 1)
+        if (Variables.isUseThreads() && Variables.getThreadCount() > 1)
             System.out.println("Using threads! Thread count: " + Variables.getThreadCount());
         else
             System.out.println("Single thread use!");
@@ -85,7 +84,7 @@ public class StartTest {
         }
 
         // start automation job(s)
-        if (Variables.isUseTheads()) {
+        if (Variables.isUseThreads()) {
             // concurrent run
             screenshotThreads.addAll(pdfThreads);
             for (Thread thread : screenshotThreads)
@@ -145,7 +144,7 @@ public class StartTest {
         String testName = test.getClass().getSimpleName();
         Thread[] deskMobThreads = new Thread[]{
                 new Thread(() -> {
-                    if (Variables.isUseTheads()) {
+                    if (Variables.isUseThreads()) {
                         try {
                             threadLock.acquire();
                         } catch (InterruptedException e) {
@@ -157,7 +156,7 @@ public class StartTest {
                     threadLock.release();
                 }),
                 new Thread(() -> {
-                    if (Variables.isUseTheads()) {
+                    if (Variables.isUseThreads()) {
                         try {
                             threadLock.acquire();
                         } catch (InterruptedException e) {
