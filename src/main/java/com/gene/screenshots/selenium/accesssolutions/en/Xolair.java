@@ -1,11 +1,10 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+
+import static com.gene.screenshots.Constants.DESKTOP_WIDTH;
 
 public class Xolair extends SeleniumHeadless {
 
@@ -187,6 +186,7 @@ public class Xolair extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
 
+            driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
             clickAt(driver, driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")));
             //driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")).click();
 
