@@ -182,7 +182,7 @@ public class StartTest {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            createPDFandSendThread(test, testName, null);
+            createPDFandSendThread(test, testName, Variables.getPdfOutputPath());
         });
         pdfThread.setDaemon(true);
         pdfThreads.add(pdfThread);
