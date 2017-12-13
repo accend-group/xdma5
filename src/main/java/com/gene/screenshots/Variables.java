@@ -59,11 +59,11 @@ public class Variables {
             if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
                 String jobType =  arg.substring(8, arg.length());
                 switch(jobType){
-                    case "Access Solutions":
+                    case "Access_Solutions":
                         accessSolutions = true; break;
-                    case "Kadcyla HCP":
+                    case "Kadcyla_HCP":
                         kadcylaHCP = true; break;
-                    case "Kadcyla Patient":
+                    case "Kadcyla_Patient":
                         kadcylaPatient = true; break;
                 }
             }
