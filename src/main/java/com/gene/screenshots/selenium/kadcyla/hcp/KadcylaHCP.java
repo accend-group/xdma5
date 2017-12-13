@@ -374,6 +374,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat3-yes");
 
             //jse.executeScript("window.scrollTo(0, 0)");
+
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
             clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
@@ -382,7 +383,9 @@ public class KadcylaHCP extends SeleniumHeadless {
 
             driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
             remove(driver);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
+
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat2-no");
@@ -399,8 +402,11 @@ public class KadcylaHCP extends SeleniumHeadless {
             remove(driver);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
 
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
+
+            driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
             clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
@@ -409,7 +415,9 @@ public class KadcylaHCP extends SeleniumHeadless {
             // --- >> button hover error << --- //
             driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
             remove(driver);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]")).click();
+
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat1-no");
 
@@ -420,6 +428,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button")).click();
 
+            driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
             clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
@@ -428,11 +437,14 @@ public class KadcylaHCP extends SeleniumHeadless {
             // --- >> error button << --- //
             driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
             remove(driver);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
+
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
 
+            driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
             clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);

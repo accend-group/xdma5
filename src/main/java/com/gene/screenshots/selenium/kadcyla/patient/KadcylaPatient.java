@@ -6,6 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.function.Consumer;
 
+import static com.gene.screenshots.Constants.MOBILE_WIDTH;
+
 public class KadcylaPatient extends SeleniumHeadless {
 
     @Override
@@ -176,8 +178,10 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             //scrollTo(driver, 0,500);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
+            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]");
+            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
 
+            driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
             clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
@@ -233,7 +237,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.name("first-name")).sendKeys("Marwin");
             driver.findElement(By.name("last-name")).sendKeys("Nicolas");
             driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+            driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
@@ -379,7 +383,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.name("first-name")).sendKeys("Marwin");
             driver.findElement(By.name("last-name")).sendKeys("Nicolas");
             driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+            driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
