@@ -99,8 +99,11 @@ public class Variables {
                 kadcylaHCP = true;
             if (arg.equals("kadcyla-patient=true"))
                 kadcylaPatient = true;
-            if (arg.contains("chromedriver=") && arg.indexOf("chromedriver=") == 0)
+            if (arg.contains("chromedriver=") && arg.indexOf("chromedriver=") == 0) {
                 chromedriverPath = arg.substring(13, arg.length());
+                if(chromedriverPath.equals(""))
+                    chromedriverPath = null;
+            }
 
             //if (arg.equals("threads=true"))
             //    useTheads = true;
