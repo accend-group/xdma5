@@ -217,7 +217,7 @@ public class KadcylaHCP extends SeleniumHeadless {
 //		driver.findElement(By.name("first-name")).sendKeys("Marwin");
 //		driver.findElement(By.name("last-name")).sendKeys("Nicolas");
 //		driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-//		driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
+//		driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
 //		driver.findElement(By.name("zip-code-base")).sendKeys("99501");
 //		driver.findElement(By.name("primary-phone-number")).sendKeys("(02) 243-51-02");
 //		driver.findElement(By.name("practice-name")).sendKeys("Accend group");
