@@ -55,6 +55,19 @@ public class Variables {
                     dir.mkdir();
                 }
             }
+
+            if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
+                String jobType =  arg.substring(8, arg.length());
+                switch(jobType){
+                    case "Access Solutions":
+                        accessSolutions = true; break;
+                    case "Kadcyla HCP":
+                        kadcylaHCP = true; break;
+                    case "Kadcyla Patient":
+                        kadcylaPatient = true; break;
+                }
+            }
+
             if (arg.contains("pdfname=") && arg.indexOf("pdfname=") == 0)
                 pdfName = arg.substring(8, arg.length());
             if (arg.equals("s3=true"))
