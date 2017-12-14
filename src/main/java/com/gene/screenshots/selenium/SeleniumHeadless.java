@@ -140,7 +140,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
     }
 
     protected static void goToUrl(WebDriver driver, String url){
-        if(domain == LOCAL){
+        if(domain.toString().equals("local")){
             driver.get(url);
             return;
         }

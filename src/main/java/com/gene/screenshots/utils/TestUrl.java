@@ -3,27 +3,24 @@ package com.gene.screenshots.utils;
 import com.gene.screenshots.Variables;
 
 //TODO fix so it doesn't create a new object
-public enum  TestUrl {
-    LOCAL("local"),
-    PROD("prod"),
-    DEV("dev"),
-    STAGE("stage");
+public class  TestUrl {
 
-    private String domain;
 
-    private TestUrl(String domain){
+    private static String domain;
+
+    public TestUrl(final String domain){
         if(domain.equals("local"))
-            return;
-        if(domain.equals("dev")){
+            this.domain = strip();
+        else if(domain.equals("dev"))
             this.domain = Variables.isAccessSolutions() ? "https://www.dev-genentech-access.gene.com" : "https://www.dev-kadcyla.gene.com";
-        }
-        if(domain.equals("prod"))
+        else if(domain.equals("prod"))
             this.domain = Variables.isAccessSolutions() ? "https://www.genentech-access.com" : "https://www.kadcyla.com";
-        if(domain.equals("stage"))
+        else if(domain.equals("stage"))
             this.domain = Variables.isAccessSolutions() ? "https://www.stage-genentech-access.gene.com" : "https://www.stage-perjeta.gene.com";
 
     }
 
+    @Override
     public String toString(){
         return domain;
     }
