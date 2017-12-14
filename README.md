@@ -12,8 +12,8 @@ Create a Jenkins Job that clones this repo and has the following parameters.
 
 |  Name            |  Type |Description | 
 | -------------    | --- |--- |
-| DOMAIN | choice | Run the screenshot automation on a developer, stage, production, or local environment | 
-| JOB_TYPE | choice | Runs a specific automation job for either Access Solutions, Kadcyla HCP or Kadcyla Patients
+| DOMAIN | choice ('dev' 'stage' 'prod' 'local')  | Run the screenshot automation on a developer, stage, production, or local environment | 
+| JOB_TYPE | choice ('Access_Solutions' 'Kadcyla_HCP' 'Kadcyla_Patient')| Runs a specific automation job for either Access Solutions, Kadcyla HCP or Kadcyla Patients
 | THREAD_COUNT | string | Integer value representing the number of allowed threads of WebDriver workers. Default value is 1. Make sure the value is reasonable for the system. | 
 | CHROMEDRIVER_PATH| string |Path to the chromedriver. If not set defaults to the [latest](https://www.npmjs.com/package/chromedriver) from ```npm install``` |
 | SAVE_PATH         | string |Path where the screenshots and logs are saved |
