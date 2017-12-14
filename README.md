@@ -11,10 +11,10 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
 Create a Jenkins Job that clones this repo and has the following parameters. 
 
 |  Name            |  Type |Description | 
-| -------------    | --- |--- | 
-| ACCESS_SOLUTIONS | boolean | The job creates the pdfs for the access solultion site |
-| KADCYLA_HCP | boolean | The job creates the pdf for the kadcyla hcp site |
-| KADCYLA_PATIENT |boolean | The job creates the pdf the the kadcyla patient site |
+| -------------    | --- |--- |
+| DOMAIN | choice | Run the screenshot automation on a developer, stage, production, or local environment | 
+| JOB_TYPE | choice | Runs a specific autionmation job for either Access Solutions, Kadcyla HCP or Kadcyla Patients
+| THREAD_COUNT | string | Integer value representing the number of allowed threads of WebDriver workers. Default value is 1. Make sure the value is reasonable for the system. | 
 | CHROMEDRIVER_PATH| string |Path to the chromedriver. If not set defaults to the [latest](https://www.npmjs.com/package/chromedriver) from ```npm install``` |
 | SAVE_PATH         | string |Path where the screenshots and logs are saved |
 | PDF_OUTPUT_PATH  | string |Path to created PDF. If not set defaults to SAVE_PATH | 
@@ -24,8 +24,6 @@ Create a Jenkins Job that clones this repo and has the following parameters.
 | S3_PDF_KEY       | string |Name of key for PDF |
 | S3_REGION        | string |Region where the bucket is at. Defaults to us-east-1 |
 | AWS_LOCAL        | boolean |Uses local AWS credentials if TRUE |
-| THREADS | boolean | If utilizing threads. Default is FALSE |
-| THREAD_COUNT | string | Integer value representing the number of allowed threads of WebDriver workers. Default value is 1. Make sure the value is reasonable for the system. | 
 
 If the [local aws credential file](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting) is not being used the automation job can take in the access key and secret access key with the [Credentials Binding plugin](https://wiki.jenkins.io/display/JENKINS/Credentials+Binding+Plugin). Create a credential and bind the separated username and password.
 
@@ -41,7 +39,7 @@ Have the Jenkins Job build this in the shell/bash
 ```
 npm install
 ```
-> Build and run the automation job(s), remove the ACCESS_KEY and SECRET_KEY if they are not set. 
+> Build and run the automation job, remove the ACCESS_KEY and SECRET_KEY if they are not set. 
 ```
 mvn compile exec:java \
     -Dexec.cleanupDaemonThreads=false \
@@ -53,12 +51,10 @@ mvn compile exec:java \
         s3-bucket=$S3_BUCKET \
         s3-pdfkey=$S3_PDF_KEY \
         s3-region=$S3_REGION \
-        access-solutions=$ACCESS_SOLUTION \ 
-        kadcyla-hcp=$KADCYLA_HCP \
-        kadcyla-patient=$KADCYLA_PAITENT \
-        threads=$THREADS \
-        threadcount=$THREAD_COUNT \ 
+        jobtype=$JOB_TYPE \
+        domain=$DOMAIN \
+        threadcount=$THREAD_COUNT \
         aws-accesskey=$ACCESS_KEY \
-        aws-secretkey=$SECRET_KEY" \
+        aws-secretkey=$SECRET_KEY" 
 ```
 Now modify the Build Triggers for your needs.
