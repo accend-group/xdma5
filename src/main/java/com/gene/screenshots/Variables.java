@@ -36,7 +36,7 @@ public class Variables {
 
 
 
-    private static TestUrl domain = LOCAL;
+    private static TestUrl domain = new TestUrl("local");
 
     // defaults to sequential test run
     private static boolean useTheads = false;
@@ -62,14 +62,7 @@ public class Variables {
 
             if(arg.contains("domain=") && arg.indexOf("domain=") == 0) {
                 String url = arg.substring(7, arg.length());
-                if(url == "" || url.equals("local"))
-                    domain = LOCAL;
-                if(url.equals("dev"))
-                    domain = DEV;
-                if(url.equals("stage"))
-                    domain = STAGE;
-                if(url.equals("prod"))
-                    domain = PROD;
+                domain = new TestUrl(url);
 
             }
 
