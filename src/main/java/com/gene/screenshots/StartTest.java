@@ -107,9 +107,7 @@ public class StartTest {
     // english access solutions
     private static List<SeleniumHeadless> createAccessSolutionsTestList() {
         List<SeleniumHeadless> result = new LinkedList<>();
-        result.add(new Herceptin());
-        result.add(new Patient());
-       /*result.add(new Actemra());
+        result.add(new Actemra());
         result.add(new Alecensa());
         result.add(new Avastin());
         result.add(new Cotellic());
@@ -133,7 +131,7 @@ public class StartTest {
         result.add(new Tecentriq());
         result.add(new Venclexta());
         result.add(new Xolair());
-        result.add(new Zelboraf());*/
+        result.add(new Zelboraf());
         return result;
     }
 
