@@ -56,6 +56,8 @@ public class StartTest {
                 chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
         }
         System.out.println("Chromedrive path is: " + chromedriverPath);
+        System.out.println("Testing at: " + Variables.getDomain().name());
+        SeleniumHeadless.setDomain(Variables.getDomain());
         SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
 
 

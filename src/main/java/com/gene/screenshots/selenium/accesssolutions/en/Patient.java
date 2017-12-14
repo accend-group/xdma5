@@ -15,7 +15,7 @@ public class Patient extends SeleniumHeadless {
 
         try {
             //---->> patient <<---- 12 screenshot for patient homepage
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
             driver.findElement(By.id("select-treatment")).click();
             Thread.sleep(1000);
             visible(driver, true, savePath, "accesssolutions-patient-select-treatment");
@@ -35,35 +35,35 @@ public class Patient extends SeleniumHeadless {
             Thread.sleep(1000);
             visible(driver, true, savePath, "accesssolutions-patient-hcp-modal");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/home.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/home.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-home");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/home/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/home/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pat");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/pan.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/pan.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pan");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/biooncology.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/biooncology.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-biooncology");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/rheumatology.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/rheumatology.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rheumatology");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/contact-us.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/contact-us.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-contact-us");
         } catch (Exception e) {
@@ -82,12 +82,12 @@ public class Patient extends SeleniumHeadless {
             //---->> patient mobile <<---- 13 screenshot for patient homepage mobile
 
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
             driver.findElement(By.id("select-treatment")).click();
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-select-treatment");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
             driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]/div[1]/div[2]/button")).click();
             ;
             Thread.sleep(1000);
@@ -108,37 +108,37 @@ public class Patient extends SeleniumHeadless {
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-hcp-modal");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/home.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/home.html");
             Thread.sleep(500);
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-home");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/home/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/home/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pat");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/pan.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/pan.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pan");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/biooncology.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/biooncology.html");
             movecursor(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-biooncology");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/rheumatology.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/rheumatology.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rheumatology");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/contact-us.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/contact-us.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-contact-us");
         } catch (Exception e) {

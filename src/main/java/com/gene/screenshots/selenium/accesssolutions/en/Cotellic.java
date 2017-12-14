@@ -20,11 +20,11 @@ public class Cotellic extends SeleniumHeadless {
 
 
             // ---->> cotellic <<---- // 38 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/how-we-help-you.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-1.0");
 
@@ -71,7 +71,7 @@ public class Cotellic extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/forms-and-documents.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-2.0");
 
@@ -87,7 +87,7 @@ public class Cotellic extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/frequently-asked-questions.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-3.0");
 
@@ -151,7 +151,7 @@ public class Cotellic extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -211,11 +211,11 @@ public class Cotellic extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/site-map.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-cotellic-sitemap");
         } catch (Exception e) {
@@ -233,11 +233,11 @@ public class Cotellic extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
 
             // ---->> cotellic <<---- // 38 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/how-we-help-you.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-1.0");
 
@@ -289,7 +289,7 @@ public class Cotellic extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/forms-and-documents.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-2.0");
 
@@ -301,7 +301,7 @@ public class Cotellic extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/frequently-asked-questions.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-3.0");
 
@@ -365,7 +365,7 @@ public class Cotellic extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -401,11 +401,11 @@ public class Cotellic extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-pat-3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/site-map.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/cotellic/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-cotellic-sitemap");
         } catch (Exception e) {

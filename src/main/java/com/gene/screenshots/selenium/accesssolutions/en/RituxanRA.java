@@ -16,11 +16,11 @@ public class RituxanRA extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions actions = new Actions(driver);
             // ---->> rituxan_ra <<---- // 37 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/how-we-help-you.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-1.0");
 
@@ -68,7 +68,7 @@ public class RituxanRA extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/forms-and-documents.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-2.0");
 
@@ -84,7 +84,7 @@ public class RituxanRA extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/frequently-asked-questions.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-3.0");
 
@@ -143,7 +143,7 @@ public class RituxanRA extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -203,11 +203,11 @@ public class RituxanRA extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/site-map.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-ra-sitemap");
         } catch (Exception e) {
@@ -225,11 +225,11 @@ public class RituxanRA extends SeleniumHeadless {
         try {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> rituxan_ra <<---- // 37 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/how-we-help-you.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-1.0");
 
@@ -322,11 +322,11 @@ public class RituxanRA extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/forms-and-documents.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-2.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/frequently-asked-questions.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-3.0");
 
@@ -384,7 +384,7 @@ public class RituxanRA extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -436,11 +436,11 @@ public class RituxanRA extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-pat4-no");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/site-map.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxan/rituxan-ra/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-ra-sitemap");
         } catch (Exception e) {

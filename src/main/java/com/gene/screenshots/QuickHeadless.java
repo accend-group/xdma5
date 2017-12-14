@@ -49,7 +49,7 @@ public class QuickHeadless extends SeleniumHeadless {
 
         Thread thread = new Thread(() -> {
             SeleniumHeadless.setChromeSystemProperty(chromedriverPath.toString());
-            SeleniumHeadless test = new Gazyva();
+            SeleniumHeadless test = new Xolair();
             test.desktopAutomationTest("TEST_PATH/desktop");
             test.mobileAutomationTest("TEST_PATH/mobile");
         });

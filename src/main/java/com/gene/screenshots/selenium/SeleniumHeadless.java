@@ -1,5 +1,6 @@
 package com.gene.screenshots.selenium;
 
+import com.gene.screenshots.utils.TestUrl;
 import com.gene.screenshots.utils.OutputResult;
 import com.gene.screenshots.utils.Screenshots;
 import org.openqa.selenium.*;
@@ -11,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.gene.screenshots.Constants.*;
+import static com.gene.screenshots.utils.TestUrl.*;
 
 
 /**
@@ -23,8 +25,10 @@ import static com.gene.screenshots.Constants.*;
 
 public abstract class SeleniumHeadless extends Screenshots implements OutputResult {
 
+    protected static TestUrl domain;
+    // window.scrollBy(X, Y);
     // https://stackoverflow.com/a/4403822
-    private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView();";
+    private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(); ";
 
     // TODO optimize mobiledriver/desktop with limited thread count?
     protected WebDriver desktopDriver;
@@ -109,6 +113,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
     }
 
     protected static void scrollToElement(WebDriver driver, WebElement e) {
+
         ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, getXPath(driver, e));
     }
 
@@ -128,5 +133,18 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
                 "}" +
                 "return getPathTo(arguments[0]);";
         return (String) ((JavascriptExecutor) driver).executeScript(jscript, e);
+    }
+
+    public static void setDomain(TestUrl url){
+        domain = url;
+    }
+
+    protected static void goToUrl(WebDriver driver, String url){
+        if(domain == LOCAL){
+            driver.get(url);
+            return;
+        }
+        String page = url.replace(TestUrl.strip(), domain.toString());
+        driver.get(page);
     }
 }

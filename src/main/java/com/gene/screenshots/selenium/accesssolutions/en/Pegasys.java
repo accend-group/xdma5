@@ -18,11 +18,11 @@ public class Pegasys extends SeleniumHeadless {
             Actions actions = new Actions(driver);
 
             //---->> pegasys <<---- 31 screenshot for pegasys
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/how-we-help-you.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0");
 
@@ -61,7 +61,7 @@ public class Pegasys extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/forms-and-documents.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-2.0");
 
@@ -77,7 +77,7 @@ public class Pegasys extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/frequently-asked-questions.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0");
 
@@ -139,7 +139,7 @@ public class Pegasys extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab10");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -160,11 +160,11 @@ public class Pegasys extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-pat-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/site-map.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-site-map");
         } catch (Exception e) {
@@ -183,11 +183,11 @@ public class Pegasys extends SeleniumHeadless {
 
 
             //---->> pegasys <<---- 31 screenshot for pegasys
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/how-we-help-you.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0");
 
@@ -261,11 +261,11 @@ public class Pegasys extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/forms-and-documents.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-2.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/frequently-asked-questions.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0");
 
@@ -327,7 +327,7 @@ public class Pegasys extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab10");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -355,11 +355,11 @@ public class Pegasys extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-pat2-yes");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/site-map.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pegasys/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-site-map");
         } catch (Exception e) {

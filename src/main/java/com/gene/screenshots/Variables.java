@@ -3,7 +3,11 @@ package com.gene.screenshots;
 
 // used for getting Jenkins parameters
 
+import com.gene.screenshots.utils.TestUrl;
+
 import java.io.File;
+
+import static com.gene.screenshots.utils.TestUrl.*;
 
 public class Variables {
 
@@ -30,11 +34,9 @@ public class Variables {
     private static boolean mobilePDF = false;
     private static boolean bothPDF = true;
 
-    private enum TestUrl {
-        PRODUCTION, DEV, STAGE, LOCAL
-    }
 
-    private static TestUrl domain = null;
+
+    private static TestUrl domain = LOCAL;
 
     // defaults to sequential test run
     private static boolean useTheads = false;
@@ -58,7 +60,16 @@ public class Variables {
                 }
             }
 
-            if(arg.contains("domain=") && arg.indexOf("domaine=") == 0) {
+            if(arg.contains("domain=") && arg.indexOf("domain=") == 0) {
+                String url = arg.substring(7, arg.length());
+                if(url == "" || url.equals("local"))
+                    domain = LOCAL;
+                if(url.equals("dev"))
+                    domain = DEV;
+                if(url.equals("stage"))
+                    domain = STAGE;
+                if(url.equals("prod"))
+                    domain = PROD;
 
             }
 
@@ -66,7 +77,8 @@ public class Variables {
                 String jobType =  arg.substring(8, arg.length());
                 switch(jobType){
                     case "Access_Solutions":
-                        accessSolutions = true; break;
+                        accessSolutions = true;
+                        break;
                     case "Kadcyla_HCP":
                         kadcylaHCP = true; break;
                     case "Kadcyla_Patient":
@@ -182,5 +194,9 @@ public class Variables {
 
     public static int getThreadCount() {
         return threadCount;
+    }
+
+    public static TestUrl getDomain(){
+        return domain;
     }
 }

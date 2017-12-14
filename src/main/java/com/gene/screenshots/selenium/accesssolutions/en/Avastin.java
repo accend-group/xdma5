@@ -19,11 +19,11 @@ public class Avastin extends SeleniumHeadless {
             Actions actions = new Actions(driver);
 
             // ---->> avastin <<---- // 41 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/how-we-help-you.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/how-we-help-you.html");
             movecursorm(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-1.0");
@@ -99,7 +99,7 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/forms-and-documents.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-2.0");
 
@@ -115,7 +115,7 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/frequently-asked-questions.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-3.0");
 
@@ -176,7 +176,7 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -236,11 +236,11 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/site-map.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-sitemap");
         } catch (Exception e) {
@@ -261,11 +261,11 @@ public class Avastin extends SeleniumHeadless {
 
 
             // ---->> avastin mobile<<---- // 41 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/how-we-help-you.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/how-we-help-you.html");
             movecursorm(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0");
@@ -343,7 +343,7 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/forms-and-documents.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-2.0");
 
@@ -355,7 +355,7 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/frequently-asked-questions.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-3.0");
 
@@ -414,7 +414,7 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/patient-assistance-tool-page.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-pat");
 
@@ -450,11 +450,11 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-pat-3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/search.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/site-map.html");
+            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/avastin/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-sitemap");
         } catch (Exception e) {
