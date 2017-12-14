@@ -3,8 +3,10 @@ package com.gene.screenshots;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import com.gene.screenshots.selenium.accesssolutions.en.Avastin;
 import com.gene.screenshots.selenium.accesssolutions.en.Gazyva;
+import com.gene.screenshots.selenium.accesssolutions.en.Herceptin;
 import com.gene.screenshots.selenium.accesssolutions.en.Xolair;
 import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
+import com.gene.screenshots.utils.TestUrl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -45,11 +47,11 @@ public class QuickHeadless extends SeleniumHeadless {
             chromedriverPath.append("node_modules/chromedriver/lib/chromedriver/chromedriver");
         }
 
-        //System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
+        SeleniumHeadless.setDomain(new TestUrl("prod"));
 
         Thread thread = new Thread(() -> {
             SeleniumHeadless.setChromeSystemProperty(chromedriverPath.toString());
-            SeleniumHeadless test = new Xolair();
+            SeleniumHeadless test = new Herceptin();
             test.desktopAutomationTest("TEST_PATH/desktop");
             test.mobileAutomationTest("TEST_PATH/mobile");
         });

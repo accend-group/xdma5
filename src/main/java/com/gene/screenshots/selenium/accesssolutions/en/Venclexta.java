@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import static com.gene.screenshots.Constants.DESKTOP_WIDTH;
+
 public class Venclexta extends SeleniumHeadless {
 
     public void desktopAutomationTest(String savePath) {
@@ -186,7 +188,10 @@ public class Venclexta extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[4]/div[2]/button")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
-            driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
+
+            driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
+            clickAt(driver, "//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a");
+            //driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
             Thread.sleep(500);
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-venclexta-pat-more-info-2");

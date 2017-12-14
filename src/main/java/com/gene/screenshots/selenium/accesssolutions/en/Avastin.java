@@ -8,6 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import static com.gene.screenshots.Constants.DESKTOP_WIDTH;
+import static com.gene.screenshots.Constants.MOBILE_WIDTH;
+
 public class Avastin extends SeleniumHeadless {
 
     @Override
@@ -216,9 +219,11 @@ public class Avastin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-avastin-pat-2-part2");
             Thread.sleep(500);
+            driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
 
-            jse.executeScript("window.scrollTo(0, 0)");
+
+            //jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();

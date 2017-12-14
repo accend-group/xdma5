@@ -93,6 +93,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
     }
 
 
+    // scrolls to the element and clicks it
     protected static void clickAt(WebDriver driver, String xpath) {
         WebElement e = driver.findElement(By.xpath(xpath));
         clickAt(driver, e);
@@ -104,8 +105,9 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         e.click();
     }
 
-    public void createResult() {
 
+    public void createResult() {
+        // pdf creation
     }
 
     public void sendResult() {

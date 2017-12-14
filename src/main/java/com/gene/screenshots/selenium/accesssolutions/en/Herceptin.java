@@ -1,11 +1,11 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+
+import static com.gene.screenshots.Constants.DESKTOP_WIDTH;
+import static com.gene.screenshots.Constants.MOBILE_WIDTH;
 
 public class Herceptin extends SeleniumHeadless {
 
@@ -60,12 +60,12 @@ public class Herceptin extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("How do I enroll?")).click();
+            driver.findElement(By.linkText("Learn more about how to enroll")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step1");
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What will we find out?")).click();
+            driver.findElement(By.linkText("What we find out")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step2");
 
@@ -314,14 +314,21 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             WebElement element = driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[6]/div/div/div[2]/div/div/div[1]/div/div"));
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:50px;')", element);
-            driver.findElement(By.linkText("How do I enroll?")).click();
+            driver.findElement(By.linkText("Learn more about how to enroll")).click();
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
             movecursorm(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0-step1");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What will we find out?")).click();
+            //jse.executeScript("window.scrollTo(0, 0)");
+            driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
+
+            Actions actions = new Actions(driver);
+            element = driver.findElement(By.linkText("What we find out"));
+            actions.moveToElement(element).click().perform();
+
+            //clickAt(driver, driver.findElement(By.linkText("What we find out")));
+            //driver.findElement(By.linkText("What we find out")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0-step2");
 

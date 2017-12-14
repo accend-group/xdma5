@@ -1,11 +1,10 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+
+import static com.gene.screenshots.Constants.DESKTOP_WIDTH;
 
 public class Lucentis extends SeleniumHeadless {
 
@@ -215,6 +214,9 @@ public class Lucentis extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
             Thread.sleep(1000);
+
+            driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
+            //clickAt(driver, "//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-pat-more-info-2");

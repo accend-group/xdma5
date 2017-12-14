@@ -28,7 +28,13 @@ public class Patient extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='product-selector']/div/div/div[2]/div/div/ul/li[16]/a")).click();
             Thread.sleep(1000);
             visible(driver, true, savePath, "accesssolutions-patient-rituxan-popup");
-            driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
+
+            Thread.sleep(1000);
+            Actions actions = new Actions(driver);
+            WebElement element = driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button"));
+            actions.moveToElement(element).click().perform();
+            //clickAt(driver, "//*[@id='sub-indications-selector']/div/div/div[1]/button");
+            //driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
 
             Thread.sleep(1000);
             driver.findElement(By.linkText("For US Healthcare Professionals")).click();
@@ -98,13 +104,22 @@ public class Patient extends SeleniumHeadless {
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-product-popup");
 
-            driver.findElement(By.xpath("//*[@id='product-selector']/div/div/div[2]/div/div/ul/li[16]/a")).click();
+            clickAt(driver, "//*[@id='product-selector']/div/div/div[2]/div/div/ul/li[16]/a");
+            //driver.findElement(By.xpath("//*[@id='product-selector']/div/div/div[2]/div/div/ul/li[16]/a")).click();
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-popup");
-            driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
+
+            // wait for popup menu to appear in order to click close button
+            Thread.sleep(1000);
+
+            Actions actions = new Actions(driver);
+            WebElement element = driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button"));
+            actions.moveToElement(element).click().perform();
+            //driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
 
             Thread.sleep(1000);
-            driver.findElement(By.linkText("US Healthcare Professionals")).click();
+            System.out.println(driver.getCurrentUrl());
+            driver.findElement(By.linkText("Healthcare Professionals")).click();
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-hcp-modal");
 

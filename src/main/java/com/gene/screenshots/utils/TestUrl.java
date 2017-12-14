@@ -2,7 +2,6 @@ package com.gene.screenshots.utils;
 
 import com.gene.screenshots.Variables;
 
-//TODO fix so it doesn't create a new object
 public class  TestUrl {
 
 
@@ -17,7 +16,6 @@ public class  TestUrl {
             this.domain = Variables.isAccessSolutions() ? "https://www.genentech-access.com" : "https://www.kadcyla.com";
         else if(domain.equals("stage"))
             this.domain = Variables.isAccessSolutions() ? "https://www.stage-genentech-access.gene.com" : "https://www.stage-perjeta.gene.com";
-
     }
 
     @Override

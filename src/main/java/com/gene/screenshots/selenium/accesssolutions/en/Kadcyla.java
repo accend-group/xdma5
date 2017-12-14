@@ -195,7 +195,9 @@ public class Kadcyla extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
             Thread.sleep(1000);
-            driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
+
+            clickAt(driver, "//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a");
+//            driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-more-info-2");
 

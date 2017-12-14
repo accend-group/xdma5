@@ -37,11 +37,10 @@ public class StartTest {
         // pass in jenkins parameters, most important being savePath and chromedriverPath
         Variables.main(args);
 
-        if (Variables.isUseThreads() && Variables.getThreadCount() > 1)
-            System.out.println("Using threads! Thread count: " + Variables.getThreadCount());
-        else
-            System.out.println("Single thread use!");
+        System.out.println("Thread count: " + Variables.getThreadCount());
+
         threadLock = new Semaphore(Variables.getThreadCount(), true);
+
         String chromedriverPath = Variables.getChromedriverPath();
         String savePath = Variables.getSavePath();
         String pdfOutputPath = Variables.getPdfOutputPath();
@@ -74,7 +73,6 @@ public class StartTest {
 
         if (Variables.isKadcylaPatient())
             createThreads(patientTest);
-
 
         // if sending pdf to s3
         if (Variables.isS3()) {
@@ -109,7 +107,9 @@ public class StartTest {
     // english access solutions
     private static List<SeleniumHeadless> createAccessSolutionsTestList() {
         List<SeleniumHeadless> result = new LinkedList<>();
-        result.add(new Actemra());
+        result.add(new Herceptin());
+        result.add(new Patient());
+       /*result.add(new Actemra());
         result.add(new Alecensa());
         result.add(new Avastin());
         result.add(new Cotellic());
@@ -122,7 +122,7 @@ public class StartTest {
         result.add(new Lucentis());
         result.add(new Ocrevus());
         result.add(new Patient());
-        result.add(new Pegasys());
+        //result.add(new Pegasys());
         result.add(new Perjeta());
         result.add(new Pulmozyme());
         result.add(new RituxanGPAMPA());
@@ -133,7 +133,7 @@ public class StartTest {
         result.add(new Tecentriq());
         result.add(new Venclexta());
         result.add(new Xolair());
-        result.add(new Zelboraf());
+        result.add(new Zelboraf());*/
         return result;
     }
 
