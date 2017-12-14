@@ -31,7 +31,7 @@
    ![](./readmepics/threads.png)
    
    For boolean parameters check the box to set the parameter to be true.
-   ![](./readmepics/threads.png)
+   ![](./readmepics/aws_local.png)
 
    Below are all the parameters.
 
@@ -86,6 +86,7 @@
        -Dexec.args=" \
            savepath=$SAVE_PATH \
            pdfoutput=$PDF_OUTPUT_PATH \ 
+           pdfname=$PDF_NAME \
            s3=$S3 \
            aws-local=$AWS_LOCAL \ 
            s3-bucket=$S3_BUCKET \

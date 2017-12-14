@@ -2,12 +2,14 @@ package com.gene.screenshots.utils;
 
 import com.gene.screenshots.Variables;
 
+
 public class  TestUrl {
 
 
     private static String domain;
 
     public TestUrl(final String domain){
+
         if(domain.equals("local"))
             this.domain = strip();
         else if(domain.equals("dev"))

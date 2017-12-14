@@ -137,7 +137,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         return (String) ((JavascriptExecutor) driver).executeScript(jscript, e);
     }
 
-    // uses javascript to click the element, even if its not visible/hidden
+    // uses javascript to click the element, even if its not visible
     public static void forceClick(WebDriver driver, String xpath){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.xpath(xpath)));
     }
