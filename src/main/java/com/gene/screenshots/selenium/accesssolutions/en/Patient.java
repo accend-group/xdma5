@@ -118,8 +118,8 @@ public class Patient extends SeleniumHeadless {
             //driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
 
             Thread.sleep(1000);
-            System.out.println(driver.getCurrentUrl());
-            driver.findElement(By.linkText("Healthcare Professionals")).click();
+            forceClick(driver, "/html/body/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[1]/nav/div/div/div/div/ul/li[1]/a");
+            //driver.findElement(By.linkText("US Healthcare Professionals")).click();
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-hcp-modal");
 
