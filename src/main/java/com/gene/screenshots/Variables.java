@@ -48,7 +48,7 @@ public class Variables {
             if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
                 savePath = arg.substring(9, arg.length());
                 if(savePath.equals("") || savePath == null)
-                    savePath = "screenshots_logs";
+                    savePath = " target/screenshots";
                 File dir = new File(savePath);
                 dir.mkdirs();
             }
