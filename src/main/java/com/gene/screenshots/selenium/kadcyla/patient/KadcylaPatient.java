@@ -538,7 +538,6 @@ public class KadcylaPatient extends SeleniumHeadless {
         }
     }
 
-
     private void remove(WebDriver driver) {
         /*JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement element = driver.findElement(By.xpath("/html/body/section[1]/div[2]/div/div/div"));
