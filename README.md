@@ -3,12 +3,12 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
 
 ### Pre-requisites:
 1) Node JS (>v4): `brew install node`
-2) Maven: 
+2) Maven 3.x: `brew install maven`
 3) Jenkins: `brew install jenkins`
 
 ### Set up
 
-1. Install [Jenkins](https://jenkins.io/download/) for your testing environment. Once Jenkins is up go to your browser and connect to the Jenkins Server. When connected for the first time Jenkins will ask for a password stored in your system. Paste in the password and continue. Then select "Install suggested plugins" to be installed. Once the plugins finish being installed setup an Admin account.
+1. Install [Jenkins](https://jenkins.io/download/) for your testing environment. Once installation is complete, go to localhost:8080 in your browser. First time users will be prompted for a password. The admin password is stored in `/Users/<your-user-name>/.jenkins/secrets/initialAdminPassword`. After entering the password, users will want to select "Install suggested plugins"
 
 2. Now we need to set the AWS credentials and Github credentials. If the AWS credentials for the S3 service are [locally saved](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting) you can decide to either use the local credentials or specify the credentials to Jenkins. Skip step 6 if using local credentials. 
 
@@ -32,9 +32,9 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
    
    ![](./readmepics/set_params.png)
    
-   Fill in the parameter details. Default values must be set if they are used when testing. Then click "Add Parameter" to add the next parameter. Repeat adding parameters until all the needed parameters are set. 
+   Fill in the parameter details. Default values will be used when a job gets built automatically. Then click "Add Parameter" to add the next parameter. Repeat adding parameters until all the needed parameters are set. 
    
-   For choice parameters you need to list the options per line.
+   For choice parameters you need to list the choices per line.
    ![](./readmepics/domain.png)
    
    For string parameters place the needed value in the "Default Value" field.
@@ -59,7 +59,7 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
    | S3_REGION        | string |Region where the bucket is at. Defaults to us-east-1 |
    | AWS_LOCAL        | boolean |Uses local AWS credentials if TRUE |
 
-4. Under Source Code management check Git and set the URL of the Github repository of the testing code. Then set the git credentials underneath for repo access. 
+4. Under Source Code management check Git and set the URL of the Github repository of the automation code. Then set the git credentials underneath for repo access. 
 
    Select the branch where the automation code resides.
 
@@ -81,8 +81,10 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
    | ACCESS_KEY | Username Variable |
    | SECRET_KEY | Password Variable |
 
-7. Under Build click "add setup" and select "Execute shell" if using mac/linx or "Windows bash" if using windows. Maven and npm are needed. Make sure both are installed and are callable in the shell/bash.
-   In the command textbox set the build commands to execute the screenshot automation.
+7. Mac OS/Linux
+   
+   Under "Build", click "Add Setup" then select "Execute Shell". If you are a Windows user, Maven and npm needs to be installed beforehand.
+   In the command textbox set the build commands to the following below.
    
    > Downloads chromedriver
    ```
