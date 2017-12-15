@@ -10,7 +10,7 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
 
 1. Install [Jenkins](https://jenkins.io/download/) for your testing environment. Once installation is complete, go to localhost:8080 in your browser. First time users will be prompted for a password. The admin password is stored in `/Users/<your-user-name>/.jenkins/secrets/initialAdminPassword`. After entering the password, users will want to select "Install suggested plugins"
 
-2. Now we need to set the AWS credentials and Github credentials. If the AWS credentials for the S3 service are [locally saved](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting) you can decide to either use the local credentials or specify the credentials to Jenkins. Skip step 6 if using local credentials. 
+2. Now you need to set the AWS credentials and Github credentials. If the AWS credentials for the S3 service are [locally saved](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting) you can decide to either use the local credentials or specify the credentials to Jenkins. Skip step 6 if using local credentials. 
 
    On the Jenkins dashboard on the left click "Credentials".
 
