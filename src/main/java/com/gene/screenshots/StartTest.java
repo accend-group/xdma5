@@ -17,6 +17,8 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
+import static com.gene.screenshots.utils.Type.PROD;
+
 /**
  * Starts the screenshot process from a jenkins job.
  * All selenium code is expected to support a headless browser
@@ -34,7 +36,7 @@ public class StartTest {
 
         System.out.println("Reading Jenkins parameters!");
 
-        // pass in jenkins parameters, most important being savePath and chromedriverPath
+        // pass in jenkins parameters
         Variables.main(args);
 
         System.out.println("Thread count: " + Variables.getThreadCount());
@@ -43,7 +45,6 @@ public class StartTest {
 
         String chromedriverPath = Variables.getChromedriverPath();
         String savePath = Variables.getSavePath();
-        String pdfOutputPath = Variables.getPdfOutputPath();
 
         System.out.println("Save path is: " + savePath);
 
@@ -56,7 +57,10 @@ public class StartTest {
         }
         System.out.println("Chromedrive path is: " + chromedriverPath);
         System.out.println("Testing at: " + Variables.getDomain());
+
+        // setting the testing domain (prod, stage, dev, local)
         SeleniumHeadless.setDomain(Variables.getDomain());
+
         SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
 
 
@@ -120,7 +124,8 @@ public class StartTest {
         result.add(new Lucentis());
         result.add(new Ocrevus());
         result.add(new Patient());
-        //result.add(new Pegasys());
+        if(Variables.getDomain().getType() != PROD)
+            result.add(new Pegasys());
         result.add(new Perjeta());
         result.add(new Pulmozyme());
         result.add(new RituxanGPAMPA());

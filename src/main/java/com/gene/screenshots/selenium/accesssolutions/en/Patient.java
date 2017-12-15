@@ -1,11 +1,16 @@
 package com.gene.screenshots.selenium.accesssolutions.en;
 
+import com.gene.screenshots.Variables;
 import com.gene.screenshots.selenium.SeleniumHeadless;
+import com.google.errorprone.annotations.Var;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import static com.gene.screenshots.utils.Type.LOCAL;
+import static com.gene.screenshots.utils.Type.PROD;
 
 public class Patient extends SeleniumHeadless {
 
@@ -112,14 +117,21 @@ public class Patient extends SeleniumHeadless {
             // wait for popup menu to appear in order to click close button
             Thread.sleep(1000);
 
-            Actions actions = new Actions(driver);
-            WebElement element = driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button"));
-            actions.moveToElement(element).click().perform();
-            //driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
+
+            if(Variables.getDomain().getType() == PROD) {
+                Actions actions = new Actions(driver);
+                WebElement element = driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button"));
+                actions.moveToElement(element).click().perform();
+            }
+            if(Variables.getDomain().getType() == LOCAL)
+                driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
 
             Thread.sleep(1000);
-            forceClick(driver, "/html/body/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[1]/nav/div/div/div/div/ul/li[1]/a");
-            //driver.findElement(By.linkText("US Healthcare Professionals")).click();
+
+            if(Variables.getDomain().getType() == PROD)
+                forceClick(driver, "/html/body/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[1]/nav/div/div/div/div/ul/li[1]/a");
+            if(Variables.getDomain().getType() == LOCAL)
+                driver.findElement(By.linkText("US Healthcare Professionals")).click();
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-hcp-modal");
 

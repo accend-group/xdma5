@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import static com.gene.screenshots.Constants.*;
 import static com.gene.screenshots.utils.TestUrl.*;
+import static com.gene.screenshots.utils.Type.LOCAL;
 
 
 /**
@@ -151,11 +152,11 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
     }
 
     protected static void goToUrl(WebDriver driver, String url){
-        if(domain.toString().equals("local")){
+        if(domain.getType() == LOCAL){
             driver.get(url);
             return;
         }
-        String page = url.replace(TestUrl.strip(), domain.toString());
+        String page = url.replace(domain.strip(), domain.toString());
         driver.get(page);
     }
 }

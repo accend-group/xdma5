@@ -4,10 +4,12 @@ package com.gene.screenshots;
 // used for getting Jenkins parameters
 
 import com.gene.screenshots.utils.TestUrl;
+import com.gene.screenshots.utils.Type;
 
 import java.io.File;
 
 import static com.gene.screenshots.utils.TestUrl.*;
+import static com.gene.screenshots.utils.Type.*;
 
 public class Variables {
 
@@ -34,9 +36,7 @@ public class Variables {
     private static boolean mobilePDF = false;
     private static boolean bothPDF = true;
 
-
-
-    private static TestUrl domain = new TestUrl("local");
+    private static TestUrl domain = new TestUrl(LOCAL);
 
     // defaults to sequential test run
     private static boolean useTheads = false;
@@ -47,6 +47,8 @@ public class Variables {
         for (String arg : args) {
             if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
                 savePath = arg.substring(9, arg.length());
+                if(savePath.equals("") || savePath == null)
+                    savePath = "screenshots_logs";
                 File dir = new File(savePath);
                 dir.mkdirs();
             }
@@ -56,22 +58,28 @@ public class Variables {
                     pdfOutputPath = null;
                 else {
                     File dir = new File(pdfOutputPath);
-                    dir.mkdir();
+                    dir.mkdirs();
                 }
             }
 
             if(arg.contains("domain=") && arg.indexOf("domain=") == 0) {
                 String url = arg.substring(7, arg.length());
-                domain = new TestUrl(url);
 
+                Type type = LOCAL;
+                if(url.equals("dev"))
+                    type = DEV;
+                if(url.equals("stage"))
+                    type = STAGE;
+                if(url.equals("prod"))
+                    type = PROD;
+                domain = new TestUrl(type);
             }
 
             if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
                 String jobType =  arg.substring(8, arg.length());
                 switch(jobType){
                     case "Access_Solutions":
-                        accessSolutions = true;
-                        break;
+                        accessSolutions = true; break;
                     case "Kadcyla_HCP":
                         kadcylaHCP = true; break;
                     case "Kadcyla_Patient":
@@ -98,20 +106,7 @@ public class Variables {
                 if(region.equals(""))
                     region = null;
             }
-            if (arg.equals("access-solutions=true"))
-                accessSolutions = true;
-            if (arg.equals("kadcyla-hcp=true"))
-                kadcylaHCP = true;
-            if (arg.equals("kadcyla-patient=true"))
-                kadcylaPatient = true;
-            if (arg.contains("chromedriver=") && arg.indexOf("chromedriver=") == 0) {
-                chromedriverPath = arg.substring(13, arg.length());
-                if(chromedriverPath.equals(""))
-                    chromedriverPath = null;
-            }
 
-            //if (arg.equals("threads=true"))
-            //    useTheads = true;
             if (arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
                 try {
                     threadCount = Integer.parseInt(arg.substring(12, arg.length()));
