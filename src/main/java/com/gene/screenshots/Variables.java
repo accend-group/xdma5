@@ -16,7 +16,7 @@ public class Variables {
     private static String chromedriverPath = null;
 
     // where main directory is set for creating images in sub directories for each selenium script that needs a pdf
-    private static String savePath = null;
+    private static String savePath = "target/screenshots";
     private static String pdfName = null;
     private static String pdfOutputPath = null;
 
@@ -54,8 +54,8 @@ public class Variables {
             }
             if (arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
                 pdfOutputPath = arg.substring(10, arg.length());
-                if (pdfOutputPath == null || pdfOutputPath.equals(""))
-                    pdfOutputPath = null;
+                if (pdfOutputPath.equals(""))
+                    continue;
                 else {
                     File dir = new File(pdfOutputPath);
                     dir.mkdirs();
