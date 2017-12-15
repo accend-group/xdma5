@@ -17,6 +17,8 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
+import static com.gene.screenshots.utils.Type.DEV;
+import static com.gene.screenshots.utils.Type.LOCAL;
 import static com.gene.screenshots.utils.Type.PROD;
 
 /**
@@ -124,7 +126,7 @@ public class StartTest {
         result.add(new Lucentis());
         result.add(new Ocrevus());
         result.add(new Patient());
-        if(Variables.getDomain().getType() != PROD)
+        if(Variables.getDomain().getType() == LOCAL) // not up on prod, dev, and stage
             result.add(new Pegasys());
         result.add(new Perjeta());
         result.add(new Pulmozyme());

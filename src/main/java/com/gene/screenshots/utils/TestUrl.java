@@ -17,11 +17,11 @@ public class TestUrl {
         if(type == LOCAL)
             domain = strip();
         if(type == DEV)
-            domain = Variables.isAccessSolutions() ? "https://www.dev-genentech-access.gene.com" : "https://www.dev-kadcyla.gene.com";
+            domain = Variables.isAccessSolutions() ? "https://dev-genentech-access.gene.com" : "https://dev-kadcyla.gene.com";
         if(type == PROD)
             domain = Variables.isAccessSolutions() ? "https://www.genentech-access.com" : "https://www.kadcyla.com";
         if(type == STAGE)
-            domain = Variables.isAccessSolutions() ? "https://www.stage-genentech-access.gene.com" : "https://www.stage-perjeta.gene.com";
+            domain = Variables.isAccessSolutions() ? "https://stage-genentech-access.gene.com" : "https://stage-perjeta.gene.com";
         testType = type;
     }
 
