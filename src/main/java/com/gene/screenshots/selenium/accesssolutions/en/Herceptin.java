@@ -65,7 +65,7 @@ public class Herceptin extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             if(Variables.getDomain().getType() == PROD)
                 driver.findElement(By.linkText("Learn more about how to enroll")).click();
-            if(Variables.getDomain().getType() == LOCAL)
+            else // dev, stage, local has this text
                 driver.findElement(By.linkText("How do I enroll?")).click();
 
             Thread.sleep(1000);
@@ -74,7 +74,7 @@ public class Herceptin extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             if(Variables.getDomain().getType() == PROD)
                 driver.findElement(By.linkText("What we find out")).click();
-            if(Variables.getDomain().getType() == LOCAL)
+            else  // dev, stage, local has this text
                 driver.findElement(By.linkText("What will we find out?")).click();
 
             Thread.sleep(1000);
@@ -327,9 +327,9 @@ public class Herceptin extends SeleniumHeadless {
             WebElement element = driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[6]/div/div/div[2]/div/div/div[1]/div/div"));
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:50px;')", element);
 
-            if (Variables.getDomain().getType() == PROD)
+            if(Variables.getDomain().getType() == PROD)
                 driver.findElement(By.linkText("Learn more about how to enroll")).click();
-            if (Variables.getDomain().getType() == LOCAL)
+            else // dev, stage, local has this text
                 driver.findElement(By.linkText("How do I enroll?")).click();
 
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
@@ -340,12 +340,12 @@ public class Herceptin extends SeleniumHeadless {
             //jse.executeScript("window.scrollTo(0, 0)");
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
 
-            if (Variables.getDomain().getType() == PROD) {
+            if(Variables.getDomain().getType() == PROD) {
                 Actions actions = new Actions(driver);
                 element = driver.findElement(By.linkText("What we find out"));
                 actions.moveToElement(element).click().perform();
             }
-            if(Variables.getDomain().getType() == LOCAL)
+            else // dev, stage, local has this text
                 clickAt(driver, driver.findElement(By.linkText("What will we find out?")));
             //driver.findElement(By.linkText("What we find out")).click();
             Thread.sleep(1000);
