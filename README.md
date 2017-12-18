@@ -47,7 +47,7 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
 
    |  Name            |  Type |Description | 
    | -------------    | --- |--- |
-   | DOMAIN | choice (`dev` `stage` `prod` `local`)  | Run the screenshot automation on a developer, stage, production, or local environment | 
+   | DEVELOPMENT_ENVIRONMENT | choice (`dev` `stage` `prod` `local`)  | Run the screenshot automation on a developer, stage, production, or local environment | 
    | JOB_TYPE | choice (`Access_Solutions` `Kadcyla_HCP` `Kadcyla_Patient`)| Runs a specific automation job for either Access Solutions, Kadcyla HCP or Kadcyla Patients
    | THREAD_COUNT | string | Integer value representing the number of allowed threads of WebDriver workers. Default value is 1. Make sure the value is reasonable for the system. | 
    | SAVE_PATH         | string |Path where the screenshots and logs are saved |
