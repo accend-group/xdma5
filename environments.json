@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Access_Solutions",
+    "types": {
+      "dev": "https://dev-genentech-access.gene.com",
+      "prod": "https://www.genentech-access.com",
+      "stage": "https://stage-genentech-access.gene.com",
+      "local": "http://localhost:4503/content/accesssolutions-site/en_us"
+    }
+  },
+
+  {
+    "name": "Kadcyla_HCP",
+    "types": {
+      "dev": "https://dev-kadcyla.gene.com",
+      "prod": "https://www.kadcyla.com",
+      "stage": "https://stage-perjeta.gene.com",
+      "local" : "http://localhost:4503/content/kadcyla/en_us"
+    }
+  },
+
+  {
+    "name": "Kadcyla_Patient",
+    "types": {
+      "dev": "https://dev-kadcyla.gene.com",
+      "prod": "https://www.kadcyla.com",
+      "stage": "https://stage-perjeta.gene.com",
+      "local": "http://localhost:4503/content/kadcyla/en_us"
+    }
+  }
+
+]
