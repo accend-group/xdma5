@@ -17,11 +17,11 @@ public class Esbriet extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions actions = new Actions(driver);
             // ---->> esbriet <<---- // 40 screenshots
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet.html");
+            goToUrl(driver, "/patient/brands/esbriet.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-0.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/esbriet/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-1.0");
 
@@ -69,7 +69,7 @@ public class Esbriet extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-1.0-step3");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/esbriet/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-2.0");
 
@@ -85,7 +85,7 @@ public class Esbriet extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-2.0-more-info-2");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/esbriet/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-3.0");
 
@@ -149,7 +149,7 @@ public class Esbriet extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-3.0-tab12");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/esbriet/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -213,11 +213,11 @@ public class Esbriet extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-pat-3-part2");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/search.html");
+            goToUrl(driver, "/patient/brands/esbriet/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-search");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/site-map.html");
+            goToUrl(driver, "/patient/brands/esbriet/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-sitemap");
         } catch (Exception e) {
@@ -237,11 +237,11 @@ public class Esbriet extends SeleniumHeadless {
 
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> esbriet <<---- // 40 screenshots
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet.html");
+            goToUrl(driver, "/patient/brands/esbriet.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-0.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/esbriet/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-1.0");
 
@@ -334,11 +334,11 @@ public class Esbriet extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-1.0-step3");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/esbriet/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-2.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/esbriet/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-3.0");
 
@@ -402,7 +402,7 @@ public class Esbriet extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-3.0-tab12");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/esbriet/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -464,11 +464,11 @@ public class Esbriet extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-pat5-no");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/search.html");
+            goToUrl(driver, "/patient/brands/esbriet/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-search");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/esbriet/site-map.html");
+            goToUrl(driver, "/patient/brands/esbriet/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-sitemap");
         } catch (Exception e) {

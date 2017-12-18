@@ -3,12 +3,11 @@ package com.gene.screenshots;
 
 // used for getting Jenkins parameters
 
-import com.gene.screenshots.utils.TestUrl;
+import com.gene.screenshots.utils.SiteUrl;
 import com.gene.screenshots.utils.Type;
 
 import java.io.File;
 
-import static com.gene.screenshots.utils.TestUrl.*;
 import static com.gene.screenshots.utils.Type.*;
 
 public class Variables {
@@ -32,17 +31,21 @@ public class Variables {
     private static boolean kadcylaHCP = false;
     private static boolean kadcylaPatient = false;
 
+    private static String jobType = null;
+
     private static boolean desktopPDF = false;
     private static boolean mobilePDF = false;
     private static boolean bothPDF = true;
 
-    private static TestUrl domain = new TestUrl(LOCAL);
+    private static SiteUrl domain = null;
 
     // defaults to sequential test run
     private static boolean useTheads = false;
     private static int threadCount = 1;
 
     public static void main(String[] args) {
+
+        Type environmentType = LOCAL;
 
         for (String arg : args) {
             if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
@@ -62,21 +65,18 @@ public class Variables {
                 }
             }
 
-            if(arg.contains("domain=") && arg.indexOf("domain=") == 0) {
-                String url = arg.substring(7, arg.length());
-
-                Type type = LOCAL;
+            if(arg.contains("environment=") && arg.indexOf("environment=") == 0) {
+                String url = arg.substring(12, arg.length());
                 if(url.equals("dev"))
-                    type = DEV;
+                    environmentType = DEV;
                 if(url.equals("stage"))
-                    type = STAGE;
+                    environmentType = STAGE;
                 if(url.equals("prod"))
-                    type = PROD;
-                domain = new TestUrl(type);
+                    environmentType = PROD;
             }
 
             if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
-                String jobType =  arg.substring(8, arg.length());
+                jobType =  arg.substring(8, arg.length());
                 switch(jobType){
                     case "Access_Solutions":
                         accessSolutions = true; break;
@@ -122,6 +122,15 @@ public class Variables {
                 }
             }
         }
+        if(jobType == null){
+            System.out.println("Error: No job specified!");
+            System.exit(1);
+        }
+        domain = new SiteUrl(jobType, environmentType);
+    }
+
+    public static String getJob(){
+        return jobType;
     }
 
     public static boolean isAccessSolutions() {
@@ -184,7 +193,7 @@ public class Variables {
         return threadCount;
     }
 
-    public static TestUrl getDomain(){
+    public static SiteUrl getDomain(){
         return domain;
     }
 }

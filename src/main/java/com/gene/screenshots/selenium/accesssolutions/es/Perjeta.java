@@ -17,11 +17,11 @@ public class Perjeta extends SeleniumHeadless {
 
 
             //---->> perjeta <<---- 37 screenshot for perjeta
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta.html");
+            goToUrl(driver, "/patient/brands/perjeta.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/perjeta/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-1.0");
 
@@ -66,7 +66,7 @@ public class Perjeta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/perjeta/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-2.0");
 
@@ -82,7 +82,7 @@ public class Perjeta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/perjeta/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-3.0");
 
@@ -150,7 +150,7 @@ public class Perjeta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/perjeta/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -209,11 +209,11 @@ public class Perjeta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/search.html");
+            goToUrl(driver, "/patient/brands/perjeta/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/site-map.html");
+            goToUrl(driver, "/patient/brands/perjeta/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-sitemap");
         } catch (Exception e) {
@@ -233,11 +233,11 @@ public class Perjeta extends SeleniumHeadless {
 
 
             //---->> perjeta mobile <<---- 37 screenshot for perjeta
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta.html");
+            goToUrl(driver, "/patient/brands/perjeta.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/perjeta/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-1.0");
 
@@ -287,7 +287,7 @@ public class Perjeta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/perjeta/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-2.0");
 
@@ -299,7 +299,7 @@ public class Perjeta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/perjeta/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-3.0");
 
@@ -367,7 +367,7 @@ public class Perjeta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/perjeta/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -403,11 +403,11 @@ public class Perjeta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-pat-3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/search.html");
+            goToUrl(driver, "/patient/brands/perjeta/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/perjeta/site-map.html");
+            goToUrl(driver, "/patient/brands/perjeta/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-sitemap");
         } catch (Exception e) {

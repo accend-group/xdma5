@@ -1,6 +1,6 @@
 package com.gene.screenshots.selenium;
 
-import com.gene.screenshots.utils.TestUrl;
+import com.gene.screenshots.utils.SiteUrl;
 import com.gene.screenshots.utils.OutputResult;
 import com.gene.screenshots.utils.Screenshots;
 import org.openqa.selenium.*;
@@ -12,8 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.gene.screenshots.Constants.*;
-import static com.gene.screenshots.utils.TestUrl.*;
-import static com.gene.screenshots.utils.Type.LOCAL;
 
 
 /**
@@ -26,7 +24,7 @@ import static com.gene.screenshots.utils.Type.LOCAL;
 
 public abstract class SeleniumHeadless extends Screenshots implements OutputResult {
 
-    protected static TestUrl domain;
+    protected static SiteUrl domain;
     // window.scrollBy(X, Y);
     // https://stackoverflow.com/a/4403822
     private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(); ";
@@ -95,13 +93,13 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
 
 
     // scrolls to the element and clicks it
-    protected static void clickAt(WebDriver driver, String xpath) {
+    protected static void scrollAndClickAt(WebDriver driver, String xpath) {
         WebElement e = driver.findElement(By.xpath(xpath));
-        clickAt(driver, e);
+        scrollAndClickAt(driver, e);
     }
 
 
-    protected static void clickAt(WebDriver driver, WebElement e) {
+    protected static void scrollAndClickAt(WebDriver driver, WebElement e) {
         scrollToElement(driver, e);
         e.click();
     }
@@ -147,16 +145,11 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", e);
     }
 
-    public static void setDomain(TestUrl url){
+    public static void setDomain(SiteUrl url){
         domain = url;
     }
 
     protected static void goToUrl(WebDriver driver, String url){
-        if(domain.getType() == LOCAL){
-            driver.get(url);
-            return;
-        }
-        String page = url.replace(domain.strip(), domain.toString());
-        driver.get(page);
+        driver.get(domain.toString() + url);
     }
 }

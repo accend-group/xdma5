@@ -21,16 +21,16 @@ public class Alecensa extends SeleniumHeadless {
 
 
             // ---->> alecensa <<---- 38 screenshot for alecensa
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa.html");
+            goToUrl(driver, "/patient/brands/alecensa.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/alecensa/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/alecensa/how-we-help-you.html");
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-tab1");
@@ -71,7 +71,7 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/alecensa/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-2.0");
 
@@ -87,7 +87,7 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/alecensa/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-3.0");
 
@@ -154,7 +154,7 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/alecensa/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -214,11 +214,11 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/search.html");
+            goToUrl(driver, "/patient/brands/alecensa/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/site-map.html");
+            goToUrl(driver, "/patient/brands/alecensa/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-alecensa-sitemap");
         } catch (Exception e) {
@@ -239,16 +239,16 @@ public class Alecensa extends SeleniumHeadless {
 
 
             // ---->> alecensa <<---- 38 screenshot for alecensa
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa.html");
+            goToUrl(driver, "/patient/brands/alecensa.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/alecensa/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/alecensa/how-we-help-you.html");
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-tab1");
@@ -294,7 +294,7 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/alecensa/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-2.0");
 
@@ -306,7 +306,7 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/alecensa/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-3.0");
 
@@ -371,7 +371,7 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/alecensa/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -407,11 +407,11 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-pat-3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/search.html");
+            goToUrl(driver, "/patient/brands/alecensa/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/alecensa/site-map.html");
+            goToUrl(driver, "/patient/brands/alecensa/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-sitemap");
         } catch (Exception e) {

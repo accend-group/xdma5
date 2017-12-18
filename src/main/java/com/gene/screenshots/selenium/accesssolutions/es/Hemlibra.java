@@ -16,11 +16,11 @@ public class Hemlibra extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions actions = new Actions(driver);
             // ---->> hemlibra <<---- // 37 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra.html");
+            goToUrl(driver, "/patient/brands/hemlibra.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/hemlibra/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-1.0");
 
@@ -56,7 +56,7 @@ public class Hemlibra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/hemlibra/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-2.0");
 
@@ -72,7 +72,7 @@ public class Hemlibra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/hemlibra/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-3.0");
 
@@ -139,7 +139,7 @@ public class Hemlibra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/hemlibra/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -194,11 +194,11 @@ public class Hemlibra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/search.html");
+            goToUrl(driver, "/patient/brands/hemlibra/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/site-map.html");
+            goToUrl(driver, "/patient/brands/hemlibra/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-sitemap");
         } catch (Exception e) {
@@ -217,11 +217,11 @@ public class Hemlibra extends SeleniumHeadless {
         try {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> hemlibra <<---- // 37 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra.html");
+            goToUrl(driver, "/patient/brands/hemlibra.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/hemlibra/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-1.0");
 
@@ -266,7 +266,7 @@ public class Hemlibra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/hemlibra/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-2.0");
 
@@ -278,7 +278,7 @@ public class Hemlibra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/hemlibra/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-3.0");
 
@@ -342,7 +342,7 @@ public class Hemlibra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/hemlibra/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -378,11 +378,11 @@ public class Hemlibra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-pat-3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/search.html");
+            goToUrl(driver, "/patient/brands/hemlibra/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/hemlibra/site-map.html");
+            goToUrl(driver, "/patient/brands/hemlibra/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-hemlibra-sitemap");
         } catch (Exception e) {

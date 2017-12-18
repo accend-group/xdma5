@@ -12,6 +12,7 @@ import com.gene.screenshots.selenium.accesssolutions.en.*;
 import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
 import com.gene.screenshots.utils.Log;
+import com.gene.screenshots.utils.SiteUrl;
 
 import java.io.*;
 import java.util.*;
@@ -38,6 +39,9 @@ public class StartTest {
 
         System.out.println("Reading Jenkins parameters!");
 
+        // load in json of urls
+        SiteUrl.loadEnvironments(new File("environments.json"));
+
         // pass in jenkins parameters
         Variables.main(args);
 
@@ -61,8 +65,8 @@ public class StartTest {
         System.out.println("Testing at: " + Variables.getDomain());
 
         // setting the testing domain (prod, stage, dev, local)
-        SeleniumHeadless.setDomain(Variables.getDomain());
 
+        SeleniumHeadless.setDomain(Variables.getDomain());
         SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
 
 

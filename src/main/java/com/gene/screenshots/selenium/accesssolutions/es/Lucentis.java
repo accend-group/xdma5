@@ -16,11 +16,11 @@ public class Lucentis extends SeleniumHeadless {
             Actions actions = new Actions(driver);
 
             //---->> lucentis <<---- 32 screenshot for lucentis
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis.html");
+            goToUrl(driver, "/patient/brands/lucentis.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/lucentis/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-1.0");
 
@@ -87,7 +87,7 @@ public class Lucentis extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/lucentis/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-2.0");
 
@@ -103,7 +103,7 @@ public class Lucentis extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/lucentis/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-3.0");
 
@@ -171,7 +171,7 @@ public class Lucentis extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/lucentis/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-pat-part1");
 
@@ -229,11 +229,11 @@ public class Lucentis extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/search.html");
+            goToUrl(driver, "/patient/brands/lucentis/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/site-map.html");
+            goToUrl(driver, "/patient/brands/lucentis/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-sitemap");
         } catch (Exception e) {
@@ -254,11 +254,11 @@ public class Lucentis extends SeleniumHeadless {
 
 
             //---->> lucentis <<---- 32 screenshot for lucentis
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis.html");
+            goToUrl(driver, "/patient/brands/lucentis.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/lucentis/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-1.0");
 
@@ -328,7 +328,7 @@ public class Lucentis extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/lucentis/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-2.0");
 
@@ -340,7 +340,7 @@ public class Lucentis extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/lucentis/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-3.0");
 
@@ -408,7 +408,7 @@ public class Lucentis extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/lucentis/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -444,11 +444,11 @@ public class Lucentis extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-pat-3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/search.html");
+            goToUrl(driver, "/patient/brands/lucentis/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/lucentis/site-map.html");
+            goToUrl(driver, "/patient/brands/lucentis/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-sitemap");
         } catch (Exception e) {

@@ -17,11 +17,11 @@ public class Tarceva extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions actions = new Actions(driver);
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva.html");
+            goToUrl(driver, "/patient/brands/tarceva.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-0.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/tarceva/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-1.0");
 
@@ -74,7 +74,7 @@ public class Tarceva extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-1.0-step3");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/tarceva/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-2.0");
 
@@ -90,7 +90,7 @@ public class Tarceva extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-2.0-more-info-2");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/tarceva/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-3.0");
 
@@ -156,7 +156,7 @@ public class Tarceva extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-3.0-tab12");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/tarceva/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-pat-part1");
 
@@ -201,7 +201,7 @@ public class Tarceva extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
             Thread.sleep(1000);
 
-            clickAt(driver, "//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a");
+            scrollAndClickAt(driver, "//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a");
             //driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-pat-more-info-2");
@@ -217,11 +217,11 @@ public class Tarceva extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-pat-3-part2");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/search.html");
+            goToUrl(driver, "/patient/brands/tarceva/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-search");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/site-map.html");
+            goToUrl(driver, "/patient/brands/tarceva/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-sitemap");
         } catch (Exception e) {
@@ -240,11 +240,11 @@ public class Tarceva extends SeleniumHeadless {
 
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva.html");
+            goToUrl(driver, "/patient/brands/tarceva.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-0.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/tarceva/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-1.0");
 
@@ -342,11 +342,11 @@ public class Tarceva extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-1.0-step3");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/tarceva/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-2.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/tarceva/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-3.0");
 
@@ -410,7 +410,7 @@ public class Tarceva extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-3.0-tab12");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/tarceva/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -462,11 +462,11 @@ public class Tarceva extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-pat4-no");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/search.html");
+            goToUrl(driver, "/patient/brands/tarceva/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-search");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/tarceva/site-map.html");
+            goToUrl(driver, "/patient/brands/tarceva/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tarceva-sitemap");
         } catch (Exception e) {

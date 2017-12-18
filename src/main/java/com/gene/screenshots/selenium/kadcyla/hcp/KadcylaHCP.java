@@ -5,7 +5,6 @@ import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
-import static com.gene.screenshots.Constants.MOBILE_HEIGHT;
 import static com.gene.screenshots.Constants.MOBILE_WIDTH;
 
 public class KadcylaHCP extends SeleniumHeadless {
@@ -22,54 +21,54 @@ public class KadcylaHCP extends SeleniumHeadless {
             Actions action = new Actions(driver);
             WebElement element;
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp.html");
+            goToUrl(driver, "/hcp.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-0.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/about-kadcyla.html");
+            goToUrl(driver, "/hcp/about-kadcyla.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-1.0");
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/about-kadcyla/molecular-structure.html");
+            goToUrl(driver, "/hcp/about-kadcyla/molecular-structure.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-1.1");
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/about-kadcyla/proposed-moa.html");
+            goToUrl(driver, "/hcp/about-kadcyla/proposed-moa.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-1.2");
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/about-kadcyla/patient-eligibility.html");
+            goToUrl(driver, "/hcp/about-kadcyla/patient-eligibility.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-1.3");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/trial-design.html");
+            goToUrl(driver, "/hcp/trial-design.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-2.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/efficacy.html");
+            goToUrl(driver, "/hcp/efficacy.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-3.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/safety-profile.html");
+            goToUrl(driver, "/hcp/safety-profile.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-4.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/dosing-administration.html");
+            goToUrl(driver, "/hcp/dosing-administration.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-5.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources.html");
+            goToUrl(driver, "/hcp/resources.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1");
@@ -77,7 +76,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             //driver.manage().window().setSize(new Dimension(1612,750));
             jse.executeScript("window.scrollTo(0, 0)");
 
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-pat1-yes");
@@ -106,7 +105,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-pat2-no");
 
-            clickAt(driver,  driver.findElement(By.className("start-over")));
+            scrollAndClickAt(driver,  driver.findElement(By.className("start-over")));
             //driver.findElement(By.className("start-over")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
@@ -123,7 +122,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
 
 
-            //clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button");
+            //scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button");
             WebElement e = driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button"));//.click();
 
 
@@ -154,14 +153,14 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-pat5-no");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,700)");
             driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-tab1");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,900)");
             driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
@@ -169,36 +168,36 @@ public class KadcylaHCP extends SeleniumHeadless {
             full(driver, true, savePath, "kadcyla-hcp-6.1-tab2");
 
             //driver.manage().window().setSize(new Dimension(1612,780));
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,1200)");
             movecursor(driver);
-            clickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q3")));
+            scrollAndClickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q3")));
             //driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-tab3");
 
             //driver.manage().window().setSize(new Dimension(1612,750));
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,1300)");
             driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-tab4");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,1400)");
             driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.1-tab5");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/downloads.html");
+            goToUrl(driver, "/hcp/resources/downloads.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-6.2");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/contact.html");
+            goToUrl(driver, "/hcp/contact.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-contact-rep");
             driver.findElement(By.className("gene-component--dropdown")).click();
@@ -222,7 +221,7 @@ public class KadcylaHCP extends SeleniumHeadless {
 //		driver.findElement(By.name("primary-phone-number")).sendKeys("(02) 243-51-02");
 //		driver.findElement(By.name("practice-name")).sendKeys("Accend group");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/register.html");
+            goToUrl(driver, "/hcp/register.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-register");
             driver.findElement(By.xpath("//form/div[5]/div/div/div")).click();
@@ -253,19 +252,19 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-register-signup");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/safety.html");
+            goToUrl(driver, "/hcp/safety.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-safety");
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/sitemap.html");
+            goToUrl(driver, "/hcp/sitemap.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-sitemap");
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/references.html");
+            goToUrl(driver, "/hcp/references.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-references");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp.html");
+            goToUrl(driver, "/hcp.html");
             Thread.sleep(1000);
             visible(driver, true, savePath, "kadcyla-hcp");
 
@@ -302,63 +301,63 @@ public class KadcylaHCP extends SeleniumHeadless {
 
             JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp.html");
+            goToUrl(driver, "/hcp.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-0.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/about-kadcyla.html");
+            goToUrl(driver, "/hcp/about-kadcyla.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-1.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/about-kadcyla/molecular-structure.html");
+            goToUrl(driver, "/hcp/about-kadcyla/molecular-structure.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-1.1");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/about-kadcyla/proposed-moa.html");
+            goToUrl(driver, "/hcp/about-kadcyla/proposed-moa.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-1.2");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/about-kadcyla/patient-eligibility.html");
+            goToUrl(driver, "/hcp/about-kadcyla/patient-eligibility.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-1.3");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/trial-design.html");
+            goToUrl(driver, "/hcp/trial-design.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-2.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/efficacy.html");
+            goToUrl(driver, "/hcp/efficacy.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-3.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/safety-profile.html");
+            goToUrl(driver, "/hcp/safety-profile.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-4.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/dosing-administration.html");
+            goToUrl(driver, "/hcp/dosing-administration.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-5.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources.html");
+            goToUrl(driver, "/hcp/resources.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.0");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1");
 
             ///jse.executeScript("window.scrollTo(0, 0)");
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat1-yes");
@@ -376,21 +375,21 @@ public class KadcylaHCP extends SeleniumHeadless {
             //jse.executeScript("window.scrollTo(0, 0)");
 
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat4-yes");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
 
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat2-no");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
@@ -398,100 +397,100 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat3-no");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
 
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
 
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat5-yes");
 
             // --- >> button hover error << --- //
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
 
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat1-no");
 
             // --- >> error button << --- //
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button")).click();
 
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat4-no");
 
             // --- >> error button << --- //
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
 
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
 
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-            clickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button[2]");
+            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[5]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat5-no");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,900)", "");
 
-            clickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
+            scrollAndClickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
             //driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab1");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab2");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,1200)", "");
             driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab3");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,1300)", "");
             driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab4");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/financial-assistance.html");
+            goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,1400)", "");
             driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab5");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/resources/downloads.html");
+            goToUrl(driver, "/hcp/resources/downloads.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.2");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/contact.html");
+            goToUrl(driver, "/hcp/contact.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-contact-rep");
 
@@ -503,7 +502,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-contact-rep-specialty");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/register.html");
+            goToUrl(driver, "/hcp/register.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-register");
             driver.findElement(By.xpath("//form/div[5]/div/div/div")).click();
@@ -535,20 +534,20 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-register-signup");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/safety.html");
+            goToUrl(driver, "/hcp/safety.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-safety");
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/sitemap.html");
+            goToUrl(driver, "/hcp/sitemap.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-sitemap");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp/references.html");
+            goToUrl(driver, "/hcp/references.html");
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-references");
 
-            driver.get("http://localhost:4503/content/kadcyla/en_us/hcp.html");
+            goToUrl(driver, "/hcp.html");
             Thread.sleep(1000);
             visible(driver, false, savePath, "kadcyla-hcp-mobile");
 
@@ -568,7 +567,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             driver.navigate().refresh();
 
             jse.executeScript("window.scrollTo(0,document.body.scrollHeight);");
-            clickAt(driver, driver.findElement(By.linkText("www.fda.gov/medwatch")));
+            scrollAndClickAt(driver, driver.findElement(By.linkText("www.fda.gov/medwatch")));
             //driver.findElement(By.linkText("www.fda.gov/medwatch")).click();
             jse.executeScript("window.scrollTo(0,0)", "");
             Thread.sleep(1000);

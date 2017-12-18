@@ -17,11 +17,11 @@ public class Herceptin extends SeleniumHeadless {
 
 
             //---->> herceptin <<---- 29 screenshot for herceptin
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin.html");
+            goToUrl(driver, "/patient/brands/herceptin.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/herceptin/how-we-help-you.html");
             movecursor(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0");
@@ -73,7 +73,7 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/herceptin/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-2.0");
 
@@ -89,7 +89,7 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/herceptin/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-3.0");
 
@@ -157,7 +157,7 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/herceptin/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-pat-part1");
 
@@ -215,11 +215,11 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/search.html");
+            goToUrl(driver, "/patient/brands/herceptin/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/site-map.html");
+            goToUrl(driver, "/patient/brands/herceptin/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-sitemap");
         } catch (Exception e) {
@@ -239,11 +239,11 @@ public class Herceptin extends SeleniumHeadless {
 
 
             //---->> herceptin <<---- 29 screenshot for herceptin
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin.html");
+            goToUrl(driver, "/patient/brands/herceptin.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/herceptin/how-we-help-you.html");
             movecursorm(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0");
@@ -297,7 +297,7 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/herceptin/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-2.0");
 
@@ -309,7 +309,7 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/herceptin/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-3.0");
 
@@ -377,7 +377,7 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/herceptin/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -413,11 +413,11 @@ public class Herceptin extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-pat-3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/search.html");
+            goToUrl(driver, "/patient/brands/herceptin/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/herceptin/site-map.html");
+            goToUrl(driver, "/patient/brands/herceptin/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-sitemap");
         } catch (Exception e) {

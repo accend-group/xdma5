@@ -17,10 +17,10 @@ public class Venclexta extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions actions = new Actions(driver);
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
-//		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta.html");
+//		goToUrl(driver, "/patient/brands/venclexta.html");
 //		Thread.sleep(1000); full(driver, true, savePath,    "accesssolutions-patient-venclexta-0.0");
 //		
-//		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/how-we-help-you.html");
+//		goToUrl(driver, "/patient/brands/venclexta/how-we-help-you.html");
 //		Thread.sleep(1000); full(driver, true, savePath,    "accesssolutions-patient-venclexta-1.0");
 //	
 //		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -58,7 +58,7 @@ public class Venclexta extends SeleniumHeadless {
 //		driver.findElement(By.linkText("�Qu� opciones hay?")).click();
 //		Thread.sleep(1000); full(driver, true, savePath,  "accesssolutions-patient-venclexta-1.0-step3");
 //		
-//		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/forms-and-documents.html");
+//		goToUrl(driver, "/patient/brands/venclexta/forms-and-documents.html");
 //		Thread.sleep(1000); full(driver, true, savePath,    "accesssolutions-patient-venclexta-2.0");
 //		
 //		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -70,7 +70,7 @@ public class Venclexta extends SeleniumHeadless {
 //		driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
 //		Thread.sleep(1000); full(driver, true, savePath,    "accesssolutions-patient-venclexta-2.0-more-info-2");
 //		
-//		driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/frequently-asked-questions.html");
+//		goToUrl(driver, "/patient/brands/venclexta/frequently-asked-questions.html");
 //		Thread.sleep(1000); full(driver, true, savePath,    "accesssolutions-patient-venclexta-3.0");
 //		
 //		driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -123,7 +123,7 @@ public class Venclexta extends SeleniumHeadless {
 //		movecursor(driver);
 //		Thread.sleep(1000); full(driver, true, savePath,    "accesssolutions-patient-venclexta-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/venclexta/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-venclexta-pat-part1");
 
@@ -169,11 +169,11 @@ public class Venclexta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-venclexta-pat-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/search.html");
+            goToUrl(driver, "/patient/brands/venclexta/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-venclexta-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/site-map.html");
+            goToUrl(driver, "/patient/brands/venclexta/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-venclexta-sitemap");
         } catch (Exception e) {
@@ -190,11 +190,11 @@ public class Venclexta extends SeleniumHeadless {
         try {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta.html");
+            goToUrl(driver, "/patient/brands/venclexta.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/venclexta/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-1.0");
 
@@ -246,7 +246,7 @@ public class Venclexta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/venclexta/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-2.0");
 
@@ -258,7 +258,7 @@ public class Venclexta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/venclexta/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-3.0");
 
@@ -322,7 +322,7 @@ public class Venclexta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/venclexta/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -356,11 +356,11 @@ public class Venclexta extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-patient-venclexta-pat-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/search.html");
+            goToUrl(driver, "/patient/brands/venclexta/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/venclexta/site-map.html");
+            goToUrl(driver, "/patient/brands/venclexta/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-venclexta-sitemap");
         } catch (Exception e) {

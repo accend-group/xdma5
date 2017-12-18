@@ -17,11 +17,11 @@ public class Actemra extends SeleniumHeadless {
 
             JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra.html");
+            goToUrl(driver, "/patient/brands/actemra.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/actemra/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-1.0");
 
@@ -69,7 +69,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/actemra/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-2.0");
 
@@ -85,7 +85,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/actemra/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-3.0");
 
@@ -164,7 +164,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/actemra/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -272,11 +272,11 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-pat-5-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/search.html");
+            goToUrl(driver, "/patient/brands/actemra/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/site-map.html");
+            goToUrl(driver, "/patient/brands/actemra/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-site-map");
         } catch (Exception e) {
@@ -296,11 +296,11 @@ public class Actemra extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra.html");
+            goToUrl(driver, "/patient/brands/actemra.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/actemra/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-1.0");
 
@@ -353,7 +353,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/actemra/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-2.0");
 
@@ -365,7 +365,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/actemra/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0");
 
@@ -444,7 +444,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab12");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/actemra/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -518,11 +518,11 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-pat-5");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/search.html");
+            goToUrl(driver, "/patient/brands/actemra/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/actemra/site-map.html");
+            goToUrl(driver, "/patient/brands/actemra/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-site-map");
         } catch (Exception e) {

@@ -17,11 +17,11 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions actions = new Actions(driver);
             // ---->> rituxan_nhl_cll <<---- // 38 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-1.0");
 
@@ -71,7 +71,7 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-2.0");
 
@@ -87,7 +87,7 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-3.0");
 
@@ -146,7 +146,7 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-pat-part1");
 
@@ -210,11 +210,11 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-pat-3-part2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/search.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/site-map.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-nhl-cll-sitemap");
         } catch (Exception e) {
@@ -233,11 +233,11 @@ public class RituxanNHLCLL extends SeleniumHeadless {
 
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> rituxan_nhl_cll <<---- // 38 screenshots
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-0.0");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-1.0");
 
@@ -294,7 +294,7 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-1.0-step3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-2.0");
 
@@ -306,7 +306,7 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-2.0-more-info-2");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-3.0");
 
@@ -364,7 +364,7 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-3.0-tab11");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -398,11 +398,11 @@ public class RituxanNHLCLL extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-pat-3");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/search.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-search");
 
-            driver.get("http://localhost:4503/content/accesssolutions-site/es/patient/brands/rituxan/rituxan-nhl-cll/site-map.html");
+            goToUrl(driver, "/patient/brands/rituxan/rituxan-nhl-cll/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-nhl-cll-sitemap");
         } catch (Exception e) {

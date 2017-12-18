@@ -18,11 +18,11 @@ public class RituxanHycela extends SeleniumHeadless {
 
             Actions actions = new Actions(driver);
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-0.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-1.0");
 
@@ -75,7 +75,7 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-1.0-step3");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-2.0");
 
@@ -91,7 +91,7 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-2.0-more-info-2");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0");
 
@@ -157,7 +157,7 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab12");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-pat-part1");
 
@@ -216,11 +216,11 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-pat-3-part2");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/search.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-search");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/site-map.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-sitemap");
         } catch (Exception e) {
@@ -240,11 +240,11 @@ public class RituxanHycela extends SeleniumHeadless {
         try {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-0.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-1.0");
 
@@ -343,11 +343,11 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-1.0-step3");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-2.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0");
 
@@ -411,7 +411,7 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab12");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -463,11 +463,11 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-pat4-no");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/search.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-search");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/rituxanhycela/site-map.html");
+            goToUrl(driver, "/patient/brands/rituxanhycela/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-sitemap");
         } catch (Exception e) {

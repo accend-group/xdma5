@@ -18,11 +18,11 @@ public class Pulmozyme extends SeleniumHeadless {
 
 
             //---->> pulmozyme <<---- 42 screenshot for pulmozyme
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme.html");
+            goToUrl(driver, "/patient/brands/pulmozyme.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-0.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0");
 
@@ -68,7 +68,7 @@ public class Pulmozyme extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-1.0-step3");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-2.0");
 
@@ -84,7 +84,7 @@ public class Pulmozyme extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-2.0-more-info-2");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0");
 
@@ -160,7 +160,7 @@ public class Pulmozyme extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-3.0-tab12");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-part1");
 
@@ -219,11 +219,11 @@ public class Pulmozyme extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-pat-3-part2");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/search.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/search.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-search");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/site-map.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/site-map.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pulmozyme-site-map");
         } catch (Exception e) {
@@ -244,11 +244,11 @@ public class Pulmozyme extends SeleniumHeadless {
 
 
             //---->> pulmozyme <<---- 42 screenshot for pulmozyme
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme.html");
+            goToUrl(driver, "/patient/brands/pulmozyme.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-0.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/how-we-help-you.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/how-we-help-you.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0");
 
@@ -330,11 +330,11 @@ public class Pulmozyme extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-1.0-step3");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/forms-and-documents.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/forms-and-documents.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-2.0");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/frequently-asked-questions.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/frequently-asked-questions.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0");
 
@@ -408,7 +408,7 @@ public class Pulmozyme extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-3.0-tab12");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/patient-assistance-tool-page.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/patient-assistance-tool-page.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat");
             jse.executeScript("window.scrollTo(0, 0)");
@@ -478,11 +478,11 @@ public class Pulmozyme extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-pat6-yes");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/search.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/search.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-search");
 
-            goToUrl(driver, "http://localhost:4503/content/accesssolutions-site/en_us/patient/brands/pulmozyme/site-map.html");
+            goToUrl(driver, "/patient/brands/pulmozyme/site-map.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pulmozyme-site-map");
         } catch (Exception e) {
