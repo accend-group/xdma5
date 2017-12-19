@@ -104,7 +104,7 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
            s3-pdfkey=$S3_PDF_KEY \
            s3-region=$S3_REGION \
            jobtype=$JOB_TYPE \
-           domain=$DOMAIN \
+           environment=$DOMAIN \
            threadcount=$THREAD_COUNT \
            aws-accesskey=$ACCESS_KEY \
            aws-secretkey=$SECRET_KEY" 
