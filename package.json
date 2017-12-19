@@ -1,0 +1,13 @@
+{
+  "name": "genentech-screenshots",
+  "version": "1.0.0",
+  "description": "Genentech Screenshots Tool",
+  "repository": "https://github.com/ips-genentech/genentech-screenshots",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "4.4.6"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.33.2"
+  }
+}
