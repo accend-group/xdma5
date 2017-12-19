@@ -1,8 +1,9 @@
-package com.gene.screenshots.utils;
+package com.gene.screenshots.selenium;
 
 
 import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
 import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
+import com.gene.screenshots.pdf.Log;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import static com.gene.screenshots.Constants.*;
+import static com.gene.screenshots.selenium.Constants.*;
 import static java.lang.Math.toIntExact;
 
 // used Shutterbug as starting basis but now instead of scroll and stitch to get a fullscreenshot the main browser window is resized to match the

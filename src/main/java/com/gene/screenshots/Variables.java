@@ -3,12 +3,9 @@ package com.gene.screenshots;
 
 // used for getting Jenkins parameters
 
-import com.gene.screenshots.utils.SiteUrl;
-import com.gene.screenshots.utils.Type;
-
 import java.io.File;
 
-import static com.gene.screenshots.utils.Type.*;
+import static com.gene.screenshots.EnvironmentType.*;
 
 public class Variables {
 
@@ -27,17 +24,20 @@ public class Variables {
 
     private static boolean s3 = false;
     private static boolean s3Local = false;
+
+    // needed to change marwin's code in case of differences in prod, dev, stage, and local
     private static boolean accessSolutions = false;
     private static boolean kadcylaHCP = false;
     private static boolean kadcylaPatient = false;
 
+    // needed for json url type
     private static String jobType = null;
 
     private static boolean desktopPDF = false;
     private static boolean mobilePDF = false;
     private static boolean bothPDF = true;
 
-    private static SiteUrl domain = null;
+    private static BrandUrl domain = null;
 
     // defaults to sequential test run
     private static boolean useTheads = false;
@@ -45,7 +45,7 @@ public class Variables {
 
     public static void main(String[] args) {
 
-        Type environmentType = LOCAL;
+        EnvironmentType environmentType = LOCAL;
 
         for (String arg : args) {
             if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
@@ -126,7 +126,13 @@ public class Variables {
             System.out.println("Error: No job specified!");
             System.exit(1);
         }
-        domain = new SiteUrl(jobType, environmentType);
+        domain = new BrandUrl(jobType, environmentType);
+
+        String OS = System.getProperty("os.name").toLowerCase();
+        if (OS.contains("win"))
+            chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
+        else
+            chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
     }
 
     public static String getJob(){
@@ -193,7 +199,7 @@ public class Variables {
         return threadCount;
     }
 
-    public static SiteUrl getDomain(){
+    public static BrandUrl getDomain(){
         return domain;
     }
 }

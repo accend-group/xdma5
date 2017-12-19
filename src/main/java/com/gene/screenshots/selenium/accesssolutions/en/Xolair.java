@@ -4,7 +4,7 @@ import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
-import static com.gene.screenshots.Constants.DESKTOP_WIDTH;
+import static com.gene.screenshots.selenium.Constants.DESKTOP_WIDTH;
 
 public class Xolair extends SeleniumHeadless {
 

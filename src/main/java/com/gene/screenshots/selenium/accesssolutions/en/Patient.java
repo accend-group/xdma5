@@ -8,8 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import static com.gene.screenshots.utils.Type.LOCAL;
-import static com.gene.screenshots.utils.Type.PROD;
+import static com.gene.screenshots.EnvironmentType.LOCAL;
+import static com.gene.screenshots.EnvironmentType.PROD;
 
 public class Patient extends SeleniumHeadless {
 

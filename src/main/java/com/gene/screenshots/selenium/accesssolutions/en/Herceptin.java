@@ -5,8 +5,8 @@ import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
-import static com.gene.screenshots.Constants.MOBILE_WIDTH;
-import static com.gene.screenshots.utils.Type.PROD;
+import static com.gene.screenshots.selenium.Constants.MOBILE_WIDTH;
+import static com.gene.screenshots.EnvironmentType.PROD;
 
 public class Herceptin extends SeleniumHeadless {
 

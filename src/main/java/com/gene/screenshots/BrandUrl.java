@@ -1,26 +1,23 @@
-package com.gene.screenshots.utils;
+package com.gene.screenshots;
 
-import com.gene.screenshots.Variables;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static com.gene.screenshots.utils.Type.*;
+import static com.gene.screenshots.EnvironmentType.*;
 
 
 public class BrandUrl {
 
     // testType used to run specific parts in selenium code
-    private Type testType;
+    private EnvironmentType testType;
     private static JSONArray jsonUrls;
     private String domain;
-    private static HashMap<String, HashMap<Type, String>> environments = new HashMap<>();
+    private static HashMap<String, HashMap<EnvironmentType, String>> environments = new HashMap<>();
 
     public static void loadEnvironments(File path){
         try {
@@ -30,7 +27,7 @@ public class BrandUrl {
         }
         for(int i = 0; i < jsonUrls.length(); ++i) {
             JSONObject domain = jsonUrls.getJSONObject(i);
-            HashMap<Type, String> urls = new HashMap<>();
+            HashMap<EnvironmentType, String> urls = new HashMap<>();
             JSONObject types = domain.getJSONObject("types");
             urls.put(DEV, types.getString("dev"));
             urls.put(PROD, types.getString("prod"));
@@ -40,12 +37,12 @@ public class BrandUrl {
         }
     }
 
-    public BrandUrl(String jobType, Type environmentType){
+    public BrandUrl(String jobType, EnvironmentType environmentType){
         testType = environmentType;
         domain = environments.get(jobType).get(environmentType);
     }
 
-    public Type getType(){
+    public EnvironmentType getType(){
         return testType;
     }
 

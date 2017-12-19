@@ -1,8 +1,6 @@
 package com.gene.screenshots.selenium;
 
-import com.gene.screenshots.utils.SiteUrl;
-import com.gene.screenshots.utils.OutputResult;
-import com.gene.screenshots.utils.Screenshots;
+import com.gene.screenshots.BrandUrl;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -11,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.gene.screenshots.Constants.*;
+import static com.gene.screenshots.selenium.Constants.*;
 
 
 /**
@@ -24,7 +22,7 @@ import static com.gene.screenshots.Constants.*;
 
 public abstract class SeleniumHeadless extends Screenshots implements OutputResult {
 
-    protected static SiteUrl domain;
+    protected static BrandUrl domain;
     // window.scrollBy(X, Y);
     // https://stackoverflow.com/a/4403822
     private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(); ";
@@ -145,7 +143,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", e);
     }
 
-    public static void setDomain(SiteUrl url){
+    public static void setDomain(BrandUrl url){
         domain = url;
     }
 

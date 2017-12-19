@@ -1,4 +1,4 @@
-package com.gene.screenshots;
+package com.gene.screenshots.selenium;
 
 // What to do with the pdf(s)
 public interface OutputResult {

@@ -24,7 +24,7 @@ import static com.gene.screenshots.EnvironmentType.LOCAL;
  * All selenium code is expected to support a headless browser
  */
 
-public class ScreenshotAutomation {
+public class ScreenshotsAutomation {
 
     private static List<Thread> screenshotThreads = new LinkedList<>();
     private static List<Thread> pdfThreads = new LinkedList<>();

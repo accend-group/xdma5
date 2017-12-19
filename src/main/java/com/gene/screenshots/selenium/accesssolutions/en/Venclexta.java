@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import static com.gene.screenshots.Constants.DESKTOP_WIDTH;
+import static com.gene.screenshots.selenium.Constants.DESKTOP_WIDTH;
 
 public class Venclexta extends SeleniumHeadless {
 

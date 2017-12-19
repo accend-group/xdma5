@@ -1,6 +1,6 @@
 package com.gene.screenshots;
 
-public enum Type{
+public enum EnvironmentType {
     LOCAL,
     DEV,
     PROD,
