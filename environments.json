@@ -14,7 +14,7 @@
     "types": {
       "dev": "https://dev-kadcyla.gene.com",
       "prod": "https://www.kadcyla.com",
-      "stage": "https://stage-perjeta.gene.com",
+      "stage": "https://stage-kadcyla.gene.com",
       "local" : "http://localhost:4503/content/kadcyla/en_us"
     }
   },
@@ -24,7 +24,7 @@
     "types": {
       "dev": "https://dev-kadcyla.gene.com",
       "prod": "https://www.kadcyla.com",
-      "stage": "https://stage-perjeta.gene.com",
+      "stage": "https://stage-kadcyla.gene.com",
       "local": "http://localhost:4503/content/kadcyla/en_us"
     }
   }
