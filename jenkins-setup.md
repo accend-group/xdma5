@@ -18,33 +18,43 @@
 
    ![](readmepics/job.png)
 
-   Once the Job is created set in the required parameters for the Job. PostRun takes in several arguments and each parameter is associated to an argument. In the General tab check "This project is parameterizd." Then click "Add parameter." From the list Select "String Parameter".
+   Once the Job is created set in the required parameters for the Job. The screenshot automation takes in several arguments and each parameter is associated to an argument. In the General tab check "This project is parameterizd." Then click "Add parameter." From the list select the appropriate type.
    
    ![](./readmepics/set_params.png)
    
    Fill in the parameter details. Default values must be set if they are used when testing. Then click "Add Parameter" to add the next parameter. Repeat adding parameters until all the needed parameters are set. 
    
-   ![](./readmepics/params.png)
+   For choice parameters you need to list the options per line.
+   ![](./readmepics/domain.png)
    
-   Below are all the string parameters.
+   For string parameters place the needed value in the "Default Value" field.
+   ![](./readmepics/threads.png)
+   
+   For boolean parameters check the box to set the parameter to be true.
+   ![](./readmepics/aws_local.png)
 
-   |  Name            |  Description | 
-   | -------------    |  --- | 
-   | CHROMEDRIVER_PATH| Path to the chromedriver. If not set defaults to the [latest](https://www.npmjs.com/package/chromedriver) |
-   | LOG_PATH         | Path to log.txt and png screenshots|
-   | PDF_OUTPUT_PATH  | Path to created PDF. If not set defaults to LOG_PATH | 
-   | PDF_NAME         | Name of PDF. If not set defaults to PostRun.pdf|
-   | S3               | Tells PostRun to send the PDF to an S3 Service if set to TRUE| 
-   | S3_BUCKET        | Name of Bucket where PDF is stored |
-   | S3_PDF_KEY       | Name of key for PDF |
-   | S3_REGION        | Region where the bucket is at. Defaults to us-east-1 |
-   | AWS_LOCAL        | Sets PostRun to use local AWS credentials if TRUE |
+   Below are all the parameters.
+
+   |  Name            |  Type |Description | 
+   | -------------    | --- |--- |
+   | DOMAIN | choice (`dev` `stage` `prod` `local`)  | Run the screenshot automation on a developer, stage, production, or local environment | 
+   | JOB_TYPE | choice (`Access_Solutions` `Kadcyla_HCP` `Kadcyla_Patient`)| Runs a specific automation job for either Access Solutions, Kadcyla HCP or Kadcyla Patients
+   | THREAD_COUNT | string | Integer value representing the number of allowed threads of WebDriver workers. Default value is 1. Make sure the value is reasonable for the system. | 
+   | CHROMEDRIVER_PATH| string |Path to the chromedriver. If not set defaults to the [latest](https://www.npmjs.com/package/chromedriver) from ```npm install``` |
+   | SAVE_PATH         | string |Path where the screenshots and logs are saved |
+   | PDF_OUTPUT_PATH  | string |Path to created PDF. If not set defaults to SAVE_PATH | 
+   | PDF_NAME         | string |Name of PDF. If not set defaults to automation class name|
+   | S3               | boolean |Send generated pdfs to an S3 Service if set to TRUE| 
+   | S3_BUCKET        | string |Name of Bucket where PDF is stored |
+   | S3_PDF_KEY       | string |Name of key for PDF |
+   | S3_REGION        | string |Region where the bucket is at. Defaults to us-east-1 |
+   | AWS_LOCAL        | boolean |Uses local AWS credentials if TRUE |
 
 4. Under Source Code management check Git and set the URL of the Github repository of the testing code. Then set the git credentials underneath for repo access. 
 
-   Select the branch where the testing code is located with PostRun.
+   Select the branch where the automation code resides.
 
-5. Under Build Trigger determine what your needs will be (polling for commits, test every time period).
+5. Under Build Trigger determine what your needs will be (polling for commits, run between time periods).
 
 6. If the setup requires using the AWS login and password credentials under Build Environment check "Use secret text(s) or files(s)". 
    
@@ -55,19 +65,36 @@
    ![](readmepics/binding.png)
 
    Select "Specific credentials" and select the AWS credentials set from step 2. Now for "Username Variable" set the value to AWS_ACCESS_KEY and the "Password Variable" to AWS_SECRET_KEY.
-   Now the AWS credentials and set parameters from step 3 are usable in the shell/bash by using ```$NAME_OF_VAR.```
+   Now the AWS credentials and set parameters from step 3 are usable in the shell/bash.
+   
+   | Name | Type |
+   | --- | --- |
+   | ACCESS_KEY | Username Variable |
+   | SECRET_KEY | Password Variable |
 
 7. Under Build click "add setup" and select "Execute shell" if using mac/linx or "Windows bash" if using windows. Maven and npm are needed. Make sure both are installed and are callable in the shell/bash.
-   In the command textbox set the build commands to execute your Selenium test and have PostRun run after.
-
+   In the command textbox set the build commands to execute the screenshot automation.
+   
+   > Downloads chromedriver
    ```
-   npm install;
-   mvn compile;
-
-   ...
-   // Selenium script execute command here
-   ...
-
-   // modify arguments for your needs
-   mvn exec:java -Dexec.mainClass="com.gene.screenshots.PostRun" -Dexec.cleanupDaemonThreads=false "-Dexec.args=logPath=$LOG_PATH pdfName=$PDF_NAME s3=$S3 s3-bucket=$S3_BUCKET s3-pdfKey=$S3_PFD_KEY aws-accesskey=$AWS_ACCESS_KEY aws-secretkey=$AWS_SECRET_KEY"
+   npm install
+   ```
+   > Build and run the automation job, remove the ACCESS_KEY and SECRET_KEY if they are not set. 
+   ```
+   mvn compile exec:java \
+       -Dexec.cleanupDaemonThreads=false \
+       -Dexec.args=" \
+           savepath=$SAVE_PATH \
+           pdfoutput=$PDF_OUTPUT_PATH \ 
+           pdfname=$PDF_NAME \
+           s3=$S3 \
+           aws-local=$AWS_LOCAL \ 
+           s3-bucket=$S3_BUCKET \
+           s3-pdfkey=$S3_PDF_KEY \
+           s3-region=$S3_REGION \
+           jobtype=$JOB_TYPE \
+           domain=$DOMAIN \
+           threadcount=$THREAD_COUNT \
+           aws-accesskey=$ACCESS_KEY \
+           aws-secretkey=$SECRET_KEY" 
    ```

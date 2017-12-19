@@ -13,26 +13,21 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+
 // create a pdf from images. Each image is a single page
 public class PDFMaker {
 
-    private LinkedList<BufferedImage> images = new LinkedList<>();
+    // save space by storing image paths instead of buffered images
+    private LinkedList<String> images = new LinkedList<>();
     private PDDocument pdf;
 
-    public void addImg(BufferedImage img){
-        images.add(img);
+    public void addImg(String imgFilePath) {
+        images.add(imgFilePath);
     }
 
-    public void addImg(String imgFilePath) throws IOException{
-        images.add(ImageIO.read(new File(imgFilePath)));
-    }
 
-    public void addImg(File imgFile) throws IOException{
-        images.add(ImageIO.read(imgFile));
-    }
-
-    public void close() throws IOException{
-        if(pdf != null)
+    public void close() throws IOException {
+        if (pdf != null)
             pdf.close();
         images.clear();
     }
@@ -48,7 +43,8 @@ public class PDFMaker {
         }
         pdf = new PDDocument();
         try {
-            for (BufferedImage img : images) {
+            for (String filePath : images) {
+                BufferedImage img = ImageIO.read(new File(filePath));
                 PDPage page = new PDPage(new PDRectangle(img.getWidth(), img.getHeight()));
                 pdf.addPage(page);
                 PDImageXObject pdImage = LosslessFactory.createFromImage(pdf, img);
@@ -61,7 +57,7 @@ public class PDFMaker {
         }
     }
 
-    public void savePDF(String path){
+    public void savePDF(String path) {
         try {
             imagesToPDF();
             File newPdf = new File(path);
