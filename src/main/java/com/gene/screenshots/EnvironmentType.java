@@ -1,4 +1,4 @@
-package com.gene.screenshots.utils;
+package com.gene.screenshots;
 
 public enum Type{
     LOCAL,

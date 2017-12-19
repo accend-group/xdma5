@@ -14,17 +14,13 @@ import java.util.Scanner;
 import static com.gene.screenshots.utils.Type.*;
 
 
-public class SiteUrl {
+public class BrandUrl {
 
     // testType used to run specific parts in selenium code
     private Type testType;
     private static JSONArray jsonUrls;
     private String domain;
     private static HashMap<String, HashMap<Type, String>> environments = new HashMap<>();
-
-    public static void main(String [] args){
-        loadEnvironments(new File("environments.json"));
-    }
 
     public static void loadEnvironments(File path){
         try {
@@ -44,7 +40,7 @@ public class SiteUrl {
         }
     }
 
-    public SiteUrl(String jobType, Type environmentType){
+    public BrandUrl(String jobType, Type environmentType){
         testType = environmentType;
         domain = environments.get(jobType).get(environmentType);
     }

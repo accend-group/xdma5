@@ -6,28 +6,25 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.gene.screenshots.pdf.Log;
 import com.gene.screenshots.pdf.PDFMaker;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import com.gene.screenshots.selenium.accesssolutions.en.*;
 import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
-import com.gene.screenshots.utils.Log;
-import com.gene.screenshots.utils.SiteUrl;
 
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
-import static com.gene.screenshots.utils.Type.DEV;
-import static com.gene.screenshots.utils.Type.LOCAL;
-import static com.gene.screenshots.utils.Type.PROD;
+import static com.gene.screenshots.EnvironmentType.LOCAL;
 
 /**
  * Starts the screenshot process from a jenkins job.
  * All selenium code is expected to support a headless browser
  */
 
-public class StartTest {
+public class ScreenshotAutomation {
 
     private static List<Thread> screenshotThreads = new LinkedList<>();
     private static List<Thread> pdfThreads = new LinkedList<>();
@@ -37,52 +34,35 @@ public class StartTest {
 
     public static void main(String[] args) throws InterruptedException {
 
+        // load in json for urls
+        BrandUrl.loadEnvironments(new File("environments.json"));
+
         System.out.println("Reading Jenkins parameters!");
-
-        // load in json of urls
-        SiteUrl.loadEnvironments(new File("environments.json"));
-
-        // pass in jenkins parameters
         Variables.main(args);
 
         System.out.println("Thread count: " + Variables.getThreadCount());
-
         threadLock = new Semaphore(Variables.getThreadCount(), true);
 
         String chromedriverPath = Variables.getChromedriverPath();
         String savePath = Variables.getSavePath();
-
         System.out.println("Save path is: " + savePath);
 
-        if (chromedriverPath == null) {
-            String OS = System.getProperty("os.name").toLowerCase();
-            if (OS.contains("win"))
-                chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
-            else
-                chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
-        }
         System.out.println("Chromedrive path is: " + chromedriverPath);
-        System.out.println("Testing at: " + Variables.getDomain());
-
-        // setting the testing domain (prod, stage, dev, local)
-
-        SeleniumHeadless.setDomain(Variables.getDomain());
         SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
 
-
-        KadcylaPatient patientTest = new KadcylaPatient();
-        KadcylaHCP hcpTest = new KadcylaHCP();
-        List<SeleniumHeadless> accessSolutionsTest = createAccessSolutionsTestList();
+        // setting the testing domain (prod, stage, dev, local)
+        System.out.println("Testing at: " + Variables.getDomain());
+        SeleniumHeadless.setDomain(Variables.getDomain());
 
         if (Variables.isAccessSolutions())
-            for (SeleniumHeadless accessTest : accessSolutionsTest)
+            for (SeleniumHeadless accessTest : createAccessSolutionsTestList())
                 createThreads(accessTest);
 
         if (Variables.isKadyclaHCP())
-            createThreads(hcpTest);
+            createThreads(new KadcylaHCP());
 
         if (Variables.isKadcylaPatient())
-            createThreads(patientTest);
+            createThreads(new KadcylaPatient());
 
         // if sending pdf to s3
         if (Variables.isS3()) {
@@ -130,7 +110,7 @@ public class StartTest {
         result.add(new Lucentis());
         result.add(new Ocrevus());
         result.add(new Patient());
-        if(Variables.getDomain().getType() == LOCAL) // not up on prod, dev, and stage
+        if (Variables.getDomain().getType() == LOCAL) // not up on prod, dev, and stage
             result.add(new Pegasys());
         result.add(new Perjeta());
         result.add(new Pulmozyme());

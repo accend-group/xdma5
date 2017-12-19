@@ -1,4 +1,4 @@
-package com.gene.screenshots.utils;
+package com.gene.screenshots;
 
 import java.io.File;
 import java.io.IOException;
