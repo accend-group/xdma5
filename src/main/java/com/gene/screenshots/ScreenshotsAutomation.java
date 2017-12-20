@@ -98,6 +98,7 @@ public class ScreenshotsAutomation {
     // english access solutions
     private static List<SeleniumHeadless> createAccessSolutionsTestList() {
         List<SeleniumHeadless> result = new LinkedList<>();
+
         result.add(new Actemra());
         result.add(new Alecensa());
         result.add(new Avastin());

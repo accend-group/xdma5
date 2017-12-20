@@ -58,17 +58,17 @@ public class Ocrevus extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("How do I enroll?")).click();
             Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-ocrevus-1.0-step1");
+            full(driver, true, savePath, "accesssolutions-patient-ocrevus-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What will we find out?")).click();
             Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-ocrevus-1.0-step2");
+            full(driver, true, savePath, "accesssolutions-patient-ocrevus-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What options are there?")).click();
             Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-ocrevus-1.0-step3");
+            full(driver, true, savePath, "accesssolutions-patient-ocrevus-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
 
             goToUrl(driver, "/patient/brands/ocrevus/forms-and-documents.html");
             Thread.sleep(1000);
@@ -276,17 +276,17 @@ public class Ocrevus extends SeleniumHeadless {
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
             movecursorm(driver);
             Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-1.0-step1");
+            full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What will we find out?")).click();
             Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-1.0-step2");
+            full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What options are there?")).click();
             Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-1.0-step3");
+            full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
 
             goToUrl(driver, "/patient/brands/ocrevus/forms-and-documents.html");
             Thread.sleep(1000);
