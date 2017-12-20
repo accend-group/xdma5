@@ -33,7 +33,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
 
     // suppress selenium console log
     static {
-       /* final Logger[] pin;
+        final Logger[] pin;
         pin = new Logger[]{
                 Logger.getLogger("com.gargoylesoftware.htmlunit"),
                 Logger.getLogger("org.apache.commons.httpclient"),
@@ -41,13 +41,11 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         };
         for (Logger l : pin) {
             l.setLevel(Level.OFF);
-        }*/
+        }
     }
 
     public static void setChromeSystemProperty(String chromedriverPath) {
         System.setProperty("webdriver.chrome.driver", chromedriverPath);
-        //System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
-        System.setProperty("webdriver.chrome.verboseLogging", "true");
     }
 
     public static WebDriver makeDesktopDriver() {
@@ -56,7 +54,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         //options.addArguments("window-size="+ DESKTOP_WIDTH + "," + DESKTOP_HEIGHT);
         //options.addArguments("--disable-gpu-watchdog");
         options.addArguments("--disable-gpu");
-        //options.addArguments("--no-sandbox");
+        options.addArguments("--no-sandbox");
         options.addArguments("disable-infobars");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
@@ -73,7 +71,7 @@ public abstract class SeleniumHeadless extends Screenshots implements OutputResu
         options.addArguments("--use-mobile-user-agent=true");
         options.addArguments("--user-agent=Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
         options.addArguments("disable-infobars");
-        //options.addArguments("--disable-gpu");
+        options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
