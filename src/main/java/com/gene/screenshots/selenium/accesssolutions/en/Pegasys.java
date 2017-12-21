@@ -19,11 +19,11 @@ public class Pegasys extends SeleniumHeadless {
 
             //---->> pegasys <<---- 31 screenshot for pegasys
             goToUrl(driver, "/patient/brands/pegasys.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-0.0");
 
             goToUrl(driver, "/patient/brands/pegasys/how-we-help-you.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -31,7 +31,7 @@ public class Pegasys extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-GATCF-1");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -40,7 +40,7 @@ public class Pegasys extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-GATCF-2");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -48,108 +48,108 @@ public class Pegasys extends SeleniumHeadless {
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("How do I enroll?")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
+            Thread.sleep(1500);
+            full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1500L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What will we find out?")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
+            Thread.sleep(1500);
+            full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1500L);
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What options are there?")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
+            Thread.sleep(1500);
+            full(driver, true, savePath, "accesssolutions-patient-pegasys-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1500L);
 
             goToUrl(driver, "/patient/brands/pegasys/forms-and-documents.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-2.0-esubmit");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-2.0-more-info-1");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/pegasys/frequently-asked-questions.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab1");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab2");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_689170918']/div/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab3");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_689170918']/div[2]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab4");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab5");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab6");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab7");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
             movecursor1(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab8");
 
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab9");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_4']/div/div[1]")).click();
             movecursor1(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-3.0-tab10");
 
             goToUrl(driver, "/patient/brands/pegasys/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-pat-1-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[3]/div/p[6]"))).build().perform();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-pat-1-part2");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -157,15 +157,15 @@ public class Pegasys extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-pat-2");
 
             goToUrl(driver, "/patient/brands/pegasys/search.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-search");
 
             goToUrl(driver, "/patient/brands/pegasys/site-map.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, true, savePath, "accesssolutions-patient-pegasys-site-map");
         } catch (Exception e) {
             e.printStackTrace();
@@ -184,43 +184,43 @@ public class Pegasys extends SeleniumHeadless {
 
             //---->> pegasys <<---- 31 screenshot for pegasys
             goToUrl(driver, "/patient/brands/pegasys.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-0.0");
 
             goToUrl(driver, "/patient/brands/pegasys/how-we-help-you.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-GATCF1-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-GATCF3-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-GATCF4-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-GATCF1-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-GATCF2-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-GATCF3-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -228,7 +228,7 @@ public class Pegasys extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-GATCF2-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -236,131 +236,131 @@ public class Pegasys extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-GATCF4-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
             jse.executeScript("window.scrollTo(0, 0)");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             WebElement element = driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div/div[2]/div/div/div[1]/div"));
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:50px;')", element);
             driver.findElement(By.linkText("How do I enroll?")).click();
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
             movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
+            Thread.sleep(1500);
+            full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1500L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What will we find out?")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
+            Thread.sleep(1500);
+            full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1500L);
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What options are there?")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
+            Thread.sleep(1500);
+            full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1500L);
 
             goToUrl(driver, "/patient/brands/pegasys/forms-and-documents.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-2.0");
 
             goToUrl(driver, "/patient/brands/pegasys/frequently-asked-questions.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab1");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab2");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_689170918']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab3");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_689170918']/div[2]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab4");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab5");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab6");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab7");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab8");
 
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab9");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accordion_4']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-3.0-tab10");
 
             goToUrl(driver, "/patient/brands/pegasys/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-pat1-no");
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-pat1-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-pat2-no");
 
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[4]/div[2]/button")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-pat2-yes");
 
             goToUrl(driver, "/patient/brands/pegasys/search.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-search");
 
             goToUrl(driver, "/patient/brands/pegasys/site-map.html");
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pegasys-site-map");
         } catch (Exception e) {
             e.printStackTrace();
