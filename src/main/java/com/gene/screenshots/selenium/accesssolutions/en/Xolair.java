@@ -16,21 +16,21 @@ public class Xolair extends SeleniumHeadless {
             Actions actions = new Actions(driver);
             // ---->> ituxan_nhl_cll <<---- // 40 screenshots
             goToUrl(driver, "/patient/brands/xolair.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-0.0");
 
             goToUrl(driver, "/patient/brands/xolair/how-we-help-you.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-tab1");
 
             driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-tab2");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -40,7 +40,7 @@ public class Xolair extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-GATCF-1");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -49,7 +49,7 @@ public class Xolair extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-GATCF-2");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -57,130 +57,130 @@ public class Xolair extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("How do I enroll?")).click();
             movecursor(driver);
-            Thread.sleep(1500);
-            full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1500L);;
+            Thread.sleep(1000);
+            full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What will we find out?")).click();
             movecursor(driver);
-            Thread.sleep(1500);
-            full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1500L);
+            Thread.sleep(1000);
+            full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What options are there?")).click();
             movecursor(driver);
-            Thread.sleep(1500);
-            full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1500L);
+            Thread.sleep(1000);
+            full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
 
             goToUrl(driver, "/patient/brands/xolair/forms-and-documents.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-2.0-esubmit");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-2.0-more-info-1");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/a")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/xolair/frequently-asked-questions.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab1");
 
             driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab2");
 
             driver.findElement(By.xpath("//*[@id='accordion_1778050373']/div/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab3");
 
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab4");
 
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab5");
 
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab6");
 
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab7");
 
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab8");
 
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
             movecursor1(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab9");
 
             driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
             movecursor1(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab10");
 
             driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
             movecursor(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/xolair/patient-assistance-tool-page.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat1-part1");
             jse.executeScript("window.scrollTo(0, 0)");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[4]/div/p[6]"))).build().perform();
-            Thread.sleep(1500);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-1-part2");
 
             jse.executeScript("window.scrollTo(0, 0)");
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-more-info-1");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-2-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[3]/div/p[6]"))).build().perform();
-            Thread.sleep(1500);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-2-part2");
 
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-more-info-2");
 
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
@@ -190,20 +190,20 @@ public class Xolair extends SeleniumHeadless {
             scrollAndClickAt(driver, driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")));
             //driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")).click();
 
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-3-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[2]/div/p[6]"))).build().perform();
-            Thread.sleep(1500);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/xolair/search.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-search");
 
             goToUrl(driver, "/patient/brands/xolair/site-map.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -221,21 +221,21 @@ public class Xolair extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> ituxan_nhl_cll <<---- // 40 screenshots
             goToUrl(driver, "/patient/brands/xolair.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-0.0");
 
             goToUrl(driver, "/patient/brands/xolair/how-we-help-you.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-tab1");
 
             driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-tab2");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -244,19 +244,19 @@ public class Xolair extends SeleniumHeadless {
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-GATCF1-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-GATCF3-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-GATCF4-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -264,19 +264,19 @@ public class Xolair extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-GATCF1-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-GATCF2-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-GATCF3-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -285,7 +285,7 @@ public class Xolair extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-GATCF2-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -295,165 +295,165 @@ public class Xolair extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-GATCF4-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
             jse.executeScript("window.scrollTo(0, 0)");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             WebElement element = driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[6]/div/div/div[2]/div/div/div[1]/div/div"));
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:50px;')", element);
             driver.findElement(By.linkText("How do I enroll?")).click();
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
             movecursorm(driver);
-            Thread.sleep(1500);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1500L);;
+            Thread.sleep(1000);
+            full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What will we find out?")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1500L);
+            Thread.sleep(1000);
+            full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What options are there?")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1500L);
+            Thread.sleep(1000);
+            full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
 
             goToUrl(driver, "/patient/brands/xolair/forms-and-documents.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-2.0");
 
             goToUrl(driver, "/patient/brands/xolair/frequently-asked-questions.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab1");
 
             driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab2");
 
             driver.findElement(By.xpath("//*[@id='accordion_1778050373']/div/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab3");
 
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab4");
 
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab5");
 
             driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab6");
 
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab7");
 
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab8");
 
             driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab9");
 
             driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab10");
 
             driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
             movecursorm(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/xolair/patient-assistance-tool-page.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat1-no");
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat1-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat2-no");
 
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat2-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat3-yes");
 
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat3-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat4-no");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat4-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat5-yes");
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[5]/div[2]/button")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat5-no");
 
             goToUrl(driver, "/patient/brands/xolair/search.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-search");
 
             goToUrl(driver, "/patient/brands/xolair/site-map.html");
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
