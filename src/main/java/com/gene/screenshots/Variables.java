@@ -58,7 +58,7 @@ public class Variables {
             if (arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
                 pdfOutputPath = arg.substring(10, arg.length());
                 if (pdfOutputPath.equals(""))
-                    continue;
+                    pdfOutputPath = null;
                 else {
                     File dir = new File(pdfOutputPath);
                     dir.mkdirs();
