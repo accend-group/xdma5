@@ -56,19 +56,23 @@ public class Alecensa extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("How do I enroll?")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step1");
+            full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), new Long(1000));
+            //driver.findElement(By.linkText("How do I enroll?")).click();
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What will we find out?")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step2");
+            full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step2", driver.findElement(By.linkText("What will we find out?")), new Long(1000));
+            //driver.findElement(By.linkText("What will we find out?")).click();
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What options are there?")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step3");
+            full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step3", driver.findElement(By.linkText("What options are there?")), new Long(1000));
+
+            //driver.findElement(By.linkText("What options are there?")).click();
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
 
             goToUrl(driver, "/patient/brands/alecensa/forms-and-documents.html");
             Thread.sleep(1000);
@@ -274,21 +278,38 @@ public class Alecensa extends SeleniumHeadless {
             Thread.sleep(1000);
             WebElement element = driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[6]/div/div/div[2]/div/div/div[1]/div/div"));
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:50px;')", element);
-            driver.findElement(By.linkText("How do I enroll?")).click();
+
+            full(driver, false, savePath, "accesssolutions-patient-mobile-alecensa-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), new Long(1000));
+            //driver.findElement(By.linkText("How do I enroll?")).click();
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
+
+            jse.executeScript("window.scrollTo(0, 0)");
+            full(driver, false, savePath, "accesssolutions-patient-mobile-alecensa-1.0-step2", driver.findElement(By.linkText("What will we find out?")), new Long(1000));
+            //driver.findElement(By.linkText("What will we find out?")).click();
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-alecensa-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
+
+            jse.executeScript("window.scrollTo(0, 0)");
+            full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-step3", driver.findElement(By.linkText("What options are there?")), new Long(1000));
+
+            //driver.findElement(By.linkText("What options are there?")).click();
+
+            //driver.findElement(By.linkText("How do I enroll?")).click();
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
             movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-step1");
+            //Thread.sleep(1000);
+            //full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What will we find out?")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-step2");
+            //driver.findElement(By.linkText("What will we find out?")).click();
+            //Thread.sleep(1000);
+            //full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
 
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What options are there?")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-step3");
+            //driver.findElement(By.linkText("What options are there?")).click();
+            //Thread.sleep(1000);
+            //full(driver, false, savePath, "accesssolutions-mobile-patient-alecensa-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
 
             goToUrl(driver, "/patient/brands/alecensa/forms-and-documents.html");
             Thread.sleep(1000);

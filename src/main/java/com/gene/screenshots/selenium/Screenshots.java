@@ -5,11 +5,8 @@ import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
 import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
 import com.gene.screenshots.pdf.Log;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -45,7 +42,17 @@ public class Screenshots {
     }
 
     public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName) throws InterruptedException {
-        fullScreenshot(driver, ifDesktop, path, screenshotName);
+        fullScreenshot(driver, ifDesktop, path, screenshotName, null, 0L);
+        File outputImg = new File(path + "/" + screenshotName + ".png");
+        if (ifDesktop)
+            desktopScreenshots.add(outputImg.getAbsolutePath());
+        else
+            mobileScreenshots.add(outputImg.getAbsolutePath());
+    }
+
+    // click element before after resizing window
+    public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName, WebElement e, Long time) throws InterruptedException {
+        fullScreenshot(driver, ifDesktop, path, screenshotName, e, time);
         File outputImg = new File(path + "/" + screenshotName + ".png");
         if (ifDesktop)
             desktopScreenshots.add(outputImg.getAbsolutePath());
@@ -66,6 +73,15 @@ public class Screenshots {
         } catch (Exception e) {
             System.out.println("Exception while taking visible part screenshot" + e.getMessage());
         }
+    }
+
+    // uses javascript to click the element, even if its not visible
+    public static void forceClick(WebDriver driver, String xpath){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.xpath(xpath)));
+    }
+
+    public static void forceClick(WebDriver driver, WebElement e){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", e);
     }
 
     protected int getDocWidth(WebDriver driver) {
@@ -97,10 +113,10 @@ public class Screenshots {
         jse.executeScript("window.scrollTo(arguments[0], arguments[1]);", x, y);
     }
 
-
     // full site body screenshot
     // need to store current scroll position
-    protected void fullScreenshot(WebDriver driver, boolean ifDesktop, String location, String fileName) {
+    // click item after resizing window
+    protected void fullScreenshot(WebDriver driver, boolean ifDesktop, String location, String fileName, WebElement element, long time) {
 
         int xPos = getCurrentScrollX(driver);
         int yPos = getCurrentScrollY(driver);
@@ -112,16 +128,15 @@ public class Screenshots {
         File outputImg = new File(location + "/" + fileName + ".png");
 
         if (ifDesktop) {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, DESKTOP_WIDTH), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, DESKTOP_WIDTH, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
         } else {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, MOBILE_WIDTH), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, MOBILE_WIDTH, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT));
         }
 
         // scroll to the previous position before resize
         scrollTo(driver, xPos, yPos);
-
     }
 
     // viewport screenshot
@@ -140,9 +155,8 @@ public class Screenshots {
         }
     }
 
-    // resize entire window to fit entire body of webpage
-    //  ===================== SHUTTERBUG code modified =====================================
-    private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width) {
+
+    private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
 
         int _docWidth = width;//getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
@@ -150,6 +164,20 @@ public class Screenshots {
         //System.out.println("WIDTH: " + _docWidth + " SYS WIDTH: " + driver.manage().window().getSize().width);
         driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
 
+        //click item after resizing window
+        if(e != null) {
+            try {
+                Actions builder = new Actions(driver);
+                builder.moveToElement(e, 5,5).click().build().perform();
+            } catch (Exception ex) {
+                forceClick(driver, e);
+            }
+            try {
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+        }
         return takeScreenshot(driver);
     }
 }
