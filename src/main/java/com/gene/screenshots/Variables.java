@@ -58,7 +58,7 @@ public class Variables {
             if (arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
                 pdfOutputPath = arg.substring(10, arg.length());
                 if (pdfOutputPath.equals(""))
-                    continue;
+                    pdfOutputPath = null;
                 else {
                     File dir = new File(pdfOutputPath);
                     dir.mkdirs();
@@ -96,7 +96,7 @@ public class Variables {
             if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
             if (arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
-                awsAccessKey = arg.substring(14, arg.length());
+                awsSecretKey = arg.substring(14, arg.length());
             if (arg.contains("s3-bucket=") && arg.indexOf("s3-bucket=") == 0)
                 bucketName = arg.substring(10, arg.length());
             if (arg.contains("s3-pdfkey=") && arg.indexOf("s3-pdfkey=") == 0)
@@ -122,6 +122,7 @@ public class Variables {
                 }
             }
         }
+
         if(jobType == null){
             System.out.println("Error: No job specified!");
             System.exit(1);

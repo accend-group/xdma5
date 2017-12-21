@@ -84,22 +84,27 @@ public class Avastin extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.className("start-over")).click();
             jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("How do I enroll?")).click();
-            movecursor1(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step1");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What will we find out?")).click();
-            movecursor1(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step2");
+            full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), new Long(1000));
+            //driver.findElement(By.linkText("How do I enroll?")).click();
+            //movecursor1(driver);
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What options are there?")).click();
-            movecursor1(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step3");
+            //jse.executeScript("window.scrollTo(0, 0)");
+
+            full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step2", driver.findElement(By.linkText("What will we find out?")), new Long(1000));
+            //driver.findElement(By.linkText("What will we find out?")).click();
+            //movecursor1(driver);
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
+
+            full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step3", driver.findElement(By.linkText("What options are there?")), new Long(1000));
+            //jse.executeScript("window.scrollTo(0, 0)");
+            //driver.findElement(By.linkText("What options are there?")).click();
+            //movecursor1(driver);
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
 
             goToUrl(driver, "/patient/brands/avastin/forms-and-documents.html");
             Thread.sleep(1000);
@@ -333,21 +338,42 @@ public class Avastin extends SeleniumHeadless {
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:50px;')", element);
             driver.findElement(By.linkText("How do I enroll?")).click();
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
-            movecursorm(driver);
+
+            full(driver, false, savePath, "accesssolutions-patient-mobile-avastin-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), new Long(1000));
+            //driver.findElement(By.linkText("How do I enroll?")).click();
+            //movecursor1(driver);
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
+
+            //jse.executeScript("window.scrollTo(0, 0)");
+
+            full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step2", driver.findElement(By.linkText("What will we find out?")), new Long(1000));
+            //driver.findElement(By.linkText("What will we find out?")).click();
+            //movecursor1(driver);
+            //Thread.sleep(1000);
+            //full(driver, true, savePath, "accesssolutions-patient-avastin-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
+
+            full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step3", driver.findElement(By.linkText("What options are there?")), new Long(1000));
+            //jse.executeScript("window.scrollTo(0, 0)");
+            //driver.findElement(By.linkText("What options are there?")).click();
+            //movecursor1(driver);
+            //Thread.sleep(1000);
+
+           /*movecursorm(driver);
             Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step1");
+            full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What will we find out?")).click();
             movecursorm(driver);
             Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step2");
+            full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
 
             jse.executeScript("window.scrollTo(0, 0)");
             driver.findElement(By.linkText("What options are there?")).click();
             movecursorm(driver);
             Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step3");
+            full(driver, false, savePath, "accesssolutions-mobile-patient-avastin-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);*/
 
             goToUrl(driver, "/patient/brands/avastin/forms-and-documents.html");
             Thread.sleep(1000);

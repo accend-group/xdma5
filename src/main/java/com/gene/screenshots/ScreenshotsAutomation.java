@@ -6,6 +6,7 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.Bucket;
 import com.gene.screenshots.pdf.Log;
 import com.gene.screenshots.pdf.PDFMaker;
 import com.gene.screenshots.selenium.SeleniumHeadless;
@@ -97,6 +98,7 @@ public class ScreenshotsAutomation {
     // english access solutions
     private static List<SeleniumHeadless> createAccessSolutionsTestList() {
         List<SeleniumHeadless> result = new LinkedList<>();
+
         result.add(new Actemra());
         result.add(new Alecensa());
         result.add(new Avastin());
