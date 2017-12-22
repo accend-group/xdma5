@@ -1,7 +1,7 @@
 package com.gene.screenshots.selenium;
 
 
-import com.amazonaws.services.s3.model.Bucket;
+
 import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
 import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
 import com.gene.screenshots.pdf.Log;
@@ -18,13 +18,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 import static com.gene.screenshots.selenium.Constants.*;
 import static java.lang.Math.toIntExact;
 
-// used Shutterbug as starting basis but now instead of scroll and stitch to get a fullscreenshot the main browser window is resized to match the
-// entire site body height for fullscreen pages.
+/***
+ * used Shutterbug https://github.com/assertthat/selenium-shutterbug as starting basis
+ * but now instead of scroll and stitch to get a fullscreenshot the main browser window
+ * is resized to match the entire site body height for fullscreen pages.
+ *
+ * If the page height is larger than 16384 pixels then scroll and stitch is applied
+ * https://groups.google.com/a/chromium.org/forum/#!msg/headless-dev/DqaAEXyzvR0/XmHJTCawCAAJ
+ *
+ ***/
 public class Screenshots {
 
     private Log log;
@@ -167,34 +173,44 @@ public class Screenshots {
     }
 
 
+    // create tab and wait for tab to be available
     private void createTab(WebDriver driver, String url){
         ((JavascriptExecutor) driver).executeScript("window.open(arguments[0], '_blank');", url);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
     }
+
 
     private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
 
-        int _docWidth = width;
+        int _docWidth = width;//getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
 
         // resize browser to max cap, create tab and visit current url to get the correct browser max height
         if(_docHeight > CHROME_HEIGHT_CAP) {
-
-            //create tab to get correct height
             String currentUrl = driver.getCurrentUrl();
             createTab(driver, currentUrl);
             ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
             driver.switchTo().window(tabs.get(1));
             driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
             driver.get(currentUrl);
+
+            // wait for page to load on new tab
+            new WebDriverWait(driver, 10).until(
+                    webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
             _docHeight = getDocHeight(driver);
+            //System.out.println("new height! " + _docHeight);
             driver.close();
 
-            // resize main tab
             driver.switchTo().window(tabs.get(0));
             driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
         }
         else
             driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
+
 
         //click item after resizing window
         if(e != null) {
@@ -217,7 +233,9 @@ public class Screenshots {
             e1.printStackTrace();
         }
 
+        // scroll-stitch
         if(_docHeight > CHROME_HEIGHT_CAP){
+            // ===================== SHUTTERBUG code modified =====================================
             scrollTo(driver, 0, 0);
             System.out.println("Height: " + _docHeight);
             BufferedImage finalImage = new BufferedImage(_docWidth, _docHeight, BufferedImage.TYPE_INT_ARGB);
@@ -231,8 +249,10 @@ public class Screenshots {
             }
             scrollPicsSticthed.dispose();
             return finalImage;
+            // ===================== SHUTTERBUG code modified =====================================
         }
 
+        // else take entire window size for fullpage screenshot
         return takeScreenshot(driver);
     }
 }
