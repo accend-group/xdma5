@@ -244,6 +244,11 @@ public class Screenshots {
             int leftover = (int) Math.ceil(((double) getDocHeight(driver)) / CHROME_HEIGHT_CAP);
             for(int i = 0; i < leftover; ++i){
                 scrollTo(driver, 0, i * CHROME_HEIGHT_CAP);
+                try {
+                    Thread.sleep(350);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
                 BufferedImage viewPortImg = takeScreenshot(driver);
                 scrollPicsSticthed.drawImage(viewPortImg, 0, getCurrentScrollY(driver), null);
             }

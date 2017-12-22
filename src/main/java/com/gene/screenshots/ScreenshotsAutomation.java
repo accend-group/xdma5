@@ -12,10 +12,13 @@ import com.gene.screenshots.selenium.SeleniumHeadless;
 import com.gene.screenshots.selenium.accesssolutions.en.*;
 import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
+import com.google.errorprone.annotations.Var;
 
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import static com.gene.screenshots.EnvironmentType.LOCAL;
 
@@ -54,24 +57,29 @@ public class ScreenshotsAutomation {
         System.out.println("Testing at: " + Variables.getDomain());
         SeleniumHeadless.setDomain(Variables.getDomain());
 
-        if (Variables.isAccessSolutions())
-            for (SeleniumHeadless accessTest : createAccessSolutionsTestList())
+
+        List<SeleniumHeadless> accessTests = null;
+        SeleniumHeadless kadcylaHcpTest = null;
+        SeleniumHeadless kadcylaPatientTest = null;
+
+        if (Variables.isAccessSolutions()) {
+            accessTests = createAccessSolutionsTestList();
+            for (SeleniumHeadless accessTest : accessTests)
                 createThreads(accessTest);
-
-        if (Variables.isKadyclaHCP())
-            createThreads(new KadcylaHCP());
-
-        if (Variables.isKadcylaPatient())
-            createThreads(new KadcylaPatient());
-
-        // if sending pdf to s3
-        if (Variables.isS3()) {
-            System.out.println("Connecting to S3...");
-            s3 = AmazonS3ClientBuilder.standard()
-                    .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
-                    .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
-                    .build();
         }
+
+
+        if (Variables.isKadyclaHCP()) {
+            kadcylaHcpTest = new KadcylaHCP();
+            createThreads(kadcylaHcpTest);
+>>>>>>> Access solutions now sends a zip file and added delay for scroll-stitch
+        }
+
+        if (Variables.isKadcylaPatient()) {
+            kadcylaPatientTest = new KadcylaPatient();
+            createThreads(kadcylaPatientTest);
+        }
+
 
         // start automation job(s)
         if (Variables.isUseThreads()) {
@@ -92,6 +100,27 @@ public class ScreenshotsAutomation {
                 thread.join();
             }
         }
+
+        // if sending to s3
+        if (Variables.isS3()) {
+            System.out.println("Connecting to S3...");
+            s3 = AmazonS3ClientBuilder.standard()
+                    .withCredentials(Variables.isS3Local() ? new ProfileCredentialsProvider() : new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
+                    .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
+                    .build();
+        } else
+            return;
+
+        // send results
+        if(kadcylaPatientTest != null)
+            sendPDFtoS3(kadcylaHcpTest, Variables.getPdfOutputPath());
+
+        if(kadcylaHcpTest != null)
+            sendPDFtoS3(kadcylaHcpTest, Variables.getPdfOutputPath());
+
+        if(accessTests != null)
+            sendZipToS3(accessTests, "access_solutions", Variables.getPdfOutputPath());
+
     }
 
     // english access solutions
@@ -126,6 +155,7 @@ public class ScreenshotsAutomation {
         result.add(new Zelboraf());
         return result;
     }
+
 
     // mobile, desktop, and pdf threads created
     private static void createThreads(SeleniumHeadless test) {
@@ -173,14 +203,58 @@ public class ScreenshotsAutomation {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            createPDFandSendThread(test, testName, Variables.getPdfOutputPath());
+            createPDF(test, testName, Variables.getPdfOutputPath());
         });
         pdfThread.setDaemon(true);
         pdfThreads.add(pdfThread);
     }
 
-    private static void createPDFandSendThread(SeleniumHeadless test, String pdfName, String pdfOutputPath) {
+    private static void sendZipToS3(List<SeleniumHeadless> tests, String zipName, String zipPath){
 
+        final int BUFFER = 8192;
+        String pdfPaths = Variables.getPdfOutputPath();
+
+        try {
+            BufferedInputStream origin = null;
+            FileOutputStream dest = new FileOutputStream( zipPath + "/" + zipName + ".zip");
+            ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
+            byte data[] = new byte[BUFFER];
+
+            String files[] = new String[tests.size()];
+            for(int i = 0; i < tests.size(); ++i)
+                files[i] = pdfPaths + "/" + tests.get(i).getClass().getSimpleName() + ".pdf";
+            for (int i=0; i<files.length; i++) {
+                FileInputStream fi = new FileInputStream(files[i]);
+                origin = new BufferedInputStream(fi, BUFFER);
+                ZipEntry entry = new ZipEntry(files[i]);
+                out.putNextEntry(entry);
+                int count;
+                while((count = origin.read(data, 0,
+                        BUFFER)) != -1) {
+                    out.write(data, 0, count);
+                }
+                origin.close();
+            }
+            out.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        if (s3 == null)
+            return;
+
+        System.out.println("Sending " + zipName + ".zip...");
+        try {
+            s3.putObject(Variables.getBucketName(),
+                    zipName + ".zip",
+                    new File(zipPath + "/" + zipName + ".zip"));
+            System.out.println("pdf sent!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createPDF(SeleniumHeadless test, String pdfName, String pdfOutputPath){
         String savePath = Variables.getSavePath();
         String testName = test.getClass().getSimpleName();
         String logPath = savePath + "/logs/" + testName + ".txt";
@@ -218,16 +292,20 @@ public class ScreenshotsAutomation {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-        // if sending pdf to s3
+    private static void sendPDFtoS3(SeleniumHeadless test, String pdfOutputPath) {
+
         if (s3 == null)
             return;
 
-        System.out.println("Sending " + pdfName + ".pdf...");
+        String testName = test.getClass().getSimpleName();
+
+        System.out.println("Sending " + testName + ".pdf...");
         try {
             s3.putObject(Variables.getBucketName(),
-                    Variables.getPdfKey(),
-                    new File((pdfOutputPath == null ? "." : pdfOutputPath) + "/" + (pdfName == null ? testName : pdfName) + ".pdf"));
+                    testName + ".pdf",
+                    new File((pdfOutputPath == null ? Variables.getSavePath() : pdfOutputPath) + "/" + testName + ".pdf"));
             System.out.println("pdf sent!");
         } catch (Exception e) {
             e.printStackTrace();

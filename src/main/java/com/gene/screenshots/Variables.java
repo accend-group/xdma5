@@ -13,9 +13,8 @@ public class Variables {
 
     // where main directory is set for creating images in sub directories for each selenium script that needs a pdf
     private static String savePath = "target/screenshots";
-    private static String pdfName = null;
     private static String pdfOutputPath = null;
-
+    private static String pdfName = null;
     private static String bucketName = null;
     private static String pdfKey = null;
     private static String region = null;
@@ -131,6 +130,9 @@ public class Variables {
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
         else
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
+
+        if(pdfOutputPath == null)
+            pdfOutputPath = savePath;
     }
 
     public static String getJob(){
