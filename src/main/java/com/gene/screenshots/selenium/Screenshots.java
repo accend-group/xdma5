@@ -183,13 +183,12 @@ public class Screenshots {
         }
     }
 
-
     private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
 
         int _docWidth = width;//getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
 
-        // resize browser to max cap, create tab and visit current url to get the correct browser max height
+        // create tab and visit current url to get the correct browser max height
         if(_docHeight > CHROME_HEIGHT_CAP) {
             String currentUrl = driver.getCurrentUrl();
             createTab(driver, currentUrl);
@@ -201,8 +200,11 @@ public class Screenshots {
             // wait for page to load on new tab
             new WebDriverWait(driver, 10).until(
                     webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-            _docHeight = getDocHeight(driver);
-            //System.out.println("new height! " + _docHeight);
+            int otherHeight = getDocHeight(driver);
+
+            // in the case the previous tab had dynamically height changing events the new tab doesn't have
+            if(otherHeight > _docHeight)
+                _docHeight = otherHeight;
             driver.close();
 
             driver.switchTo().window(tabs.get(0));
@@ -237,7 +239,6 @@ public class Screenshots {
         if(_docHeight > CHROME_HEIGHT_CAP){
             // ===================== SHUTTERBUG code modified =====================================
             scrollTo(driver, 0, 0);
-            System.out.println("Height: " + _docHeight);
             BufferedImage finalImage = new BufferedImage(_docWidth, _docHeight, BufferedImage.TYPE_INT_ARGB);
             Graphics2D scrollPicsSticthed = finalImage.createGraphics();
             int leftover = (int) Math.ceil(((double) getDocHeight(driver)) / CHROME_HEIGHT_CAP);
@@ -245,7 +246,6 @@ public class Screenshots {
                 scrollTo(driver, 0, i * CHROME_HEIGHT_CAP);
                 BufferedImage viewPortImg = takeScreenshot(driver);
                 scrollPicsSticthed.drawImage(viewPortImg, 0, getCurrentScrollY(driver), null);
-                System.out.println("scrolled: " + getCurrentScrollY(driver));
             }
             scrollPicsSticthed.dispose();
             return finalImage;
