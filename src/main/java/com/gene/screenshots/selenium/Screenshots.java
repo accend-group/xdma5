@@ -9,12 +9,14 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class Screenshots {
         log.save(savePath);
     }
 
-    public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName) throws InterruptedException {
+    public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName)  {
         fullScreenshot(driver, ifDesktop, path, screenshotName, null, 0L);
         File outputImg = new File(path + "/" + screenshotName + ".png");
         if (ifDesktop)
@@ -55,7 +57,7 @@ public class Screenshots {
     }
 
     // click element before after resizing window
-    public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName, WebElement e, Long time) throws InterruptedException {
+    public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName, WebElement e, Long time){
         fullScreenshot(driver, ifDesktop, path, screenshotName, e, time);
         File outputImg = new File(path + "/" + screenshotName + ".png");
         if (ifDesktop)
@@ -165,18 +167,34 @@ public class Screenshots {
     }
 
 
+    private void createTab(WebDriver driver, String url){
+        ((JavascriptExecutor) driver).executeScript("window.open(arguments[0], '_blank');", url);
+    }
+
     private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
 
-        int _docWidth = width;//getDocWidth(driver);
+        int _docWidth = width;
         int _docHeight = getDocHeight(driver);
-        //System.out.println("Height: " + _docHeight);
-        //System.out.println("WIDTH: " + _docWidth + " SYS WIDTH: " + driver.manage().window().getSize().width);
 
-        if(_docHeight > CHROME_HEIGHT_CAP)
+        // resize browser to max cap, create tab and visit current url to get the correct browser max height
+        if(_docHeight > CHROME_HEIGHT_CAP) {
+
+            //create tab to get correct height
+            String currentUrl = driver.getCurrentUrl();
+            createTab(driver, currentUrl);
+            ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(1));
             driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
+            driver.get(currentUrl);
+            _docHeight = getDocHeight(driver);
+            driver.close();
+
+            // resize main tab
+            driver.switchTo().window(tabs.get(0));
+            driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
+        }
         else
             driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
-
 
         //click item after resizing window
         if(e != null) {
@@ -214,7 +232,6 @@ public class Screenshots {
             scrollPicsSticthed.dispose();
             return finalImage;
         }
-
 
         return takeScreenshot(driver);
     }
