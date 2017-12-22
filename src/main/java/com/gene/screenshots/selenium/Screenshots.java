@@ -1,18 +1,22 @@
 package com.gene.screenshots.selenium;
 
 
+import com.amazonaws.services.s3.model.Bucket;
 import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
 import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
 import com.gene.screenshots.pdf.Log;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 import static com.gene.screenshots.selenium.Constants.*;
 import static java.lang.Math.toIntExact;
@@ -113,6 +117,11 @@ public class Screenshots {
         jse.executeScript("window.scrollTo(arguments[0], arguments[1]);", x, y);
     }
 
+    protected void scrollBy(WebDriver driver, int x, int y) {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
+    }
+
     // full site body screenshot
     // need to store current scroll position
     // click item after resizing window
@@ -160,9 +169,14 @@ public class Screenshots {
 
         int _docWidth = width;//getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
-
+        //System.out.println("Height: " + _docHeight);
         //System.out.println("WIDTH: " + _docWidth + " SYS WIDTH: " + driver.manage().window().getSize().width);
-        driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
+
+        if(_docHeight > CHROME_HEIGHT_CAP)
+            driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
+        else
+            driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
+
 
         //click item after resizing window
         if(e != null) {
@@ -184,6 +198,24 @@ public class Screenshots {
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
+
+        if(_docHeight > CHROME_HEIGHT_CAP){
+            scrollTo(driver, 0, 0);
+            System.out.println("Height: " + _docHeight);
+            BufferedImage finalImage = new BufferedImage(_docWidth, _docHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D scrollPicsSticthed = finalImage.createGraphics();
+            int leftover = (int) Math.ceil(((double) getDocHeight(driver)) / CHROME_HEIGHT_CAP);
+            for(int i = 0; i < leftover; ++i){
+                scrollTo(driver, 0, i * CHROME_HEIGHT_CAP);
+                BufferedImage viewPortImg = takeScreenshot(driver);
+                scrollPicsSticthed.drawImage(viewPortImg, 0, getCurrentScrollY(driver), null);
+                System.out.println("scrolled: " + getCurrentScrollY(driver));
+            }
+            scrollPicsSticthed.dispose();
+            return finalImage;
+        }
+
+
         return takeScreenshot(driver);
     }
 }
