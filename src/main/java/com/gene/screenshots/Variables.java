@@ -14,7 +14,6 @@ public class Variables {
     // where main directory is set for creating images in sub directories for each selenium script that needs a pdf
     private static String savePath = "target/screenshots";
     private static String pdfOutputPath = null;
-    private static String pdfName = null;
     private static String bucketName = null;
     private static String pdfKey = null;
     private static String region = null;
@@ -39,7 +38,7 @@ public class Variables {
 
     // defaults to sequential test run
     private static boolean useTheads = false;
-    private static int threadCount = 1;
+    private static int threadCount = 2;
 
     public static void main(String[] args) {
 
@@ -85,8 +84,6 @@ public class Variables {
                 }
             }
 
-            if (arg.contains("pdfname=") && arg.indexOf("pdfname=") == 0)
-                pdfName = arg.substring(8, arg.length());
             if (arg.equals("s3=true"))
                 s3 = true;
             if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
@@ -95,8 +92,6 @@ public class Variables {
                 awsSecretKey = arg.substring(14, arg.length());
             if (arg.contains("s3-bucket=") && arg.indexOf("s3-bucket=") == 0)
                 bucketName = arg.substring(10, arg.length());
-            if (arg.contains("s3-pdfkey=") && arg.indexOf("s3-pdfkey=") == 0)
-                pdfKey = arg.substring(10, arg.length());
             if (arg.contains("s3-region=") && arg.indexOf("s3-region=") == 0) {
                 region = arg.substring(10, arg.length());
                 if(region.equals(""))

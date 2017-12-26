@@ -16,12 +16,15 @@ public class BrandUrl {
     // testType used to run specific parts in selenium code
     private EnvironmentType testType;
     private static JSONArray jsonUrls;
+
+    // the url to use when testing screenshots
     private String domain;
+
     private static HashMap<String, HashMap<EnvironmentType, String>> environments = new HashMap<>();
 
     public static void loadEnvironments(File path){
         try {
-            jsonUrls = new JSONArray(new Scanner(path).useDelimiter("\\Z").next());
+            jsonUrls = new JSONArray(new Scanner(path).next());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

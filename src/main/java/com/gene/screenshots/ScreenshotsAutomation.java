@@ -15,6 +15,7 @@ import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
 import com.google.errorprone.annotations.Var;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 import java.util.zip.ZipEntry;
@@ -57,6 +58,24 @@ public class ScreenshotsAutomation {
         System.out.println("Testing at: " + Variables.getDomain());
         SeleniumHeadless.setDomain(Variables.getDomain());
 
+        Class perjataTestClass = null;
+        SeleniumHeadless perjetaTest = null;
+        try {
+            perjataTestClass = Class.forName("com.gene.screenshots.selenium.accesssolutions.perjeta.Perjeta");
+            try {
+                perjetaTest = (SeleniumHeadless) perjataTestClass.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println(perjetaTest.getClass().getSimpleName());
+        perjetaTest.mobileAutomationTest(null);
+        if(true)
+            return;
 
         List<SeleniumHeadless> accessTests = null;
         SeleniumHeadless kadcylaHcpTest = null;
@@ -113,7 +132,7 @@ public class ScreenshotsAutomation {
 
         // send results
         if(kadcylaPatientTest != null)
-            sendPDFtoS3(kadcylaHcpTest, Variables.getPdfOutputPath());
+            sendPDFtoS3(kadcylaPatientTest, Variables.getPdfOutputPath());
 
         if(kadcylaHcpTest != null)
             sendPDFtoS3(kadcylaHcpTest, Variables.getPdfOutputPath());
@@ -244,9 +263,10 @@ public class ScreenshotsAutomation {
             return;
 
         System.out.println("Sending " + zipName + ".zip...");
+        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         try {
             s3.putObject(Variables.getBucketName(),
-                    zipName + ".zip",
+                    zipName + "__" + date + ".zip",
                     new File(zipPath + "/" + zipName + ".zip"));
             System.out.println("pdf sent!");
         } catch (Exception e) {
@@ -300,11 +320,11 @@ public class ScreenshotsAutomation {
             return;
 
         String testName = test.getClass().getSimpleName();
-
+        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         System.out.println("Sending " + testName + ".pdf...");
         try {
             s3.putObject(Variables.getBucketName(),
-                    testName + ".pdf",
+                    String.format("%s-%s-%s", testName, Variables.getDomain().getType(), date),
                     new File((pdfOutputPath == null ? Variables.getSavePath() : pdfOutputPath) + "/" + testName + ".pdf"));
             System.out.println("pdf sent!");
         } catch (Exception e) {

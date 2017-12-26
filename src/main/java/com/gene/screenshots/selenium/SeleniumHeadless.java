@@ -20,9 +20,19 @@ import static com.gene.screenshots.selenium.Constants.*;
  * The mobile and desktop automated test functions must quit the driver at the end.
  */
 
-public abstract class SeleniumHeadless extends Screenshots implements OutputResult {
+public abstract class SeleniumHeadless extends Screenshots {
 
     protected static BrandUrl domain;
+
+    // if true desktop and mobile screenshots are created as separate pdfs
+    // if false both desktop and mobile are merged as one pdf.
+    private static boolean ifSinglePDF;
+
+    private static int desktopWidth = DESKTOP_WIDTH;
+    private static int desktopHeight = DESKTOP_HEIGHT;
+    private static int mobileWidth = MOBILE_WIDTH;
+    private static int mobile
+
     // window.scrollBy(X, Y);
     // https://stackoverflow.com/a/4403822
     private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(); ";
