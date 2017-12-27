@@ -43,7 +43,14 @@ public class BrandUrl {
 
     public BrandUrl(Object jobType, EnvironmentType environmentType){
         testType = environmentType;
-        domain = environments.get(jobType).get(environmentType);
+
+        // In case job type is not found from the json data
+        try {
+            domain = environments.get(jobType).get(environmentType);
+        } catch (Exception e) {
+            System.out.println("Error! Job " + jobType + " not recognized");
+            System.exit(1);
+        }
     }
 
     public EnvironmentType getType(){
