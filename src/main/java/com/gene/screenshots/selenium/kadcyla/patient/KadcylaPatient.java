@@ -58,14 +58,14 @@ public class KadcylaPatient extends SeleniumHeadless {
 //		driver.navigate().refresh();
 //		driver.findElement(By.className("genentech-component--button__text")).click();
 //		Thread.sleep(1500);
-            visible(driver, true, savePath, "kadcyla-share-modal");
+//            visible(driver, true, savePath, "kadcyla-share-modal");
 //
 //		driver.findElement(By.name("fname")).sendKeys("Marwin");
 //		driver.findElement(By.name("lname")).sendKeys("Nicolas");
 //		driver.findElement(By.name("to-email-address")).sendKeys("marwin@accendgroup.com");
 //		driver.findElement(By.xpath("/html/body/section[2]/div[3]/div/div/form/div/div[3]/input")).click();
 //		Thread.sleep(1500);
-            visible(driver, true, savePath, "kadcyla-share-modal-submit");
+//            visible(driver, true, savePath, "kadcyla-share-modal-submit");
 
             //		//--->start full page screenshot <---//
 
