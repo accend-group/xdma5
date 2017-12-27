@@ -2,9 +2,11 @@ package com.gene.screenshots.base;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.gene.screenshots.Variables;
+import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
 import java.io.*;
+import java.lang.annotation.Annotation;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.zip.ZipEntry;
@@ -15,6 +17,10 @@ public abstract class  ScreenshotJob extends ScreenshotThreads {
 
     protected SeleniumHeadless screenshotCode;
 
+    public String getJobName(){
+        Annotation job = this.getClass().getDeclaredAnnotation(com.gene.screenshots.base.annotations.Job.class);
+        return ((Job) job).name();
+    }
 
     // read log create pdf or merge pdfs?
     public void createResult(){
@@ -23,10 +29,10 @@ public abstract class  ScreenshotJob extends ScreenshotThreads {
 
     // send pdf(s)?
     public void sendResult(AmazonS3 s3){
-        if(SeleniumHeadless.isIfSinglePDF())
+        /*if(SeleniumHeadless.isIfSinglePDF())
             sendPDFtoS3(s3);
         else
-            sendZipToS3(s3);
+            sendZipToS3(s3);*/
     }
 
     protected void sendZipToS3(AmazonS3 s3){
@@ -37,10 +43,10 @@ public abstract class  ScreenshotJob extends ScreenshotThreads {
                 savePath + "/zips");
 
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        System.out.println("Sending " + screenshotScriptName + ".zip...");
+        System.out.println("Sending " + getJobName() + " zip file...");
 
         String filePath = savePath + "/zips/" + screenshotScriptName + ".zip";
-        String key =  String.format("%s-%s-%s.zip", screenshotScriptName, Variables.getDomain().getType(), date);
+        String key =  String.format("%s-%s-%s.zip", getJobName(), Variables.getDomain().getType(), date);
         sendObject(s3, key, filePath);
 
         System.out.println("zip sent!");
@@ -48,12 +54,14 @@ public abstract class  ScreenshotJob extends ScreenshotThreads {
 
     protected void sendPDFtoS3(AmazonS3 s3) {
 
+
         String screenshotScriptName = screenshotCode.getClass().getSimpleName();
+
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        System.out.println("Sending " + screenshotScriptName + ".pdf...");
+        System.out.println("Sending " + getJobName() + " pdf file...");
 
         String filePath = savePath + "/pdfs/" + screenshotScriptName + ".pdf";
-        String key = String.format("%s-%s-%s.pdf", screenshotScriptName, Variables.getDomain().getType(), date);
+        String key = String.format("%s-%s-%s.pdf", getJobName(), Variables.getDomain().getType(), date);
         sendObject(s3, key, filePath);
 
         System.out.println("pdf sent!");
