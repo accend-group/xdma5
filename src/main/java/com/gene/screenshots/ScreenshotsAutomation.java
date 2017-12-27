@@ -25,7 +25,7 @@ import java.util.concurrent.Semaphore;
 
 public class ScreenshotsAutomation {
 
-    private static final int THREAD_LIMIT = 10;
+    private static final int THREAD_LIMIT = 2;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -43,7 +43,7 @@ public class ScreenshotsAutomation {
         SeleniumHeadless.setChromeSystemProperty(Variables.getChromedriverPath());
 
         // if merging pdfs or creating desktop/mobile pdfs
-        SeleniumHeadless.setIfSinglePDF(!Variables.isIfBreakPDF());
+        SeleniumHeadless.setIfSinglePDF(!Variables.isIfMergePDF());
 
         ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
 

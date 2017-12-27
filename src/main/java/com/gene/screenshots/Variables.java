@@ -28,7 +28,7 @@ public class Variables {
 
     private static BrandUrl domain = null;
 
-    private static boolean ifBreakPDF = false;
+    private static boolean ifMergePDF = true;
 
     public static void main(String[] args) {
 
@@ -36,8 +36,8 @@ public class Variables {
 
         for (String arg : args) {
 
-            if(arg.equals("pdfbreakpoint=true"))
-                ifBreakPDF = true;
+            if(arg.equals("pdfbreakpoint=false"))
+                ifMergePDF = false;
 
             if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
                 savePath = arg.substring(9, arg.length());
@@ -115,8 +115,8 @@ public class Variables {
 
     }
 
-    public static boolean isIfBreakPDF() {
-        return ifBreakPDF;
+    public static boolean isIfMergePDF() {
+        return ifMergePDF;
     }
 
     public static Object getJob(){
