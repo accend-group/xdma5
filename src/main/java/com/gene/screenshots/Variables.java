@@ -30,6 +30,7 @@ public class Variables {
 
     private static BrandUrl domain = null;
 
+    private static boolean ifBreakPDF = false;
 
     public static void main(String[] args) {
 
@@ -38,7 +39,7 @@ public class Variables {
         for (String arg : args) {
 
             if(arg.equals("pdfbreakpoint=true"))
-                SeleniumHeadless.setIfSinglePDF(false);
+                ifBreakPDF = true;
 
             if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
                 savePath = arg.substring(9, arg.length());
@@ -114,7 +115,7 @@ public class Variables {
             jobType = ID;
             domain = new BrandUrl(ID, environmentType);
         } catch (NumberFormatException e) {
-            domain = new BrandUrl((String)jobType, environmentType);
+            domain = new BrandUrl(jobType, environmentType);
         }
 
 
@@ -131,6 +132,10 @@ public class Variables {
         }
 
 
+    }
+
+    public static boolean isIfBreakPDF() {
+        return ifBreakPDF;
     }
 
     public static Object getJob(){
