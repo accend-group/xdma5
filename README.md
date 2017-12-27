@@ -100,4 +100,4 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
    In the text area for `Command`, you will want to insert `npm install` to download the chromedriver.
 
 10. Under "Build", fill in `Goals and options` with the following:
-   ``` compile exec:java -Dexec.cleanupDaemonThreads=false -Dexec.args=" savepath=$SAVE_PATH pdfoutput=$PDF_OUTPUT_PATH s3-bucket=$S3_BUCKET s3-region=$S3_REGION jobtype=$JOB_TYPE pdfbreakpoint=$MERGE_BREAKPOINT environment=$DEVELOPMENT_ENVIRONMENT aws-accesskey=$ACCESS_KEYaws-secretkey=$SECRET_KEY"```
+   ``` compile exec:java -Dexec.cleanupDaemonThreads=false -Dexec.args=" savepath=$SAVE_PATH pdfoutput=$PDF_OUTPUT_PATH s3-bucket=$S3_BUCKET s3-region=$S3_REGION jobtype=$JOB_TYPE pdfbreakpoint=$MERGE_BREAKPOINT environment=$DEVELOPMENT_ENVIRONMENT aws-accesskey=$ACCESS_KEY aws-secretkey=$SECRET_KEY"```
