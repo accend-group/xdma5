@@ -34,11 +34,18 @@ public class AccessSolutionsJob extends ScreenshotJob {
         sendZipToS3(s3, brands, "access_solutions", savePath + "/zips");
     }
 
-    private static void sendZipToS3(AmazonS3 s3, List<SeleniumHeadless> tests, String zipName, String zipPath){
+    private static void sendZipToS3(AmazonS3 s3, List<SeleniumHeadless> tests, String zipName, String zipPath) {
 
-        String fileNames[] = new String[tests.size()];
+
+        String fileNames[] = new String[SeleniumHeadless.isIfSinglePDF() ? tests.size() : tests.size() * 2];
+
         for (int i = 0; i < tests.size(); ++i)
-            fileNames[i] = tests.get(i).getClass().getSimpleName() + ".pdf";
+            if (SeleniumHeadless.isIfSinglePDF())
+                fileNames[i] = tests.get(i).getClass().getSimpleName() + ".pdf";
+            else {
+                fileNames[i++] = "desktop_" + tests.get(i).getClass().getSimpleName() + ".pdf";
+                fileNames[i] = "mobile_" + tests.get(i).getClass().getSimpleName() + ".pdf";
+            }
         createZip(fileNames, zipName, zipPath);
 
         System.out.println("Sending " + zipName + ".zip...");

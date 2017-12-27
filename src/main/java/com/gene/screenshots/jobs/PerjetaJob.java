@@ -12,5 +12,4 @@ public class PerjetaJob extends ScreenshotJob {
     public PerjetaJob(){
         screenshotCode = new Perjeta();
     }
-
 }

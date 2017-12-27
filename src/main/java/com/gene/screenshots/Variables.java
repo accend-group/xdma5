@@ -17,7 +17,6 @@ public class Variables {
     private static String savePath = "target/screenshots";
     private static String pdfOutputPath = null;
     private static String bucketName = null;
-    private static String pdfKey = null;
     private static String region = null;
     private static String awsSecretKey = null;
     private static String awsAccessKey = null;
@@ -28,10 +27,6 @@ public class Variables {
 
     // needed for json url type
     private static Object jobType = null;
-
-    private static boolean desktopPDF = false;
-    private static boolean mobilePDF = false;
-    private static boolean bothPDF = true;
 
     private static BrandUrl domain = null;
 
@@ -160,10 +155,6 @@ public class Variables {
 
     public static String getBucketName() {
         return bucketName;
-    }
-
-    public static String getPdfKey() {
-        return pdfKey;
     }
 
     public static String getSavePath() {
