@@ -21,9 +21,7 @@ public class Variables {
     private static String awsSecretKey = null;
     private static String awsAccessKey = null;
 
-
     private static boolean s3Local = false;
->>>>>>> annotation changes, json contains ID of automation job, a JOB_TYPE can be a id or job name
 
     // needed for json url type
     private static Object jobType = null;
@@ -68,25 +66,8 @@ public class Variables {
                     environmentType = PROD;
             }
 
-<<<<<<< HEAD
-            if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
-                jobType =  arg.substring(8, arg.length());
-                switch(jobType){
-                    case "Access_Solutions":
-                        accessSolutions = true; break;
-                    case "Kadcyla_HCP":
-                        kadcylaHCP = true; break;
-                    case "Kadcyla_Patient":
-                        kadcylaPatient = true; break;
-                }
-            }
-
-            if (arg.equals("s3=true"))
-                s3 = true;
-=======
             if (arg.equals("aws-local=true"))
                 s3Local = true;
->>>>>>> annotation changes, json contains ID of automation job, a JOB_TYPE can be a id or job name
             if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
             if (arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
@@ -126,7 +107,7 @@ public class Variables {
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
         if(pdfOutputPath == null){
-           pdfOutputPath =  "target/screenshots/pdfs";
+            pdfOutputPath =  "target/screenshots/pdfs";
             File dir = new File(pdfOutputPath);
             dir.mkdirs();
         }
@@ -170,21 +151,8 @@ public class Variables {
         return region;
     }
 
-<<<<<<< HEAD
-    public static boolean isS3() {
-        return s3;
-    }
-
-    public static boolean isUseThreads() {
-        return useTheads;
-    }
-
-    public static int getThreadCount() {
-        return threadCount;
-=======
     public static boolean isS3Local() {
         return s3Local;
->>>>>>> annotation changes, json contains ID of automation job, a JOB_TYPE can be a id or job name
     }
 
     public static BrandUrl getDomain(){
