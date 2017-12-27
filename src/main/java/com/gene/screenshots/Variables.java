@@ -23,7 +23,6 @@ public class Variables {
     private static String awsAccessKey = null;
 
     private static boolean s3 = false;
-    private static boolean s3Local = false;
 
     // needed to change marwin's code in case of differences in prod, dev, stage, and local
     private static boolean accessSolutions = false;
@@ -91,8 +90,6 @@ public class Variables {
                 pdfName = arg.substring(8, arg.length());
             if (arg.equals("s3=true"))
                 s3 = true;
-            if (arg.equals("aws-local=true"))
-                s3Local = true;
             if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
             if (arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
@@ -186,10 +183,6 @@ public class Variables {
 
     public static boolean isS3() {
         return s3;
-    }
-
-    public static boolean isS3Local() {
-        return s3Local;
     }
 
     public static boolean isUseThreads() {
