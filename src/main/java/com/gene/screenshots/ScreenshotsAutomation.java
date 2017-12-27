@@ -42,7 +42,7 @@ public class ScreenshotsAutomation {
         SeleniumHeadless.setChromeSystemProperty(Variables.getChromedriverPath());
 
         // if merging pdfs or creating desktop/mobile pdfs
-        //SeleniumHeadless.setIfSinglePDF(false);
+        SeleniumHeadless.setIfSinglePDF(!Variables.isIfBreakPDF());
 
 >>>>>>> Access solutions now sends a zip file and added delay for scroll-stitch
 
@@ -50,25 +50,22 @@ public class ScreenshotsAutomation {
 
         ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
 
+        // search project path for classes with @Job
         Reflections reflections = new Reflections("com.gene.screenshots.jobs");
-        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(com.gene.screenshots.base.annotations.Job.class);
-
+        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Job.class);
         HashMap<Object, Class<?>> annotationsMap = new HashMap<>();
         for (Class<?> class_ : annotated) {
-            //System.out.println(controller.getSimpleName());
-            //System.out.println(controller.getDeclaredAnnotations().length);
-            Annotation info = class_.getDeclaredAnnotations()[0];
+            Annotation info = class_.getDeclaredAnnotation(Job.class);
             annotationsMap.put(((Job) info).ID(), class_);
             annotationsMap.put(((Job) info).name(), class_);
         }
 
+        // get specified job
         ScreenshotJob screenshotJob = null;
-
         try {
-            Job job = (Job) annotationsMap.get(Variables.getJob()).getDeclaredAnnotations()[0];
+            Job job = annotationsMap.get(Variables.getJob()).getDeclaredAnnotation(Job.class);
             if(job != null)
                 System.out.println(String.format("Running %s, ID: %d, Info: %s", job.name(), job.ID(), job.info()));
-
             screenshotJob = (ScreenshotJob) annotationsMap.get(Variables.getJob()).newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -86,8 +83,10 @@ public class ScreenshotsAutomation {
             System.exit(1);
         }
 
+        // create worker threads that generate the pdf results
         screenshotJob.createResult();
 
+        // get threads
         final List<Thread> screenshotThreads = screenshotJob.getScreenshotThreads();
         final List<Thread> pdfThreads = screenshotJob.getPdfThreads();
 
