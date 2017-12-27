@@ -24,7 +24,7 @@ import java.util.concurrent.Semaphore;
 
 public class ScreenshotsAutomation {
 
-    private static final int THREAD_LIMIT = 10;
+    private static final int THREAD_LIMIT = 2;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -41,6 +41,8 @@ public class ScreenshotsAutomation {
 
         SeleniumHeadless.setChromeSystemProperty(Variables.getChromedriverPath());
 
+        // if merging pdfs or creating desktop/mobile pdfs
+        //SeleniumHeadless.setIfSinglePDF(false);
 
 >>>>>>> Access solutions now sends a zip file and added delay for scroll-stitch
 
@@ -52,12 +54,12 @@ public class ScreenshotsAutomation {
         Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(com.gene.screenshots.base.annotations.Job.class);
 
         HashMap<Object, Class<?>> annotationsMap = new HashMap<>();
-        for (Class<?> controller : annotated) {
+        for (Class<?> class_ : annotated) {
             //System.out.println(controller.getSimpleName());
             //System.out.println(controller.getDeclaredAnnotations().length);
-            Annotation info = controller.getDeclaredAnnotations()[0];
-            annotationsMap.put(((Job) info).ID(), controller);
-            annotationsMap.put(((Job) info).name(), controller);
+            Annotation info = class_.getDeclaredAnnotations()[0];
+            annotationsMap.put(((Job) info).ID(), class_);
+            annotationsMap.put(((Job) info).name(), class_);
         }
 
         ScreenshotJob screenshotJob = null;
@@ -105,6 +107,6 @@ public class ScreenshotsAutomation {
                 .build();
 
         // send pdf/zip
-        //screenshotJob.sendResult(s3);
+        screenshotJob.sendResult(s3);
     }
 }

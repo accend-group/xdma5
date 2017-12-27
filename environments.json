@@ -30,6 +30,17 @@
       "stage": "https://stage-kadcyla.gene.com",
       "local": "http://localhost:4503/content/kadcyla/en_us"
     }
+  },
+
+  {
+    "name": "Perjeta",
+    "id" : 4,
+    "types": {
+      "dev": "https://dev-perjeta.gene.com",
+      "prod": "https://www.perjeta.com",
+      "stage": "https://stage-perjeta.gene.com",
+      "local": "http://localhost:4503/content/perjeta/en_us"
+    }
   }
 
 ]

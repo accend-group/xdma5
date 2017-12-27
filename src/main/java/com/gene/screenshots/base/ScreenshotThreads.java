@@ -41,10 +41,7 @@ public abstract class ScreenshotThreads {
     // mobile, desktop, and pdf threads created
     public void createThreads(SeleniumHeadless test) {
 
-        //TODO if 2 pdfs are needed for mobile/desktop change to add another log
-        //Log pdfLog = new Log();
-        //test.setLog(pdfLog);
-        String testName = test.getClass().getSimpleName();
+        String screenshotScriptName = test.getClass().getSimpleName();
         Thread[] deskMobThreads = new Thread[]{
                 new Thread(() -> {
                     try {
@@ -52,8 +49,8 @@ public abstract class ScreenshotThreads {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println(testName + " mobile screenshot automation started!");
-                    test.mobileAutomationTest(savePath + "/mobile/" + testName);
+                    System.out.println(screenshotScriptName + " mobile screenshot automation started!");
+                    test.mobileAutomationTest(savePath + "/mobile/" + screenshotScriptName);
                     threadLock.release();
                 }),
                 new Thread(() -> {
@@ -62,8 +59,8 @@ public abstract class ScreenshotThreads {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println(testName + " desktop screenshot automation started!");
-                    test.desktopAutomationTest(savePath + "/desktop/" + testName);
+                    System.out.println(screenshotScriptName + " desktop screenshot automation started!");
+                    test.desktopAutomationTest(savePath + "/desktop/" + screenshotScriptName);
                     threadLock.release();
                 })
         };
@@ -78,7 +75,7 @@ public abstract class ScreenshotThreads {
                 deskMobThreads[0].join();
                 deskMobThreads[1].join();
                 //threadLock.acquire();
-                createPDF(test, testName);
+                createPDFS(test, screenshotScriptName);
                 //threadLock.release();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -88,23 +85,30 @@ public abstract class ScreenshotThreads {
         pdfThreads.add(pdfThread);
     }
 
-    private static void createPDF(SeleniumHeadless test, String pdfName){
+    private static void createPDFS(SeleniumHeadless test, String pdfName){
 
         if (savePath == null)
             throw new NullPointerException("Error! null pdf output path!");
 
-        PDFMaker newPdf = new PDFMaker();
+        if(SeleniumHeadless.isIfSinglePDF()) {
+            // append mobile screenshots to desktop screenshots for 1 pdf
+            LinkedList<String> imageNames = test.getDesktopScreenshots();
+            imageNames.addAll(test.getMobileScreenshots());
 
-        // append mobile screenshots to desktop screenshots for 1 pdf
-        LinkedList<String> imageNames = test.getDesktopScreenshots();
-        imageNames.addAll(test.getMobileScreenshots());
+            makePDF(new PDFMaker(), imageNames, pdfName);
+        } else {
+            makePDF(new PDFMaker(), test.getDesktopScreenshots(), "desktop_" + pdfName);
+            makePDF(new PDFMaker(), test.getMobileScreenshots(), "mobile_" + pdfName);
+        }
+    }
 
+    private static void makePDF(PDFMaker pdf,List<String> imagePaths, String pdfName){
         try {
-            for (String imagePath : imageNames) {
-                newPdf.addImg(imagePath);
+            for (String imagePath : imagePaths) {
+                pdf.addImg(imagePath);
             }
-            newPdf.savePDF(savePath + "/pdfs/" + pdfName + ".pdf");
-            newPdf.close();
+            pdf.savePDF(savePath + "/pdfs/" + pdfName + ".pdf");
+            pdf.close();
             System.out.println(pdfName + ".pdf created!");
         } catch (IOException e) {
             e.printStackTrace();

@@ -41,12 +41,7 @@ public class BrandUrl {
         }
     }
 
-    public BrandUrl(Long jobType, EnvironmentType environmentType){
-        testType = environmentType;
-        domain = environments.get(jobType).get(environmentType);
-    }
-
-    public BrandUrl(String jobType, EnvironmentType environmentType){
+    public BrandUrl(Object jobType, EnvironmentType environmentType){
         testType = environmentType;
         domain = environments.get(jobType).get(environmentType);
     }

@@ -3,6 +3,8 @@ package com.gene.screenshots;
 
 // used for getting Jenkins parameters
 
+import com.gene.screenshots.selenium.SeleniumHeadless;
+
 import java.io.File;
 
 import static com.gene.screenshots.EnvironmentType.*;
@@ -39,6 +41,10 @@ public class Variables {
         EnvironmentType environmentType = LOCAL;
 
         for (String arg : args) {
+
+            if(arg.equals("pdfbreakpoint=true"))
+                SeleniumHeadless.setIfSinglePDF(false);
+
             if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
                 savePath = arg.substring(9, arg.length());
                 if(savePath.equals("") || savePath == null)

@@ -39,7 +39,7 @@ public abstract class Screenshots {
 
     // if true desktop and mobile screenshots are created as separate pdfs
     // if false both desktop and mobile are merged as one pdf.
-    private static boolean ifSinglePDF;
+    private static boolean ifSinglePDF = true;
 
     private Log log;
     private LinkedList<String> desktopScreenshots = new LinkedList<>();
@@ -146,6 +146,15 @@ public abstract class Screenshots {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
     }
+
+    public static boolean isIfSinglePDF() {
+        return ifSinglePDF;
+    }
+
+    public static void setIfSinglePDF(boolean ifSinglePDF) {
+        Screenshots.ifSinglePDF = ifSinglePDF;
+    }
+
 
     // full site body screenshot
     // need to store current scroll position

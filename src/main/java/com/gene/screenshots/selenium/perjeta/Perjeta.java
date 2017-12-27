@@ -1,12 +1,7 @@
-package com.gene.screenshots.selenium.accesssolutions.perjeta;
+package com.gene.screenshots.selenium.perjeta;
 
-import com.assertthat.selenium_shutterbug.core.Shutterbug;
-import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
-import com.gene.screenshots.pdf.PDFMaker;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.*;
-
-import static com.gene.screenshots.selenium.Constants.MOBILE_WIDTH;
 
 public class Perjeta extends SeleniumHeadless{
 
@@ -20,7 +15,7 @@ public class Perjeta extends SeleniumHeadless{
         WebDriver driver = null;
         try {
             driver = makeMobileDriver();
-            driver.get("http://www.perjeta.com");//"https://dev-perjeta.gene.com/");
+            driver.get("http://www.perjeta.com");
             Thread.sleep(1000);
             forceClick(driver, "/html/body/section[2]/div[4]/div/footer/a[2]");
 
@@ -46,11 +41,6 @@ public class Perjeta extends SeleniumHeadless{
             Thread.sleep(1000);
             forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[5]/header");
             full(driver, false, "perjeta", "Dosing");
-
-            driver.get("https://en.wikipedia.org/wiki/Star_Wars");
-            Thread.sleep(1000);
-            full(driver, false, "perjeta", "starwars_mine");
-
 
         }catch (Exception e){
             e.printStackTrace();

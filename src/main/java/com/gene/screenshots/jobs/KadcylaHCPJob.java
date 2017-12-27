@@ -14,9 +14,12 @@ import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 
 public class KadcylaHCPJob extends ScreenshotJob {
 
+    public KadcylaHCPJob(){
+        super.screenshotCode = new KadcylaHCP();
+    }
+
     @Override
     public void createResult() {
-        screenshotTest = new KadcylaHCP();
         super.createResult();
     }
 

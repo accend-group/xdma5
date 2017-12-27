@@ -20,12 +20,11 @@ import static com.gene.screenshots.EnvironmentType.LOCAL;
 @Job(name = "Access_Solutions", ID = 1, info = "Screenshot automation for Access Solutions.")
 public class AccessSolutionsJob extends ScreenshotJob {
 
-    private  List<SeleniumHeadless> brands;
+    private  List<SeleniumHeadless> brands = createAccessSolutionsTestList();;
 
     @Override
     public void createResult() {
         //creates screenshots and pdfs
-        brands = createAccessSolutionsTestList();
         for (SeleniumHeadless accessTest : brands)
             createThreads(accessTest);
     }
@@ -37,33 +36,10 @@ public class AccessSolutionsJob extends ScreenshotJob {
 
     private static void sendZipToS3(AmazonS3 s3, List<SeleniumHeadless> tests, String zipName, String zipPath){
 
-        final int BUFFER = 8192;
-        String pdfPaths = Variables.getPdfOutputPath();
-
-        try {
-            BufferedInputStream origin = null;
-            FileOutputStream dest = new FileOutputStream( zipPath + "/" + zipName + ".zip");
-            ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
-            byte data[] = new byte[BUFFER];
-
-            String files[] = new String[tests.size()];
-            for(int i = 0; i < tests.size(); ++i)
-                files[i] = pdfPaths + "/" + tests.get(i).getClass().getSimpleName() + ".pdf";
-            for (int i=0; i<files.length; i++) {
-                FileInputStream fi = new FileInputStream(files[i]);
-                origin = new BufferedInputStream(fi, BUFFER);
-                ZipEntry entry = new ZipEntry(files[i]);
-                out.putNextEntry(entry);
-                int count;
-                while((count = origin.read(data, 0, BUFFER)) != -1) {
-                    out.write(data, 0, count);
-                }
-                origin.close();
-            }
-            out.close();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        String fileNames[] = new String[tests.size()];
+        for (int i = 0; i < tests.size(); ++i)
+            fileNames[i] = tests.get(i).getClass().getSimpleName() + ".pdf";
+        createZip(fileNames, zipName, zipPath);
 
         System.out.println("Sending " + zipName + ".zip...");
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
