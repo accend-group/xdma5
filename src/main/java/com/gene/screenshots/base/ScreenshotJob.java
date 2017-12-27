@@ -29,10 +29,10 @@ public abstract class  ScreenshotJob extends ScreenshotThreads {
 
     // send pdf(s)?
     public void sendResult(AmazonS3 s3){
-        /*if(SeleniumHeadless.isIfSinglePDF())
+        if(SeleniumHeadless.isIfSinglePDF())
             sendPDFtoS3(s3);
         else
-            sendZipToS3(s3);*/
+            sendZipToS3(s3);
     }
 
     protected void sendZipToS3(AmazonS3 s3){
