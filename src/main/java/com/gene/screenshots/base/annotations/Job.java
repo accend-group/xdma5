@@ -1,4 +1,4 @@
-package com.gene.screenshots.annotations;
+package com.gene.screenshots.base.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -20,8 +20,8 @@ public @interface Job {
     long ID();
 
     /***
-     * label, a description of the screenshot automation job
+     * a description of the screenshot automation job
      */
-    String label();
+    String info();
 
 }

@@ -1,6 +1,7 @@
 [
   {
     "name": "Access_Solutions",
+    "id" : 1,
     "types": {
       "dev": "https://dev-genentech-access.gene.com",
       "prod": "https://www.genentech-access.com",
@@ -11,6 +12,7 @@
 
   {
     "name": "Kadcyla_HCP",
+    "id" : 2,
     "types": {
       "dev": "https://dev-kadcyla.gene.com",
       "prod": "https://www.kadcyla.com",
@@ -21,6 +23,7 @@
 
   {
     "name": "Kadcyla_Patient",
+    "id" : 3,
     "types": {
       "dev": "https://dev-kadcyla.gene.com",
       "prod": "https://www.kadcyla.com",

@@ -31,11 +31,28 @@ import static java.lang.Math.toIntExact;
  * https://groups.google.com/a/chromium.org/forum/#!msg/headless-dev/DqaAEXyzvR0/XmHJTCawCAAJ
  *
  ***/
-public class Screenshots {
+public abstract class Screenshots {
+
+    // viewport height limitation in chrome, do not change value!
+    // https://groups.google.com/a/chromium.org/forum/#!msg/headless-dev/DqaAEXyzvR0/P9zmTLMvDQAJ
+    private final int CHROME_HEIGHT_CAP = 16384;
+
+    // if true desktop and mobile screenshots are created as separate pdfs
+    // if false both desktop and mobile are merged as one pdf.
+    private static boolean ifSinglePDF;
 
     private Log log;
     private LinkedList<String> desktopScreenshots = new LinkedList<>();
     private LinkedList<String> mobileScreenshots = new LinkedList<>();
+
+
+    public LinkedList<String> getDesktopScreenshots() {
+        return desktopScreenshots;
+    }
+
+    public LinkedList<String> getMobileScreenshots() {
+        return mobileScreenshots;
+    }
 
 
     public void setLog(Log log) {
@@ -182,6 +199,7 @@ public class Screenshots {
             e1.printStackTrace();
         }
     }
+
 
     private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
 

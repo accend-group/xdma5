@@ -25,7 +25,6 @@ public class PDFMaker {
         images.add(imgFilePath);
     }
 
-
     public void close() throws IOException {
         if (pdf != null)
             pdf.close();

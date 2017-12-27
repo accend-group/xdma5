@@ -6,7 +6,6 @@ import com.gene.screenshots.pdf.PDFMaker;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.*;
 
-import static com.gene.screenshots.selenium.Constants.CHROME_HEIGHT_CAP;
 import static com.gene.screenshots.selenium.Constants.MOBILE_WIDTH;
 
 public class Perjeta extends SeleniumHeadless{

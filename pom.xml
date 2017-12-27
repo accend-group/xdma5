@@ -79,5 +79,11 @@
             <artifactId>aws-java-sdk</artifactId>
             <version>1.11.251</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections-maven</artifactId>
+            <version>0.9.8</version>
+        </dependency>
     </dependencies>
 </project>

@@ -20,11 +20,11 @@ public class BrandUrl {
     // the url to use when testing screenshots
     private String domain;
 
-    private static HashMap<String, HashMap<EnvironmentType, String>> environments = new HashMap<>();
+    private static HashMap<Object, HashMap<EnvironmentType, String>> environments = new HashMap<>();
 
     public static void loadEnvironments(File path){
         try {
-            jsonUrls = new JSONArray(new Scanner(path).next());
+            jsonUrls = new JSONArray(new Scanner(path).useDelimiter("\\Z").next());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -36,8 +36,14 @@ public class BrandUrl {
             urls.put(PROD, types.getString("prod"));
             urls.put(STAGE, types.getString("stage"));
             urls.put(LOCAL, types.getString("local"));
-            environments.put( domain.getString("name"), urls);
+            environments.put(domain.getString("name"), urls);
+            environments.put(domain.getLong("id"), urls);
         }
+    }
+
+    public BrandUrl(Long jobType, EnvironmentType environmentType){
+        testType = environmentType;
+        domain = environments.get(jobType).get(environmentType);
     }
 
     public BrandUrl(String jobType, EnvironmentType environmentType){

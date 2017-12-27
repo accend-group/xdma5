@@ -15,7 +15,7 @@ import static com.gene.screenshots.selenium.Constants.*;
 /**
  * Abstract class for screenshot automation code
  * Create another class that extends SeleniumHeadless
- * each class represents a selenium test that produces screenshots.
+ * each class represents a selenium code that produces screenshots for mobile and desktop.
  * each screenshot is saved in a log file that is used to create a PDF.
  * The mobile and desktop automated test functions must quit the driver at the end.
  */
@@ -24,14 +24,11 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     protected static BrandUrl domain;
 
-    // if true desktop and mobile screenshots are created as separate pdfs
-    // if false both desktop and mobile are merged as one pdf.
-    private static boolean ifSinglePDF;
-
+    // default viewport sizes
     private static int desktopWidth = DESKTOP_WIDTH;
     private static int desktopHeight = DESKTOP_HEIGHT;
+    private static int mobileHeight = MOBILE_HEIGHT;
     private static int mobileWidth = MOBILE_WIDTH;
-    private static int mobile
 
     // window.scrollBy(X, Y);
     // https://stackoverflow.com/a/4403822
@@ -61,16 +58,13 @@ public abstract class SeleniumHeadless extends Screenshots {
     public static WebDriver makeDesktopDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        //options.addArguments("window-size="+ DESKTOP_WIDTH + "," + DESKTOP_HEIGHT);
-        //options.addArguments("--disable-gpu-watchdog");
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("disable-infobars");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
-        driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
-        //System.out.println(driver.getSessionId());
+        driver.manage().window().setSize(new Dimension(desktopWidth, DESKTOP_HEIGHT));
         return driver;
     }
 
@@ -85,9 +79,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--no-sandbox");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-        ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
-        //System.out.println(driver.getSessionId());
-        return driver;
+        return new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
     }
 
     public void desktopAutomationTest(String savePath) {
@@ -110,15 +102,6 @@ public abstract class SeleniumHeadless extends Screenshots {
     protected static void scrollAndClickAt(WebDriver driver, WebElement e) {
         scrollToElement(driver, e);
         e.click();
-    }
-
-
-    public void createResult() {
-        // pdf creation
-    }
-
-    public void sendResult() {
-
     }
 
     protected static void scrollToElement(WebDriver driver, WebElement e) {
@@ -144,13 +127,63 @@ public abstract class SeleniumHeadless extends Screenshots {
         return (String) ((JavascriptExecutor) driver).executeScript(jscript, e);
     }
 
-
-
     public static void setDomain(BrandUrl url){
         domain = url;
     }
 
-    protected static void goToUrl(WebDriver driver, String url){
-        driver.get(domain.toString() + url);
+    // redirect a partial url to the correct domain
+    protected static void goToUrl(WebDriver driver, String partialUrl){
+        driver.get(domain.toString() + partialUrl);
     }
+
+    public void killDesktop(){
+        desktopDriver.quit();
+    }
+
+    public void killMobile(){
+        mobileDriver.quit();
+    }
+
+    public static void setDesktopSize(int w, int h){
+        desktopWidth = w;
+        desktopHeight = h;
+    }
+    
+    public static void setDesktopWidth(int w){
+        desktopWidth = w;
+    }
+    
+    public static void setDesktopHeight(int h){
+        desktopHeight = h;    
+    }
+
+    public static void setmobileSize(int w, int h){
+        mobileWidth = w;
+        mobileHeight = h;
+    }
+
+    public static void setmobileWidth(int w){
+        mobileWidth = w;
+    }
+
+    public static void setmobileHeight(int h){
+        mobileHeight = h;
+    }
+
+    public static int getDesktopWidth(){
+        return desktopWidth;
+    }
+
+    public static int getDesktopHeight(){
+        return desktopHeight;
+    }
+
+    public static int getMobileWidth() {
+        return mobileWidth;
+    }
+
+    public static int getMobileHeight() {
+        return mobileHeight;
+    }
+    
 }

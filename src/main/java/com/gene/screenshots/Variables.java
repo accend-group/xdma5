@@ -9,7 +9,7 @@ import static com.gene.screenshots.EnvironmentType.*;
 
 public class Variables {
 
-    private static String chromedriverPath = null;
+    private static String chromedriverPath;
 
     // where main directory is set for creating images in sub directories for each selenium script that needs a pdf
     private static String savePath = "target/screenshots";
@@ -20,15 +20,12 @@ public class Variables {
     private static String awsSecretKey = null;
     private static String awsAccessKey = null;
 
-    private static boolean s3 = false;
 
-    // needed to change marwin's code in case of differences in prod, dev, stage, and local
-    private static boolean accessSolutions = false;
-    private static boolean kadcylaHCP = false;
-    private static boolean kadcylaPatient = false;
+    private static boolean s3Local = false;
+>>>>>>> annotation changes, json contains ID of automation job, a JOB_TYPE can be a id or job name
 
     // needed for json url type
-    private static String jobType = null;
+    private static Object jobType = null;
 
     private static boolean desktopPDF = false;
     private static boolean mobilePDF = false;
@@ -36,9 +33,6 @@ public class Variables {
 
     private static BrandUrl domain = null;
 
-    // defaults to sequential test run
-    private static boolean useTheads = false;
-    private static int threadCount = 2;
 
     public static void main(String[] args) {
 
@@ -72,6 +66,7 @@ public class Variables {
                     environmentType = PROD;
             }
 
+<<<<<<< HEAD
             if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
                 jobType =  arg.substring(8, arg.length());
                 switch(jobType){
@@ -86,6 +81,10 @@ public class Variables {
 
             if (arg.equals("s3=true"))
                 s3 = true;
+=======
+            if (arg.equals("aws-local=true"))
+                s3Local = true;
+>>>>>>> annotation changes, json contains ID of automation job, a JOB_TYPE can be a id or job name
             if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
             if (arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
@@ -98,19 +97,8 @@ public class Variables {
                     region = null;
             }
 
-            if (arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
-                try {
-                    threadCount = Integer.parseInt(arg.substring(12, arg.length()));
-                    useTheads = true;
-                } catch (NumberFormatException e) {
-                    System.out.println("Warning: invalid/empty thread count, Set to default of 1");
-                    threadCount = 1;
-                    useTheads = false;
-                }
-                if (threadCount <= 0) {
-                    System.out.println("Warning: set thread count is less that 1! Using single thread!");
-                    useTheads = false;
-                }
+            if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
+                jobType =  arg.substring(8, arg.length());
             }
         }
 
@@ -118,7 +106,16 @@ public class Variables {
             System.out.println("Error: No job specified!");
             System.exit(1);
         }
-        domain = new BrandUrl(jobType, environmentType);
+
+        // if ID or name of Job
+        try {
+            Long ID = Long.parseLong((String) jobType);
+            jobType = ID;
+            domain = new BrandUrl(ID, environmentType);
+        } catch (NumberFormatException e) {
+            domain = new BrandUrl((String)jobType, environmentType);
+        }
+
 
         String OS = System.getProperty("os.name").toLowerCase();
         if (OS.contains("win"))
@@ -126,24 +123,17 @@ public class Variables {
         else
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
-        if(pdfOutputPath == null)
-            pdfOutputPath = savePath;
+        if(pdfOutputPath == null){
+           pdfOutputPath =  "target/screenshots/pdfs";
+            File dir = new File(pdfOutputPath);
+            dir.mkdirs();
+        }
+
+
     }
 
-    public static String getJob(){
+    public static Object getJob(){
         return jobType;
-    }
-
-    public static boolean isAccessSolutions() {
-        return accessSolutions;
-    }
-
-    public static boolean isKadyclaHCP() {
-        return kadcylaHCP;
-    }
-
-    public static boolean isKadcylaPatient() {
-        return kadcylaPatient;
     }
 
     public static String getChromedriverPath() {
@@ -178,6 +168,7 @@ public class Variables {
         return region;
     }
 
+<<<<<<< HEAD
     public static boolean isS3() {
         return s3;
     }
@@ -188,6 +179,10 @@ public class Variables {
 
     public static int getThreadCount() {
         return threadCount;
+=======
+    public static boolean isS3Local() {
+        return s3Local;
+>>>>>>> annotation changes, json contains ID of automation job, a JOB_TYPE can be a id or job name
     }
 
     public static BrandUrl getDomain(){

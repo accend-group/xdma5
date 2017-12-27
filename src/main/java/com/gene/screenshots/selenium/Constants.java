@@ -10,7 +10,5 @@ public interface Constants {
     int MOBILE_WIDTH = 320;
     int MOBILE_HEIGHT = 720;
 
-    // viewport height limitation in chrome
-    // https://groups.google.com/a/chromium.org/forum/#!msg/headless-dev/DqaAEXyzvR0/P9zmTLMvDQAJ
-    int CHROME_HEIGHT_CAP = 16384;
+
 }
