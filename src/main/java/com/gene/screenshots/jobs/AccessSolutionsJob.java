@@ -25,26 +25,28 @@ public class AccessSolutionsJob extends ScreenshotJob {
     @Override
     public void createResult() {
         //creates screenshots and pdfs
-        for (SeleniumHeadless accessTest : brands)
-            createThreads(accessTest);
+        for(SeleniumHeadless geneAccessBrand : brands)
+           createThreads(geneAccessBrand);
     }
 
     @Override
     public void sendResult(AmazonS3 s3){
-        sendZipToS3(s3, brands, "access_solutions", savePath + "/zips");
+
+        sendZipToS3(s3, brands, getJobName(), savePath + "/zips");
     }
 
+    // custom zip file creation
     private static void sendZipToS3(AmazonS3 s3, List<SeleniumHeadless> tests, String zipName, String zipPath) {
 
 
-        String fileNames[] = new String[SeleniumHeadless.isIfSinglePDF() ? tests.size() : tests.size() * 2];
+        String fileNames[] = new String[ SeleniumHeadless.isIfSinglePDF()  ? tests.size() : (tests.size() * 2)];
 
-        for (int i = 0; i < tests.size(); ++i)
+        for (int i = 0, j = 0; i < fileNames.length; j++)
             if (SeleniumHeadless.isIfSinglePDF())
-                fileNames[i] = tests.get(i).getClass().getSimpleName() + ".pdf";
+                fileNames[i++] = tests.get(j).getClass().getSimpleName() + ".pdf";
             else {
-                fileNames[i++] = "desktop_" + tests.get(i).getClass().getSimpleName() + ".pdf";
-                fileNames[i] = "mobile_" + tests.get(i).getClass().getSimpleName() + ".pdf";
+                fileNames[i++] = "desktop_" + tests.get(j).getClass().getSimpleName() + ".pdf";
+                fileNames[i++] = "mobile_" + tests.get(j).getClass().getSimpleName() + ".pdf";
             }
         createZip(fileNames, zipName, zipPath);
 

@@ -10,6 +10,8 @@ import com.gene.screenshots.selenium.perjeta.Perjeta;
 public class PerjetaJob extends ScreenshotJob {
 
     public PerjetaJob(){
-        screenshotCode = new Perjeta();
+        super.screenshotCode = new Perjeta();
     }
+
+
 }
