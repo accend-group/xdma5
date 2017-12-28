@@ -24,7 +24,7 @@ import java.util.concurrent.Semaphore;
 
 public class ScreenshotsAutomation {
 
-    private static final int THREAD_LIMIT = 10;
+    private static final int THREAD_LIMIT = 2;
 
     public static void main(String[] args) throws InterruptedException {
 
