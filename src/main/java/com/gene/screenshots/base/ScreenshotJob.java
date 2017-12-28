@@ -18,7 +18,7 @@ public abstract class  ScreenshotJob extends ScreenshotThreads {
     protected SeleniumHeadless screenshotCode;
 
     public String getJobName(){
-        Annotation job = this.getClass().getDeclaredAnnotation(com.gene.screenshots.base.annotations.Job.class);
+        Annotation job = this.getClass().getDeclaredAnnotation(Job.class);
         return ((Job) job).name();
     }
 
@@ -60,18 +60,19 @@ public abstract class  ScreenshotJob extends ScreenshotThreads {
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         System.out.println("Sending " + getJobName() + " pdf file...");
 
-        String filePath = savePath + "/pdfs/" + screenshotScriptName + ".pdf";
+        String filePath = pdfSavePath + "/" + screenshotScriptName + ".pdf";
         String key = String.format("%s-%s-%s.pdf", getJobName(), Variables.getDomain().getType(), date);
         sendObject(s3, key, filePath);
 
         System.out.println("pdf sent!");
     }
 
-    private void sendObject(AmazonS3 s3, String key, String filePath){
+    protected static void sendObject(AmazonS3 s3, String key, String filePath){
         try {
             s3.putObject(Variables.getBucketName(), key, new File(filePath));
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

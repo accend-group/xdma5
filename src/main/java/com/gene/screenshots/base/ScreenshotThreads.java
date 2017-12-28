@@ -15,10 +15,14 @@ import java.util.concurrent.Semaphore;
 
 public abstract class ScreenshotThreads {
 
-    protected static String savePath;
+    protected static String savePath = null;
+    protected static String pdfSavePath = null;
 
-    public static void savePath(String savePath){
+    public static void setSavePath(String savePath){
         ScreenshotThreads.savePath = savePath;
+    }
+    public static void setPdfSavePath(String pdfPath){
+        ScreenshotThreads.pdfSavePath = pdfPath;
     }
 
     public static void setSemaphore(Semaphore limit){
@@ -107,7 +111,7 @@ public abstract class ScreenshotThreads {
             for (String imagePath : imagePaths) {
                 pdf.addImg(imagePath);
             }
-            pdf.savePDF(savePath + "/pdfs/" + pdfName + ".pdf");
+            pdf.savePDF(pdfSavePath + "/" + pdfName + ".pdf");
             pdf.close();
             System.out.println(pdfName + ".pdf created!");
         } catch (IOException e) {
