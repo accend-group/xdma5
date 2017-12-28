@@ -21,8 +21,6 @@ public class Variables {
     private static String awsSecretKey = null;
     private static String awsAccessKey = null;
 
-    private static boolean s3Local = false;
-
     // needed for json url type
     private static Object jobType = null;
 
@@ -66,8 +64,6 @@ public class Variables {
                     environmentType = PROD;
             }
 
-            if (arg.equals("aws-local=true"))
-                s3Local = true;
             if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
             if (arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
@@ -149,10 +145,6 @@ public class Variables {
 
     public static String getRegion() {
         return region;
-    }
-
-    public static boolean isS3Local() {
-        return s3Local;
     }
 
     public static BrandUrl getDomain(){
