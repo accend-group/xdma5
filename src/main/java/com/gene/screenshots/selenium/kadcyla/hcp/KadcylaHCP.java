@@ -19,7 +19,6 @@ public class KadcylaHCP extends SeleniumHeadless {
         try {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions action = new Actions(driver);
-            WebElement element;
 
             goToUrl(driver, "/hcp.html");
             remove(driver);
@@ -156,41 +155,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             goToUrl(driver, "/hcp/resources/financial-assistance.html");
             remove(driver);
             jse.executeScript("window.scrollBy(0,700)");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "kadcyla-hcp-6.1-tab1");
-
-            goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            remove(driver);
-            jse.executeScript("window.scrollBy(0,900)");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "kadcyla-hcp-6.1-tab2");
-
-            //driver.manage().window().setSize(new Dimension(1612,780));
-            goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            remove(driver);
-            jse.executeScript("window.scrollBy(0,1200)");
-            movecursor(driver);
-            scrollAndClickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q3")));
-            //driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "kadcyla-hcp-6.1-tab3");
-
-            //driver.manage().window().setSize(new Dimension(1612,750));
-            goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            remove(driver);
-            jse.executeScript("window.scrollBy(0,1300)");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "kadcyla-hcp-6.1-tab4");
-
-            goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            remove(driver);
-            jse.executeScript("window.scrollBy(0,1400)");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "kadcyla-hcp-6.1-tab5");
+            getScreenshotForTabs(driver, "kadcyla-hcp-6.1", savePath, true);
 
             goToUrl(driver, "/hcp/resources/downloads.html");
             remove(driver);
@@ -268,15 +233,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             visible(driver, true, savePath, "kadcyla-hcp");
 
-            element = driver.findElement(By.linkText("About KADCYLA"));
-            action.moveToElement(element).build().perform();
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "kadcyla-hcp-hover-1.0");
-
-            element = driver.findElement(By.linkText("Resources"));
-            action.moveToElement(element).build().perform();
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "kadcyla-hcp-hover-6.0");
+            getScreenshotForDesktopNavigation(driver, action, "kadcyla-hcp", savePath);
 
             driver.navigate().refresh();
             waitForPageLoad(driver);
@@ -461,37 +418,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             remove(driver);
             jse.executeScript("window.scrollBy(0,900)", "");
 
-            scrollAndClickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
-            //driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab1");
-
-            goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            remove(driver);
-            driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab2");
-
-            goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            remove(driver);
-            jse.executeScript("window.scrollBy(0,1200)", "");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab3");
-
-            goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            remove(driver);
-            jse.executeScript("window.scrollBy(0,1300)", "");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab4");
-
-            goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            remove(driver);
-            jse.executeScript("window.scrollBy(0,1400)", "");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-tab5");
+            getScreenshotForTabs(driver, "kadcyla-hcp-mobile-6.1", savePath, false);
 
             goToUrl(driver, "/hcp/resources/downloads.html");
             remove(driver);
@@ -559,18 +486,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             Thread.sleep(1000);
             visible(driver, false, savePath, "kadcyla-hcp-mobile");
 
-            driver.findElement(By.className("gene-component--header__toggle-icon--menu")).click();
-            Thread.sleep(1000);
-            driver.findElement(By.className("gene-component--navigation__icon--tab")).click();
-            Thread.sleep(1000);
-            visible(driver, false, savePath, "kadcyla-hcp-mobile-hover-1.0");
-
-            driver.navigate().refresh();
-            driver.findElement(By.className("gene-component--header__toggle-icon--menu")).click();
-            Thread.sleep(1000);
-            driver.findElement(By.xpath("//nav/div/div[2]/div/ul/li[6]/a/i")).click();
-            Thread.sleep(1000);
-            visible(driver, false, savePath, "kadcyla-hcp-mobile-hover-6.0");
+            getScreenshotForMobileNavigation(driver, "kadcyla-hcp", savePath);
 
             driver.navigate().refresh();
 

@@ -23,26 +23,12 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions action = new Actions(driver);
-            WebElement element;
 
             goToUrl(driver, "/patient.html");
             Thread.sleep(1500);
             visible(driver, true, savePath, "kadcyla-patient");
 
-            element = driver.findElement(By.linkText("KADCYLA and HER2+ Metastatic Breast Cancer"));
-            action.moveToElement(element).build().perform();
-            Thread.sleep(1500);
-            visible(driver, true, savePath, "kadcyla-hover-1.0");
-
-            element = driver.findElement(By.linkText("About KADCYLA"));
-            action.moveToElement(element).build().perform();
-            Thread.sleep(1500);
-            visible(driver, true, savePath, "kadcyla-hover-2.0");
-
-            element = driver.findElement(By.linkText("Support and Resources"));
-            action.moveToElement(element).build().perform();
-            Thread.sleep(1500);
-            visible(driver, true, savePath, "kadcyla-hover-3.0");
+            getScreenshotForDesktopNavigation(driver, action, "kadcyla", savePath);
 
             driver.navigate().refresh();
             jse.executeScript("window.scrollTo(0,1000)", "");
@@ -189,52 +175,17 @@ public class KadcylaPatient extends SeleniumHeadless {
             goToUrl(driver, "/patient/support-resources/financial-resources.html");
             remove(driver);
 
-            scrollAndClickAt(driver, driver.findElement(By.className("gene-component--accordionTabs__item--q1")));
-            //driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-tab1");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q1")).click();
-
-
-            driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-tab2");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q2")).click();
-
-
-            driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-tab3");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q3")).click();
-
-
-            driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-tab4");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q4")).click();
-
-
-            driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-tab5");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q5")).click();
-
-
-            driver.findElement(By.className("gene-component--accordionTabs__item--q6")).click();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-tab6");
-            driver.findElement(By.className("gene-component--accordionTabs__item--q6")).click();
-
+            getScreenshotForTabs(driver, "kadcyla-3.2", savePath, true);
 
             //driver.manage().window().maximize();
             goToUrl(driver, "/patient/support-resources/herconnection-support-program.html");
             Thread.sleep(1500);
             full(driver, true, savePath, "kadcyla-3.3");
 
+
             driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
             driver.findElement(By.name("last-name")).sendKeys("TestLastName");
             driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
-
             driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
@@ -301,25 +252,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             Thread.sleep(1500);
             visible(driver, false, savePath, "kadcyla-mobile-patient");
 
-            driver.findElement(By.className("gene-component--header__toggle-icon--menu")).click();
-            Thread.sleep(1500);
-            driver.findElement(By.className("gene-component--navigation__icon--tab")).click();
-            Thread.sleep(1500);
-            visible(driver, false, savePath, "kadcyla-mobile-hover-1.0");
-
-            driver.navigate().refresh();
-            driver.findElement(By.className("gene-component--header__toggle-icon--menu")).click();
-            Thread.sleep(1500);
-            driver.findElement(By.xpath("//nav/div/div[2]/div/ul/li[2]/a/i")).click();
-            Thread.sleep(1500);
-            visible(driver, false, savePath, "kadcyla-mobile-hover-2.0");
-
-            goToUrl(driver, "/patient.html");
-            driver.findElement(By.className("gene-component--header__toggle-icon--menu")).click();
-            Thread.sleep(1500);
-            driver.findElement(By.xpath("//nav/div/div[2]/div/ul/li[3]/a/i")).click();
-            Thread.sleep(1500);
-            visible(driver, false, savePath, "kadcyla-mobile-hover-3.0");
+            getScreenshotForMobileNavigation(driver, "kadcyla", savePath);
 
             goToUrl(driver, "/patient.html");
             jse.executeScript("window.scrollBy(0,3500)", "");
@@ -382,7 +315,6 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
             driver.findElement(By.name("last-name")).sendKeys("TestLastName");
             driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
-
             driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");

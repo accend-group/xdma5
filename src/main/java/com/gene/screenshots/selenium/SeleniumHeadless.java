@@ -8,7 +8,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -158,4 +160,42 @@ public abstract class SeleniumHeadless extends Screenshots {
         mobileDriver.quit();
     }
 
+
+    public void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String prefixName, String savePath) throws InterruptedException {
+        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent .gene-component--navigation__link--tab"));
+        for (int i = 0; i < elements.size(); i++) {
+            action.moveToElement(elements.get(i)).build().perform();
+            Thread.sleep(1000);
+            String screenshotName = prefixName +"-hover-" + Integer.toString(i + 1) + ".0";
+            visible(driver, true, savePath, screenshotName);
+        }
+    }
+
+    public void getScreenshotForMobileNavigation(WebDriver driver, String prefixName, String savePath) throws InterruptedException {
+        driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
+        Thread.sleep(1000);
+        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__icon--tab"));
+        for (int i = 0; i < elements.size(); i++) {
+            elements.get(i).click();
+            Thread.sleep(1000);
+            String screenshotName = prefixName +"-mobile-hover-" + Integer.toString(i + 1) + ".0";
+            visible(driver, false, savePath, screenshotName);
+            elements.get(i).click(); // collapse the current menu before going to the next one. So then the cursor won't hover over a submenu item.
+        }
+    }
+
+    public void getScreenshotForTabs(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
+        WebElement tabs = driver.findElement(By.cssSelector(".gene-component--accordionTabs__header"));
+        scrollToElement(driver, tabs);
+        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--accordionTabs__header"));
+        for (int i = 0; i < elements.size(); i++) {
+            elements.get(i).click();
+            Thread.sleep(1000);
+            String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
+            full(driver, isDesktop, savePath, screenshotName);
+            elements.get(i).click(); //collapse the current one
+            Thread.sleep(1000);
+        }
+    }
+>>>>>>> 49c9b88 Automate Tabs and the Navigation.
 }
