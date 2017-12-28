@@ -116,7 +116,6 @@ public class ScreenshotsAutomation {
             thread.join();
 
         if(Variables.getBucketName() != null && Variables.getAwsSecretKey() != null && Variables.getAwsAccessKey() != null){
-
             System.out.println("Connecting to S3...");
             AmazonS3 s3 = AmazonS3ClientBuilder.standard()
                     .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))

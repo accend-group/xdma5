@@ -1,10 +1,5 @@
 package com.gene.screenshots;
 
-
-// used for getting Jenkins parameters
-
-import com.gene.screenshots.selenium.SeleniumHeadless;
-
 import java.io.File;
 
 import static com.gene.screenshots.EnvironmentType.*;
