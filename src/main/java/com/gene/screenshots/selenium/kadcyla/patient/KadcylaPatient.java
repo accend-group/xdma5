@@ -49,7 +49,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             visible(driver, true, savePath, "kadcyla-hover-3.0");
 
             driver.navigate().refresh();
-            jse.executeScript("window.scrollTo(0,1500)", "");
+            jse.executeScript("window.scrollTo(0,1000)", "");
             driver.findElement(By.linkText("http://www.motherpregnancyregistry.com/")).click();
             jse.executeScript("window.scrollTo(0,0)", "");
             Thread.sleep(1500);
