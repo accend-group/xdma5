@@ -142,7 +142,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             full(driver, true, savePath, "kadcyla-hcp-6.1-pat5-no");
 
             goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            getScreenshotForTabs(driver, "kadcyla-hcp-6.1", savePath, true);
+            getScreenshotForAccordions(driver, "kadcyla-hcp-6.1", savePath, true);
 
             goToUrl(driver, "/hcp/resources/downloads.html");
             Thread.sleep(1000);
@@ -383,7 +383,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             full(driver, false, savePath, "kadcyla-hcp-mobile-6.1-pat5-no");
 
             goToUrl(driver, "/hcp/resources/financial-assistance.html");
-            getScreenshotForTabs(driver, "kadcyla-hcp-mobile-6.1", savePath, false);
+            getScreenshotForAccordions(driver, "kadcyla-hcp-mobile-6.1", savePath, false);
 
             goToUrl(driver, "/hcp/resources/downloads.html");
             Thread.sleep(1000);

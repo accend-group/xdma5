@@ -184,7 +184,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         }
     }
 
-    public void getScreenshotForTabs(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
+    public void getScreenshotForAccordions(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
         WebElement tabs = driver.findElement(By.cssSelector(".gene-component--accordionTabs__header"));
         scrollToElement(driver, tabs);
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--accordionTabs__header"));

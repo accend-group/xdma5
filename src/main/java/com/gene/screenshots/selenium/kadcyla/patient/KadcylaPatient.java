@@ -161,7 +161,7 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             goToUrl(driver, "/patient/support-resources/financial-resources.html");
 
-            getScreenshotForTabs(driver, "kadcyla-3.2", savePath, true);
+            getScreenshotForAccordions(driver, "kadcyla-3.2", savePath, true);
 
             //driver.manage().window().maximize();
             goToUrl(driver, "/patient/support-resources/herconnection-support-program.html");
@@ -390,7 +390,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat4-no");
 
             goToUrl(driver, "/patient/support-resources/financial-resources.html");
-            getScreenshotForTabs(driver, "kadcyla-mobile-3.2", savePath, false);
+            getScreenshotForAccordions(driver, "kadcyla-mobile-3.2", savePath, false);
 
         } catch (Exception e) {
             e.printStackTrace();
