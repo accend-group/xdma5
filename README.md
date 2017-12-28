@@ -1,5 +1,5 @@
 # Genentech-Screenshots
-Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sites.
+Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sites. 
 
 ### Pre-requisites:
 1) Node JS (>v4): `brew install node`
@@ -61,8 +61,6 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
    | -------------    | --- |--- |
    | DEVELOPMENT_ENVIRONMENT | choice (`dev` `stage` `prod` `local`)  | Run the screenshot automation on a developer, stage, production, or local environment | 
    | JOB_TYPE | string | Runs a specific automation job based on ID or job name. |
-   | SAVE_PATH         | string |Path where the screenshots are stored. Defaults to "target/screenshots" |
-   | PDF_OUTPUT_PATH  | string |Path to created PDF. If not set defaults to SAVE_PATH | 
    | S3_BUCKET        | string |Name of Bucket where PDF is stored |
    | S3_REGION        | string |Region where the bucket is at. Defaults to us-east-1 |
    | MERGE_BREAKPOINT | boolean | Breaks the merging of desktop and mobile screenshots if false. Desktop and mobile screenshots are placed in separated PDFs and are zipped up when sent to S3. If true then both desktop and mobile screenshots are saved as one PDF and a single PDF is sent to S3. Defaults to true. |
@@ -100,4 +98,4 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
    In the text area for `Command`, you will want to insert `npm install` to download the chromedriver.
 
 10. Under "Build", fill in `Goals and options` with the following:
-   ``` compile exec:java -Dexec.cleanupDaemonThreads=false -Dexec.args=" savepath=$SAVE_PATH pdfoutput=$PDF_OUTPUT_PATH s3-bucket=$S3_BUCKET s3-region=$S3_REGION jobtype=$JOB_TYPE pdfbreakpoint=$MERGE_BREAKPOINT environment=$DEVELOPMENT_ENVIRONMENT aws-accesskey=$ACCESS_KEY aws-secretkey=$SECRET_KEY"```
+   ```compile exec:java -Dexec.cleanupDaemonThreads=false -Dexec.args=" s3-bucket=$S3_BUCKET s3-region=$S3_REGION jobtype=$JOB_TYPE pdfbreakpoint=$MERGE_BREAKPOINT environment=$DEVELOPMENT_ENVIRONMENT aws-accesskey=$ACCESS_KEY aws-secretkey=$SECRET_KEY"```

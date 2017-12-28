@@ -2,7 +2,6 @@ package com.gene.screenshots;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -37,13 +36,15 @@ public class ScreenshotsAutomation {
 
 
         String savePath = Variables.getSavePath();
-        System.out.println("Save path is: " + savePath);
-        ScreenshotThreads.savePath(savePath);
+        String pdfSavePath = Variables.getPdfOutputPath();
+        System.out.printf("Screenshot path: %s\nPDF path: %s\n", savePath, pdfSavePath);
+        ScreenshotThreads.setSavePath(savePath);
+        ScreenshotThreads.setPdfSavePath(pdfSavePath);
 
         SeleniumHeadless.setChromeSystemProperty(Variables.getChromedriverPath());
 
         // if merging pdfs or creating desktop/mobile pdfs
-        SeleniumHeadless.setIfSinglePDF(!Variables.isIfMergePDF());
+        SeleniumHeadless.setIfSinglePDF(Variables.isIfMergePDF());
 
         ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
 
@@ -95,14 +96,16 @@ public class ScreenshotsAutomation {
         for (Thread thread : pdfThreads)
             thread.join();
 
+        if(Variables.getBucketName() == null || Variables.getAwsSecretKey() == null || Variables.getAwsAccessKey() == null){
 
-        System.out.println("Connecting to S3...");
-        AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
-                .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
-                .build();
+            System.out.println("Connecting to S3...");
+            AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                    .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
+                    .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
+                    .build();
 
-        // send pdf/zip
-        screenshotJob.sendResult(s3);
+            // send pdf/zip
+            screenshotJob.sendResult(s3);
+        }
     }
 }

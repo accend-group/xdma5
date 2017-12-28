@@ -15,7 +15,7 @@ public class Variables {
 
     // where main directory is set for creating images in sub directories for each selenium script that needs a pdf
     private static String savePath = "target/screenshots";
-    private static String pdfOutputPath = null;
+    private static String pdfOutputPath = "target/screenshots/pdfs";
     private static String bucketName = null;
     private static String region = null;
     private static String awsSecretKey = null;
@@ -36,23 +36,6 @@ public class Variables {
 
             if(arg.equals("pdfbreakpoint=false"))
                 ifMergePDF = false;
-
-            if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
-                savePath = arg.substring(9, arg.length());
-                if(savePath.equals("") || savePath == null)
-                    savePath = "target/screenshots";
-                File dir = new File(savePath);
-                dir.mkdirs();
-            }
-            if (arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
-                pdfOutputPath = arg.substring(10, arg.length());
-                if (pdfOutputPath.equals(""))
-                    pdfOutputPath = null;
-                else {
-                    File dir = new File(pdfOutputPath);
-                    dir.mkdirs();
-                }
-            }
 
             if(arg.contains("environment=") && arg.indexOf("environment=") == 0) {
                 String url = arg.substring(12, arg.length());
@@ -102,13 +85,10 @@ public class Variables {
         else
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
-        if(pdfOutputPath == null){
-            pdfOutputPath =  "target/screenshots/pdfs";
-            File dir = new File(pdfOutputPath);
-            dir.mkdirs();
-        }
-
-
+        File dir = new File(savePath);
+        dir.mkdirs();
+        dir = new File(pdfOutputPath);
+        dir.mkdirs();
     }
 
     public static boolean isIfMergePDF() {

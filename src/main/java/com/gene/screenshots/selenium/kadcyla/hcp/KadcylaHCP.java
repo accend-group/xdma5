@@ -277,6 +277,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             visible(driver, true, savePath, "kadcyla-hcp-hover-6.0");
 
             driver.navigate().refresh();
+            waitForPageLoad(driver);
             jse.executeScript("window.scrollTo(0,document.body.scrollHeight)", "");
             driver.findElement(By.linkText("www.fda.gov/medwatch")).click();
             jse.executeScript("window.scrollTo(0,0)", "");
