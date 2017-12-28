@@ -2,22 +2,21 @@ package com.gene.screenshots;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.Bucket;
-import com.gene.screenshots.pdf.Log;
-import com.gene.screenshots.pdf.PDFMaker;
+import com.gene.screenshots.base.ScreenshotThreads;
+import com.gene.screenshots.base.annotations.Job;
+import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import com.gene.screenshots.selenium.accesssolutions.en.*;
-import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
-import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
+import org.reflections.Reflections;
+
 
 import java.io.*;
+import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.concurrent.Semaphore;
-
-import static com.gene.screenshots.EnvironmentType.LOCAL;
 
 /**
  * Starts the screenshot process from a jenkins job.
@@ -26,11 +25,7 @@ import static com.gene.screenshots.EnvironmentType.LOCAL;
 
 public class ScreenshotsAutomation {
 
-    private static List<Thread> screenshotThreads = new LinkedList<>();
-    private static List<Thread> pdfThreads = new LinkedList<>();
-    private static AmazonS3 s3 = null;
-
-    private static Semaphore threadLock;
+    private static final int THREAD_LIMIT = 2;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -40,197 +35,74 @@ public class ScreenshotsAutomation {
         System.out.println("Reading Jenkins parameters!");
         Variables.main(args);
 
-        System.out.println("Thread count: " + Variables.getThreadCount());
-        threadLock = new Semaphore(Variables.getThreadCount(), true);
 
-        String chromedriverPath = Variables.getChromedriverPath();
         String savePath = Variables.getSavePath();
         System.out.println("Save path is: " + savePath);
+        ScreenshotThreads.savePath(savePath);
 
-        System.out.println("Chromedrive path is: " + chromedriverPath);
-        SeleniumHeadless.setChromeSystemProperty(chromedriverPath);
+        SeleniumHeadless.setChromeSystemProperty(Variables.getChromedriverPath());
+
+        // if merging pdfs or creating desktop/mobile pdfs
+        SeleniumHeadless.setIfSinglePDF(!Variables.isIfMergePDF());
+
+        ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
+
+        // search project path for classes with @Job
+        Reflections reflections = new Reflections("com.gene.screenshots.jobs");
+        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Job.class);
+        HashMap<Object, Class<?>> annotationsMap = new HashMap<>();
+        for (Class<?> class_ : annotated) {
+            Annotation info = class_.getDeclaredAnnotation(Job.class);
+            annotationsMap.put(((Job) info).ID(), class_);
+            annotationsMap.put(((Job) info).name(), class_);
+        }
+
+        // get specified job
+        ScreenshotJob screenshotJob = null;
+        try {
+            Job job = annotationsMap.get(Variables.getJob()).getDeclaredAnnotation(Job.class);
+            if(job != null)
+                System.out.println(String.format("Running %s, ID: %d, Info: %s", job.name(), job.ID(), job.info()));
+            screenshotJob = (ScreenshotJob) annotationsMap.get(Variables.getJob()).newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
 
         // setting the testing domain (prod, stage, dev, local)
-        System.out.println("Testing at: " + Variables.getDomain());
+        System.out.println("Running automation at: " + Variables.getDomain());
         SeleniumHeadless.setDomain(Variables.getDomain());
 
-        if (Variables.isAccessSolutions())
-            for (SeleniumHeadless accessTest : createAccessSolutionsTestList())
-                createThreads(accessTest);
-
-        if (Variables.isKadyclaHCP())
-            createThreads(new KadcylaHCP());
-
-        if (Variables.isKadcylaPatient())
-            createThreads(new KadcylaPatient());
-
-        // if sending pdf to s3
-        if (Variables.isS3()) {
-            System.out.println("Connecting to S3...");
-            s3 = AmazonS3ClientBuilder.standard()
-                    .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
-                    .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
-                    .build();
-        }
-
-        // start automation job(s)
-        if (Variables.isUseThreads()) {
-            // concurrent run
-            screenshotThreads.addAll(pdfThreads);
-            for (Thread thread : screenshotThreads)
-                thread.start();
-            for (Thread thread : pdfThreads)
-                thread.join();
-        } else {
-            // sequential run
-            for (Thread thread : screenshotThreads) {
-                thread.start();
-                thread.join();
-            }
-            for (Thread thread : pdfThreads) {
-                thread.start();
-                thread.join();
-            }
-        }
-    }
-
-    // english access solutions
-    private static List<SeleniumHeadless> createAccessSolutionsTestList() {
-        List<SeleniumHeadless> result = new LinkedList<>();
-
-        result.add(new Actemra());
-        result.add(new Alecensa());
-        result.add(new Avastin());
-        result.add(new Cotellic());
-        result.add(new Erivedge());
-        result.add(new Esbriet());
-        result.add(new Gazyva());
-        result.add(new Hemlibra());
-        result.add(new Herceptin());
-        result.add(new Kadcyla());
-        result.add(new Lucentis());
-        result.add(new Ocrevus());
-        result.add(new Patient());
-        if (Variables.getDomain().getType() == LOCAL) // not up on prod, dev, and stage
-            result.add(new Pegasys());
-        result.add(new Perjeta());
-        result.add(new Pulmozyme());
-        result.add(new RituxanGPAMPA());
-        result.add(new RituxanNHLCLL());
-        result.add(new RituxanRA());
-        result.add(new RituxanHycela());
-        result.add(new Tarceva());
-        result.add(new Tecentriq());
-        result.add(new Venclexta());
-        result.add(new Xolair());
-        result.add(new Zelboraf());
-        return result;
-    }
-
-    // mobile, desktop, and pdf threads created
-    private static void createThreads(SeleniumHeadless test) {
-
-        //TODO if 2 pdfs are needed for mobile/desktop change to add another log
-        Log pdfLog = new Log();
-        test.setLog(pdfLog);
-        String testName = test.getClass().getSimpleName();
-        Thread[] deskMobThreads = new Thread[]{
-                new Thread(() -> {
-                    if (Variables.isUseThreads()) {
-                        try {
-                            threadLock.acquire();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    System.out.println(testName + " mobile screenshot automation started!");
-                    test.mobileAutomationTest(Variables.getSavePath() + "/mobile/" + testName);
-                    threadLock.release();
-                }),
-                new Thread(() -> {
-                    if (Variables.isUseThreads()) {
-                        try {
-                            threadLock.acquire();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    System.out.println(testName + " desktop screenshot automation started!");
-                    test.desktopAutomationTest(Variables.getSavePath() + "/desktop/" + testName);
-                    threadLock.release();
-                })
-        };
-        deskMobThreads[0].setDaemon(true);
-        deskMobThreads[1].setDaemon(true);
-        screenshotThreads.add(deskMobThreads[0]);
-        screenshotThreads.add(deskMobThreads[1]);
-
-        Thread pdfThread = new Thread(() -> {
-            try {
-                // wait for the threads to finish to read in the log file
-                deskMobThreads[0].join();
-                deskMobThreads[1].join();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            createPDFandSendThread(test, testName, Variables.getPdfOutputPath());
-        });
-        pdfThread.setDaemon(true);
-        pdfThreads.add(pdfThread);
-    }
-
-    private static void createPDFandSendThread(SeleniumHeadless test, String pdfName, String pdfOutputPath) {
-
-        String savePath = Variables.getSavePath();
-        String testName = test.getClass().getSimpleName();
-        String logPath = savePath + "/logs/" + testName + ".txt";
-
-        // saveLog merges desktop/mobile into 1 log file
-        test.setLogName(testName);
-        test.saveLog(savePath + "/logs");
-
-        PDFMaker newPdf = new PDFMaker();
-        LinkedList<String> imageNames = new LinkedList<>();
-        try {
-            File logFile = new File(logPath);
-            FileReader reader = new FileReader(logFile);
-            BufferedReader buffer = new BufferedReader(reader);
-            String line;
-            while ((line = buffer.readLine()) != null)
-                imageNames.add(line);
-        } catch (IOException e) {
-            if (e instanceof FileNotFoundException)
-                System.out.println("No log file found at path!");
-            else
-                System.out.println("Error reading in log file!");
+        if (screenshotJob == null){
+            System.out.println("Error! invalid Job ID or Job name");
             System.exit(1);
         }
 
-        if (pdfOutputPath == null)
-            pdfOutputPath = savePath;
-        try {
-            for (String imagePath : imageNames) {
-                newPdf.addImg(imagePath);
-            }
-            newPdf.savePDF(pdfOutputPath + "/" + pdfName + ".pdf");
-            newPdf.close();
-            System.out.println(pdfName + ".pdf created!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // create worker threads that generate the pdf results
+        screenshotJob.createResult();
 
-        // if sending pdf to s3
-        if (s3 == null)
-            return;
+        // get threads
+        final List<Thread> screenshotThreads = screenshotJob.getScreenshotThreads();
+        final List<Thread> pdfThreads = screenshotJob.getPdfThreads();
 
-        System.out.println("Sending " + pdfName + ".pdf...");
-        try {
-            s3.putObject(Variables.getBucketName(),
-                    Variables.getPdfKey(),
-                    new File((pdfOutputPath == null ? "." : pdfOutputPath) + "/" + (pdfName == null ? testName : pdfName) + ".pdf"));
-            System.out.println("pdf sent!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // concurrent run, run all threads by appending pdf threads to screenshot threads
+        screenshotThreads.addAll(pdfThreads);
+        for (Thread thread : screenshotThreads)
+            thread.start();
+        // wait for pdfs to be completed
+        for (Thread thread : pdfThreads)
+            thread.join();
+
+
+        System.out.println("Connecting to S3...");
+        AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
+                .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
+                .build();
+
+        // send pdf/zip
+        screenshotJob.sendResult(s3);
     }
 }

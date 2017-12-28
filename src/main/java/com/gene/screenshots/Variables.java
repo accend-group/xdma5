@@ -3,50 +3,40 @@ package com.gene.screenshots;
 
 // used for getting Jenkins parameters
 
+import com.gene.screenshots.selenium.SeleniumHeadless;
+
 import java.io.File;
 
 import static com.gene.screenshots.EnvironmentType.*;
 
 public class Variables {
 
-    private static String chromedriverPath = null;
+    private static String chromedriverPath;
 
     // where main directory is set for creating images in sub directories for each selenium script that needs a pdf
     private static String savePath = "target/screenshots";
-    private static String pdfName = null;
     private static String pdfOutputPath = null;
-
     private static String bucketName = null;
-    private static String pdfKey = null;
     private static String region = null;
     private static String awsSecretKey = null;
     private static String awsAccessKey = null;
 
-    private static boolean s3 = false;
-
-    // needed to change marwin's code in case of differences in prod, dev, stage, and local
-    private static boolean accessSolutions = false;
-    private static boolean kadcylaHCP = false;
-    private static boolean kadcylaPatient = false;
-
     // needed for json url type
-    private static String jobType = null;
-
-    private static boolean desktopPDF = false;
-    private static boolean mobilePDF = false;
-    private static boolean bothPDF = true;
+    private static Object jobType = null;
 
     private static BrandUrl domain = null;
 
-    // defaults to sequential test run
-    private static boolean useTheads = false;
-    private static int threadCount = 1;
+    private static boolean ifMergePDF = true;
 
     public static void main(String[] args) {
 
         EnvironmentType environmentType = LOCAL;
 
         for (String arg : args) {
+
+            if(arg.equals("pdfbreakpoint=false"))
+                ifMergePDF = false;
+
             if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
                 savePath = arg.substring(9, arg.length());
                 if(savePath.equals("") || savePath == null)
@@ -74,49 +64,20 @@ public class Variables {
                     environmentType = PROD;
             }
 
-            if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
-                jobType =  arg.substring(8, arg.length());
-                switch(jobType){
-                    case "Access_Solutions":
-                        accessSolutions = true; break;
-                    case "Kadcyla_HCP":
-                        kadcylaHCP = true; break;
-                    case "Kadcyla_Patient":
-                        kadcylaPatient = true; break;
-                }
-            }
-
-            if (arg.contains("pdfname=") && arg.indexOf("pdfname=") == 0)
-                pdfName = arg.substring(8, arg.length());
-            if (arg.equals("s3=true"))
-                s3 = true;
             if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
                 awsAccessKey = arg.substring(14, arg.length());
             if (arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
                 awsSecretKey = arg.substring(14, arg.length());
             if (arg.contains("s3-bucket=") && arg.indexOf("s3-bucket=") == 0)
                 bucketName = arg.substring(10, arg.length());
-            if (arg.contains("s3-pdfkey=") && arg.indexOf("s3-pdfkey=") == 0)
-                pdfKey = arg.substring(10, arg.length());
             if (arg.contains("s3-region=") && arg.indexOf("s3-region=") == 0) {
                 region = arg.substring(10, arg.length());
                 if(region.equals(""))
                     region = null;
             }
 
-            if (arg.contains("threadcount=") && arg.indexOf("threadcount=") == 0) {
-                try {
-                    threadCount = Integer.parseInt(arg.substring(12, arg.length()));
-                    useTheads = true;
-                } catch (NumberFormatException e) {
-                    System.out.println("Warning: invalid/empty thread count, Set to default of 1");
-                    threadCount = 1;
-                    useTheads = false;
-                }
-                if (threadCount <= 0) {
-                    System.out.println("Warning: set thread count is less that 1! Using single thread!");
-                    useTheads = false;
-                }
+            if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
+                jobType =  arg.substring(8, arg.length());
             }
         }
 
@@ -124,29 +85,38 @@ public class Variables {
             System.out.println("Error: No job specified!");
             System.exit(1);
         }
-        domain = new BrandUrl(jobType, environmentType);
+
+        // if ID or name of Job
+        try {
+            Long ID = Long.parseLong((String) jobType);
+            jobType = ID;
+            domain = new BrandUrl(ID, environmentType);
+        } catch (NumberFormatException e) {
+            domain = new BrandUrl(jobType, environmentType);
+        }
+
 
         String OS = System.getProperty("os.name").toLowerCase();
         if (OS.contains("win"))
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver.exe";
         else
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
+
+        if(pdfOutputPath == null){
+            pdfOutputPath =  "target/screenshots/pdfs";
+            File dir = new File(pdfOutputPath);
+            dir.mkdirs();
+        }
+
+
     }
 
-    public static String getJob(){
+    public static boolean isIfMergePDF() {
+        return ifMergePDF;
+    }
+
+    public static Object getJob(){
         return jobType;
-    }
-
-    public static boolean isAccessSolutions() {
-        return accessSolutions;
-    }
-
-    public static boolean isKadyclaHCP() {
-        return kadcylaHCP;
-    }
-
-    public static boolean isKadcylaPatient() {
-        return kadcylaPatient;
     }
 
     public static String getChromedriverPath() {
@@ -169,28 +139,12 @@ public class Variables {
         return bucketName;
     }
 
-    public static String getPdfKey() {
-        return pdfKey;
-    }
-
     public static String getSavePath() {
         return savePath;
     }
 
     public static String getRegion() {
         return region;
-    }
-
-    public static boolean isS3() {
-        return s3;
-    }
-
-    public static boolean isUseThreads() {
-        return useTheads;
-    }
-
-    public static int getThreadCount() {
-        return threadCount;
     }
 
     public static BrandUrl getDomain(){

@@ -60,15 +60,12 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
    |  Name            |  Type |Description | 
    | -------------    | --- |--- |
    | DEVELOPMENT_ENVIRONMENT | choice (`dev` `stage` `prod` `local`)  | Run the screenshot automation on a developer, stage, production, or local environment | 
-   | JOB_TYPE | choice (`Access_Solutions` `Kadcyla_HCP` `Kadcyla_Patient`)| Runs a specific automation job for either Access Solutions, Kadcyla HCP or Kadcyla Patients
-   | THREAD_COUNT | string | Integer value representing the number of allowed threads of WebDriver workers. Default value is 1. Make sure the value is reasonable for the system. | 
-   | SAVE_PATH         | string |Path where the screenshots and logs are saved |
+   | JOB_TYPE | string | Runs a specific automation job based on ID or job name. |
+   | SAVE_PATH         | string |Path where the screenshots are stored. Defaults to "target/screenshots" |
    | PDF_OUTPUT_PATH  | string |Path to created PDF. If not set defaults to SAVE_PATH | 
-   | PDF_NAME         | string |Name of PDF. If not set defaults to automation class name|
-   | S3               | boolean |Send generated pdfs to an S3 Service if set to TRUE| 
    | S3_BUCKET        | string |Name of Bucket where PDF is stored |
-   | S3_PDF_KEY       | string |Name of key for PDF |
    | S3_REGION        | string |Region where the bucket is at. Defaults to us-east-1 |
+   | MERGE_BREAKPOINT | boolean | Breaks the merging of desktop and mobile screenshots if false. Desktop and mobile screenshots are placed in separated PDFs and are zipped up when sent to S3. If true then both desktop and mobile screenshots are saved as one PDF and a single PDF is sent to S3. Defaults to true. |
 
 4. Under Source Code management check Git and set the URL of the Github repository of the automation code. Then set the git credentials underneath for repo access. 
 
@@ -103,4 +100,4 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
    In the text area for `Command`, you will want to insert `npm install` to download the chromedriver.
 
 10. Under "Build", fill in `Goals and options` with the following:
-   ``` compile exec:java -Dexec.cleanupDaemonThreads=false -Dexec.args=" savepath=$SAVE_PATH pdfoutput=$PDF_OUTPUT_PATH pdfname=$PDF_NAME s3=$S3 s3-bucket=$S3_BUCKET s3-pdfkey=$S3_PDF_KEY s3-region=$S3_REGION jobtype=$JOB_TYPE environment=$DEVELOPMENT_ENVIRONMENT threadcount=$THREAD_COUNT aws-accesskey=$ACCESS_KEYaws-secretkey=$SECRET_KEY"```
+   ``` compile exec:java -Dexec.cleanupDaemonThreads=false -Dexec.args=" savepath=$SAVE_PATH pdfoutput=$PDF_OUTPUT_PATH s3-bucket=$S3_BUCKET s3-region=$S3_REGION jobtype=$JOB_TYPE pdfbreakpoint=$MERGE_BREAKPOINT environment=$DEVELOPMENT_ENVIRONMENT aws-accesskey=$ACCESS_KEY aws-secretkey=$SECRET_KEY"```

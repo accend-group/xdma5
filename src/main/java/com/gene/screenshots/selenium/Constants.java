@@ -9,4 +9,6 @@ public interface Constants {
     // viewport size of mobile browser
     int MOBILE_WIDTH = 320;
     int MOBILE_HEIGHT = 720;
+
+
 }

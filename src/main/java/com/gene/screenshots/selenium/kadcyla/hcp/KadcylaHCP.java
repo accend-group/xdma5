@@ -13,9 +13,7 @@ public class KadcylaHCP extends SeleniumHeadless {
     @Override
     public void desktopAutomationTest(String savePath) {
 
-
         WebDriver driver = makeDesktopDriver();
-
         try {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions action = new Actions(driver);
