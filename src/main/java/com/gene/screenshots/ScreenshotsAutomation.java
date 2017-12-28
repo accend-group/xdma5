@@ -43,7 +43,7 @@ public class ScreenshotsAutomation {
         SeleniumHeadless.setChromeSystemProperty(Variables.getChromedriverPath());
 
         // if merging pdfs or creating desktop/mobile pdfs
-        SeleniumHeadless.setIfSinglePDF(!Variables.isIfMergePDF());
+        SeleniumHeadless.setIfSinglePDF(Variables.isIfMergePDF());
 
         ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
 
