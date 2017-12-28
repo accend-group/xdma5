@@ -94,7 +94,7 @@ Screenshot automation for Access Solutions, Kadcyla HCP, and Kadcyla Patient sit
 
 8. Under Build Environment, enable `Delete workspace before build starts`. We want to make sure the workspace is always clean before starting a build.
 
-9. Under Pre Steps, you will want to click on the dropdown for `Add pre-build step' and click on `Execute Shell`.
+9. Under Pre Steps, you will want to click on the dropdown for `Add pre-build step` and click on `Execute Shell`.
 
    In the text area for `Command`, you will want to insert `npm install` to download the chromedriver.
 
