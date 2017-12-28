@@ -2,7 +2,6 @@ package com.gene.screenshots;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -25,7 +24,7 @@ import java.util.concurrent.Semaphore;
 
 public class ScreenshotsAutomation {
 
-    private static final int THREAD_LIMIT = 2;
+    private static final int THREAD_LIMIT = 10;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -37,8 +36,10 @@ public class ScreenshotsAutomation {
 
 
         String savePath = Variables.getSavePath();
-        System.out.println("Save path is: " + savePath);
-        ScreenshotThreads.savePath(savePath);
+        String pdfSavePath = Variables.getPdfOutputPath();
+        System.out.printf("Screenshot path: %s\nPDF path: %s\n", savePath, pdfSavePath);
+        ScreenshotThreads.setSavePath(savePath);
+        ScreenshotThreads.setPdfSavePath(pdfSavePath);
 
         SeleniumHeadless.setChromeSystemProperty(Variables.getChromedriverPath());
 
@@ -95,6 +96,8 @@ public class ScreenshotsAutomation {
         for (Thread thread : pdfThreads)
             thread.join();
 
+        if(!Variables.isIfS3())
+            return;
 
         System.out.println("Connecting to S3...");
         AmazonS3 s3 = AmazonS3ClientBuilder.standard()
