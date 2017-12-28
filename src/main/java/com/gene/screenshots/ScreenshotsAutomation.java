@@ -96,16 +96,16 @@ public class ScreenshotsAutomation {
         for (Thread thread : pdfThreads)
             thread.join();
 
-        if(!Variables.isIfS3())
-            return;
+        if(Variables.getBucketName() == null || Variables.getAwsSecretKey() == null || Variables.getAwsAccessKey() == null){
 
-        System.out.println("Connecting to S3...");
-        AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
-                .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
-                .build();
+            System.out.println("Connecting to S3...");
+            AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                    .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
+                    .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
+                    .build();
 
-        // send pdf/zip
-        screenshotJob.sendResult(s3);
+            // send pdf/zip
+            screenshotJob.sendResult(s3);
+        }
     }
 }

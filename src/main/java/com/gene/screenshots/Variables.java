@@ -21,8 +21,6 @@ public class Variables {
     private static String awsSecretKey = null;
     private static String awsAccessKey = null;
 
-    private static boolean ifS3 = true;
-
     // needed for json url type
     private static Object jobType = null;
 
@@ -87,17 +85,10 @@ public class Variables {
         else
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
-        if(bucketName == null || awsSecretKey == null || awsAccessKey == null)
-            ifS3 = false;
-
         File dir = new File(savePath);
         dir.mkdirs();
         dir = new File(pdfOutputPath);
         dir.mkdirs();
-    }
-
-    public static boolean isIfS3() {
-        return ifS3;
     }
 
     public static boolean isIfMergePDF() {
