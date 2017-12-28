@@ -2,7 +2,6 @@ package com.gene.screenshots.selenium.accesssolutions.es;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,15 +24,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-1.0");
 
-            driver.findElement(By.xpath("//body/div[3]/div/div/div[2]/div[3]/div/div/div[2]/div/div")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-1.0-tab1");
-
-            driver.findElement(By.xpath("//body/div[3]/div/div/div[2]/div[3]/div/div/div[2]/div[2]/div")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-1.0-tab2");
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//body/div[3]/div/div/div[2]/div[3]/div/div/div[2]/div[2]/div")).click();
+            getScreenshotForAccordion(driver, "accesssolutions-patient-actemra-1.0", savePath, true);
 
             jse.executeScript("window.scrollTo(0, 0)");
             Thread.sleep(500);
@@ -89,80 +80,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-actemra-3.0");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab1");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
-            movecursor(driver);
-            driver.manage().window().setSize(new Dimension(1621, 780));
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab2");
-
-            driver.manage().window().maximize();
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_1152216446']/div[1]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab3");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_1152216446']/div[2]/div[1]")).click();
-            movecursor(driver);
-            driver.manage().window().setSize(new Dimension(1621, 780));
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab4");
-
-            driver.manage().window().maximize();
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab5");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab6");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab7");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab8");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
-            movecursor1(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab9");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
-            movecursor1(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab10");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
-            movecursor1(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab11");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-actemra-3.0-tab12");
+            getScreenshotForAccordion(driver, "accesssolutions-patient-actemra-3.0", savePath, true);
 
             goToUrl(driver, "/patient/brands/actemra/patient-assistance-tool-page.html");
             Thread.sleep(1000);
@@ -304,15 +222,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-1.0");
 
-            driver.findElement(By.xpath("//body/div[3]/div/div/div[2]/div[3]/div/div/div[2]/div/div")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-1.0-tab1");
-
-            driver.findElement(By.xpath("//body/div[3]/div/div/div[2]/div[3]/div/div/div[2]/div[2]/div")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-1.0-tab2");
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//body/div[3]/div/div/div[2]/div[3]/div/div/div[2]/div[2]/div")).click();
+            getScreenshotForAccordion(driver, "accesssolutions-mobile-patient-actemra-1.0", savePath, false);
 
             jse.executeScript("window.scrollTo(0, 0)");
             Thread.sleep(500);
@@ -369,80 +279,7 @@ public class Actemra extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab1");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
-            movecursor(driver);
-            driver.manage().window().setSize(new Dimension(1621, 780));
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab2");
-
-            driver.manage().window().maximize();
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_1152216446']/div[1]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab3");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_1152216446']/div[2]/div[1]")).click();
-            movecursor(driver);
-            driver.manage().window().setSize(new Dimension(1621, 780));
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab4");
-
-            driver.manage().window().maximize();
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab5");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab6");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab7");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab8");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab9");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab10");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab11");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-actemra-3.0-tab12");
+            getScreenshotForAccordion(driver, "accesssolutions-mobile-patient-actemra-3.0", savePath, false);
 
             goToUrl(driver, "/patient/brands/actemra/patient-assistance-tool-page.html");
             Thread.sleep(1000);
@@ -531,28 +368,6 @@ public class Actemra extends SeleniumHeadless {
             driver.close();
             driver.quit();
         }
-    }
-
-    public static void movecursor(WebDriver driver) {
-
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        Actions action = new Actions(driver);
-        WebElement element;
-
-        jse.executeScript("window.scrollTo(0, 0)");
-        element = driver.findElement(By.name("q"));
-        action.moveToElement(element).build().perform();
-    }
-
-    public static void movecursor1(WebDriver driver) {
-
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        Actions action = new Actions(driver);
-        WebElement element;
-
-        jse.executeScript("window.scrollTo(0, 0)");
-        element = driver.findElement(By.linkText("Preguntas Frecuentes"));
-        action.moveToElement(element).build().perform();
     }
 
     public static void movecursorm(WebDriver driver) {
