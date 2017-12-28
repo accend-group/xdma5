@@ -1,22 +1,23 @@
 package com.gene.screenshots.selenium;
 
-import com.gene.screenshots.BrandUrl;
-import com.gene.screenshots.Variables;
-import com.gene.screenshots.authentication.AuthorAuthenticationException;
-import com.gene.screenshots.authentication.AuthorCredentials;
-import org.openqa.selenium.*;
+import java.util.List;
+import java.util.logging.LogManager;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-
-import static com.gene.screenshots.selenium.Constants.*;
-
+import com.gene.screenshots.BrandUrl;
+import com.gene.screenshots.Variables;
+import com.gene.screenshots.authentication.AuthorAuthenticationException;
+import com.gene.screenshots.authentication.AuthorCredentials;
 
 /**
  * Abstract class for screenshot automation code
@@ -71,7 +72,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
-        driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
+        driver.manage().window().setSize(new Dimension(Constants.DESKTOP_WIDTH, Constants.DESKTOP_HEIGHT));
         if(credentialsRequired)
             authenticate(driver);
         return driver;
@@ -80,7 +81,7 @@ public abstract class SeleniumHeadless extends Screenshots {
     public static WebDriver makeMobileDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        options.addArguments("window-size=" + MOBILE_WIDTH + "," + MOBILE_HEIGHT);
+        options.addArguments("window-size=" + Constants.MOBILE_WIDTH + "," + Constants.MOBILE_HEIGHT);
         options.addArguments("--use-mobile-user-agent=true");
         options.addArguments("--user-agent=Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
         options.addArguments("disable-infobars");
@@ -160,7 +161,6 @@ public abstract class SeleniumHeadless extends Screenshots {
         mobileDriver.quit();
     }
 
-
     public void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String prefixName, String savePath) throws InterruptedException {
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent .gene-component--navigation__link--tab"));
         for (int i = 0; i < elements.size(); i++) {
@@ -197,5 +197,4 @@ public abstract class SeleniumHeadless extends Screenshots {
             Thread.sleep(1000);
         }
     }
->>>>>>> 49c9b88 Automate Tabs and the Navigation.
 }
