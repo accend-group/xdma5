@@ -239,10 +239,8 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.name("first-name")).sendKeys("Marwin");
             driver.findElement(By.name("last-name")).sendKeys("Nicolas");
             driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-            if(Variables.getDomain().getType() == LOCAL)
-            driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
-            else
-                driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+
+            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
@@ -388,10 +386,8 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.name("first-name")).sendKeys("Marwin");
             driver.findElement(By.name("last-name")).sendKeys("Nicolas");
             driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-            if(Variables.getDomain().getType() == LOCAL)
-                driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
-            else
-                driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+
+            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
