@@ -15,7 +15,7 @@ public class Variables {
 
     // where main directory is set for creating images in sub directories for each selenium script that needs a pdf
     private static String savePath = "target/screenshots";
-    private static String pdfOutputPath = "target/screenshot/pdfs";
+    private static String pdfOutputPath = "target/screenshots/pdfs";
     private static String bucketName = null;
     private static String region = null;
     private static String awsSecretKey = null;
