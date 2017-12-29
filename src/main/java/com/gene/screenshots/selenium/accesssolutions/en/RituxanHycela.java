@@ -2,7 +2,6 @@ package com.gene.screenshots.selenium.accesssolutions.en;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,18 +25,8 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-1.0");
 
-            driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-1.0-tab1");
+            getScreenshotForAccordion(driver, "accesssolutions-patient-rituxanhycela-1.0", savePath, true);
 
-            driver.findElement(By.xpath("//*[@id='accordion']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-1.0-tab2");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion']/div[2]/div[1]")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
@@ -95,67 +84,7 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0");
 
-            driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab1");
-
-            driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
-            movecursor(driver);
-            driver.manage().window().setSize(new Dimension(1621, 780));
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab2");
-
-            driver.manage().window().maximize();
-            driver.findElement(By.xpath("//*[@id='accordion_295986680']/div/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab3");
-
-            driver.findElement(By.xpath("//*[@id='accordion_295986680']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab4");
-
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab5");
-
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab6");
-
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab7");
-
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab8");
-
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
-            movecursor1(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab9");
-
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
-            movecursor1(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab10");
-
-            driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab11");
-
-            driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
-            movecursor(driver);
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab12");
+            getScreenshotForAccordion(driver, "accesssolutions-patient-rituxanhycela-3.0", savePath, true);
 
             goToUrl(driver, "/patient/brands/rituxanhycela/patient-assistance-tool-page.html");
             Thread.sleep(1000);
@@ -248,18 +177,8 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-1.0");
 
-            driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-1.0-tab1");
+            getScreenshotForAccordion(driver, "accesssolutions-mobile-patient-rituxanhycela-1.0", savePath, false);
 
-            driver.findElement(By.xpath("//*[@id='accordion']/div[2]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-1.0-tab2");
-
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//*[@id='accordion']/div[2]/div[1]")).click();
             jse.executeScript("window.scrollTo(0, 0)");
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
@@ -351,65 +270,7 @@ public class RituxanHycela extends SeleniumHeadless {
             Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0");
 
-            driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab1");
-
-            driver.findElement(By.xpath("//*[@id='accordion_0']/div/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab2");
-
-            driver.findElement(By.xpath("//*[@id='accordion_295986680']/div[1]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab3");
-
-            driver.findElement(By.xpath("//*[@id='accordion_295986680']/div[2]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab4");
-
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[1]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab5");
-
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[2]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab6");
-
-            driver.findElement(By.xpath("//*[@id='accordion_2']/div[3]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab7");
-
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[1]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab8");
-
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[2]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab9");
-
-            driver.findElement(By.xpath("//*[@id='accordion_3']/div[3]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab10");
-
-            driver.findElement(By.xpath("//*[@id='accordion_4']/div[1]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab11");
-
-            driver.findElement(By.xpath("//*[@id='accordion_4']/div[2]/div[1]")).click();
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab12");
+            getScreenshotForAccordion(driver, "accesssolutions-mobile-patient-rituxanhycela-3.0", savePath, false);
 
             goToUrl(driver, "/patient/brands/rituxanhycela/patient-assistance-tool-page.html");
             Thread.sleep(1000);
