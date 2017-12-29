@@ -9,7 +9,7 @@ import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
 public class KadcylaPatientJob extends ScreenshotJob {
 
     public KadcylaPatientJob() {
-        super.screenshotCode = new KadcylaPatient();
+        setScript(new KadcylaPatient());
     }
 }
 

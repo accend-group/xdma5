@@ -17,54 +17,15 @@ import java.util.zip.ZipOutputStream;
 
 import static com.gene.screenshots.EnvironmentType.LOCAL;
 
-@Job(name = "Access_Solutions", ID = 1, info = "Screenshot automation for Access Solutions.")
+@Job(name = "Access_Solutions", ID = 1, info = "Screenshot automation for Access Solutions English.")
 public class AccessSolutionsJob extends ScreenshotJob {
 
-    private  List<SeleniumHeadless> brands = createAccessSolutionsTestList();;
-
-    @Override
-    public void createResult() {
-        //creates screenshots and pdfs
-        for(SeleniumHeadless geneAccessBrand : brands)
-           createThreads(geneAccessBrand);
-    }
-
-    @Override
-    public void sendResult(AmazonS3 s3){
-
-        sendZipToS3(s3, brands, getJobName(), savePath + "/zips");
-    }
-
-    // custom zip file creation
-    private static void sendZipToS3(AmazonS3 s3, List<SeleniumHeadless> tests, String zipName, String zipPath) {
-
-
-        String fileNames[] = new String[ SeleniumHeadless.isIfSinglePDF()  ? tests.size() : (tests.size() * 2)];
-
-        for (int i = 0, j = 0; i < fileNames.length; j++)
-            if (SeleniumHeadless.isIfSinglePDF())
-                fileNames[i++] = tests.get(j).getClass().getSimpleName() + ".pdf";
-            else {
-                fileNames[i++] = "desktop_" + tests.get(j).getClass().getSimpleName() + ".pdf";
-                fileNames[i++] = "mobile_" + tests.get(j).getClass().getSimpleName() + ".pdf";
-            }
-        createZip(fileNames, zipName, zipPath);
-
-        System.out.println("Sending " + zipName + ".zip...");
-        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        try {
-            s3.putObject(Variables.getBucketName(),
-                    String.format("%s-%s-%s.zip", zipName, Variables.getDomain().getType(), date),
-                    new File(zipPath + "/" + zipName + ".zip"));
-            System.out.println("pdf sent!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public AccessSolutionsJob(){
+        setScripts(createAccessSolutionsTestList());
     }
 
     private static List<SeleniumHeadless> createAccessSolutionsTestList() {
         List<SeleniumHeadless> result = new LinkedList<>();
-
         result.add(new Actemra());
         result.add(new Alecensa());
         result.add(new Avastin());
