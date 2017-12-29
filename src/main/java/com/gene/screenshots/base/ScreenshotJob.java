@@ -10,6 +10,7 @@ import java.io.*;
 import java.lang.annotation.Annotation;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -19,14 +20,12 @@ import java.util.zip.ZipOutputStream;
 
 public abstract class ScreenshotJob extends ScreenshotThreads {
 
-    // one job with 1 selenium script
-    private static SeleniumHeadless screenshotCode;
-
-    // one job with multiple selenium scripts
     private static List<SeleniumHeadless> screenshotCodes;
 
     protected void setScript(SeleniumHeadless script){
-        screenshotCode = script;
+        if(screenshotCodes == null)
+            screenshotCodes = new LinkedList<>();
+        screenshotCodes.add(script);
     }
 
     protected void setScripts(List<SeleniumHeadless> scripts){
@@ -40,18 +39,22 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
 
     // create screenshot and pdf thread workers
     public void createResult(){
-        if(screenshotCode != null)
-            createThreads(screenshotCode);
-        else if(screenshotCodes != null){
-            for(SeleniumHeadless script : screenshotCodes)
-                createThreads(script);
+        if(screenshotCodes == null) {
+            System.out.println("Error: no screenshots set for Job!");
+            return;
         }
+        for(SeleniumHeadless script : screenshotCodes)
+            createThreads(script);
     }
 
     // send pdf/zip
     public void sendResult(AmazonS3 s3){
+        if(screenshotCodes == null) {
+            System.out.println("Error: no screenshots set for Job!");
+            return;
+        }
         // single script job and single pdf
-        if(screenshotCode != null && SeleniumHeadless.isIfSinglePDF())
+        if(screenshotCodes.size() == 1 && SeleniumHeadless.isIfSinglePDF())
             sendPDFtoS3(s3);
         // multiple scripts and/or single/separated pdfs
         else
@@ -69,12 +72,12 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
         String zipName = getJobName();
 
         String pdfNames[] = null;
-        if (screenshotCode != null) {
-            String screenshotScriptName = screenshotCode.getClass().getSimpleName();
+        if (screenshotCodes.size() == 1) {
+            String screenshotScriptName = screenshotCodes.get(0).getClass().getSimpleName();
             pdfNames = new String[]{"mobile_" + screenshotScriptName + ".pdf", "/desktop_" + screenshotScriptName + ".pdf"};
         }
         // multiple scripts
-        else if (screenshotCodes != null) {
+        else {
             pdfNames = new String[SeleniumHeadless.isIfSinglePDF() ? screenshotCodes.size() : (screenshotCodes.size() * 2)];
             for (int i = 0, j = 0; i < pdfNames.length; j++)
                 if (SeleniumHeadless.isIfSinglePDF())
@@ -95,8 +98,9 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
         System.out.println("zip sent!");
     }
 
+    // screenshotCodes must only contain one script
     protected void sendPDFtoS3(AmazonS3 s3) {
-        String screenshotScriptName = screenshotCode.getClass().getSimpleName();
+        String screenshotScriptName = screenshotCodes.get(0).getClass().getSimpleName();
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         System.out.println("Sending " + getJobName() + " pdf file...");
         String filePath = pdfSavePath + "/" + screenshotScriptName + ".pdf";
