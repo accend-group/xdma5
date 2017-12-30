@@ -31,11 +31,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             getScreenshotForDesktopNavigation(driver, action, "kadcyla", savePath);
 
             driver.navigate().refresh();
-            jse.executeScript("window.scrollTo(0,1000)", "");
-            forceClick(driver,"http://www.motherpregnancyregistry.com/");
-            jse.executeScript("window.scrollTo(0,0)", "");
-            Thread.sleep(1500);
-            visible(driver, true, savePath, "kadcyla-link-modal");
+            getScreenshotForThirdPartyModal(driver, "kadcyla", savePath, true);
 
 //		driver.navigate().refresh();
 //		driver.findElement(By.className("genentech-component--button__text")).click();
@@ -227,9 +223,6 @@ public class KadcylaPatient extends SeleniumHeadless {
         };
 
         try {
-            JavascriptExecutor jse = (JavascriptExecutor) driver;
-            //driver.manage().window().maximize();
-
             goToUrl(driver, "/patient.html");
             Thread.sleep(1500);
             visible(driver, false, savePath, "kadcyla-mobile-patient");
@@ -237,11 +230,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             getScreenshotForMobileNavigation(driver, "kadcyla", savePath);
 
             goToUrl(driver, "/patient.html");
-            jse.executeScript("window.scrollBy(0,3500)", "");
-            driver.findElement(By.linkText("http://www.motherpregnancyregistry.com/")).click();
-            jse.executeScript("window.scrollTo(0,0)", "");
-            Thread.sleep(1500);
-            visible(driver, false, savePath, "kadcyla-mobile-link-modal");
+            getScreenshotForThirdPartyModal(driver, "kadcyla-mobile", savePath, false);
 
 //		//--->start full page screenshot <---//
 

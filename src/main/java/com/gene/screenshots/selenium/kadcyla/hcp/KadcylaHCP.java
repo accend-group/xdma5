@@ -221,18 +221,7 @@ public class KadcylaHCP extends SeleniumHeadless {
 
             driver.navigate().refresh();
             waitForPageLoad(driver);
-            jse.executeScript("window.scrollTo(0,document.body.scrollHeight)", "");
-            waitForPageLoad(driver);
-
-
-            List<WebElement> thirdPartyLinks = driver.findElements(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
-            for(WebElement link : thirdPartyLinks)
-                if(link.getText().equals("www.fda.gov/medwatch"))
-                    forceClick(driver,link);
-            jse.executeScript("window.scrollTo(0,0)", "");
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "kadcyla-hcp-link-modal");
-
+            getScreenshotForThirdPartyModal(driver, "kadcyla-hcp", savePath, true);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -247,9 +236,6 @@ public class KadcylaHCP extends SeleniumHeadless {
 
         WebDriver driver = makeMobileDriver();
         try {
-
-            JavascriptExecutor jse = (JavascriptExecutor) driver;
-
             goToUrl(driver, "/hcp.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-0.0");
@@ -452,12 +438,7 @@ public class KadcylaHCP extends SeleniumHeadless {
 
             driver.navigate().refresh();
 
-            jse.executeScript("window.scrollTo(0,document.body.scrollHeight);");
-            scrollAndClickAt(driver, driver.findElement(By.linkText("www.fda.gov/medwatch")));
-            //driver.findElement(By.linkText("www.fda.gov/medwatch")).click();
-            jse.executeScript("window.scrollTo(0,0)", "");
-            Thread.sleep(1000);
-            visible(driver, false, savePath, "kadcyla-hcp-mobile-link-modal");
+            getScreenshotForThirdPartyModal(driver, "kadcyla-hcp-mobile", savePath, true);
 
         } catch (Exception e) {
             e.printStackTrace();
