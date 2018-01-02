@@ -6,9 +6,11 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.gene.screenshots.base.ScreenshotThreads;
+import com.gene.screenshots.base.annotations.Environment;
 import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.selenium.SeleniumHeadless;
+import com.google.errorprone.annotations.Var;
 import org.reflections.Reflections;
 
 
@@ -16,6 +18,8 @@ import java.io.*;
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.concurrent.Semaphore;
+
+import static com.gene.screenshots.EnvironmentType.*;
 
 /**
  * Starts the screenshot process from a jenkins job.
@@ -60,10 +64,20 @@ public class ScreenshotsAutomation {
 
         // get specified job
         ScreenshotJob screenshotJob = null;
+        BrandUrl domain = null;
         try {
             Job job = annotationsMap.get(Variables.getJob()).getDeclaredAnnotation(Job.class);
+            Environment environment = annotationsMap.get(Variables.getJob()).getAnnotation(Environment.class);
             if(job != null)
                 System.out.println(String.format("Running %s, ID: %d, Info: %s", job.name(), job.ID(), job.info()));
+            if(environment != null) {
+                HashMap<EnvironmentType, String> urlsMap = new HashMap<>();
+                urlsMap.put(LOCAL, environment.local());
+                urlsMap.put(DEV, environment.dev());
+                urlsMap.put(STAGE, environment.stage());
+                urlsMap.put(PROD, environment.prod());
+                BrandUrl.addEnvironments(Variables.getJob(), urlsMap);
+            }
             screenshotJob = (ScreenshotJob) annotationsMap.get(Variables.getJob()).newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -71,10 +85,12 @@ public class ScreenshotsAutomation {
             e.printStackTrace();
         }
 
+        domain = new BrandUrl(Variables.getJob(), Variables.getEnvironmentType());
+
 
         // setting the testing domain (prod, stage, dev, local)
-        System.out.println("Running automation at: " + Variables.getDomain());
-        SeleniumHeadless.setDomain(Variables.getDomain());
+        System.out.println("Running automation at: " + domain);
+        SeleniumHeadless.setDomain(domain);
 
         if (screenshotJob == null){
             System.out.println("Error! invalid Job ID or Job name");

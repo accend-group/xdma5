@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static com.gene.screenshots.EnvironmentType.*;
@@ -22,11 +23,18 @@ public class BrandUrl {
 
     private static HashMap<Object, HashMap<EnvironmentType, String>> environments = new HashMap<>();
 
+    public static void addEnvironments(Object jobType, HashMap<EnvironmentType, String> urlsMap){
+        environments.put(jobType, urlsMap);
+    }
+
     public static void loadEnvironments(File path){
         try {
             jsonUrls = new JSONArray(new Scanner(path).useDelimiter("\\Z").next());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch(NoSuchElementException j){
+            System.out.println("Warning: json file is incorrect");
+            return;
         }
         for(int i = 0; i < jsonUrls.length(); ++i) {
             JSONObject domain = jsonUrls.getJSONObject(i);

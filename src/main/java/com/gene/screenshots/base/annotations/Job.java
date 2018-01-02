@@ -22,6 +22,5 @@ public @interface Job {
     /***
      * a description of the screenshot automation job
      */
-    String info();
-
+    String info() default "";
 }
