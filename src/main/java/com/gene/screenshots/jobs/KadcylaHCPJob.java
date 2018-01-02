@@ -7,12 +7,10 @@ import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 
 @Job(name = "Kadcyla_HCP", ID = 2, info = "Screenshot automation for Kadcyla HCP.")
-
-
 public class KadcylaHCPJob extends ScreenshotJob {
 
     public KadcylaHCPJob(){
-        super.screenshotCode = new KadcylaHCP();
+        setScript(new KadcylaHCP());
     }
 }
 
