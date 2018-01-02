@@ -2,6 +2,7 @@ package com.gene.screenshots.jobs;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.gene.screenshots.Variables;
+import com.gene.screenshots.base.annotations.Environment;
 import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.selenium.SeleniumHeadless;
@@ -18,6 +19,10 @@ import java.util.zip.ZipOutputStream;
 import static com.gene.screenshots.EnvironmentType.LOCAL;
 
 @Job(name = "Access_Solutions", ID = 1, info = "Screenshot automation for Access Solutions English.")
+@Environment(local = "http://localhost:4503/content/accesssolutions-site/en_us",
+        dev = "https://dev-genentech-access.gene.com",
+        stage = "https://stage-genentech-access.gene.com",
+        prod = "https://www.genentech-access.com")
 public class AccessSolutionsJob extends ScreenshotJob {
 
     public AccessSolutionsJob(){
@@ -39,7 +44,7 @@ public class AccessSolutionsJob extends ScreenshotJob {
         result.add(new Lucentis());
         result.add(new Ocrevus());
         result.add(new Patient());
-        if (Variables.getDomain().getType() == LOCAL) // not up on prod, dev, and stage
+        if (Variables.getEnvironmentType() == LOCAL) // not up on prod, dev, and stage
             result.add(new Pegasys());
         result.add(new Perjeta());
         result.add(new Pulmozyme());
