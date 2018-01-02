@@ -25,12 +25,11 @@ public class Variables {
     private static Object jobType = null;
 
     private static BrandUrl domain = null;
+    private static EnvironmentType environmentType = LOCAL;
 
     private static boolean ifMergePDF = true;
 
     public static void main(String[] args) {
-
-        EnvironmentType environmentType = LOCAL;
 
         for (String arg : args) {
 
@@ -73,11 +72,7 @@ public class Variables {
         try {
             Long ID = Long.parseLong((String) jobType);
             jobType = ID;
-            domain = new BrandUrl(ID, environmentType);
-        } catch (NumberFormatException e) {
-            domain = new BrandUrl(jobType, environmentType);
-        }
-
+        } catch (NumberFormatException e) {}
 
         String OS = System.getProperty("os.name").toLowerCase();
         if (OS.contains("win"))
@@ -89,6 +84,10 @@ public class Variables {
         dir.mkdirs();
         dir = new File(pdfOutputPath);
         dir.mkdirs();
+    }
+
+    public static EnvironmentType getEnvironmentType(){
+        return environmentType;
     }
 
     public static boolean isIfMergePDF() {
