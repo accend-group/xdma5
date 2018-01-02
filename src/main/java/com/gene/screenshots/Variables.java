@@ -31,8 +31,6 @@ public class Variables {
 
     public static void main(String[] args) {
 
-
-
         for (String arg : args) {
 
             if(arg.equals("pdfbreakpoint=false"))
@@ -74,11 +72,7 @@ public class Variables {
         try {
             Long ID = Long.parseLong((String) jobType);
             jobType = ID;
-            //domain = new BrandUrl(ID, environmentType);
-        } catch (NumberFormatException e) {
-            //domain = new BrandUrl(jobType, environmentType);
-        }
-
+        } catch (NumberFormatException e) {}
 
         String OS = System.getProperty("os.name").toLowerCase();
         if (OS.contains("win"))

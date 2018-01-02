@@ -28,12 +28,9 @@ import static com.gene.screenshots.EnvironmentType.*;
 
 public class ScreenshotsAutomation {
 
-    private static final int THREAD_LIMIT = 2;
+    private static final int THREAD_LIMIT = 10;
 
     public static void main(String[] args) throws InterruptedException {
-
-        // load in json for urls
-        BrandUrl.loadEnvironments(new File("environments.json"));
 
         System.out.println("Reading Jenkins parameters!");
         Variables.main(args);
@@ -70,14 +67,8 @@ public class ScreenshotsAutomation {
             Environment environment = annotationsMap.get(Variables.getJob()).getAnnotation(Environment.class);
             if(job != null)
                 System.out.println(String.format("Running %s, ID: %d, Info: %s", job.name(), job.ID(), job.info()));
-            if(environment != null) {
-                HashMap<EnvironmentType, String> urlsMap = new HashMap<>();
-                urlsMap.put(LOCAL, environment.local());
-                urlsMap.put(DEV, environment.dev());
-                urlsMap.put(STAGE, environment.stage());
-                urlsMap.put(PROD, environment.prod());
-                BrandUrl.addEnvironments(Variables.getJob(), urlsMap);
-            }
+            if(environment != null)
+                domain = new BrandUrl(environment, Variables.getEnvironmentType());
             screenshotJob = (ScreenshotJob) annotationsMap.get(Variables.getJob()).newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -85,8 +76,11 @@ public class ScreenshotsAutomation {
             e.printStackTrace();
         }
 
-        domain = new BrandUrl(Variables.getJob(), Variables.getEnvironmentType());
 
+        if(domain == null){
+            System.out.println("Error: missing Environment annotation!");
+            System.exit(1);
+        }
 
         // setting the testing domain (prod, stage, dev, local)
         System.out.println("Running automation at: " + domain);
