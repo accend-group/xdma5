@@ -17,7 +17,6 @@ import java.util.function.Consumer;
 public class PerjetaHCP extends SeleniumHeadless{
 	public void desktopAutomationTest(String savePath) {
 		
-		// mvn compile exec:java -Dexec.cleanupDaemonThreads=false "-Dexec.args=jobtype=7 environment=local pdfbreakpoint=true"
 		WebDriver driver = makeDesktopDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
@@ -202,9 +201,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 			driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")).click();
 			Thread.sleep(1000);
             full(driver, true, savePath, "hcp-contact-rep-specialty");
-			
-          //manual submit - for contact rep because of captcha
-            
+			  
 			goToUrl(driver, "/hcp/breast-cancer/register.html");
 			Thread.sleep(1000);
             full(driver, true, savePath, "hcp-register");
@@ -361,7 +358,6 @@ public class PerjetaHCP extends SeleniumHeadless{
 			driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
 			forceClick(driver, "/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]");
-//			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.1-pat2");
 			
@@ -404,15 +400,11 @@ public class PerjetaHCP extends SeleniumHeadless{
 			
 			forceClick(driver, "/html/body/main/section[5]/div/div/div/div[2]/section[3]/header/h1");
 			forceClick(driver, "/html/body/main/section[5]/div/div/div/div[2]/section[4]/header/h1");
-//			driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[3]/header/h1")).click();
-//			driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[4]/header/h1")).click();
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.1-tab4");
 			
 			forceClick(driver, "/html/body/main/section[5]/div/div/div/div[2]/section[4]/header/h1");
 			forceClick(driver, "/html/body/main/section[5]/div/div/div/div[2]/section[5]/header/h1");
-//			driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[4]/header/h1")).click();
-//			driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[5]/header/h1")).click();
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.1-tab5");
 			
@@ -433,8 +425,6 @@ public class PerjetaHCP extends SeleniumHeadless{
 			driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")).click();
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-contact-rep-specialty");
-			
-			//manual submit - for contact rep because of captcha
 			
 			goToUrl(driver, "/hcp/breast-cancer/register.html");
 			Thread.sleep(1000);

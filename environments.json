@@ -32,8 +32,9 @@
     }
   },
 
+
   {
-    "name": "Perjeta",
+    "name": "Perjeta_Main",
     "id" : 4,
     "types": {
       "dev": "https://dev-perjeta.gene.com",
@@ -44,7 +45,7 @@
   },
 
   {
-    "name": "Perjeta",
+    "name": "Perjeta_Patient",
     "id" : 5,
     "types": {
       "dev": "https://dev-perjeta.gene.com",
@@ -55,19 +56,8 @@
   },
 
   {
-    "name": "Perjeta",
+    "name": "Perjeta_HCP",
     "id" : 6,
-    "types": {
-      "dev": "https://dev-perjeta.gene.com",
-      "prod": "https://www.perjeta.com",
-      "stage": "https://stage-perjeta.gene.com",
-      "local": "http://localhost:4503/content/perjeta/en_us"
-    }
-  },
-
-  {
-    "name": "Perjeta",
-    "id" : 7,
     "types": {
       "dev": "https://dev-perjeta.gene.com",
       "prod": "https://www.perjeta.com",

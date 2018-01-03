@@ -6,7 +6,7 @@ import org.openqa.selenium.*;
 
 public class PerjetaMain extends SeleniumHeadless{
 	public void desktopAutomationTest(String savePath) {
-		// mvn compile exec:java -Dexec.cleanupDaemonThreads=false "-Dexec.args=jobtype=5 environment=local pdfbreakpoint=true"
+		
 		WebDriver driver = makeDesktopDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
@@ -119,27 +119,27 @@ public class PerjetaMain extends SeleniumHeadless{
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-1.0");
 			
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[1]/header/h1")).click();
+			forceClick(driver,"/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[1]/header/h1");
 			Thread.sleep(500);
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[2]/header/h1")).click();
+			forceClick(driver,"/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[2]/header/h1");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-2.0");
 			
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[2]/header/h1")).click();
+			forceClick(driver,"/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[2]/header/h1");
 			Thread.sleep(500);
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[3]/header/h1")).click();
+			forceClick(driver,"/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[3]/header/h1");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-3.0");
 			
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[3]/header/h1")).click();
+			forceClick(driver,"/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[3]/header/h1");
 			Thread.sleep(500);
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[4]/header/h1")).click();
+			forceClick(driver,"/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[4]/header/h1");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-4.0");
 			
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[4]/header/h1")).click();
+			forceClick(driver,"/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[4]/header/h1");
 			Thread.sleep(500);
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[5]/header/h1")).click();
+			forceClick(driver,"/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[5]/header/h1");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-5.0");
 		

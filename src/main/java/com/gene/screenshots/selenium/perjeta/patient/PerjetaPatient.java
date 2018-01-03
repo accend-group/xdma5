@@ -14,7 +14,6 @@ import org.openqa.selenium.interactions.Actions;
 public class PerjetaPatient extends SeleniumHeadless {
 	public void desktopAutomationTest(String savePath) {
 			
-		// mvn compile exec:java -Dexec.cleanupDaemonThreads=false "-Dexec.args=jobtype=6 environment=local pdfbreakpoint=true"
 		WebDriver driver = makeDesktopDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
@@ -478,11 +477,9 @@ public class PerjetaPatient extends SeleniumHeadless {
 				driver.findElement(By.name("address-line-1")).sendKeys("CA");
 				driver.findElement(By.name("address-line-2")).sendKeys("CA");
 				driver.findElement(By.name("city")).sendKeys("CA");
-//				driver.findElement(By.className("gene-component-dropdown")).click();
 				driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[6]/form/div[7]/div[2]/div[1]/div/div")).click();
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[6]/form/div[7]/div[2]/div[1]/div/ul/li[1]")).click();
-//				driver.findElement(By.cssSelector("body > main > section.gene-template__content.gene-template__content-main.gene-template__container > div.gene-template__form-main.gene-template__column.gene-template__column-primary > div.gene-template__authoring.gene-template__container.gene-template__container-form-intro > div.perjeta-patient-reg-form.section > form > div:nth-child(9) > div.state-zip-container > div.field.required.state.invalid > div > ul > li:nth-child(1)")).click();
 				driver.findElement(By.name("zip-code-base")).sendKeys("95126");
 				driver.findElement(By.name("primary-phone-number")).sendKeys("4084069201");
 				driver.findElement(By.name("verify-age")).click();
