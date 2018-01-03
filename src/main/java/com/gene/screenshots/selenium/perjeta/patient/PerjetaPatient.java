@@ -1,9 +1,6 @@
 package com.gene.screenshots.selenium.perjeta.patient;
 
-import com.gene.screenshots.Variables;
 import com.gene.screenshots.selenium.SeleniumHeadless;
-
-import static com.gene.screenshots.EnvironmentType.LOCAL;
 
 import java.util.function.Consumer;
 

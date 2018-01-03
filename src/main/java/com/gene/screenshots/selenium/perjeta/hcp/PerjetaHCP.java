@@ -6,11 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import com.gene.screenshots.Variables;
-
 import com.gene.screenshots.selenium.SeleniumHeadless;
-
-import static com.gene.screenshots.EnvironmentType.LOCAL;
 
 import java.util.function.Consumer;
 

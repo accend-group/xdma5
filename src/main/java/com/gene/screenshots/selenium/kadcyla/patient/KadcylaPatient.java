@@ -1,14 +1,10 @@
 package com.gene.screenshots.selenium.kadcyla.patient;
 
-import com.gene.screenshots.Variables;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.function.Consumer;
-
-import static com.gene.screenshots.selenium.Constants.MOBILE_WIDTH;
-import static com.gene.screenshots.EnvironmentType.LOCAL;
 
 public class KadcylaPatient extends SeleniumHeadless {
 

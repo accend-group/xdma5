@@ -1,6 +1,5 @@
 package com.gene.screenshots.jobs;
 
-import com.amazonaws.services.s3.AmazonS3;
 import com.gene.screenshots.base.annotations.Environment;
 import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.base.ScreenshotJob;
