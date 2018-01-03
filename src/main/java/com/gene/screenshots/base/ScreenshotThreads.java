@@ -107,6 +107,8 @@ public abstract class ScreenshotThreads {
     }
 
     private static void makePDF(PDFMaker pdf,List<String> imagePaths, String pdfName){
+        if(imagePaths.size() == 0)
+            return;
         try {
             for (String imagePath : imagePaths) {
                 pdf.addImg(imagePath);

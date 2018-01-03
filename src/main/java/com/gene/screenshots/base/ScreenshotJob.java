@@ -8,7 +8,10 @@ import com.gene.screenshots.selenium.SeleniumHeadless;
 
 import java.io.*;
 import java.lang.annotation.Annotation;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -71,21 +74,22 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
         String zipPath = savePath + "/zips";
         String zipName = getJobName();
 
-        String pdfNames[] = null;
-        if (screenshotCodes.size() == 1) {
-            String screenshotScriptName = screenshotCodes.get(0).getClass().getSimpleName();
-            pdfNames = new String[]{"mobile_" + screenshotScriptName + ".pdf", "/desktop_" + screenshotScriptName + ".pdf"};
-        }
-        // multiple scripts
-        else {
-            pdfNames = new String[SeleniumHeadless.isIfSinglePDF() ? screenshotCodes.size() : (screenshotCodes.size() * 2)];
-            for (int i = 0, j = 0; i < pdfNames.length; j++)
-                if (SeleniumHeadless.isIfSinglePDF())
-                    pdfNames[i++] = screenshotCodes.get(j).getClass().getSimpleName() + ".pdf";
-                else {
-                    pdfNames[i++] = "desktop_" + screenshotCodes.get(j).getClass().getSimpleName() + ".pdf";
-                    pdfNames[i++] = "mobile_" + screenshotCodes.get(j).getClass().getSimpleName() + ".pdf";
-                }
+        ArrayList<String> pdfNames = new ArrayList();
+
+        int expectedPDFs = screenshotCodes.size();
+        for (int i = 0; i < expectedPDFs; i++) {
+            if (SeleniumHeadless.isIfSinglePDF()) {
+                String filePath = screenshotCodes.get(i).getClass().getSimpleName() + ".pdf";
+                if (ifFileExisits(filePath))
+                    pdfNames.add(filePath);
+            } else {
+                String desktopPath = "desktop_" + screenshotCodes.get(i).getClass().getSimpleName() + ".pdf";
+                String mobilePath = "mobile_" + screenshotCodes.get(i).getClass().getSimpleName() + ".pdf";
+                if (ifFileExisits(desktopPath))
+                    pdfNames.add(desktopPath);
+                if (ifFileExisits(mobilePath))
+                    pdfNames.add(mobilePath);
+            }
         }
 
         createZip(pdfNames, zipName, zipPath);
@@ -93,7 +97,7 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         System.out.println("Sending " + zipName + " zip file...");
         String filePath = zipPath + "/" + zipName + ".zip";
-        String key =  String.format("%s-%s-%s.zip", zipName, Variables.getDomain().getType(), date);
+        String key =  String.format("%s-%s-%s.zip", zipName, Variables.getEnvironmentType(), date);
         sendObject(s3, key, filePath);
         System.out.println("zip sent!");
     }
@@ -104,7 +108,7 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         System.out.println("Sending " + getJobName() + " pdf file...");
         String filePath = pdfSavePath + "/" + screenshotScriptName + ".pdf";
-        String key = String.format("%s-%s-%s.pdf", getJobName(), Variables.getDomain().getType(), date);
+        String key = String.format("%s-%s-%s.pdf", getJobName(), Variables.getEnvironmentType(), date);
         sendObject(s3, key, filePath);
         System.out.println("pdf sent!");
     }
@@ -118,7 +122,7 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
        }
     }
 
-    protected static void createZip(String [] files, String zipName, String zipPath) {
+    protected static void createZip(ArrayList<String> files, String zipName, String zipPath) {
         final int BUFFER = 8192;
         String pdfPaths = Variables.getPdfOutputPath();
         (new File(zipPath)).mkdirs();
@@ -129,10 +133,10 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
             byte data[] = new byte[BUFFER];
 
 
-            for (int i = 0; i < files.length; i++) {
-                FileInputStream fi = new FileInputStream(pdfPaths + "/" + files[i]);
+            for (int i = 0; i < files.size(); i++) {
+                FileInputStream fi = new FileInputStream(pdfPaths + "/" + files.get(i));
                 origin = new BufferedInputStream(fi, BUFFER);
-                ZipEntry entry = new ZipEntry(files[i]);
+                ZipEntry entry = new ZipEntry(files.get(i));
 
                 out.putNextEntry(entry);
                 int count;
@@ -145,5 +149,9 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean ifFileExisits(String filePath){
+        return Files.exists(Paths.get(pdfSavePath + "/" + filePath));
     }
 }
