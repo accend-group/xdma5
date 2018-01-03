@@ -66,28 +66,18 @@ public class Herceptin extends SeleniumHeadless {
             String textFromLink;
             if(Variables.getEnvironmentType() == PROD)
                 textFromLink = "Learn more about how to enroll";
-                //driver.findElement(By.linkText("Learn more about how to enroll")).click();
             else // dev, stage, local has this text
                 textFromLink = "How do I enroll?";
-                //driver.findElement(By.linkText("How do I enroll?")).click();
-            //full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;*/
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step1", driver.findElement(By.linkText(textFromLink)), 1000L);
 
             //jse.executeScript("window.scrollTo(0, 0)");
             if(Variables.getEnvironmentType() == PROD)
                 textFromLink = "What we find out";
-                //driver.findElement(By.linkText("What we find out")).click();
             else  // dev, stage, local has this text
                 textFromLink = "What will we find out?";
-                //driver.findElement(By.linkText("What will we find out?")).click();
-            //Thread.sleep(1000);
-            //full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step2", driver.findElement(By.linkText("What will we find out?")), 1000L);
+
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step2", driver.findElement(By.linkText(textFromLink)), 1000L);
 
-            /*jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What options are there?")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);*/
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step3", driver.findElement(By.linkText("What options are there?")), 1000L);
 
             goToUrl(driver, "/patient/brands/herceptin/forms-and-documents.html");
@@ -335,36 +325,19 @@ public class Herceptin extends SeleniumHeadless {
             String textFromLink;
             if(Variables.getEnvironmentType() == PROD)
                 textFromLink = "Learn more about how to enroll";
-                //driver.findElement(By.linkText("Learn more about how to enroll")).click();
             else // dev, stage, local has this text
                 textFromLink = "How do I enroll?";
-                //driver.findElement(By.linkText("How do I enroll?")).click();
 
-            /*jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px;')", element);
-            movecursorm(driver);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0-step1", driver.findElement(By.linkText("How do I enroll?")), 1000L);;*/
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0-step1", driver.findElement(By.linkText(textFromLink)), 1000L);
 
-            //jse.executeScript("window.scrollTo(0, 0)");
-            //driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-
-            if(Variables.getEnvironmentType() == PROD) {
+            if(Variables.getEnvironmentType() == PROD)
                 textFromLink = "What we find out";
-                /*Actions actions = new Actions(driver);
-                element = driver.findElement(By.linkText("What we find out"));
-                actions.moveToElement(element).click().perform();*/
-            }
             else // dev, stage, local has this text
                 textFromLink = "What will we find out?";
-                //scrollAndClickAt(driver, driver.findElement(By.linkText("What will we find out?")));
-            //driver.findElement(By.linkText("What we find out")).click();
-            //Thread.sleep(1000);
+
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0-step2", driver.findElement(By.linkText(textFromLink)), 1000L);
 
-            /*jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.linkText("What options are there?")).click();
-            Thread.sleep(1000);*/
+
             textFromLink = "What options are there?";
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0-step3", driver.findElement(By.linkText(textFromLink)), 1000L);
 

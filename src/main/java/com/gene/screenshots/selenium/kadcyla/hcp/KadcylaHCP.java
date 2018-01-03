@@ -282,8 +282,8 @@ public class KadcylaHCP extends SeleniumHeadless {
             waitForPageLoad(driver);
             jse.executeScript("window.scrollTo(0,document.body.scrollHeight)", "");
             waitForPageLoad(driver);
-            //driver.findElement(By.linkText("www.fda.gov/medwatch")).click();
-            //driver.findElement(By.cssSelector("#safety_reference_cal_1003384946 > div > div > div > p > a:nth-child(2)")).click();
+
+
             List<WebElement> thirdPartyLinks = driver.findElements(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
             for(WebElement link : thirdPartyLinks)
                 if(link.getText().equals("www.fda.gov/medwatch"))
@@ -291,6 +291,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0,0)", "");
             Thread.sleep(1000);
             visible(driver, true, savePath, "kadcyla-hcp-link-modal");
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

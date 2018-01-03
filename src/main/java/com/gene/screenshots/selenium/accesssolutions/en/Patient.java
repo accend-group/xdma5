@@ -37,8 +37,6 @@ public class Patient extends SeleniumHeadless {
             Actions actions = new Actions(driver);
             WebElement element = driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button"));
             actions.moveToElement(element).click().perform();
-            //scrollAndClickAt(driver, "//*[@id='sub-indications-selector']/div/div/div[1]/button");
-            //driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
 
             Thread.sleep(1000);
             driver.findElement(By.linkText("For US Healthcare Professionals")).click();
@@ -109,7 +107,6 @@ public class Patient extends SeleniumHeadless {
             visible(driver, false, savePath, "accesssolutions-mobile-patient-product-popup");
 
             scrollAndClickAt(driver, "//*[@id='product-selector']/div/div/div[2]/div/div/ul/li[16]/a");
-            //driver.findElement(By.xpath("//*[@id='product-selector']/div/div/div[2]/div/div/ul/li[16]/a")).click();
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-popup");
 
