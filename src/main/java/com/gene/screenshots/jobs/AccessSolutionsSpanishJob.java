@@ -4,7 +4,7 @@ import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.base.annotations.Environment;
 import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import com.gene.screenshots.selenium.accesssolutions.en.*;
+import com.gene.screenshots.selenium.accesssolutions.es.*;
 
 import java.util.LinkedList;
 import java.util.List;
