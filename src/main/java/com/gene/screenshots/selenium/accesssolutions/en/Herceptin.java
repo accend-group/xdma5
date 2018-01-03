@@ -64,7 +64,7 @@ public class Herceptin extends SeleniumHeadless {
             jse.executeScript("window.scrollTo(0, 0)");
 
             String textFromLink;
-            if(Variables.getDomain().getType() == PROD)
+            if(Variables.getEnvironmentType() == PROD)
                 textFromLink = "Learn more about how to enroll";
                 //driver.findElement(By.linkText("Learn more about how to enroll")).click();
             else // dev, stage, local has this text
@@ -74,7 +74,7 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step1", driver.findElement(By.linkText(textFromLink)), 1000L);
 
             //jse.executeScript("window.scrollTo(0, 0)");
-            if(Variables.getDomain().getType() == PROD)
+            if(Variables.getEnvironmentType() == PROD)
                 textFromLink = "What we find out";
                 //driver.findElement(By.linkText("What we find out")).click();
             else  // dev, stage, local has this text
@@ -333,7 +333,7 @@ public class Herceptin extends SeleniumHeadless {
             jse.executeScript("arguments[0].setAttribute('style', 'padding-bottom:50px;')", element);
 
             String textFromLink;
-            if(Variables.getDomain().getType() == PROD)
+            if(Variables.getEnvironmentType() == PROD)
                 textFromLink = "Learn more about how to enroll";
                 //driver.findElement(By.linkText("Learn more about how to enroll")).click();
             else // dev, stage, local has this text
@@ -349,7 +349,7 @@ public class Herceptin extends SeleniumHeadless {
             //jse.executeScript("window.scrollTo(0, 0)");
             //driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
 
-            if(Variables.getDomain().getType() == PROD) {
+            if(Variables.getEnvironmentType() == PROD) {
                 textFromLink = "What we find out";
                 /*Actions actions = new Actions(driver);
                 element = driver.findElement(By.linkText("What we find out"));

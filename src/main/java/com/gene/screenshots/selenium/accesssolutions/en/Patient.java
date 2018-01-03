@@ -117,19 +117,19 @@ public class Patient extends SeleniumHeadless {
             Thread.sleep(1000);
 
 
-            if(Variables.getDomain().getType() == PROD) {
+            if(Variables.getEnvironmentType() == PROD) {
                 Actions actions = new Actions(driver);
                 WebElement element = driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button"));
                 actions.moveToElement(element).click().perform();
             }
-            if(Variables.getDomain().getType() == LOCAL)
+            if(Variables.getEnvironmentType() == LOCAL)
                 driver.findElement(By.xpath("//*[@id='sub-indications-selector']/div/div/div[1]/button")).click();
 
             Thread.sleep(1000);
 
-            if(Variables.getDomain().getType() == PROD)
+            if(Variables.getEnvironmentType() == PROD)
                 forceClick(driver, "/html/body/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[1]/nav/div/div/div/div/ul/li[1]/a");
-            if(Variables.getDomain().getType() == LOCAL)
+            if(Variables.getEnvironmentType() == LOCAL)
                 driver.findElement(By.linkText("US Healthcare Professionals")).click();
             Thread.sleep(1000);
             visible(driver, false, savePath, "accesssolutions-mobile-patient-hcp-modal");
