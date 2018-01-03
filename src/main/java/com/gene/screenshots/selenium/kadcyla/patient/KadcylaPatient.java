@@ -4,11 +4,20 @@ import com.gene.screenshots.selenium.SeleniumHeadless;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class KadcylaPatient extends SeleniumHeadless {
+
+    @Override
+    public String getSiteMapUrl() {
+        return "/patient/site-map.html";
+    }
+
+    @Override
+    public String getSiteMapSelector() {
+        return ".gene-component--sitemap__item--patient";
+    }
 
     @Override
     public void desktopAutomationTest(String savePath) {
@@ -45,18 +54,6 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.close();
             driver.quit();
         }
-    }
-
-    private List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
-        List<String> links = new ArrayList<String>();
-        goToUrl(driver, "/patient/site-map.html");
-        Thread.sleep(1000);
-        WebElement container = driver.findElement(By.cssSelector(".gene-component--sitemap__item--patient"));
-        List<WebElement> linkElements = container.findElements(By.cssSelector(".gene-component--sitemap__link"));
-        for (WebElement element : linkElements) {
-            links.add(element.getAttribute("href"));
-        }
-        return links;
     }
 
     private void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {

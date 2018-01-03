@@ -1,5 +1,6 @@
 package com.gene.screenshots.selenium;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.LogManager;
 
@@ -161,7 +162,27 @@ public abstract class SeleniumHeadless extends Screenshots {
         mobileDriver.quit();
     }
 
-    public void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String prefixName, String savePath) throws InterruptedException {
+    protected String getSiteMapUrl() {
+        return "";
+    }
+
+    protected String getSiteMapSelector() {
+        return "";
+    }
+
+    protected List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
+        List<String> links = new ArrayList<String>();
+        goToUrl(driver, getSiteMapUrl());
+        Thread.sleep(1000);
+        WebElement container = driver.findElement(By.cssSelector(getSiteMapSelector()));
+        List<WebElement> linkElements = container.findElements(By.cssSelector(".gene-component--sitemap__link"));
+        for (WebElement element : linkElements) {
+            links.add(element.getAttribute("href"));
+        }
+        return links;
+    }
+
+    protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String prefixName, String savePath) throws InterruptedException {
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent .gene-component--navigation__link--tab"));
         for (int i = 0; i < elements.size(); i++) {
             action.moveToElement(elements.get(i)).build().perform();
@@ -171,7 +192,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         }
     }
 
-    public void getScreenshotForMobileNavigation(WebDriver driver, String prefixName, String savePath) throws InterruptedException {
+    protected void getScreenshotForMobileNavigation(WebDriver driver, String prefixName, String savePath) throws InterruptedException {
         driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
         Thread.sleep(1000);
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__icon--tab"));
@@ -184,7 +205,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         }
     }
 
-    public void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
         List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__header, .panel-heading"));
         if (tabs.size() > 0) {
             int y = tabs.get(0).getLocation().getY();
@@ -200,7 +221,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         }
     }
 
-    public void getScreenshotForThirdPartyModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForThirdPartyModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
         WebElement thirdPartyLink = driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
         int y = thirdPartyLink.getLocation().getY();
         scrollTo(driver, 0, y);
