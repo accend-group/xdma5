@@ -24,7 +24,6 @@ public class Variables {
     // needed for json url type
     private static Object jobType = null;
 
-    private static BrandUrl domain = null;
     private static EnvironmentType environmentType = LOCAL;
 
     private static boolean ifMergePDF = true;
@@ -126,7 +125,4 @@ public class Variables {
         return region;
     }
 
-    public static BrandUrl getDomain(){
-        return domain;
-    }
 }
