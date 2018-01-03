@@ -438,7 +438,7 @@ public class KadcylaHCP extends SeleniumHeadless {
 
             driver.navigate().refresh();
 
-            getScreenshotForThirdPartyModal(driver, "kadcyla-hcp-mobile", savePath, true);
+            getScreenshotForThirdPartyModal(driver, "kadcyla-hcp-mobile", savePath, false);
 
         } catch (Exception e) {
             e.printStackTrace();
