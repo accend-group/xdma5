@@ -185,17 +185,18 @@ public abstract class SeleniumHeadless extends Screenshots {
     }
 
     public void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
-        WebElement tabs = driver.findElement(By.cssSelector(".gene-component--accordionTabs__header, .panel-heading"));
-        int y = tabs.getLocation().getY();
-        scrollTo(driver, 0, y);
-        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--accordionTabs__header, .panel-heading"));
-        for (int i = 0; i < elements.size(); i++) {
-            elements.get(i).click();
-            Thread.sleep(1000);
-            String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
-            full(driver, isDesktop, savePath, screenshotName);
-            elements.get(i).click(); //collapse the current one
-            Thread.sleep(1000);
+        List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__header, .panel-heading"));
+        if (tabs.size() > 0) {
+            int y = tabs.get(0).getLocation().getY();
+            scrollTo(driver, 0, y);
+            for (int i = 0; i < tabs.size(); i++) {
+                tabs.get(i).click();
+                Thread.sleep(1000);
+                String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
+                full(driver, isDesktop, savePath, screenshotName);
+                tabs.get(i).click(); //collapse the current one
+                Thread.sleep(1000);
+            }
         }
     }
 
@@ -210,6 +211,6 @@ public abstract class SeleniumHeadless extends Screenshots {
         }
         Thread.sleep(1000);
         String name = prefix + "-link-modal";
-        visible(driver, true, savePath, name);
+        visible(driver, isDesktop, savePath, name);
     }
 }
