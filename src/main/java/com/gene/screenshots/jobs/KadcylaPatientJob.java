@@ -10,6 +10,7 @@ import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
         dev = "https://dev-kadcyla.gene.com",
         stage = "https://stage-kadcyla.gene.com",
         prod = "https://www.kadcyla.com")
+
 public class KadcylaPatientJob extends ScreenshotJob {
 
     public KadcylaPatientJob() {
