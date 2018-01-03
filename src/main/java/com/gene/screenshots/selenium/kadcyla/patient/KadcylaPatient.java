@@ -183,8 +183,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
 
-            driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
+            forceClick(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1500);
             movecursor.accept(driver);
@@ -239,10 +238,8 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.name("first-name")).sendKeys("Marwin");
             driver.findElement(By.name("last-name")).sendKeys("Nicolas");
             driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-            if(Variables.getDomain().getType() == LOCAL)
-            driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
-            else
-                driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+
+            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
@@ -388,10 +385,8 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.name("first-name")).sendKeys("Marwin");
             driver.findElement(By.name("last-name")).sendKeys("Nicolas");
             driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-            if(Variables.getDomain().getType() == LOCAL)
-                driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
-            else
-                driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+
+            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");

@@ -241,11 +241,8 @@ public class PerjetaPatient extends SeleniumHeadless {
 			driver.findElement(By.name("first-name")).sendKeys("marwin");
 			driver.findElement(By.name("last-name")).sendKeys("nicolas");
 			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-			if(Variables.getDomain().getType() == LOCAL)
-                driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
-            else
-                driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
-			driver.findElement(By.name("address-line-1")).sendKeys("CA");
+			driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
+            driver.findElement(By.name("address-line-1")).sendKeys("CA");
 			driver.findElement(By.name("address-line-2")).sendKeys("CA");
 			driver.findElement(By.name("city")).sendKeys("CA");
 			driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[6]/form/div[7]/div[2]/div[1]/div/div")).click();

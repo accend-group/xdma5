@@ -15,7 +15,7 @@ public class Variables {
 
     // where main directory is set for creating images in sub directories for each selenium script that needs a pdf
     private static String savePath = "target/screenshots";
-    private static String pdfOutputPath = null;
+    private static String pdfOutputPath = "target/screenshots/pdfs";
     private static String bucketName = null;
     private static String region = null;
     private static String awsSecretKey = null;
@@ -24,35 +24,16 @@ public class Variables {
     // needed for json url type
     private static Object jobType = null;
 
-    private static BrandUrl domain = null;
+    private static EnvironmentType environmentType = LOCAL;
 
     private static boolean ifMergePDF = true;
 
     public static void main(String[] args) {
 
-        EnvironmentType environmentType = LOCAL;
-
         for (String arg : args) {
 
             if(arg.equals("pdfbreakpoint=false"))
                 ifMergePDF = false;
-
-            if (arg.contains("savepath=") && arg.indexOf("savepath=") == 0) {
-                savePath = arg.substring(9, arg.length());
-                if(savePath.equals("") || savePath == null)
-                    savePath = "target/screenshots";
-                File dir = new File(savePath);
-                dir.mkdirs();
-            }
-            if (arg.contains("pdfoutput=") && arg.indexOf("pdfoutput=") == 0) {
-                pdfOutputPath = arg.substring(10, arg.length());
-                if (pdfOutputPath.equals(""))
-                    pdfOutputPath = null;
-                else {
-                    File dir = new File(pdfOutputPath);
-                    dir.mkdirs();
-                }
-            }
 
             if(arg.contains("environment=") && arg.indexOf("environment=") == 0) {
                 String url = arg.substring(12, arg.length());
@@ -90,11 +71,7 @@ public class Variables {
         try {
             Long ID = Long.parseLong((String) jobType);
             jobType = ID;
-            domain = new BrandUrl(ID, environmentType);
-        } catch (NumberFormatException e) {
-            domain = new BrandUrl(jobType, environmentType);
-        }
-
+        } catch (NumberFormatException e) {}
 
         String OS = System.getProperty("os.name").toLowerCase();
         if (OS.contains("win"))
@@ -102,13 +79,14 @@ public class Variables {
         else
             chromedriverPath = "node_modules/chromedriver/lib/chromedriver/chromedriver";
 
-        if(pdfOutputPath == null){
-            pdfOutputPath =  "target/screenshots/pdfs";
-            File dir = new File(pdfOutputPath);
-            dir.mkdirs();
-        }
+        File dir = new File(savePath);
+        dir.mkdirs();
+        dir = new File(pdfOutputPath);
+        dir.mkdirs();
+    }
 
-
+    public static EnvironmentType getEnvironmentType(){
+        return environmentType;
     }
 
     public static boolean isIfMergePDF() {
@@ -147,7 +125,4 @@ public class Variables {
         return region;
     }
 
-    public static BrandUrl getDomain(){
-        return domain;
-    }
 }

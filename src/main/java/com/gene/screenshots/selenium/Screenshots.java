@@ -209,6 +209,10 @@ public abstract class Screenshots {
         }
     }
 
+    protected void waitForPageLoad(WebDriver driver){
+        new WebDriverWait(driver, 10).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
 
     private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
 
@@ -225,8 +229,7 @@ public abstract class Screenshots {
             driver.get(currentUrl);
 
             // wait for page to load on new tab
-            new WebDriverWait(driver, 10).until(
-                    webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+            waitForPageLoad(driver);
             int otherHeight = getDocHeight(driver);
 
             // in the case the previous tab had dynamically height changing events the new tab doesn't have

@@ -232,11 +232,8 @@ public class PerjetaHCP extends SeleniumHeadless{
 	    		driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/ul/li[1]")).click();
 	    		driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
 	    		Thread.sleep(1000);
-	    		if(Variables.getDomain().getType() == LOCAL)
-                driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
-            else
-                driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
-	    		driver.findElement(By.className("submit")).click();
+            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+          	driver.findElement(By.className("submit")).click();
 			Thread.sleep(1000);
             full(driver, true, savePath, "hcp-register-submit");
 			
@@ -456,11 +453,8 @@ public class PerjetaHCP extends SeleniumHeadless{
 			driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/ul/li[1]")).click();
 			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
 			Thread.sleep(1000);
-			if(Variables.getDomain().getType() == LOCAL)
-                driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
-            else
-                driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
-			driver.findElement(By.className("submit")).click();
+             driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+           	driver.findElement(By.className("submit")).click();
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-register-submit");
 			

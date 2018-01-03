@@ -2,14 +2,15 @@ package com.gene.screenshots;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.gene.screenshots.base.ScreenshotThreads;
+import com.gene.screenshots.base.annotations.Environment;
 import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.selenium.SeleniumHeadless;
+import com.google.errorprone.annotations.Var;
 import org.reflections.Reflections;
 
 
@@ -17,6 +18,8 @@ import java.io.*;
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.concurrent.Semaphore;
+
+import static com.gene.screenshots.EnvironmentType.*;
 
 /**
  * Starts the screenshot process from a jenkins job.
@@ -29,21 +32,20 @@ public class ScreenshotsAutomation {
 
     public static void main(String[] args) throws InterruptedException {
 
-        // load in json for urls
-        BrandUrl.loadEnvironments(new File("environments.json"));
-
         System.out.println("Reading Jenkins parameters!");
         Variables.main(args);
 
 
         String savePath = Variables.getSavePath();
-        System.out.println("Save path is: " + savePath);
-        ScreenshotThreads.savePath(savePath);
+        String pdfSavePath = Variables.getPdfOutputPath();
+        System.out.printf("Screenshot path: %s\nPDF path: %s\n", savePath, pdfSavePath);
+        ScreenshotThreads.setSavePath(savePath);
+        ScreenshotThreads.setPdfSavePath(pdfSavePath);
 
         SeleniumHeadless.setChromeSystemProperty(Variables.getChromedriverPath());
 
         // if merging pdfs or creating desktop/mobile pdfs
-        SeleniumHeadless.setIfSinglePDF(!Variables.isIfMergePDF());
+        SeleniumHeadless.setIfSinglePDF(Variables.isIfMergePDF());
 
         ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
 
@@ -59,10 +61,14 @@ public class ScreenshotsAutomation {
 
         // get specified job
         ScreenshotJob screenshotJob = null;
+        BrandUrl domain = null;
         try {
             Job job = annotationsMap.get(Variables.getJob()).getDeclaredAnnotation(Job.class);
+            Environment environment = annotationsMap.get(Variables.getJob()).getAnnotation(Environment.class);
             if(job != null)
                 System.out.println(String.format("Running %s, ID: %d, Info: %s", job.name(), job.ID(), job.info()));
+            if(environment != null)
+                domain = new BrandUrl(environment, Variables.getEnvironmentType());
             screenshotJob = (ScreenshotJob) annotationsMap.get(Variables.getJob()).newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -71,9 +77,14 @@ public class ScreenshotsAutomation {
         }
 
 
+        if(domain == null){
+            System.out.println("Error: missing Environment annotation!");
+            System.exit(1);
+        }
+
         // setting the testing domain (prod, stage, dev, local)
-        System.out.println("Running automation at: " + Variables.getDomain());
-        SeleniumHeadless.setDomain(Variables.getDomain());
+        System.out.println("Running automation at: " + domain);
+        SeleniumHeadless.setDomain(domain);
 
         if (screenshotJob == null){
             System.out.println("Error! invalid Job ID or Job name");
@@ -95,14 +106,16 @@ public class ScreenshotsAutomation {
         for (Thread thread : pdfThreads)
             thread.join();
 
+        if(Variables.getBucketName() != null && Variables.getAwsSecretKey() != null && Variables.getAwsAccessKey() != null){
 
-        System.out.println("Connecting to S3...");
-        AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
-                .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
-                .build();
+            System.out.println("Connecting to S3...");
+            AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                    .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Variables.getAwsAccessKey(), Variables.getAwsSecretKey())))
+                    .withRegion(Variables.getRegion() == null ? Regions.US_EAST_1.getName() : Variables.getRegion())
+                    .build();
 
-        // send pdf/zip
-        screenshotJob.sendResult(s3);
+            // send pdf/zip
+            screenshotJob.sendResult(s3);
+        }
     }
 }
