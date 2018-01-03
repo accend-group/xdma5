@@ -234,4 +234,27 @@ public abstract class SeleniumHeadless extends Screenshots {
         String name = prefix + "-link-modal";
         visible(driver, isDesktop, savePath, name);
     }
+
+    protected void clickYesPATButton(WebDriver driver) throws InterruptedException {
+        WebElement yesButton = driver.findElement(By.cssSelector(".assistance-tool .active:not(.disabled) .yes"));
+        int y = yesButton.getLocation().getY();
+        scrollTo(driver, 0, y);
+        Thread.sleep(1000);
+        yesButton.click();
+    }
+
+    protected void clickNoPATButton(WebDriver driver) throws InterruptedException {
+        WebElement noButton = driver.findElement(By.cssSelector(".assistance-tool .active:not(.disabled) .no"));
+        int y = noButton.getLocation().getY();
+        scrollTo(driver, 0, y);
+        Thread.sleep(1000);
+        noButton.click();
+    }
+
+    protected void restartPAT(WebDriver driver) {
+        WebElement startOverButton = driver.findElement(By.cssSelector(".start-over"));
+        int startOverLocation = startOverButton.getLocation().getY();
+        scrollTo(driver, 0, startOverLocation);
+        startOverButton.click();
+    }
 }

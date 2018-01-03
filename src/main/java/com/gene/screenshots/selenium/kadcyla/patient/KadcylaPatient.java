@@ -1,10 +1,12 @@
 package com.gene.screenshots.selenium.kadcyla.patient;
 
-import com.gene.screenshots.selenium.SeleniumHeadless;
-import org.openqa.selenium.*;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.List;
+import com.gene.screenshots.selenium.SeleniumHeadless;
 
 public class KadcylaPatient extends SeleniumHeadless {
 
@@ -24,7 +26,6 @@ public class KadcylaPatient extends SeleniumHeadless {
         WebDriver driver = makeDesktopDriver();
 
         try {
-            JavascriptExecutor jse = (JavascriptExecutor) driver;
             Actions action = new Actions(driver);
 
             List<String> links = getLinksFromSiteMap(driver);
@@ -34,17 +35,17 @@ public class KadcylaPatient extends SeleniumHeadless {
                 driver.get(links.get(i));
                 Thread.sleep(1500);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
-                    visible(driver, true, savePath, "kadcyla-patient");
+                    visible(driver, true, savePath, Integer.toString(i) + "-visible");
 
-                    getScreenshotForDesktopNavigation(driver, action, "kadcyla", savePath);
+                    getScreenshotForDesktopNavigation(driver, action, Integer.toString(i), savePath);
 
                     driver.navigate().refresh();
-                    getScreenshotForThirdPartyModal(driver, "kadcyla", savePath, true);
+                    getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, true);
                     driver.navigate().refresh();
                 }
                 full(driver, true, savePath, Integer.toString(i));
-                getScreenshotForDesktopPAT(savePath, driver, jse);
-                getScreenshotForAccordion(driver, "kadcyla-3.2", savePath, true);
+                getScreenshotForPAT(driver, savePath, true);
+                getScreenshotForAccordion(driver, Integer.toString(i), savePath, true);
                 getScreenshotForSchemaForm(driver, savePath, true);
             }
         } catch (Exception e) {
@@ -77,70 +78,59 @@ public class KadcylaPatient extends SeleniumHeadless {
         }
     }
 
-    private void getScreenshotForDesktopPAT(String savePath,
-                                     WebDriver driver,
-                                     JavascriptExecutor jse) throws InterruptedException {
+    private void getScreenshotForPAT(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
+            clickYesPATButton(driver);
             Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-pat1-yes");
+            full(driver, isDesktop, savePath, "kadcyla-3.2-pat1-yes");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
+            clickYesPATButton(driver);
             Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-pat2-yes");
+            full(driver, isDesktop, savePath, "kadcyla-3.2-pat2-yes");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
+            clickNoPATButton(driver);
             Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-pat3-no");
+            full(driver, isDesktop, savePath, "kadcyla-3.2-pat3-no");
 
-            jse.executeScript("window.scrollTo(0, 0)");
-
-            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button");
-            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
+            clickYesPATButton(driver);
             Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-pat4-yes");
+            full(driver, isDesktop, savePath, "kadcyla-3.2-pat4-yes");
 
-            //jse.executeScript("window.scrollTo(0, 0)");
+            restartPAT(driver);
 
-            scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
-            //driver.findElement(By.className("start-over")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]")).click();
+            clickNoPATButton(driver);
             Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-pat1-no");
+            full(driver, isDesktop, savePath, "kadcyla-3.2-pat1-no");
 
-            //jse.executeScript("window.scrollTo(0, 0)");
+            restartPAT(driver);
 
-            scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
-            //driver.findElement(By.className("start-over")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button[2]")).click();
+            clickYesPATButton(driver);
+            Thread.sleep(500);
+            clickNoPATButton(driver);
             Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-pat2-no");
+            full(driver, isDesktop, savePath, "kadcyla-3.2-pat2-no");
 
-            driver.navigate().refresh();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
-            Thread.sleep(1500);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button")).click();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-pat3-yes");
+            restartPAT(driver);
 
-            jse.executeScript("window.scrollTo(0, 0)");
-            scrollAndClickAt(driver, driver.findElement(By.className("start-over")));//.click();
-            forceClick(driver, driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")));
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
+            clickYesPATButton(driver);
+            Thread.sleep(500);
+            clickYesPATButton(driver);
+            Thread.sleep(500);
+            clickYesPATButton(driver);
             Thread.sleep(1500);
-            //scrollTo(driver, 0,500);
-            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]");
-            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
+            full(driver, isDesktop, savePath, "kadcyla-3.2-pat3-yes");
 
-            Thread.sleep(1000);
-            forceClick(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
-            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
+            restartPAT(driver);
+
+            clickYesPATButton(driver);
+            Thread.sleep(500);
+            clickYesPATButton(driver);
+            Thread.sleep(500);
+            clickNoPATButton(driver);
+            Thread.sleep(500);
+            clickNoPATButton(driver);
             Thread.sleep(1500);
-            full(driver, true, savePath, "kadcyla-3.2-pat4-no");
+            full(driver, isDesktop, savePath, "kadcyla-3.2-pat4-no");
             driver.navigate().refresh();
         }
     }
@@ -153,20 +143,20 @@ public class KadcylaPatient extends SeleniumHeadless {
         try {
             List<String> links = getLinksFromSiteMap(driver);
 
-            //      //--->start full page screenshot <---//
+            //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
                 driver.get(links.get(i));
                 Thread.sleep(1500);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
-                    visible(driver, false, savePath, "kadcyla-mobile-patient");
-                    getScreenshotForMobileNavigation(driver, "kadcyla", savePath);
+                    visible(driver, false, savePath, Integer.toString(i) + "-visible");
+                    getScreenshotForMobileNavigation(driver, Integer.toString(i), savePath);
                     driver.navigate().refresh();
-                    getScreenshotForThirdPartyModal(driver, "kadcyla-mobile", savePath, false);
+                    getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, false);
                     driver.navigate().refresh();
                 }
                 full(driver, false, savePath, Integer.toString(i));
-                getScreenshotForMobilePAT(savePath, driver);
-                getScreenshotForAccordion(driver, "kadcyla-3.2", savePath, false);
+                getScreenshotForPAT(driver, savePath, false);
+                getScreenshotForAccordion(driver, Integer.toString(i), savePath, false);
                 getScreenshotForSchemaForm(driver, savePath, false);
             }
         } catch (Exception e) {
@@ -174,67 +164,6 @@ public class KadcylaPatient extends SeleniumHeadless {
         } finally {
             driver.close();
             driver.quit();
-        }
-    }
-
-    private void getScreenshotForMobilePAT(String savePath,
-                                           WebDriver driver) throws InterruptedException {
-
-        if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
-            scrollAndClickAt(driver, "/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]");
-            //WebElement e = driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]"));
-            //e.click();
-            Thread.sleep(1500);
-            full(driver, false, savePath, "kadcyla-mobile-3.2-pat1-yes");
-            //jse.executeScript("window.scrollTo(0, 0)");
-
-            scrollAndClickAt(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button");
-            //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
-            Thread.sleep(1500);
-            full(driver, false, savePath, "kadcyla-mobile-3.2-pat2-yes");
-            //jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
-            full(driver, false, savePath, "kadcyla-mobile-3.2-pat3-no");
-            //jse.executeScript("window.scrollTo(0, 0)");
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button")).click();
-            Thread.sleep(1500);
-            full(driver, false, savePath, "kadcyla-mobile-3.2-pat4-yes");
-            //jse.executeScript("window.scrollTo(0, 0)");
-
-            scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
-            //driver.findElement(By.className("start-over")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
-            full(driver, false, savePath, "kadcyla-mobile-3.2-pat1-no");
-
-            //jse.executeScript("window.scrollTo(0, 0)");
-            scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
-            //driver.findElement(By.className("start-over")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
-            full(driver, false, savePath, "kadcyla-mobile-3.2-pat2-no");
-
-            driver.navigate().refresh();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
-            Thread.sleep(1500);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button")).click();
-            Thread.sleep(1500);
-            full(driver, false, savePath, "kadcyla-mobile-3.2-pat3-yes");
-
-            //jse.executeScript("window.scrollTo(0, 0)");
-            //driver.findElement(By.className("start-over")).click();
-            scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
-            full(driver, false, savePath, "kadcyla-mobile-3.2-pat4-no");
-            driver.navigate().refresh();
         }
     }
 }
