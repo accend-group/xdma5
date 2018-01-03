@@ -5,7 +5,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class KadcylaPatient extends SeleniumHeadless {
 
@@ -82,12 +81,6 @@ public class KadcylaPatient extends SeleniumHeadless {
                                      WebDriver driver,
                                      JavascriptExecutor jse) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
-            Consumer<WebDriver> movecursor = (d) -> {
-                Actions actions = new Actions(d);
-                WebElement mainMenu = d.findElement(By.name("q"));
-                actions.moveToElement(mainMenu);
-                actions.click().build().perform();
-            };
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
             Thread.sleep(1500);
             full(driver, true, savePath, "kadcyla-3.2-pat1-yes");
@@ -147,8 +140,6 @@ public class KadcylaPatient extends SeleniumHeadless {
             forceClick(driver, "//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]");
             //driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1500);
-            movecursor.accept(driver);
-            Thread.sleep(1500);
             full(driver, true, savePath, "kadcyla-3.2-pat4-no");
             driver.navigate().refresh();
         }
@@ -190,12 +181,6 @@ public class KadcylaPatient extends SeleniumHeadless {
                                            WebDriver driver) throws InterruptedException {
 
         if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
-            Consumer<WebDriver> movemouse = (d) -> {
-                Actions action = new Actions(d);
-                WebElement element;
-                element = d.findElement(By.xpath("/html/body/header/div[2]/div/div/div/div[2]/div[1]/a[2]/i[1]"));
-                action.moveToElement(element).build().perform();
-            };
             scrollAndClickAt(driver, "/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]");
             //WebElement e = driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]"));
             //e.click();
@@ -247,8 +232,6 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[3]/div[2]/fieldset/button[2]")).click();
             Thread.sleep(1500);
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[4]/div[2]/fieldset/button[2]")).click();
-            Thread.sleep(1500);
-            movemouse.accept(driver);
             Thread.sleep(1500);
             full(driver, false, savePath, "kadcyla-mobile-3.2-pat4-no");
             driver.navigate().refresh();
