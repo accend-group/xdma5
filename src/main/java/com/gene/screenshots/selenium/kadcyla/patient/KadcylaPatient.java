@@ -172,7 +172,7 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             jse.executeScript("window.scrollTo(0, 0)");
             scrollAndClickAt(driver, driver.findElement(By.className("start-over")));//.click();
-            driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")).click();
+            forceClick(driver, driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li/div[2]/fieldset/button")));
             driver.findElement(By.xpath("//main/section[2]/div/div/div/div/div[2]/div/ul/li[2]/div[2]/fieldset/button")).click();
             Thread.sleep(1500);
             //scrollTo(driver, 0,500);
