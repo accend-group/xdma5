@@ -35,9 +35,9 @@ public class PerjetaHCP extends SeleniumHeadless {
                 Thread.sleep(1000);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
-
                     getScreenshotForDesktopNavigation(driver, action, Integer.toString(i), savePath);
-
+                    driver.navigate().refresh();
+                    getScreenshotForShareModal(driver, Integer.toString(i), savePath);
                     driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, true);
                     driver.navigate().refresh();

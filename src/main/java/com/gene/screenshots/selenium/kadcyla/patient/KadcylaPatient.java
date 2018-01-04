@@ -34,6 +34,8 @@ public class KadcylaPatient extends SeleniumHeadless {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
                     getScreenshotForDesktopNavigation(driver, action, Integer.toString(i), savePath);
                     driver.navigate().refresh();
+                    getScreenshotForShareModal(driver, Integer.toString(i), savePath);
+                    driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, true);
                     driver.navigate().refresh();
                 }

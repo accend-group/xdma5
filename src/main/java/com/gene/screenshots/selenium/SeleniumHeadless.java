@@ -197,6 +197,7 @@ public abstract class SeleniumHeadless extends Screenshots {
     protected void getScreenshotForMobileNavigation(WebDriver driver, String prefixName, String savePath) throws InterruptedException {
         driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
         Thread.sleep(1000);
+        visible(driver, false, savePath, prefixName + "-navigation");
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__icon--tab"));
         for (int i = 0; i < elements.size(); i++) {
             elements.get(i).click();
@@ -221,6 +222,33 @@ public abstract class SeleniumHeadless extends Screenshots {
                 Thread.sleep(1000);
             }
         }
+    }
+
+    protected void getScreenshotForShareModal(WebDriver driver, String prefix, String savePath) throws InterruptedException {
+        if (driver.findElements(By.cssSelector(".genentech-component--button--share")).size() > 0) {
+            driver.findElement(By.cssSelector(".genentech-component--button--share")).click();
+            Thread.sleep(1000);
+            visible(driver, true, savePath, prefix + "-modal-share");
+            driver.findElement(By.name("fname")).sendKeys("First Name");
+            driver.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
+            Thread.sleep(1000);
+            visible(driver, true, savePath, prefix + "-modal-share-error");
+            driver.findElement(By.name("lname")).sendKeys("Last Name");
+            driver.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
+            driver.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
+            Thread.sleep(1000);
+            visible(driver, true, savePath, prefix + "-modal-share-submit");
+        }
+    }
+
+    protected void getScreenshotForHCPModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
+        if (isDesktop) {
+            driver.findElement(By.cssSelector(".gene-component--header__audience .gene-component--audience__item--hcp .gene-component--audience__link")).click();
+        } else {
+            driver.findElement(By.cssSelector(".gene-component--header__navigation .gene-component--audience__item--hcp .gene-component--audience__link")).click();
+        }
+        Thread.sleep(1000);
+        visible(driver, isDesktop, savePath, prefix + "-modal-HCP");
     }
 
     protected void getScreenshotForThirdPartyModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
