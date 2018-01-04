@@ -43,11 +43,12 @@ public class PerjetaPatient extends SeleniumHeadless {
 			action.moveToElement(driver.findElement(By.linkText("Support and Resources"))).build().perform();
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "patient-hover-4.0");
-			
-			driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/div[1]/div[5]/div/a/span")).click();
+
+			// link missing in prod, dev, stage
+			/*driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/div[1]/div[5]/div/a/span")).click();
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "patient-modal-share");
-			
+
 			driver.findElement(By.name("fname")).sendKeys("marwin");
 			driver.findElement(By.xpath("/html/body/section[2]/div[3]/div/div/form/div/div[3]/input")).click();
 			Thread.sleep(1000);
@@ -59,6 +60,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 			driver.findElement(By.xpath("/html/body/section[2]/div[3]/div/div/form/div/div[3]/input")).click();
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "patient-modal-share-submit");
+			*/
 			
 			goToUrl(driver, "/patient/breast-cancer.html");
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -189,7 +191,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 			Thread.sleep(1000);
 			full(driver, false, savePath, "patient-4.2-pat-q1",driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")), new Long(1000));
 			
-			driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
+			forceClick(driver, "/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "patient-4.2-pat-q1",driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")), new Long(1000));
 			
