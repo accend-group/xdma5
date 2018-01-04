@@ -238,32 +238,26 @@ public abstract class SeleniumHeadless extends Screenshots {
     }
 
     protected void clickYesPATButton(WebDriver driver) throws InterruptedException {
-        WebElement yesButton = driver.findElement(By.cssSelector(".assistance-tool .active:not(.disabled) .yes"));
-        int y = yesButton.getLocation().getY();
-        scrollTo(driver, 0, y);
-        Thread.sleep(1000);
-        yesButton.click();
+        clickPATButton(driver, ".assistance-tool .active:not(.disabled) .yes");
     }
 
     protected void clickNoPATButton(WebDriver driver) throws InterruptedException {
-        WebElement noButton = driver.findElement(By.cssSelector(".assistance-tool .active:not(.disabled) .no"));
-        int y = noButton.getLocation().getY();
+        clickPATButton(driver, ".assistance-tool .active:not(.disabled) .no");
+    }
+
+    protected void updatePATResponse(WebDriver driver) throws InterruptedException {
+        clickPATButton(driver, ".update-response");
+    }
+
+    protected void restartPAT(WebDriver driver) throws InterruptedException {
+        clickPATButton(driver, ".start-over");
+    }
+
+    private void clickPATButton(WebDriver driver, String selector) throws InterruptedException {
+        WebElement button = driver.findElement(By.cssSelector(selector));
+        int y = button.getLocation().getY();
         scrollTo(driver, 0, y);
         Thread.sleep(1000);
-        noButton.click();
-    }
-
-    protected void updatePATResponse(WebDriver driver) {
-        WebElement update = driver.findElement(By.cssSelector(".update-response"));
-        int y = update.getLocation().getY();
-        scrollTo(driver, 0, y);
-        update.click();
-    }
-
-    protected void restartPAT(WebDriver driver) {
-        WebElement startOverButton = driver.findElement(By.cssSelector(".start-over"));
-        int startOverLocation = startOverButton.getLocation().getY();
-        scrollTo(driver, 0, startOverLocation);
-        startOverButton.click();
+        button.click();
     }
 }
