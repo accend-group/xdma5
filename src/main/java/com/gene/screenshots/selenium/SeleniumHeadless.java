@@ -208,7 +208,7 @@ public abstract class SeleniumHeadless extends Screenshots {
     }
 
     protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
-        List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__header, .panel-heading"));
+        List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open) .gene-component--accordionTabs__header, .panel-heading"));
         if (tabs.size() > 0) {
             int y = tabs.get(0).getLocation().getY();
             scrollTo(driver, 0, y);
@@ -251,6 +251,13 @@ public abstract class SeleniumHeadless extends Screenshots {
         scrollTo(driver, 0, y);
         Thread.sleep(1000);
         noButton.click();
+    }
+
+    protected void updatePATResponse(WebDriver driver) {
+        WebElement update = driver.findElement(By.cssSelector(".update-response"));
+        int y = update.getLocation().getY();
+        scrollTo(driver, 0, y);
+        update.click();
     }
 
     protected void restartPAT(WebDriver driver) {
