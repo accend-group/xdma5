@@ -22,23 +22,17 @@ public class KadcylaPatient extends SeleniumHeadless {
 
     @Override
     public void desktopAutomationTest(String savePath) {
-
         WebDriver driver = makeDesktopDriver();
-
         try {
             Actions action = new Actions(driver);
-
             List<String> links = getLinksFromSiteMap(driver);
-
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
                 driver.get(links.get(i));
                 Thread.sleep(1500);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
-
                     getScreenshotForDesktopNavigation(driver, action, Integer.toString(i), savePath);
-
                     driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, true);
                     driver.navigate().refresh();
@@ -137,9 +131,7 @@ public class KadcylaPatient extends SeleniumHeadless {
 
     @Override
     public void mobileAutomationTest(String savePath) {
-
         WebDriver driver = makeMobileDriver();
-
         try {
             List<String> links = getLinksFromSiteMap(driver);
 
