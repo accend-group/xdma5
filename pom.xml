@@ -9,6 +9,9 @@
     <url>http://maven.apache.org</url>
 
     <properties>
+        <!-- the package location of screenshot jobs -->
+        <jobs.location>com.gene.screenshots.jobs</jobs.location>
+
         <exec.mainClass>com.gene.screenshots.ScreenshotsAutomation</exec.mainClass>
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,6 +19,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -25,6 +29,44 @@
                     <target>${jdk.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+
+            <!-- https://github.com/gkudel/reflections-maven -->
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <scripts>
+                                <script>
+                                    <![CDATA[new org.reflections.Reflections("${jobs.location}")
+                                        .save("${project.build.outputDirectory}/META-INF/reflections/${project.artifactId}-reflections.xml")]]>
+                                </script>
+                            </scripts>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.reflections</groupId>
+                        <artifactId>reflections</artifactId>
+                        <!-- use latest version of Reflections -->
+                        <version>0.9.10</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-all</artifactId>
+                        <!-- any version of Groovy \>= 1.5.0 should work here -->
+                        <version>2.4.3</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
