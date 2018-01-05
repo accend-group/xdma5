@@ -1,27 +1,36 @@
 package com.gene.screenshots.selenium;
 
+import static com.gene.screenshots.selenium.Constants.DESKTOP_HEIGHT;
+import static com.gene.screenshots.selenium.Constants.DESKTOP_WIDTH;
+import static com.gene.screenshots.selenium.Constants.MOBILE_HEIGHT;
+import static com.gene.screenshots.selenium.Constants.MOBILE_WIDTH;
+import static java.lang.Math.toIntExact;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
-import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
-import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
-import com.gene.screenshots.pdf.Log;
+import javax.imageio.ImageIO;
+
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-
-import static com.gene.screenshots.selenium.Constants.*;
-import static java.lang.Math.toIntExact;
+import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
+import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
+import com.gene.screenshots.pdf.Log;
 
 /***
  * used Shutterbug https://github.com/assertthat/selenium-shutterbug as starting basis
@@ -119,7 +128,7 @@ public abstract class Screenshots {
     protected int getDocWidth(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);");
-        return toIntExact(result);
+        return Math.toIntExact(result);
     }
 
     protected int getDocHeight(WebDriver driver) {
@@ -334,5 +343,115 @@ public abstract class Screenshots {
     public static void setMobileScaleFactor(boolean isScaled){
         if(isScaled)
             mobileScaleFactor = 2;
+    }
+
+
+    protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String prefixName, String savePath) throws InterruptedException {
+        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent .gene-component--navigation__link--tab"));
+        for (int i = 0; i < elements.size(); i++) {
+            action.moveToElement(elements.get(i)).build().perform();
+            Thread.sleep(1000);
+            String screenshotName = prefixName +"-hover-" + Integer.toString(i + 1) + ".0";
+            visible(driver, true, savePath, screenshotName);
+        }
+    }
+
+    protected void getScreenshotForMobileNavigation(WebDriver driver, String prefixName, String savePath) throws InterruptedException {
+        driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
+        Thread.sleep(1000);
+        visible(driver, false, savePath, prefixName + "-navigation");
+        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__icon--tab"));
+        for (int i = 0; i < elements.size(); i++) {
+            elements.get(i).click();
+            Thread.sleep(1000);
+            String screenshotName = prefixName +"-mobile-hover-" + Integer.toString(i + 1) + ".0";
+            visible(driver, false, savePath, screenshotName);
+            elements.get(i).click(); // collapse the current menu before going to the next one. So then the cursor won't hover over a submenu item.
+        }
+    }
+
+    protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
+        List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open) .gene-component--accordionTabs__header, .panel-heading"));
+        if (tabs.size() > 0) {
+            int y = tabs.get(0).getLocation().getY();
+            scrollTo(driver, 0, y);
+            for (int i = 0; i < tabs.size(); i++) {
+                tabs.get(i).click();
+                Thread.sleep(1000);
+                String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
+                full(driver, isDesktop, savePath, screenshotName);
+                tabs.get(i).click(); //collapse the current one
+                Thread.sleep(1000);
+            }
+        }
+    }
+
+    protected void getScreenshotForShareModal(WebDriver driver, String prefix, String savePath) throws InterruptedException {
+        if (driver.findElements(By.cssSelector(".genentech-component--button--share")).size() > 0) {
+            driver.findElement(By.cssSelector(".genentech-component--button--share")).click();
+            Thread.sleep(1000);
+            visible(driver, true, savePath, prefix + "-modal-share");
+            driver.findElement(By.name("fname")).sendKeys("First Name");
+            driver.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
+            Thread.sleep(1000);
+            visible(driver, true, savePath, prefix + "-modal-share-error");
+            driver.findElement(By.name("lname")).sendKeys("Last Name");
+            driver.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
+            driver.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
+            Thread.sleep(1000);
+            visible(driver, true, savePath, prefix + "-modal-share-submit");
+        }
+    }
+
+    protected void getScreenshotForHCPModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
+        String curr = driver.getCurrentUrl();
+        String[] arr = curr.split("/");
+        if (arr[3].equals("patient")) {
+            if (isDesktop) {
+                driver.findElement(By.cssSelector(".gene-component--header__audience .gene-component--audience__item--hcp .gene-component--audience__link")).click();
+            } else {
+                driver.findElement(By.cssSelector(".gene-component--header__navigation .gene-component--audience__item--hcp .gene-component--audience__link")).click();
+            }
+            Thread.sleep(1000);
+            visible(driver, isDesktop, savePath, prefix + "-modal-HCP");
+        }
+    }
+
+    protected void getScreenshotForThirdPartyModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
+        WebElement thirdPartyLink = driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
+        int y = thirdPartyLink.getLocation().getY();
+        scrollTo(driver, 0, y);
+        Thread.sleep(500);
+        thirdPartyLink.click();
+        if (isDesktop) {
+            scrollTo(driver, 0, 0);
+        }
+        Thread.sleep(1000);
+        String name = prefix + "-link-modal";
+        visible(driver, isDesktop, savePath, name);
+    }
+
+    protected void clickYesPATButton(WebDriver driver) throws InterruptedException {
+        clickPATButton(driver, ".assistance-tool .active:not(.disabled) .yes");
+    }
+
+    protected void clickNoPATButton(WebDriver driver) throws InterruptedException {
+        clickPATButton(driver, ".assistance-tool .active:not(.disabled) .no");
+    }
+
+    protected void updatePATResponse(WebDriver driver) throws InterruptedException {
+        clickPATButton(driver, ".update-response");
+    }
+
+    protected void restartPAT(WebDriver driver) throws InterruptedException {
+        clickPATButton(driver, ".start-over");
+    }
+
+    private void clickPATButton(WebDriver driver, String selector) throws InterruptedException {
+        WebElement button = driver.findElement(By.cssSelector(selector));
+        int y = button.getLocation().getY();
+        scrollTo(driver, 0, y);
+        Thread.sleep(1000);
+        button.click();
     }
 }
