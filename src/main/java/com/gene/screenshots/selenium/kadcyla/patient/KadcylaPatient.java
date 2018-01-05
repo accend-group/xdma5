@@ -38,6 +38,8 @@ public class KadcylaPatient extends SeleniumHeadless {
                     driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, true);
                     driver.navigate().refresh();
+                    getScreenshotForHCPModal(driver, Integer.toString(i), savePath, true);
+                    driver.navigate().refresh();
                 }
                 full(driver, true, savePath, Integer.toString(i));
                 getScreenshotForPAT(driver, savePath, true);
@@ -144,6 +146,7 @@ public class KadcylaPatient extends SeleniumHeadless {
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, false, savePath, Integer.toString(i) + "-visible");
                     getScreenshotForMobileNavigation(driver, Integer.toString(i), savePath);
+                    getScreenshotForHCPModal(driver, Integer.toString(i), savePath, false);
                     driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, false);
                     driver.navigate().refresh();

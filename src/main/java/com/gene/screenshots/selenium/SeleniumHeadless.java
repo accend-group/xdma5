@@ -242,13 +242,17 @@ public abstract class SeleniumHeadless extends Screenshots {
     }
 
     protected void getScreenshotForHCPModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
-        if (isDesktop) {
-            driver.findElement(By.cssSelector(".gene-component--header__audience .gene-component--audience__item--hcp .gene-component--audience__link")).click();
-        } else {
-            driver.findElement(By.cssSelector(".gene-component--header__navigation .gene-component--audience__item--hcp .gene-component--audience__link")).click();
+        String curr = driver.getCurrentUrl();
+        String[] arr = curr.split("/");
+        if (arr[3].equals("patient")) {
+            if (isDesktop) {
+                driver.findElement(By.cssSelector(".gene-component--header__audience .gene-component--audience__item--hcp .gene-component--audience__link")).click();
+            } else {
+                driver.findElement(By.cssSelector(".gene-component--header__navigation .gene-component--audience__item--hcp .gene-component--audience__link")).click();
+            }
+            Thread.sleep(1000);
+            visible(driver, isDesktop, savePath, prefix + "-modal-HCP");
         }
-        Thread.sleep(1000);
-        visible(driver, isDesktop, savePath, prefix + "-modal-HCP");
     }
 
     protected void getScreenshotForThirdPartyModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {

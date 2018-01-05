@@ -22,7 +22,6 @@ public class KadcylaHCP extends SeleniumHeadless {
 
     @Override
     public void desktopAutomationTest(String savePath) {
-
         WebDriver driver = makeDesktopDriver();
         try {
             Actions action = new Actions(driver);
@@ -35,12 +34,13 @@ public class KadcylaHCP extends SeleniumHeadless {
                 Thread.sleep(1000);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
-
                     getScreenshotForDesktopNavigation(driver, action, Integer.toString(i), savePath);
                     driver.navigate().refresh();
                     getScreenshotForShareModal(driver, Integer.toString(i), savePath);
                     driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, true);
+                    driver.navigate().refresh();
+                    getScreenshotForHCPModal(driver, Integer.toString(i), savePath, true);
                     driver.navigate().refresh();
                 }
                 full(driver, true, savePath, Integer.toString(i));
@@ -210,9 +210,8 @@ public class KadcylaHCP extends SeleniumHeadless {
                 Thread.sleep(1000);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, false, savePath, Integer.toString(i) + "-visible");
-
                     getScreenshotForMobileNavigation(driver, Integer.toString(i), savePath);
-
+                    getScreenshotForHCPModal(driver, Integer.toString(i), savePath, false);
                     driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, false);
                     driver.navigate().refresh();

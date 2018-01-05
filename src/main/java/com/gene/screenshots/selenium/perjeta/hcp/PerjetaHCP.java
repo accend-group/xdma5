@@ -41,6 +41,8 @@ public class PerjetaHCP extends SeleniumHeadless {
                     driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, true);
                     driver.navigate().refresh();
+                    getScreenshotForHCPModal(driver, Integer.toString(i), savePath, true);
+                    driver.navigate().refresh();
                 }
                 full(driver, true, savePath, Integer.toString(i));
                 getScreenshotForPAT(driver, savePath, action, true);
@@ -183,9 +185,7 @@ public class PerjetaHCP extends SeleniumHeadless {
 
     @Override
     public void mobileAutomationTest(String savePath) {
-
         WebDriver driver = makeMobileDriver();
-
         try {
             Actions action = new Actions(driver);
             List<String> links = getLinksFromSiteMap(driver);
@@ -196,9 +196,8 @@ public class PerjetaHCP extends SeleniumHeadless {
                 Thread.sleep(1000);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, false, savePath, Integer.toString(i) + "-visible");
-
                     getScreenshotForMobileNavigation(driver, Integer.toString(i), savePath);
-
+                    getScreenshotForHCPModal(driver, Integer.toString(i), savePath, false);
                     driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, false);
                     driver.navigate().refresh();
