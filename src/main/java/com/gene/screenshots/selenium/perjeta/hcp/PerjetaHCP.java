@@ -21,10 +21,17 @@ public class PerjetaHCP extends SeleniumHeadless {
     }
 
     @Override
+    public List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
+        List<String> links = super.getLinksFromSiteMap(driver);
+        // because sitemap doesn't have everything
+        links.add(getDomain().toString() + "/hcp/breast-cancer/isi.html");
+        links.add(getDomain().toString() + "/hcp/site-map.html");
+        return links;
+    }
+
+    @Override
     public void desktopAutomationTest(String savePath) {
-
         WebDriver driver = makeDesktopDriver();
-
         try {
             Actions action = new Actions(driver);
             List<String> links = getLinksFromSiteMap(driver);
@@ -107,79 +114,6 @@ public class PerjetaHCP extends SeleniumHeadless {
             driver.findElement(By.cssSelector(".specialty .gene-component--dropdown__select")).click();
             Thread.sleep(1000);
             full(driver, isDesktop, savePath, "hcp-contact-rep-specialty");
-        }
-    }
-
-    private void scrollToPATFootnote(WebDriver driver,
-                                     Actions action) {
-        action.moveToElement(driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"))).build().perform();
-    }
-
-    private void getScreenshotForPAT(WebDriver driver,
-                                     String savePath,
-                                     Actions action,
-                                     boolean isDesktop) throws InterruptedException {
-        if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "hcp-6.1-pat1-part1");
-
-            if (isDesktop) {
-                scrollToPATFootnote(driver, action);
-                Thread.sleep(1000);
-                full(driver, isDesktop, savePath, "hcp-6.1-pat1-part2");
-            }
-
-            restartPAT(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "hcp-6.1-pat2-part1");
-
-            if (isDesktop) {
-                scrollToPATFootnote(driver, action);
-                Thread.sleep(1000);
-                full(driver, isDesktop, savePath, "hcp-6.1-pat2-part2");
-            }
-
-            restartPAT(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-
-            full(driver, isDesktop, savePath, "hcp-6.1-pat3-part1");
-
-            if (isDesktop) {
-                scrollToPATFootnote(driver, action);
-                Thread.sleep(1000);
-                full(driver, isDesktop, savePath, "hcp-6.1-pat3-part2");
-            }
-
-            restartPAT(driver);
-            Thread.sleep(1000);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            updatePATResponse(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "hcp-6.1-q1", driver.findElement(By.cssSelector(".more-info")),
-                    new Long(1000));
-
-            restartPAT(driver);
         }
     }
 

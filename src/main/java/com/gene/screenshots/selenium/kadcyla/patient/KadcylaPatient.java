@@ -42,7 +42,7 @@ public class KadcylaPatient extends SeleniumHeadless {
                     driver.navigate().refresh();
                 }
                 full(driver, true, savePath, Integer.toString(i));
-                getScreenshotForPAT(driver, savePath, true);
+                getScreenshotForPAT(driver, savePath, action,true);
                 getScreenshotForAccordion(driver, Integer.toString(i), savePath, true);
                 getScreenshotForSchemaForm(driver, savePath, true);
             }
@@ -76,69 +76,12 @@ public class KadcylaPatient extends SeleniumHeadless {
         }
     }
 
-    private void getScreenshotForPAT(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
-        if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
-            clickYesPATButton(driver);
-            Thread.sleep(1500);
-            full(driver, isDesktop, savePath, "kadcyla-3.2-pat1-yes");
-
-            clickYesPATButton(driver);
-            Thread.sleep(1500);
-            full(driver, isDesktop, savePath, "kadcyla-3.2-pat2-yes");
-
-            clickNoPATButton(driver);
-            Thread.sleep(1500);
-            full(driver, isDesktop, savePath, "kadcyla-3.2-pat3-no");
-
-            clickYesPATButton(driver);
-            Thread.sleep(1500);
-            full(driver, isDesktop, savePath, "kadcyla-3.2-pat4-yes");
-
-            restartPAT(driver);
-
-            clickNoPATButton(driver);
-            Thread.sleep(1500);
-            full(driver, isDesktop, savePath, "kadcyla-3.2-pat1-no");
-
-            restartPAT(driver);
-
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(1500);
-            full(driver, isDesktop, savePath, "kadcyla-3.2-pat2-no");
-
-            restartPAT(driver);
-
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(1500);
-            full(driver, isDesktop, savePath, "kadcyla-3.2-pat3-yes");
-
-            restartPAT(driver);
-
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(1500);
-            full(driver, isDesktop, savePath, "kadcyla-3.2-pat4-no");
-            driver.navigate().refresh();
-        }
-    }
-
     @Override
     public void mobileAutomationTest(String savePath) {
         WebDriver driver = makeMobileDriver();
         try {
+            Actions action = new Actions(driver);
             List<String> links = getLinksFromSiteMap(driver);
-
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
                 driver.get(links.get(i));
@@ -152,7 +95,7 @@ public class KadcylaPatient extends SeleniumHeadless {
                     driver.navigate().refresh();
                 }
                 full(driver, false, savePath, Integer.toString(i));
-                getScreenshotForPAT(driver, savePath, false);
+                getScreenshotForPAT(driver, savePath, action, false);
                 getScreenshotForAccordion(driver, Integer.toString(i), savePath, false);
                 getScreenshotForSchemaForm(driver, savePath, false);
             }

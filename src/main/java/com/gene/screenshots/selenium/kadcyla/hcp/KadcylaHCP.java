@@ -25,7 +25,6 @@ public class KadcylaHCP extends SeleniumHeadless {
         WebDriver driver = makeDesktopDriver();
         try {
             Actions action = new Actions(driver);
-
             List<String> links = getLinksFromSiteMap(driver);
 
             //--->start full page screenshot <---//
@@ -44,7 +43,7 @@ public class KadcylaHCP extends SeleniumHeadless {
                     driver.navigate().refresh();
                 }
                 full(driver, true, savePath, Integer.toString(i));
-                getScreenshotForPAT(driver, savePath, true);
+                getScreenshotForPAT(driver, savePath, action, true);
                 getScreenshotForAccordion(driver, Integer.toString(i), savePath, true);
                 getScreenshotForContactForm(driver, savePath, true);
                 getScreenshotForRegisterForm(driver, savePath, true);
@@ -54,85 +53,6 @@ public class KadcylaHCP extends SeleniumHeadless {
         } finally {
             driver.close();
             driver.quit();
-        }
-    }
-
-    private void getScreenshotForPAT(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
-        if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat1-yes");
-
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat2-yes");
-
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat3-yes");
-
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat4-yes");
-
-            restartPAT(driver);
-
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat1-no");
-
-            restartPAT(driver);
-
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat2-no");
-
-            restartPAT(driver);
-
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat3-no");
-
-            restartPAT(driver);
-
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat4-no");
-
-            restartPAT(driver);
-
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat5-yes");
-
-            restartPAT(driver);
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickYesPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(500);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "kadcyla-hcp-6.1-pat5-no");
         }
     }
 
@@ -202,6 +122,7 @@ public class KadcylaHCP extends SeleniumHeadless {
 
         WebDriver driver = makeMobileDriver();
         try {
+            Actions action = new Actions(driver);
             List<String> links = getLinksFromSiteMap(driver);
 
             //--->start full page screenshot <---//
@@ -217,7 +138,7 @@ public class KadcylaHCP extends SeleniumHeadless {
                     driver.navigate().refresh();
                 }
                 full(driver, false, savePath, Integer.toString(i));
-                getScreenshotForPAT(driver, savePath, false);
+                getScreenshotForPAT(driver, savePath, action,false);
                 getScreenshotForAccordion(driver, Integer.toString(i), savePath, false);
                 getScreenshotForContactForm(driver, savePath, false);
                 getScreenshotForRegisterForm(driver, savePath, false);

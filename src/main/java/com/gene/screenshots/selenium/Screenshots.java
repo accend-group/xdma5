@@ -431,27 +431,64 @@ public abstract class Screenshots {
         visible(driver, isDesktop, savePath, name);
     }
 
-    protected void clickYesPATButton(WebDriver driver) throws InterruptedException {
-        clickPATButton(driver, ".assistance-tool .active:not(.disabled) .yes");
-    }
+    protected void getScreenshotForPAT(WebDriver driver,
+                                     String savePath,
+                                     Actions action,
+                                     boolean isDesktop) throws InterruptedException {
+        if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
+            List<WebElement> questions = driver.findElements(By.cssSelector(".questions li"));
+            if (isDesktop && questions.size() > 2) {
+                for (int i = 2; i < questions.size(); i += 2) {
+                    action.moveToElement(questions.get(i == questions.size() - 1 ? i : i + 1)).build().perform();
+                    Thread.sleep(1000);
+                    full(driver, isDesktop, savePath, "pat0-part" + Integer.toString(i));
+                }
+            }
 
-    protected void clickNoPATButton(WebDriver driver) throws InterruptedException {
-        clickPATButton(driver, ".assistance-tool .active:not(.disabled) .no");
-    }
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", driver.findElement(By.cssSelector(".assistance-tool .main")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .start-over")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .update-response")));
+            List<WebElement> results = driver.findElements(By.cssSelector(".assistance-tool .result"));
+            for (int i = 0; i < results.size(); i++) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", results.get(i));
+                Thread.sleep(1000);
+                full(driver, isDesktop, savePath, "pat" + Integer.toString(i + 1) + "-part1");
+                if (isDesktop) {
+                    action.moveToElement(driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"))).build().perform();
+                    Thread.sleep(1000);
+                    full(driver, isDesktop, savePath, "pat" + Integer.toString(i + 1) + "-part2");
+                }
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", results.get(i));
+            }
 
-    protected void updatePATResponse(WebDriver driver) throws InterruptedException {
-        clickPATButton(driver, ".update-response");
-    }
-
-    protected void restartPAT(WebDriver driver) throws InterruptedException {
-        clickPATButton(driver, ".start-over");
-    }
-
-    private void clickPATButton(WebDriver driver, String selector) throws InterruptedException {
-        WebElement button = driver.findElement(By.cssSelector(selector));
-        int y = button.getLocation().getY();
-        scrollTo(driver, 0, y);
-        Thread.sleep(1000);
-        button.click();
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", driver.findElement(By.cssSelector(".assistance-tool .main")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", driver.findElement(By.cssSelector(".footer .start-over")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", driver.findElement(By.cssSelector(".footer .update-response")));
+            for (int j = 0; j < questions.size(); j++) {
+                WebElement question = questions.get(j); 
+                String clazzName = question.getAttribute("class");
+                clazzName = clazzName.replaceAll("(active|disabled)", "active");
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', '" + clazzName + "')", question);
+                action.moveToElement(questions.get(j == questions.size() - 1 ? j : j + 1)).build().perform();
+                Thread.sleep(500);
+                List<WebElement> moreInfo = question.findElements(By.cssSelector(".more-info"));
+                if (moreInfo.size() > 0) {
+                    full(driver, isDesktop, savePath, "pat-q" + Integer.toString(j + 1), moreInfo.get(0), new Long(1000));
+                }
+                List<WebElement> options = driver.findElements(By.cssSelector(".assistance-tool .active:not(.disabled) button[data-action^='question_']"));
+                if (options.size() > 0) {
+                    String buttonClazzName = options.get(0).getAttribute("class");
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', '" + buttonClazzName + " active')", options.get(0));
+                }
+                clazzName = question.getAttribute("class");
+                clazzName = clazzName.replaceAll("(active)", "disabled");
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', '" + clazzName + "')", question);
+                if (j == 0) {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .start-over")));
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .update-response")));
+                }
+            }
+            driver.navigate().refresh();
+        }
     }
 }
