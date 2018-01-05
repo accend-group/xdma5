@@ -1,10 +1,11 @@
-
 package com.gene.screenshots.selenium.perjeta.patient;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
@@ -19,6 +20,15 @@ public class PerjetaPatient extends SeleniumHeadless {
     @Override
     public String getSiteMapSelector() {
         return ".gene-component--sitemap__item--patient .gene-component--sitemap__list";
+    }
+
+    @Override
+    public List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
+        List<String> links = super.getLinksFromSiteMap(driver);
+        // because sitemap doesn't have everything
+        links.add(getDomain().toString() + "/patient/breast-cancer/safety.html");
+        links.add(getDomain().toString() + "/patient/site-map.html");
+        return links;
     }
 
     @Override
@@ -87,66 +97,63 @@ public class PerjetaPatient extends SeleniumHeadless {
         }
     }
 
-    private void scrollToPATFootnote(WebDriver driver,
-                                     Actions action) {
-        action.moveToElement(driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"))).build().perform();
-    }
-
     private void getScreenshotForPAT(WebDriver driver,
                                      String savePath,
                                      Actions action,
                                      boolean isDesktop) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "patient-4.2-part2");
-
-            if (isDesktop) {
-                scrollToPATFootnote(driver, action);
-                Thread.sleep(1000);
-                full(driver, isDesktop, savePath, "patient-4.2-pat1-part2");
+            List<WebElement> questions = driver.findElements(By.cssSelector(".questions li"));
+            if (isDesktop && questions.size() > 2) {
+                for (int i = 3; i < questions.size(); i += 2) {
+                    action.moveToElement(questions.get(i)).build().perform();
+                    Thread.sleep(1000);
+                    full(driver, isDesktop, savePath, "pat0-part" + Integer.toString(i));
+                }
             }
 
-            restartPAT(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "patient-4.2-pat2-part1");
-
-            if (isDesktop) {
-                scrollToPATFootnote(driver, action);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", driver.findElement(By.cssSelector(".assistance-tool .main")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .start-over")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .update-response")));
+            List<WebElement> results = driver.findElements(By.cssSelector(".assistance-tool .result"));
+            for (int i = 0; i < results.size(); i++) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", results.get(i));
                 Thread.sleep(1000);
-                full(driver, isDesktop, savePath, "patient-4.2-pat2-part2");
+                full(driver, isDesktop, savePath, "pat" + Integer.toString(i + 1) + "-part1");
+                if (isDesktop) {
+                    action.moveToElement(driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"))).build().perform();
+                    Thread.sleep(1000);
+                    full(driver, isDesktop, savePath, "pat" + Integer.toString(i + 1) + "-part2");
+                }
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", results.get(i));
             }
 
-            restartPAT(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            clickNoPATButton(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "patient-4.2-pat3-part1");
-
-            if (isDesktop) {
-                scrollToPATFootnote(driver, action);
-                Thread.sleep(1000);
-                full(driver, isDesktop, savePath, "patient-4.2-pat3-part2");
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", driver.findElement(By.cssSelector(".assistance-tool .main")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", driver.findElement(By.cssSelector(".footer .start-over")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", driver.findElement(By.cssSelector(".footer .update-response")));
+            for (int j = 0; j < questions.size(); j++) {
+                WebElement question = questions.get(j); 
+                String clazzName = question.getAttribute("class");
+                clazzName = clazzName.replaceAll("(active|disabled)", "active");
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', '" + clazzName + "')", question);
+                action.moveToElement(questions.get(j == questions.size() - 1 ? j : j + 1)).build().perform();
+                Thread.sleep(500);
+                List<WebElement> moreInfo = question.findElements(By.cssSelector(".more-info"));
+                if (moreInfo.size() > 0) {
+                    full(driver, isDesktop, savePath, "pat-q" + Integer.toString(j + 1), moreInfo.get(0), new Long(1000));
+                }
+                List<WebElement> options = driver.findElements(By.cssSelector(".assistance-tool .active:not(.disabled) button[data-action^='question_']"));
+                if (options.size() > 0) {
+                    String buttonClazzName = options.get(0).getAttribute("class");
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', '" + buttonClazzName + " active')", options.get(0));
+                }
+                clazzName = question.getAttribute("class");
+                clazzName = clazzName.replaceAll("(active)", "disabled");
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', '" + clazzName + "')", question);
+                if (j == 0) {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .start-over")));
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .update-response")));
+                }
             }
-
-            restartPAT(driver);
-            Thread.sleep(1000);
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "patient-4.2-pat-q1", driver.findElement(By.cssSelector(".assistance-tool .active:not(.disabled) .more-info")), new Long(1000));
-            clickYesPATButton(driver);
-            Thread.sleep(1000);
-            full(driver, isDesktop, savePath, "patient-4.2-pat-q2", driver.findElement(By.cssSelector(".assistance-tool .active:not(.disabled) .more-info")), new Long(1000));
             driver.navigate().refresh();
         }
     }
