@@ -32,13 +32,13 @@ public class KadcylaPatient extends SeleniumHeadless {
                 Thread.sleep(1500);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
-                    getScreenshotForDesktopNavigation(driver, action, Integer.toString(i), savePath);
+                    getScreenshotForDesktopNavigation(driver, action, savePath);
                     driver.navigate().refresh();
                     getScreenshotForShareModal(driver, Integer.toString(i), savePath);
                     driver.navigate().refresh();
-                    getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, true);
+                    getScreenshotForThirdPartyModal(driver, savePath, true);
                     driver.navigate().refresh();
-                    getScreenshotForHCPModal(driver, Integer.toString(i), savePath, true);
+                    getScreenshotForHCPModal(driver, savePath, true);
                     driver.navigate().refresh();
                 }
                 full(driver, true, savePath, Integer.toString(i));
@@ -88,10 +88,10 @@ public class KadcylaPatient extends SeleniumHeadless {
                 Thread.sleep(1500);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, false, savePath, Integer.toString(i) + "-visible");
-                    getScreenshotForMobileNavigation(driver, Integer.toString(i), savePath);
-                    getScreenshotForHCPModal(driver, Integer.toString(i), savePath, false);
+                    getScreenshotForMobileNavigation(driver, savePath);
+                    getScreenshotForHCPModal(driver, savePath, false);
                     driver.navigate().refresh();
-                    getScreenshotForThirdPartyModal(driver, Integer.toString(i), savePath, false);
+                    getScreenshotForThirdPartyModal(driver, savePath, false);
                     driver.navigate().refresh();
                 }
                 full(driver, false, savePath, Integer.toString(i));

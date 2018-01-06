@@ -346,26 +346,24 @@ public abstract class Screenshots {
     }
 
 
-    protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String prefixName, String savePath) throws InterruptedException {
+    protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String savePath) throws InterruptedException {
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent .gene-component--navigation__link--tab"));
         for (int i = 0; i < elements.size(); i++) {
             action.moveToElement(elements.get(i)).build().perform();
             Thread.sleep(1000);
-            String screenshotName = prefixName +"-hover-" + Integer.toString(i + 1) + ".0";
-            visible(driver, true, savePath, screenshotName);
+            visible(driver, true, savePath, "hover-" + Integer.toString(i + 1));
         }
     }
 
-    protected void getScreenshotForMobileNavigation(WebDriver driver, String prefixName, String savePath) throws InterruptedException {
+    protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) throws InterruptedException {
         driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
         Thread.sleep(1000);
-        visible(driver, false, savePath, prefixName + "-navigation");
+        visible(driver, false, savePath, "mobile-navigation");
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__icon--tab"));
         for (int i = 0; i < elements.size(); i++) {
             elements.get(i).click();
             Thread.sleep(1000);
-            String screenshotName = prefixName +"-mobile-hover-" + Integer.toString(i + 1) + ".0";
-            visible(driver, false, savePath, screenshotName);
+            visible(driver, false, savePath, "mobile-hover-" + Integer.toString(i + 1));
             elements.get(i).click(); // collapse the current menu before going to the next one. So then the cursor won't hover over a submenu item.
         }
     }
@@ -403,7 +401,7 @@ public abstract class Screenshots {
         }
     }
 
-    protected void getScreenshotForHCPModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForHCPModal(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
         String curr = driver.getCurrentUrl();
         String[] arr = curr.split("/");
         if (arr[3].equals("patient")) {
@@ -413,11 +411,11 @@ public abstract class Screenshots {
                 driver.findElement(By.cssSelector(".gene-component--header__navigation .gene-component--audience__item--hcp .gene-component--audience__link")).click();
             }
             Thread.sleep(1000);
-            visible(driver, isDesktop, savePath, prefix + "-modal-HCP");
+            visible(driver, isDesktop, savePath, "modal-HCP");
         }
     }
 
-    protected void getScreenshotForThirdPartyModal(WebDriver driver, String prefix, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForThirdPartyModal(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
         WebElement thirdPartyLink = driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
         int y = thirdPartyLink.getLocation().getY();
         scrollTo(driver, 0, y);
@@ -427,8 +425,7 @@ public abstract class Screenshots {
             scrollTo(driver, 0, 0);
         }
         Thread.sleep(1000);
-        String name = prefix + "-link-modal";
-        visible(driver, isDesktop, savePath, name);
+        visible(driver, isDesktop, savePath, "link-modal");
     }
 
     protected void getScreenshotForPAT(WebDriver driver,
