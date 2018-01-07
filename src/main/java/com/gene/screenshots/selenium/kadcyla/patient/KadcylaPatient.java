@@ -46,7 +46,7 @@ public class KadcylaPatient extends SeleniumHeadless {
 
             driver.navigate().refresh();
             jse.executeScript("window.scrollTo(0,1000)", "");
-            driver.findElement(By.linkText("http://www.motherpregnancyregistry.com/")).click();
+            forceClick(driver,"http://www.motherpregnancyregistry.com/");
             jse.executeScript("window.scrollTo(0,0)", "");
             Thread.sleep(1500);
             visible(driver, true, savePath, "kadcyla-link-modal");
@@ -324,6 +324,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             goToUrl(driver, "/patient.html");
             jse.executeScript("window.scrollBy(0,3500)", "");
             driver.findElement(By.linkText("http://www.motherpregnancyregistry.com/")).click();
+            jse.executeScript("window.scrollTo(0,0)", "");
             Thread.sleep(1500);
             visible(driver, false, savePath, "kadcyla-mobile-link-modal");
 

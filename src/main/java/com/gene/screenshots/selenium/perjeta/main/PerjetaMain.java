@@ -35,10 +35,9 @@ public class PerjetaMain extends SeleniumHeadless {
 			visible(driver, true, savePath, "hcp-modal");
 
 			driver.findElement(By.xpath("/html/body/section[2]/div[4]/div/footer/a[2]")).click();
-			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			Thread.sleep(500);
-			driver.findElement(By.xpath("//*[@id=\"safety_reference_cal_1329084969\"]/div/div/div/p[2]/a")).click();
-			js.executeScript("window.scrollTo(0, 0)");
+//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			forceClick(driver,"//*[@id=\"safety_reference_cal_1329084969\"]/div/div/div/p[2]/a");
+//			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "hcp-thirdpartysite");
 
@@ -116,10 +115,10 @@ public class PerjetaMain extends SeleniumHeadless {
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-navigation");
 
-			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			Thread.sleep(500);
-			driver.findElement(By.xpath("//*[@id=\"safety_reference_cal_1329084969\"]/div/div/div/p[2]/a")).click();
-			js.executeScript("window.scrollTo(0, 0)");
+//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+//			Thread.sleep(500);
+			forceClick(driver,"//*[@id=\"safety_reference_cal_1329084969\"]/div/div/div/p[2]/a");
+//			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-thirdpartysite");
 
