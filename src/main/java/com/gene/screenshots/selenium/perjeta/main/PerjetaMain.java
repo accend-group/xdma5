@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
 public class PerjetaMain extends SeleniumHeadless {
+    @Override
     public void desktopAutomationTest(String savePath) {
 
         WebDriver driver = makeDesktopDriver();

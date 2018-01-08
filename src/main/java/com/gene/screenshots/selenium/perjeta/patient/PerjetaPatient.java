@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
@@ -31,40 +30,11 @@ public class PerjetaPatient extends SeleniumHeadless {
 
     @Override
     public void desktopAutomationTest(String savePath) {
-        WebDriver driver = makeDesktopDriver();
-        try {
-            Actions action = new Actions(driver);
-            List<String> links = getLinksFromSiteMap(driver);
-
-            // --->start full page screenshot <---//
-            for (int i = 0; i < links.size(); i++) {
-                driver.get(links.get(i));
-                Thread.sleep(1000);
-                if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
-                    visible(driver, true, savePath, Integer.toString(i) + "-visible");
-                    getScreenshotForDesktopNavigation(driver, action, savePath);
-                    driver.navigate().refresh();
-                    getScreenshotForShareModal(driver, Integer.toString(i), savePath);
-                    driver.navigate().refresh();
-                    getScreenshotForThirdPartyModal(driver, savePath, true);
-                    driver.navigate().refresh();
-                    getScreenshotForHCPModal(driver, savePath, true);
-                    driver.navigate().refresh();
-                }
-                full(driver, true, savePath, Integer.toString(i));
-                getScreenshotForPAT(driver, savePath, action, true);
-                getScreenshotForAccordion(driver, Integer.toString(i), savePath, true);
-                getScreenshotForRegisterForm(driver, savePath, true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            driver.close();
-            driver.quit();
-        }
+        super.desktopAutomationTest(savePath);
     }
 
-    private void getScreenshotForRegisterForm(WebDriver driver,
+    @Override
+    public void getScreenshotForSchemaForm(WebDriver driver,
                                               String savePath,
                                               boolean isDesktop) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".patient-reg-riker-form")).size() > 0) {
@@ -97,33 +67,6 @@ public class PerjetaPatient extends SeleniumHeadless {
 
     @Override
     public void mobileAutomationTest(String savePath) {
-        WebDriver driver = makeMobileDriver();
-        try {
-            Actions action = new Actions(driver);
-            List<String> links = getLinksFromSiteMap(driver);
-
-            // --->start full page screenshot <---//
-            for (int i = 0; i < links.size(); i++) {
-                driver.get(links.get(i));
-                Thread.sleep(1000);
-                if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
-                    visible(driver, false, savePath, Integer.toString(i) + "-visible");
-                    getScreenshotForMobileNavigation(driver, savePath);
-                    getScreenshotForHCPModal(driver, savePath, false);
-                    driver.navigate().refresh();
-                    getScreenshotForThirdPartyModal(driver, savePath, false);
-                    driver.navigate().refresh();
-                }
-                full(driver, false, savePath, Integer.toString(i));
-                getScreenshotForPAT(driver, savePath, action, false);
-                getScreenshotForAccordion(driver, Integer.toString(i), savePath, false);
-                getScreenshotForRegisterForm(driver, savePath, false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            driver.close();
-            driver.quit();
-        }
+        super.mobileAutomationTest(savePath);
     }
 }

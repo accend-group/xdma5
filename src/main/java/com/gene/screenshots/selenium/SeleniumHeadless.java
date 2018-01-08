@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 import com.gene.screenshots.BrandUrl;
 import com.gene.screenshots.Variables;
@@ -96,12 +97,66 @@ public abstract class SeleniumHeadless extends Screenshots {
     }
 
     public void desktopAutomationTest(String savePath) {
-        desktopDriver = makeDesktopDriver();
+        WebDriver driver = makeDesktopDriver();
+        try {
+            Actions action = new Actions(driver);
+            List<String> links = getLinksFromSiteMap(driver);
+            //--->start full page screenshot <---//
+            for (int i = 0; i < links.size(); i++) {
+                driver.get(links.get(i));
+                Thread.sleep(1500);
+                if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
+                    visible(driver, true, savePath, Integer.toString(i) + "-visible");
+                    getScreenshotForDesktopNavigation(driver, action, savePath);
+                    driver.navigate().refresh();
+                    getScreenshotForShareModal(driver, Integer.toString(i), savePath);
+                    driver.navigate().refresh();
+                    getScreenshotForThirdPartyModal(driver, savePath, true);
+                    driver.navigate().refresh();
+                    getScreenshotForHCPModal(driver, savePath, true);
+                    driver.navigate().refresh();
+                }
+                full(driver, true, savePath, Integer.toString(i));
+                getScreenshotForPAT(driver, savePath, action,true);
+                getScreenshotForAccordion(driver, Integer.toString(i), savePath, true);
+                getScreenshotForSchemaForm(driver, savePath, true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            driver.close();
+            driver.quit();
+        }
     }
 
-
     public void mobileAutomationTest(String savePath) {
-        mobileDriver = makeMobileDriver();
+        WebDriver driver = makeMobileDriver();
+        try {
+            Actions action = new Actions(driver);
+            List<String> links = getLinksFromSiteMap(driver);
+            //--->start full page screenshot <---//
+            for (int i = 0; i < links.size(); i++) {
+                driver.get(links.get(i));
+                Thread.sleep(1500);
+                if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
+                    visible(driver, false, savePath, Integer.toString(i) + "-visible");
+                    getScreenshotForMobileNavigation(driver, savePath);
+                    getScreenshotForHCPModal(driver, savePath, false);
+                    driver.navigate().refresh();
+                    getScreenshotForThirdPartyModal(driver, savePath, false);
+                    driver.navigate().refresh();
+                }
+                full(driver, false, savePath, Integer.toString(i));
+                getScreenshotForPAT(driver, savePath, action, false);
+                getScreenshotForAccordion(driver, Integer.toString(i), savePath, false);
+                getScreenshotForSchemaForm(driver, savePath, false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            driver.close();
+            driver.quit();
+        }
     }
 
 
@@ -171,6 +226,10 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     protected String getSiteMapSelector() {
         return "";
+    }
+
+    protected void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+        return;
     }
 
     protected List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
