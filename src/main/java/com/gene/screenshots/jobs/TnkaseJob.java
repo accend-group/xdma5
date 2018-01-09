@@ -12,7 +12,7 @@ stage = "https://stage-tnkase.gene.com",
 prod = "https://www.tnkase.com")
 
 public class TnkaseJob extends ScreenshotJob{
-	public TnkaseJob() {
-		setScript(new Tnkase());
+    public TnkaseJob() {
+	    setScript(new Tnkase());
 	}
 }

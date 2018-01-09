@@ -13,7 +13,7 @@ prod = "https://www.her2treatment.com")
 
 public class Her2treatmentJob extends ScreenshotJob{
 	
-	public Her2treatmentJob() {
-		setScript(new Her2treatment());
+    public Her2treatmentJob() {
+        setScript(new Her2treatment());
 	}
 }
