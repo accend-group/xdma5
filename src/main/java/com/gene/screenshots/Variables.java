@@ -57,9 +57,9 @@ public class Variables {
             }
 
             if(validArgument("author-username=", arg))
-                authorUsername = arg.substring(13, arg.length());
-            if(validArgument("author-password=", arg))
                 authorUsername = arg.substring(16, arg.length());
+            if(validArgument("author-password=", arg))
+                authorPassword = arg.substring(16, arg.length());
 
             if(validArgument("aws-accesskey=", arg))
                 awsAccessKey = arg.substring(14, arg.length());

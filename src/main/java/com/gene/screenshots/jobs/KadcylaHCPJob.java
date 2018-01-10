@@ -9,7 +9,8 @@ import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
 @Environment(local = "http://localhost:4503/content/kadcyla/en_us",
         dev = "https://dev-kadcyla.gene.com",
         stage = "https://stage-kadcyla.gene.com",
-        prod = "https://www.kadcyla.com")
+        prod = "https://www.kadcyla.com",
+        authorlocal = "http://localhost:4502/content/kadcyla/en_us")
 public class KadcylaHCPJob extends ScreenshotJob {
 
     public KadcylaHCPJob(){

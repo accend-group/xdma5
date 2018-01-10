@@ -6,8 +6,10 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
+import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 
@@ -30,26 +32,33 @@ public class Credentials {
                     endHostIndex = i;
                 }
             String host = url.substring(0, endHostIndex);
-            System.out.println(host);
-            String authenticationUrl = host +
-                    "/libs/cq/core/content/login.html/j_security_check?_charset_=utf8&j_password=" +
-                    username + "&j_username=" +
-                    password + "&j_validate=true";
+            String authenticationUrl = host + "/libs/cq/core/content/login.html/j_security_check";
+
+            String stringParams = String.format("_charset_=utf8&j_password=%s&j_username=%s&j_validate=true", password, username);
+            byte [] params = stringParams.getBytes(StandardCharsets.UTF_8);
+
             HttpURLConnection connection = (HttpURLConnection) new URL(authenticationUrl).openConnection();
             connection.setDoOutput(true);
+            connection.setInstanceFollowRedirects(false);
             connection.setRequestMethod("POST");
+            connection.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty( "charset", "utf-8");
+            connection.setRequestProperty( "Content-Length", Integer.toString(params.length));
+            connection.setUseCaches(false);
+
+            DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+            outputStream.write(params);
+            outputStream.close();
+
             List<String> cookies = connection.getHeaderFields().get("Set-Cookie");
-            for (String cookie : cookies) {
-                if (cookie.contains("login-token")) {
-                    token = cookie.substring(11, cookie.length() - 18);
+            for (String cookie : cookies)
+                if (cookie.contains("login-token=")) {
+                    token = cookie.substring(12, cookie.length() - 18);
                     break;
                 }
-            }
+
             driver.get(host + "/libs/cq/core/content/login.html");
-            ((JavascriptExecutor)driver).executeScript("document.cookie = arguments[0];", "login-token=" + token);
-
-            //driver.manage().addCookie(new Cookie("login-token", token));
-
+            driver.manage().addCookie(new Cookie("login-token", token));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,11 +75,5 @@ public class Credentials {
     public String getToken() {
         return token;
     }
-
-    @Override
-    public String toString(){
-        return token;
-    }
-
 
 }
