@@ -6,7 +6,7 @@ import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.tnkase.Tnkase;
 
 @Job(name = "Tnkase", ID = 8, info = "Screenshot automation for Tnkase")
-@Environment(local = "http://localhost:8080/content/her2treatment/en_us",
+@Environment(local = "http://localhost:8080",
 dev = "https://dev-tnkase.gene.com",
 stage = "https://stage-tnkase.gene.com",
 prod = "https://www.tnkase.com")
