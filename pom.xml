@@ -1,12 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.gene.screenshots</groupId>
-    <artifactId>genentech-screenshots</artifactId>
-    <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>genentech-screenshots</name>
-    <url>http://maven.apache.org</url>
+    <artifactId>genentech-screenshots-scripts</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <!-- the package location of screenshot jobs -->
@@ -35,11 +35,12 @@
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.5</version>
+                <version>1.6</version>
                 <executions>
                     <execution>
-                        <phase>generate-resources</phase>
+                        <phase>compile</phase>
                         <goals>
+                            <goal>compile</goal>
                             <goal>execute</goal>
                         </goals>
                         <configuration>
@@ -52,21 +53,7 @@
                         </configuration>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.reflections</groupId>
-                        <artifactId>reflections</artifactId>
-                        <!-- use latest version of Reflections -->
-                        <version>0.9.10</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
-                        <!-- any version of Groovy \>= 1.5.0 should work here -->
-                        <version>2.4.3</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
+
             </plugin>
         </plugins>
     </build>
@@ -126,6 +113,12 @@
             <groupId>org.reflections</groupId>
             <artifactId>reflections-maven</artifactId>
             <version>0.9.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.3</version>
         </dependency>
     </dependencies>
 </project>
