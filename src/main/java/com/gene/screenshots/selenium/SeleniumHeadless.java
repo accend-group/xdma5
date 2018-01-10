@@ -1,6 +1,8 @@
 package com.gene.screenshots.selenium;
 
 import com.gene.screenshots.BrandUrl;
+import com.gene.screenshots.Variables;
+import com.gene.screenshots.authentication.Credentials;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -65,6 +67,9 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--hide-scrollbars");
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         driver.manage().window().setSize(new Dimension(desktopWidth, DESKTOP_HEIGHT));
+
+        new Credentials(Variables.getAuthorUsername(), Variables.getAuthorPassword(), domain.toString(), driver);
+
         return driver;
     }
 
@@ -79,7 +84,11 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--no-sandbox");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-        return new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
+
+        WebDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
+
+        new Credentials(Variables.getAuthorUsername(), Variables.getAuthorPassword(), domain.toString(), driver);
+        return driver;
     }
 
     public void desktopAutomationTest(String savePath) {

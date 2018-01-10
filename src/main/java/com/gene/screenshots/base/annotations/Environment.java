@@ -17,4 +17,12 @@ public @interface Environment {
     String prod();
 
     String stage();
+
+    String authorlocal() default "null";
+
+    String authorstage() default "null";
+
+    String authoerdev() default "null";
+
+    String authorprod() default "null";
 }

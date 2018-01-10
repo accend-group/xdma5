@@ -28,6 +28,14 @@ public class Variables {
 
     private static boolean ifMergePDF = true;
 
+    private static boolean validArgument(String param, String arg){
+        return arg.contains(param) && arg.indexOf(param) == 0;
+    }
+
+
+    private static String authorUsername = null;
+    private static String authorPassword = null;
+
     public static void main(String[] args) {
 
         for (String arg : args) {
@@ -35,29 +43,37 @@ public class Variables {
             if(arg.equals("pdfbreakpoint=false"))
                 ifMergePDF = false;
 
-            if(arg.contains("environment=") && arg.indexOf("environment=") == 0) {
+            if(validArgument("environment=", arg)) {
                 String url = arg.substring(12, arg.length());
-                if(url.equals("dev"))
-                    environmentType = DEV;
-                if(url.equals("stage"))
-                    environmentType = STAGE;
-                if(url.equals("prod"))
-                    environmentType = PROD;
+                switch(url){
+                    case "dev": environmentType = DEV; break;
+                    case "stage" : environmentType = STAGE; break;
+                    case "prod" : environmentType = PROD; break;
+                    case "author-local" : environmentType = AUTHOR_LOCAL; break;
+                    case "author-dev" : environmentType = AUTHOR_DEV; break;
+                    case "author-prod" : environmentType = AUTHOR_PROD; break;
+                    case "author-stage" : environmentType = AUTHOR_STAGE; break;
+                }
             }
 
-            if (arg.contains("aws-accesskey=") && arg.indexOf("aws-accesskey=") == 0)
+            if(validArgument("author-username=", arg))
+                authorUsername = arg.substring(13, arg.length());
+            if(validArgument("author-password=", arg))
+                authorUsername = arg.substring(16, arg.length());
+
+            if(validArgument("aws-accesskey=", arg))
                 awsAccessKey = arg.substring(14, arg.length());
-            if (arg.contains("aws-secretkey=") && arg.indexOf("aws-secretkey=") == 0)
+            if(validArgument("aws-secretkey=", arg))
                 awsSecretKey = arg.substring(14, arg.length());
-            if (arg.contains("s3-bucket=") && arg.indexOf("s3-bucket=") == 0)
+            if(validArgument("s3-bucket=", arg))
                 bucketName = arg.substring(10, arg.length());
-            if (arg.contains("s3-region=") && arg.indexOf("s3-region=") == 0) {
+            if(validArgument("s3-region=", arg)){
                 region = arg.substring(10, arg.length());
                 if(region.equals(""))
                     region = null;
             }
 
-            if(arg.contains("jobtype=") && arg.indexOf("jobtype=") == 0){
+            if(validArgument("jobtype=",arg)){
                 jobType =  arg.substring(8, arg.length());
             }
         }
@@ -123,6 +139,15 @@ public class Variables {
 
     public static String getRegion() {
         return region;
+    }
+
+
+    public static String getAuthorUsername() {
+        return authorUsername;
+    }
+
+    public static String getAuthorPassword() {
+        return authorPassword;
     }
 
 }
