@@ -64,7 +64,9 @@ public abstract class SeleniumHeadless extends Screenshots {
         try {
             AuthorCredentials credentials = new AuthorCredentials(Variables.getAuthorUsername(), Variables.getAuthorPassword(), domain.toString());
             driver.get(credentials.getHost() + "/libs/cq/core/content/login.html");
-            driver.manage().addCookie(new Cookie("login-token", credentials.getToken()));
+            for(org.apache.http.cookie.Cookie cookie : credentials.getCookies()) {
+                driver.manage().addCookie(new Cookie(cookie.getName(), cookie.getValue(), cookie.getDomain(), cookie.getPath(), cookie.getExpiryDate(), cookie.isSecure()));
+            }
         } catch (AuthorAuthenticationException e) {
             e.printStackTrace();
             driver.quit();

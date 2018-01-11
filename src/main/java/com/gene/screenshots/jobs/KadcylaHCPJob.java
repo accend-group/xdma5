@@ -11,9 +11,9 @@ import com.gene.screenshots.selenium.kadcyla.hcp.KadcylaHCP;
         stage = "https://stage-kadcyla.gene.com",
         prod = "https://www.kadcyla.com",
         authorlocal = "http://localhost:4502/content/kadcyla/en_us",
-        authordev = "https://dev-author.aem.gene.com",
-        authorprod = "https://author.aem.gene.com",
-        authorstage =  "http://stage-author.aem.gene.com")
+        authordev = "https://dev-author.aem.gene.com/content/kadcyla/en_us",
+        authorprod = "https://author.aem.gene.com/content/kadcyla/en_us",
+        authorstage =  "http://stage-author.aem.gene.com/content/kadcyla/en_us")
 public class KadcylaHCPJob extends ScreenshotJob {
 
     public KadcylaHCPJob(){
