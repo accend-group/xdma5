@@ -11,9 +11,9 @@ import com.gene.screenshots.selenium.perjeta.patient.PerjetaPatient;
 		stage = "https://stage-perjeta.gene.com",
 		prod = "https://www.perjeta.com",
 		authorlocal = "http://localhost:4502/content/perjeta/en_us",
-		authordev = "https://dev-author.aem.gene.com",
-		authorprod = "https://author.aem.gene.com",
-		authorstage =  "http://stage-author.aem.gene.com")
+		authordev = "https://dev-author.aem.gene.com/content/perjeta/en_us",
+		authorprod = "https://author.aem.gene.com/content/perjeta/en_us",
+		authorstage =  "http://stage-author.aem.gene.com/content/perjeta/en_us")
 public class PerjetaPatientJob extends ScreenshotJob{
 	 public PerjetaPatientJob() {
 		 

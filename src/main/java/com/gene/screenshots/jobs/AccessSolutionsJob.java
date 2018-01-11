@@ -24,9 +24,9 @@ import static com.gene.screenshots.EnvironmentType.LOCAL;
         stage = "https://stage-genentech-access.gene.com",
         prod = "https://www.genentech-access.com",
         authorlocal = "http://localhost:4502/content/accesssolutions-site/en_us",
-        authordev = "https://dev-author.aem.gene.com",
-        authorprod = "https://author.aem.gene.com",
-        authorstage =  "http://stage-author.aem.gene.com")
+        authordev = "https://dev-author.aem.gene.com/content/accesssolutions-site/en_us",
+        authorprod = "https://author.aem.gene.com/content/accesssolutions-site/en_us",
+        authorstage =  "http://stage-author.aem.gene.com/content/accesssolutions-site/en_us")
 public class AccessSolutionsJob extends ScreenshotJob {
 
     public AccessSolutionsJob(){
