@@ -18,7 +18,6 @@ public class AuthorCredentials {
 
     private String username;
     private String password;
-    private String token = null;
     private String authorHost;
     private List<Cookie> cookies;
 
@@ -45,11 +44,8 @@ public class AuthorCredentials {
             this.cookies = cookieStore.getCookies();
             client.close();
         } catch (IOException e) {
-            throw new AuthorAuthenticationException("author authentication failed, connection failed");
+            throw new AuthorAuthenticationException("author authentication failed");
         }
-
-        if (token == null || token.equals(""))
-            throw new AuthorAuthenticationException("author authentication failed, no token found");
     }
 
     private String striptUrl(String url){
@@ -68,10 +64,6 @@ public class AuthorCredentials {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getToken() {
-        return token;
     }
     
     public List<Cookie> getCookies() {
