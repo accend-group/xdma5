@@ -160,7 +160,7 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     // redirect a partial url to the correct domain
     protected static void goToUrl(WebDriver driver, String partialUrl){
-        driver.get(domain.toString() + partialUrl);
+        driver.get(domain.toString() + partialUrl + (credentialsRequired ? "?wcmmode=disabled" : ""));
     }
 
     public void killDesktop(){
