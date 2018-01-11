@@ -36,7 +36,7 @@ public class AccessSolutionsJob extends ScreenshotJob {
     private static List<SeleniumHeadless> createAccessSolutionsTestList() {
         List<SeleniumHeadless> result = new LinkedList<>();
         result.add(new Actemra());
-        /*result.add(new Alecensa());
+        result.add(new Alecensa());
         result.add(new Avastin());
         result.add(new Cotellic());
         result.add(new Erivedge());
@@ -60,7 +60,7 @@ public class AccessSolutionsJob extends ScreenshotJob {
         result.add(new Tecentriq());
         result.add(new Venclexta());
         result.add(new Xolair());
-        result.add(new Zelboraf());*/
+        result.add(new Zelboraf());
         return result;
     }
 }
