@@ -7,10 +7,13 @@ import com.gene.screenshots.selenium.perjeta.patient.PerjetaPatient;
 
 @Job(name = "Perjeta_Patient", ID = 5, info = "Screenshot automation for Perjeta Patient")
 @Environment(local = "http://localhost:4503/content/perjeta/en_us",
-dev = "https://dev-perjeta.gene.com",
-stage = "https://stage-perjeta.gene.com",
-prod = "https://www.perjeta.com")
-
+		dev = "https://dev-perjeta.gene.com",
+		stage = "https://stage-perjeta.gene.com",
+		prod = "https://www.perjeta.com",
+		authorlocal = "http://localhost:4502/content/perjeta/en_us",
+		authordev = "https://dev-author.aem.gene.com",
+		authorprod = "https://author.aem.gene.com",
+		authorstage =  "http://stage-author.aem.gene.com")
 public class PerjetaPatientJob extends ScreenshotJob{
 	 public PerjetaPatientJob() {
 		 

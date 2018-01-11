@@ -23,7 +23,10 @@ import static com.gene.screenshots.EnvironmentType.LOCAL;
         dev = "https://dev-genentech-access.gene.com",
         stage = "https://stage-genentech-access.gene.com",
         prod = "https://www.genentech-access.com",
-        authorlocal = "http://localhost:4502/content/accesssolutions-site/en_us")
+        authorlocal = "http://localhost:4502/content/accesssolutions-site/en_us",
+        authordev = "https://dev-author.aem.gene.com",
+        authorprod = "https://author.aem.gene.com",
+        authorstage =  "http://stage-author.aem.gene.com")
 public class AccessSolutionsJob extends ScreenshotJob {
 
     public AccessSolutionsJob(){
@@ -33,7 +36,7 @@ public class AccessSolutionsJob extends ScreenshotJob {
     private static List<SeleniumHeadless> createAccessSolutionsTestList() {
         List<SeleniumHeadless> result = new LinkedList<>();
         result.add(new Actemra());
-        result.add(new Alecensa());
+        /*result.add(new Alecensa());
         result.add(new Avastin());
         result.add(new Cotellic());
         result.add(new Erivedge());
@@ -57,7 +60,7 @@ public class AccessSolutionsJob extends ScreenshotJob {
         result.add(new Tecentriq());
         result.add(new Venclexta());
         result.add(new Xolair());
-        result.add(new Zelboraf());
+        result.add(new Zelboraf());*/
         return result;
     }
 }
