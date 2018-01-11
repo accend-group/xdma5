@@ -36,6 +36,12 @@ public class Variables {
     private static String authorUsername = null;
     private static String authorPassword = null;
 
+    public static boolean isCredentialsRequired() {
+        return credentialsRequired;
+    }
+
+    private static boolean credentialsRequired = false;
+
     public static void main(String[] args) {
 
         for (String arg : args) {
@@ -88,6 +94,12 @@ public class Variables {
             Long ID = Long.parseLong((String) jobType);
             jobType = ID;
         } catch (NumberFormatException e) {}
+
+        if(environmentType == AUTHOR_DEV ||
+                environmentType == AUTHOR_LOCAL ||
+                environmentType == AUTHOR_PROD ||
+                environmentType == AUTHOR_STAGE)
+            credentialsRequired = true;
 
         String OS = System.getProperty("os.name").toLowerCase();
         if (OS.contains("win"))

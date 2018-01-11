@@ -2,7 +2,8 @@ package com.gene.screenshots.selenium;
 
 import com.gene.screenshots.BrandUrl;
 import com.gene.screenshots.Variables;
-import com.gene.screenshots.authentication.Credentials;
+import com.gene.screenshots.authentication.AuthorAuthenticationException;
+import com.gene.screenshots.authentication.AuthorCredentials;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -40,6 +41,8 @@ public abstract class SeleniumHeadless extends Screenshots {
     protected WebDriver desktopDriver;
     protected WebDriver mobileDriver;
 
+    private static boolean credentialsRequired = false;
+
     // suppress selenium console log
     static {
         final Logger[] pin;
@@ -57,6 +60,17 @@ public abstract class SeleniumHeadless extends Screenshots {
         System.setProperty("webdriver.chrome.driver", chromedriverPath);
     }
 
+    private static void authenticate(WebDriver driver) {
+        try {
+            AuthorCredentials credentials = new AuthorCredentials(Variables.getAuthorUsername(), Variables.getAuthorPassword(), domain.toString());
+            driver.get(credentials.getHost() + "/libs/cq/core/content/login.html");
+            driver.manage().addCookie(new Cookie("login-token", credentials.getToken()));
+        } catch (AuthorAuthenticationException e) {
+            e.printStackTrace();
+            driver.quit();
+        }
+    }
+
     public static WebDriver makeDesktopDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
@@ -67,9 +81,8 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--hide-scrollbars");
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         driver.manage().window().setSize(new Dimension(desktopWidth, DESKTOP_HEIGHT));
-
-        new Credentials(Variables.getAuthorUsername(), Variables.getAuthorPassword(), domain.toString(), driver);
-
+        if(credentialsRequired)
+            authenticate(driver);
         return driver;
     }
 
@@ -84,10 +97,9 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--no-sandbox");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-
         WebDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
-
-        new Credentials(Variables.getAuthorUsername(), Variables.getAuthorPassword(), domain.toString(), driver);
+        if(credentialsRequired)
+            authenticate(driver);
         return driver;
     }
 
@@ -134,6 +146,10 @@ public abstract class SeleniumHeadless extends Screenshots {
                 "}" +
                 "return getPathTo(arguments[0]);";
         return (String) ((JavascriptExecutor) driver).executeScript(jscript, e);
+    }
+
+    public static void isCredentialsRequired(boolean ifCredentials){
+        credentialsRequired = ifCredentials;
     }
 
     public static void setDomain(BrandUrl url){

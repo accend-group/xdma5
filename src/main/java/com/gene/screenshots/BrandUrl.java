@@ -27,7 +27,7 @@ public class BrandUrl {
             case STAGE: domain = environment.stage(); break;
             case PROD: domain = environment.prod(); break;
             case AUTHOR_LOCAL: domain = environment.authorlocal(); break;
-            case AUTHOR_DEV: domain = environment.authoerdev(); break;
+            case AUTHOR_DEV: domain = environment.authordev(); break;
             case AUTHOR_STAGE: domain = environment.authorstage(); break;
             case AUTHOR_PROD: domain = environment.authorprod(); break;
         }

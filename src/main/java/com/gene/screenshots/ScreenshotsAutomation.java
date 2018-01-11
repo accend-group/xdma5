@@ -51,6 +51,9 @@ public class ScreenshotsAutomation {
         // if merging pdfs or creating desktop/mobile pdfs
         SeleniumHeadless.setIfSinglePDF(Variables.isIfMergePDF());
 
+        // if author are credentials needed
+        SeleniumHeadless.isCredentialsRequired(Variables.isCredentialsRequired());
+
         ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
 
         // search project path for classes with @Job
