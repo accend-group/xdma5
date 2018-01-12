@@ -222,11 +222,11 @@ public abstract class SeleniumHeadless extends Screenshots {
         return "";
     }
 
-    protected void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
         return;
     }
 
-    protected List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
+    protected List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = new ArrayList<String>();
         goToUrl(driver, getSiteMapUrl());
         waitForPageLoad(driver);

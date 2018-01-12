@@ -24,12 +24,12 @@ public class KadcylaHCP extends SeleniumHeadless {
     }
 
     @Override
-    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
         getScreenshotForContactForm(driver, savePath, isDesktop);
         getScreenshotForRegisterForm(driver, savePath, isDesktop);
     }
 
-    private void getScreenshotForContactForm(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    private void getScreenshotForContactForm(WebDriver driver, String savePath, boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".hcp-contact-riker-form")).size() > 0) {
             WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
             providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
@@ -59,7 +59,7 @@ public class KadcylaHCP extends SeleniumHeadless {
         }
     }
 
-    private void getScreenshotForRegisterForm(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    private void getScreenshotForRegisterForm(WebDriver driver, String savePath, boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".hcp-reg-riker-form")).size() > 0) {
             WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
             providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();

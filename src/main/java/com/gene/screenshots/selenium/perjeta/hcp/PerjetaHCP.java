@@ -21,7 +21,7 @@ public class PerjetaHCP extends SeleniumHeadless {
     }
 
     @Override
-    public List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
+    public List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = super.getLinksFromSiteMap(driver);
         // because sitemap doesn't have everything
         links.add(getDomain().toString() + "/hcp/breast-cancer/isi.html");
@@ -35,14 +35,14 @@ public class PerjetaHCP extends SeleniumHeadless {
     }
 
     @Override
-    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
         getScreenshotForContactForm(driver, savePath, isDesktop);
         getScreenshotForRegisterForm(driver, savePath, isDesktop);
     }
 
     private void getScreenshotForRegisterForm(WebDriver driver,
                                               String savePath,
-                                              boolean isDesktop) throws InterruptedException {
+                                              boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".hcp-reg-riker-form")).size() > 0) {
             WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
             providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
@@ -82,7 +82,7 @@ public class PerjetaHCP extends SeleniumHeadless {
 
     private void getScreenshotForContactForm(WebDriver driver,
                                              String savePath,
-                                             boolean isDesktop) throws InterruptedException {
+                                             boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".hcp-contact-riker-form")).size() > 0) {
             WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
             providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();

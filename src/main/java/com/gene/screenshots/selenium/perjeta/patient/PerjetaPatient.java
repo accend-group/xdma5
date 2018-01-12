@@ -20,7 +20,7 @@ public class PerjetaPatient extends SeleniumHeadless {
     }
 
     @Override
-    public List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
+    public List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = super.getLinksFromSiteMap(driver);
         // because sitemap doesn't have everything
         links.add(getDomain().toString() + "/patient/breast-cancer/safety.html");
@@ -34,9 +34,7 @@ public class PerjetaPatient extends SeleniumHeadless {
     }
 
     @Override
-    public void getScreenshotForSchemaForm(WebDriver driver,
-                                              String savePath,
-                                              boolean isDesktop) throws InterruptedException {
+    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".patient-reg-riker-form")).size() > 0) {
             driver.findElement(By.cssSelector(".perjeta-personal-description input[value='early no surgery']")).click();
             waitForElementVisible(driver, driver.findElement(By.cssSelector(".section-ebc")));

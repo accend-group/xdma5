@@ -23,7 +23,7 @@ public class KadcylaPatient extends SeleniumHeadless {
     }
 
     @Override
-    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".gene-template__main .riker")).size() > 0) {
             driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
             driver.findElement(By.name("last-name")).sendKeys("TestLastName");
