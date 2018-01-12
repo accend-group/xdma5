@@ -201,7 +201,7 @@ public class Tarceva extends SeleniumHeadless {
             driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
             Thread.sleep(1000);
 
-            scrollAndClickAt(driver, "//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a");
+            forceClick(driver, "//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a");
             //driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")).click();
             Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tarceva-pat-more-info-2");
