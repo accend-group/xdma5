@@ -63,9 +63,9 @@ public class PerjetaPatient extends SeleniumHeadless {
 			*/
 			
 			goToUrl(driver, "/patient/breast-cancer.html");
-			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			driver.findElement(By.xpath("//*[@id=\"safety_reference_cal_647752441\"]/div/div/div/p/a[2]")).click();
-			js.executeScript("window.scrollTo(0, 0)");
+//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			forceClick(driver,"//*[@id=\"safety_reference_cal_647752441\"]/div/div/div/p/a[2]");
+//			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "patient-modal-thirdpartysite");
 			
@@ -317,9 +317,9 @@ public class PerjetaPatient extends SeleniumHeadless {
 				visible(driver, false, savePath, "patient-modal-HCP");
 				
 				goToUrl(driver, "/patient/breast-cancer.html");
-				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-				driver.findElement(By.xpath("//*[@id=\"safety_reference_cal_647752441\"]/div/div/div/p/a[2]")).click();
-				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+//				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				forceClick(driver,"//*[@id=\"safety_reference_cal_647752441\"]/div/div/div/p/a[2]");
+//				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				Thread.sleep(1000);
 				visible(driver, false, savePath, "patient-modal-thirdpartysite");
 				

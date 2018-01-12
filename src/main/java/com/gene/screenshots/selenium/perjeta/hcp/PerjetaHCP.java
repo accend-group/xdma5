@@ -33,9 +33,9 @@ public class PerjetaHCP extends SeleniumHeadless{
 			action.moveToElement(driver.findElement(By.linkText("Resources"))).build().perform();
 			visible(driver, true, savePath,  "hcp-hover-6.0");
 			
-			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			driver.findElement(By.xpath("//*[@id=\"safety_reference_cal_1181551378\"]/div/div/div/p[1]/a[2]")).click();
-			js.executeScript("window.scrollTo(0, 0)");
+//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			forceClick(driver,"//*[@id=\"safety_reference_cal_1181551378\"]/div/div/div/p[1]/a[2]");
+//			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, true, savePath,  "hcp-modal-thirdpartysite");
 			
@@ -273,9 +273,9 @@ public class PerjetaHCP extends SeleniumHeadless{
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-hover-6.0");
 			
-			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			driver.findElement(By.xpath("//*[@id=\"safety_reference_cal_1181551378\"]/div/div/div/p[1]/a[2]")).click();
-			js.executeScript("window.scrollTo(0, 0)");
+//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			forceClick(driver,"//*[@id=\"safety_reference_cal_1181551378\"]/div/div/div/p[1]/a[2]");
+//			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-modal-thirdpartysite");
 			
