@@ -345,27 +345,43 @@ public abstract class Screenshots {
             mobileScaleFactor = 2;
     }
 
+    protected void waitForElementVisible(WebDriver driver, WebElement e) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(
+                ExpectedConditions.visibilityOf(e));
+    }
+
+    protected void waitForElementNotVisible(WebDriver driver, WebElement e) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(
+                ExpectedConditions.invisibilityOf(e));
+    }
 
     protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String savePath) throws InterruptedException {
-        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent .gene-component--navigation__link--tab"));
+        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
         for (int i = 0; i < elements.size(); i++) {
-            action.moveToElement(elements.get(i)).build().perform();
-            Thread.sleep(1000);
+            action.moveToElement(elements.get(i).findElement(By.cssSelector(".gene-component--navigation__link--tab"))).build().perform();
+            waitForElementVisible(driver, elements.get(i).findElement(By.cssSelector(".gene-component--navigation__list")));
             visible(driver, true, savePath, "hover-" + Integer.toString(i + 1));
         }
+        driver.navigate().refresh();
+        waitForPageLoad(driver);
     }
 
     protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) throws InterruptedException {
         driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
-        Thread.sleep(1000);
+        waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
+        Thread.sleep(400); // jQuery fadeIn takes 400 second
         visible(driver, false, savePath, "mobile-navigation");
-        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__icon--tab"));
+        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
         for (int i = 0; i < elements.size(); i++) {
-            elements.get(i).click();
-            Thread.sleep(1000);
+            elements.get(i).findElement(By.cssSelector(".gene-component--navigation__icon--tab")).click();
+            waitForElementVisible(driver, elements.get(i).findElement(By.cssSelector(".gene-component--navigation__list")));
             visible(driver, false, savePath, "mobile-hover-" + Integer.toString(i + 1));
-            elements.get(i).click(); // collapse the current menu before going to the next one. So then the cursor won't hover over a submenu item.
+            elements.get(i).findElement(By.cssSelector(".gene-component--navigation__icon--tab")).click(); // collapse the current menu before going to the next one. So then the cursor won't hover over a submenu item.
         }
+        driver.navigate().refresh();
+        waitForPageLoad(driver);
     }
 
     protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
@@ -375,11 +391,11 @@ public abstract class Screenshots {
             scrollTo(driver, 0, y);
             for (int i = 0; i < tabs.size(); i++) {
                 tabs.get(i).click();
-                Thread.sleep(1000);
+                waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
                 String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
                 full(driver, isDesktop, savePath, screenshotName);
                 tabs.get(i).click(); //collapse the current one
-                Thread.sleep(1000);
+                waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
             }
         }
     }
@@ -387,17 +403,21 @@ public abstract class Screenshots {
     protected void getScreenshotForShareModal(WebDriver driver, String prefix, String savePath) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".genentech-component--button--share")).size() > 0) {
             driver.findElement(By.cssSelector(".genentech-component--button--share")).click();
-            Thread.sleep(1000);
+            WebElement modal = driver.findElement(By.cssSelector(".gene-component--modal--share-via-email"));
+            waitForElementVisible(driver, modal);
+            Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
             visible(driver, true, savePath, prefix + "-modal-share");
             driver.findElement(By.name("fname")).sendKeys("First Name");
             driver.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
-            Thread.sleep(1000);
+            waitForElementVisible(driver, modal.findElement(By.cssSelector(".to-email-address .message")));
             visible(driver, true, savePath, prefix + "-modal-share-error");
             driver.findElement(By.name("lname")).sendKeys("Last Name");
             driver.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
             driver.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
-            Thread.sleep(1000);
+            waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success")));
             visible(driver, true, savePath, prefix + "-modal-share-submit");
+            driver.navigate().refresh();
+            waitForPageLoad(driver);
         }
     }
 
@@ -410,8 +430,11 @@ public abstract class Screenshots {
             } else {
                 driver.findElement(By.cssSelector(".gene-component--header__navigation .gene-component--audience__item--hcp .gene-component--audience__link")).click();
             }
-            Thread.sleep(1000);
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial")));
+            Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
             visible(driver, isDesktop, savePath, "modal-HCP");
+            driver.navigate().refresh();
+            waitForPageLoad(driver);
         }
     }
 
@@ -419,13 +442,16 @@ public abstract class Screenshots {
         WebElement thirdPartyLink = driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
         int y = thirdPartyLink.getLocation().getY();
         scrollTo(driver, 0, y);
-        Thread.sleep(500);
+        //Thread.sleep(500);
         thirdPartyLink.click();
         if (isDesktop) {
             scrollTo(driver, 0, 0);
         }
-        Thread.sleep(1000);
+        waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party")));
+        Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
         visible(driver, isDesktop, savePath, "link-modal");
+        driver.navigate().refresh();
+        waitForPageLoad(driver);
     }
 
     protected void getScreenshotForPAT(WebDriver driver,
@@ -437,7 +463,7 @@ public abstract class Screenshots {
             if (isDesktop && questions.size() > 2) {
                 for (int i = 2; i < questions.size(); i += 2) {
                     action.moveToElement(questions.get(i == questions.size() - 1 ? i : i + 1)).build().perform();
-                    Thread.sleep(1000);
+                    waitForElementVisible(driver, questions.get(i == questions.size() - 1 ? i : i + 1));
                     full(driver, isDesktop, savePath, "pat0-part" + Integer.toString(i));
                 }
             }
@@ -448,11 +474,12 @@ public abstract class Screenshots {
             List<WebElement> results = driver.findElements(By.cssSelector(".assistance-tool .result"));
             for (int i = 0; i < results.size(); i++) {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", results.get(i));
-                Thread.sleep(1000);
+                waitForElementVisible(driver, results.get(i));
                 full(driver, isDesktop, savePath, "pat" + Integer.toString(i + 1) + "-part1");
                 if (isDesktop) {
-                    action.moveToElement(driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"))).build().perform();
-                    Thread.sleep(1000);
+                    WebElement legal = driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"));
+                    action.moveToElement(legal).build().perform();
+                    waitForElementVisible(driver, legal);
                     full(driver, isDesktop, savePath, "pat" + Integer.toString(i + 1) + "-part2");
                 }
                 ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", results.get(i));
@@ -467,7 +494,7 @@ public abstract class Screenshots {
                 clazzName = clazzName.replaceAll("(active|disabled)", "active");
                 ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', '" + clazzName + "')", question);
                 action.moveToElement(questions.get(j == questions.size() - 1 ? j : j + 1)).build().perform();
-                Thread.sleep(500);
+                waitForElementVisible(driver, questions.get(j == questions.size() - 1 ? j : j + 1));
                 List<WebElement> moreInfo = question.findElements(By.cssSelector(".more-info"));
                 if (moreInfo.size() > 0) {
                     full(driver, isDesktop, savePath, "pat-q" + Integer.toString(j + 1), moreInfo.get(0), new Long(1000));

@@ -104,17 +104,13 @@ public abstract class SeleniumHeadless extends Screenshots {
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
                 driver.get(links.get(i));
-                Thread.sleep(1500);
+                waitForPageLoad(driver);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
                     getScreenshotForDesktopNavigation(driver, action, savePath);
-                    driver.navigate().refresh();
                     getScreenshotForShareModal(driver, Integer.toString(i), savePath);
-                    driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, savePath, true);
-                    driver.navigate().refresh();
                     getScreenshotForHCPModal(driver, savePath, true);
-                    driver.navigate().refresh();
                 }
                 full(driver, true, savePath, Integer.toString(i));
                 getScreenshotForPAT(driver, savePath, action,true);
@@ -137,14 +133,12 @@ public abstract class SeleniumHeadless extends Screenshots {
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
                 driver.get(links.get(i));
-                Thread.sleep(1500);
+                waitForPageLoad(driver);
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, false, savePath, Integer.toString(i) + "-visible");
                     getScreenshotForMobileNavigation(driver, savePath);
                     getScreenshotForHCPModal(driver, savePath, false);
-                    driver.navigate().refresh();
                     getScreenshotForThirdPartyModal(driver, savePath, false);
-                    driver.navigate().refresh();
                 }
                 full(driver, false, savePath, Integer.toString(i));
                 getScreenshotForPAT(driver, savePath, action, false);
@@ -235,7 +229,7 @@ public abstract class SeleniumHeadless extends Screenshots {
     protected List<String> getLinksFromSiteMap(WebDriver driver) throws InterruptedException {
         List<String> links = new ArrayList<String>();
         goToUrl(driver, getSiteMapUrl());
-        Thread.sleep(1000);
+        waitForPageLoad(driver);
         WebElement container = driver.findElement(By.cssSelector(getSiteMapSelector()));
         List<WebElement> linkElements = container.findElements(By.cssSelector(".gene-component--sitemap__link"));
         for (WebElement element : linkElements) {
