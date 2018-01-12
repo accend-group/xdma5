@@ -54,7 +54,7 @@ public class PerjetaPatient extends SeleniumHeadless {
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
             driver.findElement(By.cssSelector(".state .gene-component--dropdown__select")).click();
-            waitForElementVisible(driver, driver.findElement(By.cssSelector("..state .gene-component--dropdown__menu")));
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".state .gene-component--dropdown__menu")));
             driver.findElement(By.cssSelector(".state .gene-component--dropdown__menu li[data-value='AK']")).click();
             driver.findElement(By.name("zip-code-base")).sendKeys("99999");
             driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");

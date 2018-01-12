@@ -390,12 +390,10 @@ public abstract class Screenshots {
             int y = tabs.get(0).getLocation().getY();
             scrollTo(driver, 0, y);
             for (int i = 0; i < tabs.size(); i++) {
-                tabs.get(i).click();
-                waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
                 String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
-                full(driver, isDesktop, savePath, screenshotName);
+                full(driver, isDesktop, savePath, screenshotName, tabs.get(i), new Long(1000));
                 tabs.get(i).click(); //collapse the current one
-                waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
+                Thread.sleep(400); // if it's tabs on desktop, then we can't really wait for element to be hidden. So let's just sleep instead.
             }
         }
     }
@@ -405,15 +403,15 @@ public abstract class Screenshots {
             driver.findElement(By.cssSelector(".genentech-component--button--share")).click();
             WebElement modal = driver.findElement(By.cssSelector(".gene-component--modal--share-via-email"));
             waitForElementVisible(driver, modal);
-            Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+            Thread.sleep(1000); // jQuery fadeIn slowly lows the modal in 
             visible(driver, true, savePath, prefix + "-modal-share");
-            driver.findElement(By.name("fname")).sendKeys("First Name");
-            driver.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
+            modal.findElement(By.name("fname")).sendKeys("First");
+            modal.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".to-email-address .message")));
             visible(driver, true, savePath, prefix + "-modal-share-error");
-            driver.findElement(By.name("lname")).sendKeys("Last Name");
-            driver.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
+            modal.findElement(By.name("lname")).sendKeys("Last");
+            modal.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
+            modal.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success")));
             visible(driver, true, savePath, prefix + "-modal-share-submit");
             driver.navigate().refresh();
