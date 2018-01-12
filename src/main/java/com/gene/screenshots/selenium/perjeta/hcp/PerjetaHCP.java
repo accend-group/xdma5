@@ -2,6 +2,7 @@ package com.gene.screenshots.selenium.perjeta.hcp;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
@@ -43,13 +44,17 @@ public class PerjetaHCP extends SeleniumHeadless {
                                               String savePath,
                                               boolean isDesktop) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".hcp-reg-riker-form")).size() > 0) {
-            driver.findElement(By.cssSelector(".provider-type .gene-component--dropdown__select")).click();
-            Thread.sleep(1000);
+            WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
+            providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
+            WebElement providerMenu = providerType.findElement(By.cssSelector(".gene-component--dropdown__menu"));
+            waitForElementVisible(driver, providerMenu);
             full(driver, isDesktop, savePath, "hcp-register-classification");
-            driver.findElement(By.cssSelector(".provider-type .gene-component--dropdown__select")).click();
-            Thread.sleep(1000);
-            driver.findElement(By.cssSelector(".specialty .gene-component--dropdown__select")).click();
-            Thread.sleep(1000);
+            providerType.click();
+            waitForElementNotVisible(driver, providerMenu);
+            WebElement specialty = driver.findElement(By.cssSelector(".specialty"));
+            specialty.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
+            WebElement specialtyMenu = specialty.findElement(By.cssSelector(".gene-component--dropdown__menu"));
+            waitForElementVisible(driver, specialtyMenu);
             full(driver, isDesktop, savePath, "hcp-register-specialty");
 
             // register
@@ -63,15 +68,14 @@ public class PerjetaHCP extends SeleniumHeadless {
             driver.findElement(By.cssSelector(".state .gene-component--dropdown__select")).click();
             driver.findElement(By.cssSelector(".state .gene-component--dropdown__menu li")).click();
             driver.findElement(By.name("zip-code-base")).sendKeys("99999");
-            driver.findElement(By.cssSelector(".provider-type .gene-component--dropdown__select")).click();
-            driver.findElement(By.cssSelector(".provider-type .gene-component--dropdown__menu li")).click();
-            driver.findElement(By.cssSelector(".specialty .gene-component--dropdown__select")).click();
-            driver.findElement(By.cssSelector(".specialty .gene-component--dropdown__menu li")).click();
+            providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
+            providerMenu.findElement(By.cssSelector("li")).click();
+            specialty.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
+            specialtyMenu.findElement(By.cssSelector("li")).click();
             driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
-            Thread.sleep(1000);
             driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.className("submit")).click();
-            Thread.sleep(1000);
+            driver.findElement(By.cssSelector(".riker .submit")).click();
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-template__container--form-thanks")));
             full(driver, isDesktop, savePath, "hcp-register-submit");
         }
     }
@@ -80,13 +84,16 @@ public class PerjetaHCP extends SeleniumHeadless {
                                              String savePath,
                                              boolean isDesktop) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".hcp-contact-riker-form")).size() > 0) {
-            driver.findElement(By.cssSelector(".provider-type .gene-component--dropdown")).click();
-            Thread.sleep(1000);
+            WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
+            providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
+            WebElement providerMenu = providerType.findElement(By.cssSelector(".gene-component--dropdown__menu"));
+            waitForElementVisible(driver, providerMenu);
             full(driver, isDesktop, savePath, "hcp-contact-rep-provider-type");
-            driver.findElement(By.cssSelector(".provider-type .gene-component--dropdown")).click();
-            Thread.sleep(1000);
-            driver.findElement(By.cssSelector(".specialty .gene-component--dropdown__select")).click();
-            Thread.sleep(1000);
+            providerType.click();
+            waitForElementNotVisible(driver, providerMenu);
+            WebElement specialty = driver.findElement(By.cssSelector(".specialty"));
+            specialty.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
+            waitForElementVisible(driver, specialty.findElement(By.cssSelector(".gene-component--dropdown__menu")));
             full(driver, isDesktop, savePath, "hcp-contact-rep-specialty");
         }
     }
