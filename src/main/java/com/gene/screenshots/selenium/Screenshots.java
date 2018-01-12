@@ -357,7 +357,7 @@ public abstract class Screenshots {
                 ExpectedConditions.invisibilityOf(e));
     }
 
-    protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String savePath) throws InterruptedException {
+    protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String savePath) {
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
         for (int i = 0; i < elements.size(); i++) {
             action.moveToElement(elements.get(i).findElement(By.cssSelector(".gene-component--navigation__link--tab"))).build().perform();
@@ -371,7 +371,7 @@ public abstract class Screenshots {
     protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) throws InterruptedException {
         driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
-        Thread.sleep(400); // jQuery fadeIn takes 400 second
+        Thread.sleep(400); // jQuery fadeIn takes 400 ms
         visible(driver, false, savePath, "mobile-navigation");
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
         for (int i = 0; i < elements.size(); i++) {
@@ -403,7 +403,7 @@ public abstract class Screenshots {
             driver.findElement(By.cssSelector(".genentech-component--button--share")).click();
             WebElement modal = driver.findElement(By.cssSelector(".gene-component--modal--share-via-email"));
             waitForElementVisible(driver, modal);
-            Thread.sleep(1000); // jQuery fadeIn slowly lows the modal in 
+            Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
             visible(driver, true, savePath, prefix + "-modal-share");
             modal.findElement(By.name("fname")).sendKeys("First");
             modal.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
@@ -452,10 +452,7 @@ public abstract class Screenshots {
         waitForPageLoad(driver);
     }
 
-    protected void getScreenshotForPAT(WebDriver driver,
-                                     String savePath,
-                                     Actions action,
-                                     boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForPAT(WebDriver driver, String savePath, Actions action, boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
             List<WebElement> questions = driver.findElements(By.cssSelector(".questions li"));
             if (isDesktop && questions.size() > 2) {
