@@ -39,11 +39,11 @@ public class PerjetaPatient extends SeleniumHeadless {
                                               boolean isDesktop) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".patient-reg-riker-form")).size() > 0) {
             driver.findElement(By.cssSelector(".perjeta-personal-description input[value='early no surgery']")).click();
-            Thread.sleep(1000);
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".section-ebc")));
             full(driver, isDesktop, savePath, "patient-4.3-earlystage");
 
             driver.findElement(By.cssSelector(".perjeta-personal-description input[value='metastatic']")).click();
-            Thread.sleep(1000);
+            waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".section-ebc")));
             full(driver, isDesktop, savePath, "patient-4.3-metastatic");
 
             driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
@@ -54,13 +54,13 @@ public class PerjetaPatient extends SeleniumHeadless {
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
             driver.findElement(By.cssSelector(".state .gene-component--dropdown__select")).click();
-            Thread.sleep(1000);
+            waitForElementVisible(driver, driver.findElement(By.cssSelector("..state .gene-component--dropdown__menu")));
             driver.findElement(By.cssSelector(".state .gene-component--dropdown__menu li[data-value='AK']")).click();
             driver.findElement(By.name("zip-code-base")).sendKeys("99999");
             driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
             driver.findElement(By.name("verify-age")).click();
             driver.findElement(By.cssSelector(".submit")).click();
-            Thread.sleep(1000);
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-template__container--form-thanks")));
             full(driver, isDesktop, savePath, "patient-4.3-submit");
         }
     }
