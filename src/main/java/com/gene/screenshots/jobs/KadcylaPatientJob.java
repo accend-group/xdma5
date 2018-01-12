@@ -13,7 +13,7 @@ import com.gene.screenshots.selenium.kadcyla.patient.KadcylaPatient;
         authorlocal = "http://localhost:4502/content/kadcyla/en_us",
         authordev = "https://dev-author.aem.gene.com/content/kadcyla/en_us",
         authorprod = "https://author.aem.gene.com/content/kadcyla/en_us",
-        authorstage =  "http://stage-author.aem.gene.com/content/kadcyla/en_us")
+        authorstage =  "https://stage-author.aem.gene.com/content/kadcyla/en_us")
 
 public class KadcylaPatientJob extends ScreenshotJob {
 

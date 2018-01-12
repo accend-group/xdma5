@@ -13,7 +13,7 @@ import com.gene.screenshots.selenium.perjeta.hcp.PerjetaHCP;
         authorlocal = "http://localhost:4502/content/perjeta/en_us",
         authordev = "https://dev-author.aem.gene.com/content/perjeta/en_us",
         authorprod = "https://author.aem.gene.com/content/perjeta/en_us",
-        authorstage =  "http://stage-author.aem.gene.com/content/perjeta/en_us")
+        authorstage =  "https://stage-author.aem.gene.com/content/perjeta/en_us")
 
 public class PerjetaHCPJob extends ScreenshotJob {
 
