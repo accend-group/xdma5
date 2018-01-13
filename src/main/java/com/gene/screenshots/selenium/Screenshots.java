@@ -357,11 +357,6 @@ public abstract class Screenshots {
                 ExpectedConditions.invisibilityOf(e));
     }
 
-    protected void scrollIntoView(WebDriver driver, WebElement e) {
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView();", e);
-    }
-
     protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String savePath) {
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
         for (int i = 0; i < elements.size(); i++) {
@@ -389,20 +384,23 @@ public abstract class Screenshots {
         waitForPageLoad(driver);
     }
 
-    protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) {
+    protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
         List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open) .gene-component--accordionTabs__header, .panel-heading"));
         if (tabs.size() > 0) {
-            System.out.println("class name: " +  tabs.get(0).findElement(By.xpath("../../..")).getAttribute("class"));
+            int width = isDesktop ? DESKTOP_WIDTH : MOBILE_WIDTH;
+            int height = isDesktop ? DESKTOP_HEIGHT: MOBILE_HEIGHT;
             boolean isTabs = (!tabs.get(0).getAttribute("class").contains("panel-heading")) && tabs.get(0).findElement(By.xpath("../../..")).getAttribute("class").contains("gene-component--accordionTabs--tabstype") && isDesktop;
-            //Actions actions = new Actions(driver);
             for (int i = 0; i < tabs.size(); i++) {
-                scrollIntoView(driver, tabs.get(i));
+                int y = tabs.get(i).getLocation().getY();
+                scrollTo(driver, 0, y);
                 tabs.get(i).click();
                 waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
+                scrollTo(driver, 0, 0);
+                Thread.sleep(500);
+                driver.manage().window().setSize(new Dimension(width, height + 1)); // workaround to get the driver to realize the height of the doc changed.
                 String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
                 full(driver, isDesktop, savePath, screenshotName);
                 if (!isTabs) {
-                    scrollIntoView(driver, tabs.get(i));
                     tabs.get(i).click(); //collapse the current one
                     waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
                 }
