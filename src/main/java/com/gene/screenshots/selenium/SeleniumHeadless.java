@@ -108,7 +108,7 @@ public abstract class SeleniumHeadless extends Screenshots {
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
                     getScreenshotForDesktopNavigation(driver, action, savePath);
-                    getScreenshotForShareModal(driver, Integer.toString(i), savePath);
+                    getScreenshotForShareModal(driver, savePath);
                     getScreenshotForThirdPartyModal(driver, savePath, true);
                     getScreenshotForHCPModal(driver, savePath, true);
                 }

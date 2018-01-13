@@ -357,6 +357,11 @@ public abstract class Screenshots {
                 ExpectedConditions.invisibilityOf(e));
     }
 
+    protected void scrollIntoView(WebDriver driver, WebElement e) {
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView();", e);
+    }
+
     protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String savePath) {
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
         for (int i = 0; i < elements.size(); i++) {
@@ -384,36 +389,43 @@ public abstract class Screenshots {
         waitForPageLoad(driver);
     }
 
-    protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) {
         List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open) .gene-component--accordionTabs__header, .panel-heading"));
         if (tabs.size() > 0) {
-            int y = tabs.get(0).getLocation().getY();
-            scrollTo(driver, 0, y);
+            System.out.println("class name: " +  tabs.get(0).findElement(By.xpath("../../..")).getAttribute("class"));
+            boolean isTabs = (!tabs.get(0).getAttribute("class").contains("panel-heading")) && tabs.get(0).findElement(By.xpath("../../..")).getAttribute("class").contains("gene-component--accordionTabs--tabstype") && isDesktop;
+            //Actions actions = new Actions(driver);
             for (int i = 0; i < tabs.size(); i++) {
+                scrollIntoView(driver, tabs.get(i));
+                tabs.get(i).click();
+                waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
                 String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
-                full(driver, isDesktop, savePath, screenshotName, tabs.get(i), new Long(1000));
-                tabs.get(i).click(); //collapse the current one
-                Thread.sleep(400); // if it's tabs on desktop, then we can't really wait for element to be hidden. So let's just sleep instead.
+                full(driver, isDesktop, savePath, screenshotName);
+                if (!isTabs) {
+                    scrollIntoView(driver, tabs.get(i));
+                    tabs.get(i).click(); //collapse the current one
+                    waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
+                }
             }
         }
     }
 
-    protected void getScreenshotForShareModal(WebDriver driver, String prefix, String savePath) throws InterruptedException {
+    protected void getScreenshotForShareModal(WebDriver driver, String savePath) throws InterruptedException {
         if (driver.findElements(By.cssSelector(".genentech-component--button--share")).size() > 0) {
             driver.findElement(By.cssSelector(".genentech-component--button--share")).click();
             WebElement modal = driver.findElement(By.cssSelector(".gene-component--modal--share-via-email"));
             waitForElementVisible(driver, modal);
             Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
-            visible(driver, true, savePath, prefix + "-modal-share");
+            visible(driver, true, savePath, "modal-share");
             modal.findElement(By.name("fname")).sendKeys("First");
             modal.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".to-email-address .message")));
-            visible(driver, true, savePath, prefix + "-modal-share-error");
+            visible(driver, true, savePath,  "modal-share-error");
             modal.findElement(By.name("lname")).sendKeys("Last");
             modal.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
             modal.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success")));
-            visible(driver, true, savePath, prefix + "-modal-share-submit");
+            visible(driver, true, savePath, "modal-share-submit");
             driver.navigate().refresh();
             waitForPageLoad(driver);
         }
@@ -426,6 +438,9 @@ public abstract class Screenshots {
             if (isDesktop) {
                 driver.findElement(By.cssSelector(".gene-component--header__audience .gene-component--audience__item--hcp .gene-component--audience__link")).click();
             } else {
+                driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
+                waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
+                Thread.sleep(400); // jQuery fadeIn takes 400 ms
                 driver.findElement(By.cssSelector(".gene-component--header__navigation .gene-component--audience__item--hcp .gene-component--audience__link")).click();
             }
             waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial")));
