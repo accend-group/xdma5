@@ -14,7 +14,7 @@ public class KadcylaPatient extends SeleniumHeadless {
 
     @Override
     public String getSiteMapSelector() {
-        return ".gene-component--sitemap__item--patient";
+        return ".gene-component--sitemap__item--patient .gene-component--sitemap__link";
     }
 
     @Override

@@ -16,7 +16,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 
     @Override
     public String getSiteMapSelector() {
-        return ".gene-component--sitemap__item--patient .gene-component--sitemap__list";
+        return ".gene-component--sitemap__item--patient .gene-component--sitemap__list .gene-component--sitemap__link";
     }
 
     @Override

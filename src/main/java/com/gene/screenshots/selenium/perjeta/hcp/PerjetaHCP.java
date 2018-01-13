@@ -17,7 +17,7 @@ public class PerjetaHCP extends SeleniumHeadless {
 
     @Override
     public String getSiteMapSelector() {
-        return ".gene-component--sitemap__item--hcp .gene-component--sitemap__list";
+        return ".gene-component--sitemap__item--hcp .gene-component--sitemap__list .gene-component--sitemap__link";
     }
 
     @Override

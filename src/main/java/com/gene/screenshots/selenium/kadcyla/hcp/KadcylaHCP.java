@@ -15,7 +15,7 @@ public class KadcylaHCP extends SeleniumHeadless {
 
     @Override
     public String getSiteMapSelector() {
-        return ".gene-component--sitemap__item--hcp";
+        return ".gene-component--sitemap__item--hcp .gene-component--sitemap__link";
     }
 
     @Override
