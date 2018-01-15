@@ -4,5 +4,9 @@ public enum EnvironmentType {
     LOCAL,
     DEV,
     PROD,
-    STAGE
+    STAGE,
+    AUTHOR_LOCAL,
+    AUTHOR_DEV,
+    AUTHOR_PROD,
+    AUTHOR_STAGE
 }

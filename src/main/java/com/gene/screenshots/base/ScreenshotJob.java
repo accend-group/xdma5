@@ -23,15 +23,23 @@ import java.util.zip.ZipOutputStream;
 
 public abstract class ScreenshotJob extends ScreenshotThreads {
 
+    // linear run of selenium codes
+    public void run(){
+        for(SeleniumHeadless code : screenshotCodes) {
+            code.desktopAutomationTest(savePath);
+            code.mobileAutomationTest(savePath);
+        }
+    }
+
     private static List<SeleniumHeadless> screenshotCodes;
 
-    protected void setScript(SeleniumHeadless script){
+    protected static void setScript(SeleniumHeadless script){
         if(screenshotCodes == null)
             screenshotCodes = new LinkedList<>();
         screenshotCodes.add(script);
     }
 
-    protected void setScripts(List<SeleniumHeadless> scripts){
+    protected static void setScripts(List<SeleniumHeadless> scripts){
         screenshotCodes = scripts;
     }
 

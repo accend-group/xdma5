@@ -20,14 +20,18 @@ public class BrandUrl {
     private EnvironmentType environmentType; 
 
     public BrandUrl(Environment environment, EnvironmentType environmentType){
-        if(environmentType == LOCAL)
-            domain = environment.local();
-        if(environmentType == DEV)
-            domain = environment.dev();
-        if(environmentType == STAGE)
-            domain = environment.stage();
-        if(environmentType == PROD)
-            domain = environment.prod();
+
+        switch(environmentType) {
+            case LOCAL: domain = environment.local(); break;
+            case DEV: domain = environment.dev(); break;
+            case STAGE: domain = environment.stage(); break;
+            case PROD: domain = environment.prod(); break;
+            case AUTHOR_LOCAL: domain = environment.authorlocal(); break;
+            case AUTHOR_DEV: domain = environment.authordev(); break;
+            case AUTHOR_STAGE: domain = environment.authorstage(); break;
+            case AUTHOR_PROD: domain = environment.authorprod(); break;
+        }
+
         this.environmentType = environmentType;
     }
 
