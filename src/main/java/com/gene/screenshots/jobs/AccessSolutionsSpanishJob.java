@@ -14,10 +14,13 @@ import java.util.List;
         dev = "",
         stage = "",
         prod = "",
-        authorlocal = "http://localhost:4502/content/accesssolutions-site/en_us",
-        authordev = "https://dev-author.aem.gene.com",
-        authorprod = "https://author.aem.gene.com",
-        authorstage =  "https://stage-author.aem.gene.com")
+        authorlocal = "http://localhost:4502/content/accesssolutions-site/es",
+        authordev = "https://dev-author.aem.gene.com/content/accesssolutions-site/es")
+
+        // not up
+        //authorprod = "https://author.aem.gene.com/content/accesssolutions-site/es",
+        //authorstage =  "https://stage-author.aem.gene.com/content/accesssolutions-site/es")
+
 public class AccessSolutionsSpanishJob extends ScreenshotJob {
 
     public AccessSolutionsSpanishJob() {
