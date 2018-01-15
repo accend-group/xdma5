@@ -1,12 +1,16 @@
 package com.gene.screenshots.selenium;
 
 import com.gene.screenshots.BrandUrl;
+import com.gene.screenshots.Variables;
+import com.gene.screenshots.authentication.AuthorAuthenticationException;
+import com.gene.screenshots.authentication.AuthorCredentials;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import static com.gene.screenshots.selenium.Constants.*;
@@ -24,12 +28,6 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     protected static BrandUrl domain;
 
-    // default viewport sizes
-    private static int desktopWidth = DESKTOP_WIDTH;
-    private static int desktopHeight = DESKTOP_HEIGHT;
-    private static int mobileHeight = MOBILE_HEIGHT;
-    private static int mobileWidth = MOBILE_WIDTH;
-
     // window.scrollBy(X, Y);
     // https://stackoverflow.com/a/4403822
     private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(); ";
@@ -38,21 +36,28 @@ public abstract class SeleniumHeadless extends Screenshots {
     protected WebDriver desktopDriver;
     protected WebDriver mobileDriver;
 
+    private static boolean credentialsRequired = false;
+
     // suppress selenium console log
     static {
-        final Logger[] pin;
-        pin = new Logger[]{
-                Logger.getLogger("com.gargoylesoftware.htmlunit"),
-                Logger.getLogger("org.apache.commons.httpclient"),
-                Logger.getLogger("org.openqa.selenium.remote.ProtocolHandshake")
-        };
-        for (Logger l : pin) {
-            l.setLevel(Level.OFF);
-        }
+        LogManager.getLogManager().reset();
     }
 
     public static void setChromeSystemProperty(String chromedriverPath) {
         System.setProperty("webdriver.chrome.driver", chromedriverPath);
+    }
+
+    private static void authenticate(WebDriver driver) {
+        try {
+            AuthorCredentials credentials = new AuthorCredentials(Variables.getAuthorUsername(), Variables.getAuthorPassword(), domain.toString());
+            driver.get(credentials.getHost() + "/libs/cq/core/content/login.html");
+            for(org.apache.http.cookie.Cookie cookie : credentials.getCookies()) {
+                driver.manage().addCookie(new Cookie(cookie.getName(), cookie.getValue(), cookie.getDomain(), cookie.getPath(), cookie.getExpiryDate(), cookie.isSecure()));
+            }
+        } catch (AuthorAuthenticationException e) {
+            e.printStackTrace();
+            driver.quit();
+        }
     }
 
     public static WebDriver makeDesktopDriver() {
@@ -64,7 +69,9 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
-        driver.manage().window().setSize(new Dimension(desktopWidth, DESKTOP_HEIGHT));
+        driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
+        if(credentialsRequired)
+            authenticate(driver);
         return driver;
     }
 
@@ -79,7 +86,10 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--no-sandbox");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-        return new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
+        WebDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
+        if(credentialsRequired)
+            authenticate(driver);
+        return driver;
     }
 
     public void desktopAutomationTest(String savePath) {
@@ -127,13 +137,17 @@ public abstract class SeleniumHeadless extends Screenshots {
         return (String) ((JavascriptExecutor) driver).executeScript(jscript, e);
     }
 
+    public static void isCredentialsRequired(boolean ifCredentials){
+        credentialsRequired = ifCredentials;
+    }
+
     public static void setDomain(BrandUrl url){
         domain = url;
     }
 
     // redirect a partial url to the correct domain
     protected static void goToUrl(WebDriver driver, String partialUrl){
-        driver.get(domain.toString() + partialUrl);
+        driver.get(domain.toString() + partialUrl + (credentialsRequired ? "?wcmmode=disabled" : ""));
     }
 
     public void killDesktop(){
@@ -144,46 +158,4 @@ public abstract class SeleniumHeadless extends Screenshots {
         mobileDriver.quit();
     }
 
-    public static void setDesktopSize(int w, int h){
-        desktopWidth = w;
-        desktopHeight = h;
-    }
-    
-    public static void setDesktopWidth(int w){
-        desktopWidth = w;
-    }
-    
-    public static void setDesktopHeight(int h){
-        desktopHeight = h;    
-    }
-
-    public static void setmobileSize(int w, int h){
-        mobileWidth = w;
-        mobileHeight = h;
-    }
-
-    public static void setmobileWidth(int w){
-        mobileWidth = w;
-    }
-
-    public static void setmobileHeight(int h){
-        mobileHeight = h;
-    }
-
-    public static int getDesktopWidth(){
-        return desktopWidth;
-    }
-
-    public static int getDesktopHeight(){
-        return desktopHeight;
-    }
-
-    public static int getMobileWidth() {
-        return mobileWidth;
-    }
-
-    public static int getMobileHeight() {
-        return mobileHeight;
-    }
-    
 }

@@ -1,4 +1,4 @@
-package com.gene.screenshots.tnkase;
+package com.gene.screenshots.selenium.tnkase;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

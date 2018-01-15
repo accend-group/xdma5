@@ -13,7 +13,14 @@ import java.util.List;
 @Environment(local = "http://localhost:4503/content/accesssolutions-site/es",
         dev = "",
         stage = "",
-        prod = "")
+        prod = "",
+        authorlocal = "http://localhost:4502/content/accesssolutions-site/es",
+        authordev = "https://dev-author.aem.gene.com/content/accesssolutions-site/es")
+
+        // not up
+        //authorprod = "https://author.aem.gene.com/content/accesssolutions-site/es",
+        //authorstage =  "https://stage-author.aem.gene.com/content/accesssolutions-site/es")
+
 public class AccessSolutionsSpanishJob extends ScreenshotJob {
 
     public AccessSolutionsSpanishJob() {

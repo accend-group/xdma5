@@ -11,7 +11,11 @@ import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import com.google.errorprone.annotations.Var;
+import org.reflections.Configuration;
 import org.reflections.Reflections;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 
 
 import java.io.*;
@@ -47,11 +51,14 @@ public class ScreenshotsAutomation {
         // if merging pdfs or creating desktop/mobile pdfs
         SeleniumHeadless.setIfSinglePDF(Variables.isIfMergePDF());
 
+        // if author are credentials needed
+        SeleniumHeadless.isCredentialsRequired(Variables.isCredentialsRequired());
+
         ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
 
         // search project path for classes with @Job
-        Reflections reflections = new Reflections("com.gene.screenshots.jobs");
-        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Job.class);
+        Reflections reflections = Reflections.collect();
+        Set < Class < ?>> annotated = reflections.getTypesAnnotatedWith(Job.class);
         HashMap<Object, Class<?>> annotationsMap = new HashMap<>();
         for (Class<?> class_ : annotated) {
             Annotation info = class_.getDeclaredAnnotation(Job.class);

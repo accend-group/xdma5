@@ -209,7 +209,7 @@ public abstract class Screenshots {
         }
     }
 
-    protected void waitForPageLoad(WebDriver driver){
+    public static void waitForPageLoad(WebDriver driver){
         new WebDriverWait(driver, 10).until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }

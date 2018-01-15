@@ -22,7 +22,11 @@ import static com.gene.screenshots.EnvironmentType.LOCAL;
 @Environment(local = "http://localhost:4503/content/accesssolutions-site/en_us",
         dev = "https://dev-genentech-access.gene.com",
         stage = "https://stage-genentech-access.gene.com",
-        prod = "https://www.genentech-access.com")
+        prod = "https://www.genentech-access.com",
+        authorlocal = "http://localhost:4502/content/accesssolutions-site/en_us",
+        authordev = "https://dev-author.aem.gene.com/content/accesssolutions-site/en_us",
+        authorprod = "https://author.aem.gene.com/content/accesssolutions-site/en_us",
+        authorstage =  "https://stage-author.aem.gene.com/content/accesssolutions-site/en_us")
 public class AccessSolutionsJob extends ScreenshotJob {
 
     public AccessSolutionsJob(){
