@@ -18,11 +18,11 @@ public @interface Environment {
 
     String stage();
 
-    String authorlocal() default "none";
+    String authorlocal() default "";
 
-    String authorstage() default "none";
+    String authorstage() default "";
 
-    String authordev() default "none";
+    String authordev() default "";
 
-    String authorprod() default "none";
+    String authorprod() default "";
 }
