@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import static com.gene.screenshots.selenium.Constants.*;
@@ -27,12 +28,6 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     protected static BrandUrl domain;
 
-    // default viewport sizes
-    private static int desktopWidth = DESKTOP_WIDTH;
-    private static int desktopHeight = DESKTOP_HEIGHT;
-    private static int mobileHeight = MOBILE_HEIGHT;
-    private static int mobileWidth = MOBILE_WIDTH;
-
     // window.scrollBy(X, Y);
     // https://stackoverflow.com/a/4403822
     private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(); ";
@@ -45,15 +40,7 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     // suppress selenium console log
     static {
-        final Logger[] pin;
-        pin = new Logger[]{
-                Logger.getLogger("com.gargoylesoftware.htmlunit"),
-                Logger.getLogger("org.apache.commons.httpclient"),
-                Logger.getLogger("org.openqa.selenium.remote.ProtocolHandshake")
-        };
-        for (Logger l : pin) {
-            l.setLevel(Level.OFF);
-        }
+        LogManager.getLogManager().reset();
     }
 
     public static void setChromeSystemProperty(String chromedriverPath) {
@@ -82,7 +69,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
-        driver.manage().window().setSize(new Dimension(desktopWidth, DESKTOP_HEIGHT));
+        driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
         if(credentialsRequired)
             authenticate(driver);
         return driver;
@@ -171,46 +158,4 @@ public abstract class SeleniumHeadless extends Screenshots {
         mobileDriver.quit();
     }
 
-    public static void setDesktopSize(int w, int h){
-        desktopWidth = w;
-        desktopHeight = h;
-    }
-    
-    public static void setDesktopWidth(int w){
-        desktopWidth = w;
-    }
-    
-    public static void setDesktopHeight(int h){
-        desktopHeight = h;    
-    }
-
-    public static void setmobileSize(int w, int h){
-        mobileWidth = w;
-        mobileHeight = h;
-    }
-
-    public static void setmobileWidth(int w){
-        mobileWidth = w;
-    }
-
-    public static void setmobileHeight(int h){
-        mobileHeight = h;
-    }
-
-    public static int getDesktopWidth(){
-        return desktopWidth;
-    }
-
-    public static int getDesktopHeight(){
-        return desktopHeight;
-    }
-
-    public static int getMobileWidth() {
-        return mobileWidth;
-    }
-
-    public static int getMobileHeight() {
-        return mobileHeight;
-    }
-    
 }
