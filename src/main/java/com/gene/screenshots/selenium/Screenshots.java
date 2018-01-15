@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -430,22 +431,43 @@ public abstract class Screenshots {
     }
 
     protected void getScreenshotForHCPModal(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
-        String curr = driver.getCurrentUrl();
-        String[] arr = curr.split("/");
-        if (arr[3].equals("patient")) {
-            if (isDesktop) {
-                driver.findElement(By.cssSelector(".gene-component--header__audience .gene-component--audience__item--hcp .gene-component--audience__link")).click();
-            } else {
-                driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
-                waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
-                Thread.sleep(400); // jQuery fadeIn takes 400 ms
-                driver.findElement(By.cssSelector(".gene-component--header__navigation .gene-component--audience__item--hcp .gene-component--audience__link")).click();
+        StringBuffer sb = new StringBuffer();
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        List<Object> hcpUrls = (List<Object>) js.executeScript("return window.hcpUrls;");
+        if (hcpUrls.size() > 0) {
+            for (Object url : hcpUrls) {
+                if (url instanceof String) {
+                    sb.append("a[href='").append(url).append(".html'],");
+                } else if (url instanceof Map) {
+                    sb.append("a[href='").append(((Map<?, ?>) url).get("hcplink")).append(".html'],");
+                }
             }
-            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial")));
-            Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
-            visible(driver, isDesktop, savePath, "modal-HCP");
-            driver.navigate().refresh();
-            waitForPageLoad(driver);
+            sb.deleteCharAt(sb.length() - 1); // trim the last comma
+
+            boolean clicked = false;
+            List<WebElement> links = driver.findElements(By.cssSelector(sb.toString()));
+            for (WebElement link : links) {
+                if (link.isDisplayed()) {
+                    link.click();
+                    clicked = true;
+                    break;
+                } else if ((!isDesktop) && link.findElement(By.xpath("../../..")).getAttribute("class").contains("gene-component--header__nav-section--audience")) {
+                    driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
+                    waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
+                    Thread.sleep(400); // jQuery fadeIn takes 400 ms
+                    link.click();
+                    clicked = true;
+                    break;
+                }
+            }
+            if (clicked) {
+                waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial, .hcp-modal")));
+                Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+                visible(driver, isDesktop, savePath, "modal-HCP");
+                driver.navigate().refresh();
+                waitForPageLoad(driver);
+            }
         }
     }
 
