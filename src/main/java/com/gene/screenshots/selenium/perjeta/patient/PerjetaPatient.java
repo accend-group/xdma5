@@ -1,11 +1,13 @@
 package com.gene.screenshots.selenium.perjeta.patient;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.function.Consumer;
-
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 
 
 public class PerjetaPatient extends SeleniumHeadless {
@@ -189,11 +191,11 @@ public class PerjetaPatient extends SeleniumHeadless {
 			Thread.sleep(1000);
 			driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")).click();
 			Thread.sleep(1000);
-			full(driver, false, savePath, "patient-4.2-pat-q1",driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")), new Long(1000));
+			full(driver, true, savePath, "patient-4.2-pat-q1",driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[1]/a")), new Long(1000));
 			
 			forceClick(driver, "/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]");
 			Thread.sleep(1000);
-			full(driver, false, savePath, "patient-4.2-pat-q1",driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")), new Long(1000));
+			full(driver, true, savePath, "patient-4.2-pat-q2",driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")), new Long(1000));
 			
 			driver.navigate().refresh();
 			scrollAndClickAt(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[1]/header/h1")));
@@ -240,7 +242,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 			driver.findElement(By.name("first-name")).sendKeys("marwin");
 			driver.findElement(By.name("last-name")).sendKeys("nicolas");
 			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-			driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
+			driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
 			driver.findElement(By.name("address-line-2")).sendKeys("CA");
 			driver.findElement(By.name("city")).sendKeys("CA");
@@ -422,10 +424,10 @@ public class PerjetaPatient extends SeleniumHeadless {
 				
 				driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")).click();
 				Thread.sleep(1000);
-				full(driver, false, savePath, "patient-4.2-pat-q1",driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")), new Long(1000));
+				full(driver, false, savePath, "patient-4.2-pat-q2",driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[1]/a")), new Long(1000));
 				
 				driver.navigate().refresh();
-				scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[1]/header/h1")));
+			    scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[1]/header/h1")));
 				Thread.sleep(1000);
 				full(driver, false, savePath, "patient-4.2-tab1");
 				
@@ -469,7 +471,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 				driver.findElement(By.name("first-name")).sendKeys("marwin");
 				driver.findElement(By.name("last-name")).sendKeys("nicolas");
 				driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-				driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
+				driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
 				driver.findElement(By.name("address-line-1")).sendKeys("CA");
 				driver.findElement(By.name("address-line-2")).sendKeys("CA");
 				driver.findElement(By.name("city")).sendKeys("CA");
