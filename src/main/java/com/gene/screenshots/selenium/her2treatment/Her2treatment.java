@@ -33,7 +33,7 @@ public class Her2treatment extends SeleniumHeadless{
 
             driver.navigate().refresh();
             Thread.sleep(1000);
-            driver.findElement(By.linkText("http://www.fda.gov/medwatch"));
+            forceClick(driver, driver.findElement(By.linkText("http://www.fda.gov/medwatch")));
             js.executeScript("window.scrollTo(0, 0)");
             Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-link-thirdparty-modal");
@@ -279,7 +279,7 @@ public class Her2treatment extends SeleniumHeadless{
             driver.navigate().refresh();
             js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
             Thread.sleep(1000);
-            driver.findElement(By.linkText("http://www.fda.gov/medwatch"));
+            driver.findElement(By.linkText("http://www.fda.gov/medwatch")).click();
             js.executeScript("window.scrollTo(0, 0)");
             Thread.sleep(1000);
             visible(driver, false, savePath,  "her2treatment-mobile-link-thirdparty-modal");
