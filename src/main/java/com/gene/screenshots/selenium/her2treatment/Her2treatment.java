@@ -1,482 +1,167 @@
 package com.gene.screenshots.selenium.her2treatment;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
 public class Her2treatment extends SeleniumHeadless{
-    public void desktopAutomationTest(String savePath) {
+    @Override
+    public String getSiteMapUrl() {
+        return "/user-sitemap.html";
+    }
 
+    @Override
+    public String getSiteMapSelector() {
+        return ".sitemap .richtext a";
+    }
+
+    @Override
+    public List<String> getLinksFromSiteMap(WebDriver driver) {
+        List<String> links = super.getLinksFromSiteMap(driver);
+        // because sitemap doesn't have everything
+        links.add(getDomain().toString() + "/safety.html");
+        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/herceptin/safety.html");
+        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/perjeta/safety.html");
+        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
+        links.add(getDomain().toString() + "/breast-cancer-nurse-resources/safety.html");
+        links.add(getDomain().toString() + getSiteMapUrl());
+        links.add(getDomain().toString() + "/errorpage.html");
+        return links;
+    }
+
+    @Override
+    public void desktopAutomationTest(String savePath) {
         WebDriver driver = makeDesktopDriver();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
 
         try {
-
-            goToUrl(driver, "/index.html");
-            visible(driver, true, savePath, "her2treatment-visible-0.0-herceptin");
-            
-            driver.findElement(By.linkText("PERJETA®")).click();
-            visible(driver, true, savePath, "her2treatment-visible-0.0-perjeta");
-            
-            driver.findElement(By.linkText("KADCYLA®")).click();
-            visible(driver, true, savePath, "her2treatment-visible-0.0-kadcyla");
-            
-            goToUrl(driver, "/index.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-0.0-herceptin");
-            	
-            full(driver, true, savePath, "her2treatment-0.0-perjeta", driver.findElement(By.linkText("PERJETA®")), new Long(1000));
-            
-            full(driver, true, savePath, "her2treatment-0.0-kadcyla", driver.findElement(By.linkText("KADCYLA®")), new Long(1000));
-
-            driver.navigate().refresh();
-            Thread.sleep(1000);
-            forceClick(driver, driver.findElement(By.linkText("http://www.fda.gov/medwatch")));
-            js.executeScript("window.scrollTo(0, 0)");
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-link-thirdparty-modal");
-            
-            driver.navigate().refresh();
-            driver.findElement(By.linkText("Resources for Nurses")).click();
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-3.0-modal");
-            
-            driver.navigate().refresh();
-            driver.findElement(By.className("share-a-page-button")).click();
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-share-modal");
-            
-            driver.findElement(By.cssSelector("#share-a-page-riker-form > div.modal-footer > div > input")).click();
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-share-modal-submit-missing");
-            
-            driver.findElement(By.name("fname")).sendKeys("TestFirstName");;
-            driver.findElement(By.name("lname")).sendKeys("TestLastName");;
-            driver.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.cssSelector("#share-a-page-riker-form > div.modal-footer > div > input")).click();
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-share-modal-submit");
-            
-            goToUrl(driver, "/safety.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-0.0-safety-herceptin");
-            
-            driver.findElement(By.linkText("PERJETA®")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-0.0-safety-perjeta");
-            
-            driver.findElement(By.linkText("KADCYLA®")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-0.0-safety-kadcyla");
-            
-            goToUrl(driver, "/what-is-her2-positive-breast-cancer.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-1.0");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin.html");
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-visible-2.0-herceptin");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta.html");
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-visible-2.0-perjeta");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla.html");
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-visible-2.0-kadcyla");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-2.0");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-2.0-herceptin");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin/safety.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-2.0-safety-herceptin");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-2.0-perjeta");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta/safety.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-2.0-safety-perjeta");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-2.0-kadcyla");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-2.0-safety-kadcyla");
-            
-            goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-visible-3.0-herceptin");
-            
-            driver.findElement(By.linkText("PERJETA®")).click();
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-visible-3.0-perjeta");
-            
-            driver.findElement(By.linkText("KADCYLA®")).click();
-            Thread.sleep(1000);
-            visible(driver, true, savePath, "her2treatment-visible-3.0-kadcyla");
-            
-            goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-herceptin");
-            
-            full(driver, true, savePath, "her2treatment-3.0-perjeta", driver.findElement(By.linkText("PERJETA®")), new Long(1000));
-            
-            full(driver, true, savePath, "her2treatment-3.0-kadcyla", driver.findElement(By.linkText("KADCYLA®")), new Long(1000));
-            
-            goToUrl(driver, "/breast-cancer-nurse-resources/safety.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-safety-herceptin");
-            
-            driver.findElement(By.linkText("PERJETA®")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-safety-perjeta");
-            
-            driver.findElement(By.linkText("KADCYLA®")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-safety-kadcyla");
-            
-            goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
-            forceClick(driver, "/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-dropdown");
-            
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[1]");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-1");
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-1-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[3]/div[1]/a")), new Long(1500));
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-1-2", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[4]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");	
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[2]");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-2");
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-2-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[5]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[3]");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-3");
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-3-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[6]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[4]");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-4");
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-4-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[7]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[5]");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-5");
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-5-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[8]/div[1]/a")), new Long(1500));
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-5-2", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[9]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            Thread.sleep(1000);
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[6]");
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-6");
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[7]");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-7");
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-7-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[11]/div[1]/a")), new Long(1500));
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-7-2", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[12]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[8]");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-8");
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-8-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[13]/div[1]/a")), new Long(1500));
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-8-2", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[14]/div[1]/a")), new Long(1500));
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-8-3", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[15]/div[1]/a")), new Long(1500));
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-8-4", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[16]/div[1]/a")), new Long(1500));
-            
-            full(driver, true, savePath, "her2treatment-3.0-dropdown-8-5", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[17]/div[1]/a")), new Long(1500));
-            
-            goToUrl(driver, "/breast-cancer-nurse-resources/contact-a-genentech-nurse-educator.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-genentech-nurse-educator");
-            
-            driver.findElement(By.xpath("//*[@id='riker-form']/div[13]/input")).click();
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-genentech-nurse-educator-error-msg");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-glossary.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-glossary");
-            
-            goToUrl(driver, "/user-sitemap.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-sitemap");
-            
-            goToUrl(driver, "/breast-cancer-treatment-prescribing-information.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-prescribing-info");
-            
-            goToUrl(driver, "/errorpage.html");
-            Thread.sleep(1000);
-            full(driver, true, savePath, "her2treatment-errorpage");
-
-		}catch (Exception e) {
+            List<String> links = getLinksFromSiteMap(driver);
+            //--->start full page screenshot <---//
+            for (int i = 0; i < links.size(); i++) {
+                driver.get(links.get(i));
+                waitForPageLoad(driver);
+                if (driver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
+                    getScreenshotForSafetyTabs(driver, savePath, Integer.toString(i), true);
+                    driver.navigate().refresh();
+                    waitForPageLoad(driver);
+                    getScreenshotForThirdPartyModal(driver, savePath, true);
+                    getScreenshotForHCPModal(driver, savePath, true);
+                    getScreenshotForShareModal(driver, savePath);
+                } else {
+                    if (driver.findElements(By.cssSelector(".brand-page")).size() > 0 && !driver.getCurrentUrl().endsWith("safety.html")) {
+                        visible(driver, true, savePath, Integer.toString(i) + "-visible");
+                    }
+                    full(driver, true, savePath, Integer.toString(i));
+                    getScreenshotForDownloadsFilter(driver, savePath, true);
+                    getScreenshotForSchemaForm(driver, savePath, true);
+                }
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             driver.close();
             driver.quit();
         }
 	}
-	@Override
-	public void mobileAutomationTest(String savePath) {
-		
-	    WebDriver driver = makeMobileDriver();
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
-	    
+
+    @Override
+    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
+        if (driver.findElements(By.cssSelector("#riker-form")).size() > 0) {
+            driver.findElement(By.cssSelector("#riker-form .submit")).click();
+            waitForElementVisible(driver, driver.findElement(By.cssSelector("#riker-form .message")));
+            full(driver, isDesktop, savePath, "her2treatment-genentech-nurse-educator-error-msg");
+        }
+    }
+
+    private void getScreenshotForDownloadsFilter(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+        if (driver.findElements(By.cssSelector(".forms-documents .dropdown")).size() > 0) {
+            WebElement dropdownButton = driver.findElement(By.cssSelector(".forms-documents .dropdown button"));
+            WebElement dropdownMenu = driver.findElement(By.cssSelector(".forms-documents .dropdown-menu"));
+            int y = dropdownButton.getLocation().getY();
+            List<WebElement> dropdownItems = driver.findElements(By.cssSelector(".forms-documents .forms-documents-indication"));
+            for (int i = 0; i < dropdownItems.size(); i++) {
+                WebElement indicationFilter = dropdownItems.get(i);
+                scrollTo(driver, 0, y);
+                dropdownButton.click();
+                waitForElementVisible(driver, dropdownMenu);
+                if (i == 0) {
+                    full(driver, isDesktop, savePath, "her2treatment-3.0-dropdown");
+                }
+                indicationFilter.click();
+                String filter = indicationFilter.getAttribute("data-indication");
+                List<WebElement> indications = driver.findElements(By.cssSelector(".forms-documents-item[data-indication='" + filter +"']"));
+                waitForElementVisible(driver, indications.get(0));
+                full(driver, isDesktop, savePath, "her2treatment-3.0-dropdown-" + Integer.toString(i + 1));
+                for (int j = 0; j < indications.size(); j++) {
+                    List<WebElement> moreInfo = indications.get(j).findElements(By.cssSelector(".more-info"));
+                    if (moreInfo.size() > 0) {
+                        // resizing the screen seems to turn off the popover. so we have to do the click after the screen is resized
+                        full(driver, isDesktop, savePath, "her2treatment-3.0-dropdown-" + Integer.toString(i + 1) +"-" + Integer.toString(j + 1), moreInfo.get(0), new Long(1000));
+                    }
+                }
+            }
+        }
+    }
+
+    private void getScreenshotForSafetyTabs(WebDriver driver, String savePath, String prefix, boolean isDesktop) {
+        if (!isDesktop) {
+            driver.findElement(By.cssSelector(".spotlight-link-active")).click(); // for mobile devices that has safety spotlights
+        }
+
+        List<WebElement> tabs = driver.findElements(By.cssSelector(".tabbed-chart .nav-tabs a"));
+        for (int j = 0; j < tabs.size(); j++) {
+            if (j != 0) {
+                String tabsHref = StringUtils.substringAfterLast(tabs.get(j).getAttribute("href"), "/");
+                tabs.get(j).click();
+                waitForElementVisible(driver, driver.findElement(By.cssSelector(".tabbed-chart " + tabsHref)));
+            }
+            if (isDesktop) {
+                visible(driver, isDesktop, savePath, prefix + "-visible-" + Integer.toString(j));
+            }
+            full(driver, isDesktop, savePath, prefix + "-full-" + Integer.toString(j));
+        }
+    }
+
+    @Override
+    protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) throws InterruptedException {
+        driver.findElement(By.cssSelector(".navbar-toggle")).click();
+        visible(driver, false, savePath, "mobile-navigation");
+        driver.navigate().refresh();
+        waitForPageLoad(driver);
+    }
+
+    @Override
+    public void mobileAutomationTest(String savePath) {
+        WebDriver driver = makeMobileDriver();
         try {
-
-            goToUrl(driver, "/index.html");
-            visible(driver, false, savePath,  "her2treatment-mobile-home");
-            
-            driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[1]/div[3]/div/div/button")).click();
-            visible(driver, false, savePath,  "her2treatment-mobile-menu");
-            
-            driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[3]/a")).click();
-            Thread.sleep(1000);
-            visible(driver, false, savePath, "her2treatment-mobile-3.0-modal");
-            
-            driver.navigate().refresh();
-            js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-            Thread.sleep(1000);
-            driver.findElement(By.linkText("http://www.fda.gov/medwatch")).click();
-            js.executeScript("window.scrollTo(0, 0)");
-            Thread.sleep(1000);
-            visible(driver, false, savePath,  "her2treatment-mobile-link-thirdparty-modal");
-            
-            driver.navigate().refresh();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-0.0-herceptin");
-            	
-            full(driver, false, savePath, "her2treatment-mobile-0.0-perjeta", driver.findElement(By.linkText("PERJETA®")), new Long(1000));
-
-            forceClick(driver, driver.findElement(By.linkText("KADCYLA®")));
-            scrollTo(driver, 0, 0);
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-0.0-kadcyla");
-
-            goToUrl(driver, "/safety.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-0.0-safety-herceptin");
-            
-            driver.findElement(By.linkText("PERJETA®")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-0.0-safety-perjeta");
-            
-            driver.findElement(By.linkText("KADCYLA®")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-0.0-safety-kadcyla");
-            
-            goToUrl(driver, "/what-is-her2-positive-breast-cancer.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-1.0");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-2.0");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-2.0-herceptin");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin/safety.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-2.0-safety-herceptin");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-2.0-perjeta");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta/safety.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-2.0-safety-perjeta");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-2.0-kadcyla");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
-            full(driver, false, savePath, "her2treatment-mobile-2.0-safety-kadcyla");
-
-            goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-herceptin");
-
-            // issues with dynamic content and scrolling increases page height
-            driver.navigate().refresh();
-            waitForPageLoad(driver);
-            forceClick(driver, driver.findElement(By.linkText("KADCYLA®")));
-            scrollTo(driver,0, getDocHeight(driver));
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-kadcyla");
-
-            driver.navigate().refresh();
-            waitForPageLoad(driver);
-            forceClick(driver, driver.findElement(By.linkText("PERJETA®")));
-            scrollTo(driver,0, getDocHeight(driver));
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-perjeta");
-
-
-            goToUrl(driver, "/breast-cancer-nurse-resources/safety.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-safety-herceptin");
-            
-            driver.findElement(By.linkText("PERJETA®")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-safety-perjeta");
-            
-            driver.findElement(By.linkText("KADCYLA®")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-safety-kadcyla");
-            
-            goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown");
-            
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[1]");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-1");
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-1-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[3]/div[1]/a")), new Long(1500));
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-1-2", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[4]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");	
-            Thread.sleep(1000);
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[2]");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-2");
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-2-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[5]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[3]");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-3");
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-3-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[6]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[4]");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-4");
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-4-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[7]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[5]");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-5");
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-5-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[8]/div[1]/a")), new Long(1500));
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-5-2", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[9]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            Thread.sleep(1000);
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[6]");
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-6");
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[7]");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-7");
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-7-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[11]/div[1]/a")), new Long(1500));
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-7-2", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[12]/div[1]/a")), new Long(1500));
-            
-            driver.navigate().refresh();
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
-            forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/ul/li[8]");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-8");
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-8-1", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[13]/div[1]/a")), new Long(1500));
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-8-2", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[14]/div[1]/a")), new Long(1500));
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-8-3", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[15]/div[1]/a")), new Long(1500));
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-8-4", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[16]/div[1]/a")), new Long(1500));
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-8-5", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[17]/div[1]/a")), new Long(1500));
-            
-            goToUrl(driver, "/breast-cancer-nurse-resources/contact-a-genentech-nurse-educator.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-genentech-nurse-educator");
-            
-            driver.findElement(By.xpath("//*[@id='riker-form']/div[13]/input")).click();
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-genentech-nurse-educator-error-msg");
-            
-            goToUrl(driver, "/her2-positive-breast-cancer-glossary.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-glossary");
-            
-            goToUrl(driver, "/user-sitemap.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-sitemap");
-            
-            goToUrl(driver, "/breast-cancer-treatment-prescribing-information.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-prescribing-info");
-            
-            goToUrl(driver, "/errorpage.html");
-            Thread.sleep(1000);
-            full(driver, false, savePath, "her2treatment-mobile-errorpage");
-		
-		}catch (Exception e) {
-		    e.printStackTrace();
+            List<String> links = getLinksFromSiteMap(driver);
+            //--->start full page screenshot <---//
+            for (int i = 0; i < links.size(); i++) {
+                driver.get(links.get(i));
+                waitForPageLoad(driver);
+                if (driver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
+                    visible(driver, false, savePath, Integer.toString(i));
+                    getScreenshotForMobileNavigation(driver, savePath);
+                    getScreenshotForHCPModal(driver, savePath, false);
+                    getScreenshotForThirdPartyModal(driver, savePath, false);
+                    getScreenshotForSafetyTabs(driver, savePath, Integer.toString(i), false);
+                    driver.navigate().refresh();
+                    waitForPageLoad(driver);
+                } else {
+                    if (driver.findElements(By.cssSelector(".brand-page")).size() > 0) {
+                        visible(driver, false, savePath, Integer.toString(i) + "-visible");
+                    }
+                    full(driver, false, savePath, Integer.toString(i));
+                    getScreenshotForDownloadsFilter(driver, savePath, false);
+                    getScreenshotForSchemaForm(driver, savePath, false);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             driver.close();
             driver.quit();

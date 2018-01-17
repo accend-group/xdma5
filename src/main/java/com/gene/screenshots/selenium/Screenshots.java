@@ -183,6 +183,8 @@ public abstract class Screenshots {
         }
         File outputImg = new File(location + "/" + fileName + ".png");
 
+        scrollTo(driver, 0, 0);
+
         if (ifDesktop) {
             FileUtil.writeImage(takeScreenshotEntirePage(driver, true, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
@@ -410,20 +412,20 @@ public abstract class Screenshots {
     }
 
     protected void getScreenshotForShareModal(WebDriver driver, String savePath) throws InterruptedException {
-        if (driver.findElements(By.cssSelector(".genentech-component--button--share")).size() > 0) {
-            driver.findElement(By.cssSelector(".genentech-component--button--share")).click();
-            WebElement modal = driver.findElement(By.cssSelector(".gene-component--modal--share-via-email"));
+        if (driver.findElements(By.cssSelector(".genentech-component--button--share, .share-a-page-button")).size() > 0) {
+            driver.findElement(By.cssSelector(".genentech-component--button--share, .share-a-page-button")).click();
+            WebElement modal = driver.findElement(By.cssSelector(".gene-component--modal--share-via-email, .share-a-page-modal"));
             waitForElementVisible(driver, modal);
             Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
             visible(driver, true, savePath, "modal-share");
             modal.findElement(By.name("fname")).sendKeys("First");
-            modal.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
+            modal.findElement(By.cssSelector("input[type='submit']")).click();
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".to-email-address .message")));
             visible(driver, true, savePath,  "modal-share-error");
             modal.findElement(By.name("lname")).sendKeys("Last");
             modal.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
-            modal.findElement(By.cssSelector(".gene-component--modal__button--confirm")).click();
-            waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success")));
+            modal.findElement(By.cssSelector("input[type='submit']")).click();
+            waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success, .share-thank-you-message")));
             visible(driver, true, savePath, "modal-share-submit");
             driver.navigate().refresh();
             waitForPageLoad(driver);
@@ -462,6 +464,7 @@ public abstract class Screenshots {
                 }
             }
             if (clicked) {
+                scrollTo(driver, 0, 0);
                 waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial, .hcp-modal")));
                 Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
                 visible(driver, isDesktop, savePath, "modal-HCP");
@@ -472,15 +475,27 @@ public abstract class Screenshots {
     }
 
     protected void getScreenshotForThirdPartyModal(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
-        WebElement thirdPartyLink = driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
+        StringBuffer sb = new StringBuffer();
+        sb.append(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        List<Object> geneUrls = (List<Object>) js.executeScript("return window.geneUrls;");
+        if (geneUrls.size() > 0) {
+            for (Object url: geneUrls) {
+                if (url instanceof String) {
+                    sb.append(":not([href*='").append(url).append("'])");
+                } else if (url instanceof Map) {
+                    sb.append(":not([href*='").append(((Map<?, ?>) url).get("externallink")).append("'])");
+                }
+            }
+        }
+        WebElement thirdPartyLink = driver.findElement(By.cssSelector(sb.toString()));
         int y = thirdPartyLink.getLocation().getY();
         scrollTo(driver, 0, y);
         //Thread.sleep(500);
         thirdPartyLink.click();
-        if (isDesktop) {
-            scrollTo(driver, 0, 0);
-        }
-        waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party")));
+        scrollTo(driver, 0, 0);
+        waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party, .external-modal")));
         Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
         visible(driver, isDesktop, savePath, "link-modal");
         driver.navigate().refresh();
