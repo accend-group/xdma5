@@ -111,7 +111,11 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     protected static void scrollAndClickAt(WebDriver driver, WebElement e) {
         scrollToElement(driver, e);
-        e.click();
+        try {
+            e.click();
+        }catch (Exception ex){
+            forceClick(driver, e);
+        }
     }
 
     protected static void scrollToElement(WebDriver driver, WebElement e) {
