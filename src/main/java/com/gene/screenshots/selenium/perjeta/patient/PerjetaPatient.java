@@ -432,7 +432,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 				full(driver, false, savePath, "patient-4.2-tab1");
 				
 				driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[1]/header/h1")).click();
-				driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[2]/header/h1")).click();
+				click(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[2]/header/h1")));
 				Thread.sleep(1000);
 				full(driver, false, savePath, "patient-4.2-tab2");
 				
@@ -447,7 +447,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 				full(driver, false, savePath, "patient-4.2-tab4");
 				
 				driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[4]/header/h1")).click();
-				driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[5]/header/h1")).click();
+				click(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div[2]/div/div[2]/section[5]/header/h1")));
 				Thread.sleep(1000);
 				full(driver, false, savePath, "patient-4.2-tab5");
 				
