@@ -17,7 +17,7 @@ public class Her2treatment extends SeleniumHeadless{
             goToUrl(driver, "/index.html");
             visible(driver, true, savePath, "her2treatment-visible-0.0-herceptin");
             
-            driver.findElement(By.linkText("PERJETA®")).click();
+            scrollAndClickAt(driver, driver.findElement(By.linkText("PERJETA®")));
             visible(driver, true, savePath, "her2treatment-visible-0.0-perjeta");
             
             driver.findElement(By.linkText("KADCYLA®")).click();
@@ -63,7 +63,7 @@ public class Her2treatment extends SeleniumHeadless{
             Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-0.0-safety-herceptin");
             
-            driver.findElement(By.linkText("PERJETA®")).click();
+            scrollAndClickAt(driver, driver.findElement(By.linkText("PERJETA®")));
             Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-0.0-safety-perjeta");
             
@@ -94,7 +94,7 @@ public class Her2treatment extends SeleniumHeadless{
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0-herceptin");
-            
+
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin/safety.html");
             Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0-safety-herceptin");
@@ -299,7 +299,7 @@ public class Her2treatment extends SeleniumHeadless{
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-0.0-safety-herceptin");
             
-            driver.findElement(By.linkText("PERJETA®")).click();
+            scrollAndClickAt(driver, driver.findElement(By.linkText("PERJETA®")));
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-0.0-safety-perjeta");
             
@@ -339,6 +339,8 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, false, savePath, "her2treatment-mobile-2.0-safety-kadcyla");
 
             goToUrl(driver, "/breast-cancer-nurse-resources.html");
+            forceClick(driver, driver.findElement(By.linkText("HERCEPTIN®")));
+            scrollTo(driver,0, getDocHeight(driver));
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-3.0-herceptin");
 
@@ -362,7 +364,7 @@ public class Her2treatment extends SeleniumHeadless{
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-3.0-safety-herceptin");
             
-            driver.findElement(By.linkText("PERJETA®")).click();
+            scrollAndClickAt(driver, driver.findElement(By.linkText("PERJETA®")));
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-3.0-safety-perjeta");
             
