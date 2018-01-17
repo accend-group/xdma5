@@ -8,12 +8,12 @@ import com.gene.screenshots.selenium.SeleniumHeadless;
 
 public class Her2treatment extends SeleniumHeadless{
     public void desktopAutomationTest(String savePath) {
-		
+
         WebDriver driver = makeDesktopDriver();
         JavascriptExecutor js = (JavascriptExecutor) driver;
-		
+
         try {
-		
+
             goToUrl(driver, "/index.html");
             visible(driver, true, savePath, "her2treatment-visible-0.0-herceptin");
             
@@ -265,7 +265,7 @@ public class Her2treatment extends SeleniumHeadless{
 	    JavascriptExecutor js = (JavascriptExecutor) driver;
 	    
         try {
-			
+
             goToUrl(driver, "/index.html");
             visible(driver, false, savePath,  "her2treatment-mobile-home");
             
@@ -289,9 +289,12 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, false, savePath, "her2treatment-mobile-0.0-herceptin");
             	
             full(driver, false, savePath, "her2treatment-mobile-0.0-perjeta", driver.findElement(By.linkText("PERJETA®")), new Long(1000));
-            
-            full(driver, false, savePath, "her2treatment-mobile-0.0-kadcyla", driver.findElement(By.linkText("KADCYLA®")), new Long(1000));
-            
+
+            forceClick(driver, driver.findElement(By.linkText("KADCYLA®")));
+            scrollTo(driver, 0, 0);
+            Thread.sleep(1000);
+            full(driver, false, savePath, "her2treatment-mobile-0.0-kadcyla");
+
             goToUrl(driver, "/safety.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-0.0-safety-herceptin");
@@ -334,15 +337,27 @@ public class Her2treatment extends SeleniumHeadless{
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
             full(driver, false, savePath, "her2treatment-mobile-2.0-safety-kadcyla");
-            
+
             goToUrl(driver, "/breast-cancer-nurse-resources.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-3.0-herceptin");
-            
-            full(driver, false, savePath, "her2treatment-mobile-3.0-perjeta", driver.findElement(By.linkText("PERJETA®")), new Long(1000));
-    
-            full(driver, false, savePath, "her2treatment-mobile-3.0-kadcyla", driver.findElement(By.linkText("KADCYLA®")), new Long(1000));
-       
+
+            // issues with dynamic content and scrolling increases page height
+            driver.navigate().refresh();
+            waitForPageLoad(driver);
+            forceClick(driver, driver.findElement(By.linkText("KADCYLA®")));
+            scrollTo(driver,0, getDocHeight(driver));
+            Thread.sleep(1000);
+            full(driver, false, savePath, "her2treatment-mobile-3.0-kadcyla");
+
+            driver.navigate().refresh();
+            waitForPageLoad(driver);
+            forceClick(driver, driver.findElement(By.linkText("PERJETA®")));
+            scrollTo(driver,0, getDocHeight(driver));
+            Thread.sleep(1000);
+            full(driver, false, savePath, "her2treatment-mobile-3.0-perjeta");
+
+
             goToUrl(driver, "/breast-cancer-nurse-resources/safety.html");
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-3.0-safety-herceptin");
