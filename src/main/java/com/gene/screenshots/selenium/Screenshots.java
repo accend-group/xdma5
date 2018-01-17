@@ -251,11 +251,11 @@ public abstract class Screenshots {
                 builder.moveToElement(e, 5,5).click().build().perform();
             } catch (Exception ex) {
                 forceClick(driver, e);
-                try {
-                    Thread.sleep(sleepTime);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
+            }
+            try {
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
             }
         } else
         // wait for page to be resized correctly, elements may appear differently if taking screenshot instantly
