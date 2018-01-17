@@ -122,7 +122,10 @@ public class Her2treatment extends SeleniumHeadless{
             if (isDesktop) {
                 visible(driver, isDesktop, savePath, prefix + "-visible-" + Integer.toString(j));
             }
+            int currentYPos = getCurrentScrollY(driver);
+            scrollTo(driver, 0, currentYPos + 1); // scrolling or resizing the window will forcibly get the new document height.
             full(driver, isDesktop, savePath, prefix + "-full-" + Integer.toString(j));
+            scrollTo(driver, 0, currentYPos);
         }
     }
 
