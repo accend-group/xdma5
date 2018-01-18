@@ -33,6 +33,8 @@ public class Variables {
     }
 
 
+    private static int threadLimit = 2;
+
     private static String authorUsername = null;
     private static String authorPassword = null;
 
@@ -45,6 +47,9 @@ public class Variables {
     public static void main(String[] args) {
 
         for (String arg : args) {
+
+            if(validArgument("threadlimit=", arg))
+                threadLimit = Integer.parseInt(arg.substring(12, arg.length()));
 
             if(arg.equals("pdfbreakpoint=false"))
                 ifMergePDF = false;
@@ -160,6 +165,10 @@ public class Variables {
 
     public static String getAuthorPassword() {
         return authorPassword;
+    }
+
+    public static int getThreadLimit(){
+        return threadLimit;
     }
 
 }

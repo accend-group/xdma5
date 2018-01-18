@@ -32,7 +32,7 @@ import static com.gene.screenshots.EnvironmentType.*;
 
 public class ScreenshotsAutomation {
 
-    private static final int THREAD_LIMIT = 2;
+    private static final int THREAD_LIMIT = Variables.getThreadLimit();
 
     public static void main(String[] args) throws InterruptedException {
 

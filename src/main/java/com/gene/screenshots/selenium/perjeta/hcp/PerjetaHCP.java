@@ -28,14 +28,14 @@ public class PerjetaHCP extends SeleniumHeadless{
 			Actions action = new Actions(driver);
 
 			goToUrl(driver, "/hcp/breast-cancer.html");
-			Thread.sleep(1000);
 			visible(driver, true, savePath, "hcp-home");
 
 			action.moveToElement(driver.findElement(By.linkText("Resources"))).build().perform();
 			visible(driver, true, savePath, "hcp-hover-6.0");
 
 //			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			forceClick(driver, "//*[@id=\"safety_reference_cal_1181551378\"]/div/div/div/p[1]/a[2]");
+			forceClick(driver, driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])")));
+
 //			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "hcp-modal-thirdpartysite");
@@ -256,7 +256,8 @@ public class PerjetaHCP extends SeleniumHeadless{
 			visible(driver, false, savePath, "hcp-hover-6.0");
 			
 //			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			forceClick(driver,"//*[@id=\"safety_reference_cal_1181551378\"]/div/div/div/p[1]/a[2]");
+
+			forceClick(driver, driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])")));
 //			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-modal-thirdpartysite");

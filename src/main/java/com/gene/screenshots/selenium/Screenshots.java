@@ -71,13 +71,17 @@ public abstract class Screenshots {
         log.save(savePath);
     }
 
+    // sometimes a modal asks if a user is a hcp/patient when navigating to different pages
+    public static void handleRandomQuestionModal(WebDriver driver, boolean ifHCP){
+        List<WebElement> areYouPatientHCP = driver.findElements(By.partialLinkText("I am a healthcare professional"));
+        List<WebElement> areYouPaitent = driver.findElements(By.partialLinkText("I am a patient or caregiver"));
+        if(areYouPatientHCP.size() > 0 && ifHCP)
+            areYouPatientHCP.get(0).click();
+        if(areYouPaitent.size() > 0 && !ifHCP)
+            areYouPaitent.get(0).click();
+    }
+
     public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName)  {
-
-        List<WebElement> areYouPatientHCPModal = driver.findElements(By.partialLinkText("I am a healthcare professional"));
-        if(areYouPatientHCPModal.size() > 0) {
-            areYouPatientHCPModal.get(0).click();
-        }
-
         fullScreenshot(driver, ifDesktop, path, screenshotName, null, 0L);
         File outputImg = new File(path + "/" + screenshotName + ".png");
         if (ifDesktop)
