@@ -17,6 +17,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -348,13 +349,13 @@ public abstract class Screenshots {
             mobileScaleFactor = 2;
     }
 
-    protected void waitForElementVisible(WebDriver driver, WebElement e) {
+    public void waitForElementVisible(WebDriver driver, WebElement e) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(
                 ExpectedConditions.visibilityOf(e));
     }
 
-    protected void waitForElementNotVisible(WebDriver driver, WebElement e) {
+    public void waitForElementNotVisible(WebDriver driver, WebElement e) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(
                 ExpectedConditions.invisibilityOf(e));
@@ -395,8 +396,7 @@ public abstract class Screenshots {
     protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) {
         List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs--accordiontype .gene-component--accordionTabs__item .gene-component--accordionTabs__header, .panel-heading"));
         for (int i = 0; i < tabs.size(); i++) {
-            int y = tabs.get(i).getLocation().getY();
-            scrollTo(driver, 0, y);
+            scrollTo(driver, 0, tabs.get(i).getLocation().getY());
             tabs.get(i).click();
             waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
             scrollTo(driver, 0, 0); // scroll to the top to avoid the natural scrolling coming from the component and to force the recalculation of the height of the page.
@@ -424,8 +424,7 @@ public abstract class Screenshots {
                     waitForElementNotVisible(driver, tabs.get(0).findElement(By.xpath("following-sibling::*[1]")));
                 }
                 for (int i = 1; i < tabs.size(); i++) {
-                    int y = tabs.get(i).getLocation().getY();
-                    scrollTo(driver, 0, y);
+                    scrollTo(driver, 0, tabs.get(i).getLocation().getY());
                     tabs.get(i).click();
                     waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
                     scrollTo(driver, 0, getCurrentScrollY(driver) + 1); // scroll down a pixel so the height gets recalculated before we get the doc height.
@@ -471,18 +470,31 @@ public abstract class Screenshots {
 
     protected void getScreenshotForHCPModal(WebDriver driver, String savePath, boolean isDesktop) {
         StringBuffer sb = new StringBuffer();
+        boolean isHcp = false;
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         List<Object> hcpUrls = (List<Object>) js.executeScript("return window.hcpUrls;");
         if (hcpUrls.size() > 0) {
             for (Object url : hcpUrls) {
                 if (url instanceof String) {
+                    if (StringUtils.contains(driver.getCurrentUrl(), url + ".html")) {
+                        isHcp = true;
+                        break;
+                    }
                     sb.append("a[href='").append(url).append(".html'],");
                 } else if (url instanceof Map) {
-                    sb.append("a[href='").append(((Map<?, ?>) url).get("hcplink")).append(".html'],");
+                    String link = (String) ((Map<?, ?>) url).get("hcplink");
+                    if (StringUtils.contains(driver.getCurrentUrl(), link + ".html")) {
+                        isHcp = true;
+                        break;
+                    }
+                    sb.append("a[href='").append(link).append(".html'],");
                 }
             }
-            sb.deleteCharAt(sb.length() - 1); // trim the last comma
+            if (isHcp) {
+                return; // if the current site is hcp, don't even run this code.
+            }
+            sb.deleteCharAt(sb.length() - 1); // trim the last comma if it is NOT a hcp site
 
             boolean clicked = false;
             List<WebElement> links = driver.findElements(By.cssSelector(sb.toString()));
@@ -552,6 +564,25 @@ public abstract class Screenshots {
         visible(driver, isDesktop, savePath, "link-modal");
         driver.navigate().refresh();
         waitForPageLoad(driver);
+    }
+
+    protected void getScreenshotForCarousels(WebDriver driver, String prefix, String savePath, boolean isDesktop) {
+        List<WebElement> carousels = driver.findElements(By.cssSelector(".gene-component--hero-carousel"));
+        for (int i = 0; i < carousels.size(); i++) {
+            WebElement carousel = carousels.get(i);
+            scrollTo(driver, 0, carousel.getLocation().getY());
+            List<WebElement> dots = carousel.findElements(By.cssSelector(".dot"));
+            if (dots.size() > 1) { // if the carousel has 0 or 1 item, don't bother trying to click the dots
+                for (int j = 1; j < dots.size(); j++) {
+                    dots.get(j).click();
+                    waitForElementVisible(driver, carousel.findElement(By.cssSelector(".gene-component--hero-carousel__cell--" + Integer.toString(j + 1))));
+                    full(driver, isDesktop, savePath, prefix + "-carousel-comp" + Integer.toString(i + 1) + "-slide" + Integer.toString(j + 1));
+                }
+                // reset it back to the first slide before we go and do this to other slides
+                dots.get(0).click();
+                waitForElementVisible(driver, carousel.findElement(By.cssSelector(".gene-component--hero-carousel__cell--1")));
+            }
+        }
     }
 
     protected void getScreenshotForPAT(WebDriver driver, String savePath, Actions action, boolean isDesktop) {
