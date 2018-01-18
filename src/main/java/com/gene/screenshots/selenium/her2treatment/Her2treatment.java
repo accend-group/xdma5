@@ -11,9 +11,7 @@ public class Her2treatment extends SeleniumHeadless{
 
         WebDriver driver = makeDesktopDriver();
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
         try {
-
             goToUrl(driver, "/index.html");
             visible(driver, true, savePath, "her2treatment-visible-0.0-herceptin");
             
@@ -59,8 +57,6 @@ public class Her2treatment extends SeleniumHeadless{
             visible(driver, true, savePath, "her2treatment-share-modal-submit");
             
             goToUrl(driver, "/safety.html");
-            waitForPageLoad(driver);
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-0.0-safety-herceptin");
             
             scrollAndClickAt(driver, driver.findElement(By.linkText("PERJETA®")));
