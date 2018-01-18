@@ -60,8 +60,6 @@ public class Her2treatment extends SeleniumHeadless{
                     getScreenshotForSchemaForm(driver, savePath, true);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             driver.close();
             driver.quit();
@@ -77,7 +75,7 @@ public class Her2treatment extends SeleniumHeadless{
         }
     }
 
-    private void getScreenshotForDownloadsFilter(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    private void getScreenshotForDownloadsFilter(WebDriver driver, String savePath, boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".forms-documents .dropdown")).size() > 0) {
             WebElement dropdownButton = driver.findElement(By.cssSelector(".forms-documents .dropdown button"));
             WebElement dropdownMenu = driver.findElement(By.cssSelector(".forms-documents .dropdown-menu"));
@@ -130,7 +128,7 @@ public class Her2treatment extends SeleniumHeadless{
     }
 
     @Override
-    protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) throws InterruptedException {
+    protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) {
         driver.findElement(By.cssSelector(".navbar-toggle")).click();
         visible(driver, false, savePath, "mobile-navigation");
         driver.navigate().refresh();
@@ -163,8 +161,6 @@ public class Her2treatment extends SeleniumHeadless{
                     getScreenshotForSchemaForm(driver, savePath, false);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             driver.close();
             driver.quit();

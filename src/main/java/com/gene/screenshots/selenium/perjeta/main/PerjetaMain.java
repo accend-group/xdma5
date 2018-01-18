@@ -15,8 +15,6 @@ public class PerjetaMain extends SeleniumHeadless {
 
         try {
             getScreenshots(driver, js, savePath, true);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             driver.close();
             driver.quit();
@@ -38,7 +36,7 @@ public class PerjetaMain extends SeleniumHeadless {
         }
     }
 
-    private void getScreenshots(WebDriver driver, JavascriptExecutor js, String savePath, boolean isDesktop) throws InterruptedException {
+    private void getScreenshots(WebDriver driver, JavascriptExecutor js, String savePath, boolean isDesktop) {
         goToUrl(driver, "/patient.html");
         waitForPageLoad(driver);
         visible(driver, isDesktop, savePath, "patient-home");
@@ -79,27 +77,47 @@ public class PerjetaMain extends SeleniumHeadless {
         getScreenshotForTabs(driver, "hcp", savePath, isDesktop);
     }
 
-    private void closeInterstitialModal(WebDriver driver) throws InterruptedException {
+    private void closeInterstitialModal(WebDriver driver) {
         driver.findElement(By.cssSelector(".gene-component--modal--hcp-landing .gene-component--modal__button--confirm")).click();
         waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--interstitial")));
-        Thread.sleep(400); // jQuery fadeIn slowly fades the modal out
+        try {
+            Thread.sleep(400); // jQuery fadeIn slowly fades the modal out
+        } catch (InterruptedException e) {
+            // failed to sleep
+            e.printStackTrace();
+        } 
     }
 
     // can't use the getScreenshotForMobileNavigation() method because we hid the "HOME" on the navigation
-    private void showMobileNavigation(WebDriver driver) throws InterruptedException {
+    private void showMobileNavigation(WebDriver driver) {
         driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
-        Thread.sleep(400); // jQuery fadeIn takes 400 ms
+        try {
+            Thread.sleep(400); // jQuery fadeIn takes 400 ms
+        } catch (InterruptedException e) {
+            // failed to sleep :(
+            e.printStackTrace();
+        } 
     }
 
-    private void showThirdPartyModal(WebDriver driver, JavascriptExecutor js) throws InterruptedException {
+    private void showThirdPartyModal(WebDriver driver, JavascriptExecutor js) {
         waitForPageLoad(driver);
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        Thread.sleep(500);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            // failed to sleep
+            e.printStackTrace();
+        }
         WebElement thirdPartyLinks = driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
         forceClick(driver, thirdPartyLinks); // actions.moveToElement().click().build().perform() seems to fail on clicking
         js.executeScript("window.scrollTo(0, 0)");
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party")));
-        Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+        try {
+            Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+        } catch (InterruptedException e) {
+            // failed to sleep :(
+            e.printStackTrace();
+        } 
     }
 }

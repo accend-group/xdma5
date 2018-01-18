@@ -118,8 +118,6 @@ public abstract class SeleniumHeadless extends Screenshots {
                 getScreenshotForAccordion(driver, Integer.toString(i), savePath, true);
                 getScreenshotForSchemaForm(driver, savePath, true);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             driver.close();
             driver.quit();
@@ -147,8 +145,6 @@ public abstract class SeleniumHeadless extends Screenshots {
                 getScreenshotForAccordion(driver, Integer.toString(i), savePath, false);
                 getScreenshotForSchemaForm(driver, savePath, false);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             driver.close();
             driver.quit();

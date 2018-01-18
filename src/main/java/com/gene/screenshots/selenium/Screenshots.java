@@ -371,10 +371,15 @@ public abstract class Screenshots {
         waitForPageLoad(driver);
     }
 
-    protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) throws InterruptedException {
+    protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) {
         driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
-        Thread.sleep(400); // jQuery fadeIn takes 400 ms
+        try {
+            Thread.sleep(400); // jQuery fadeIn takes 400 ms
+        } catch (InterruptedException e) {
+            // failed to sleep :(
+            e.printStackTrace();
+        }
         visible(driver, false, savePath, "mobile-navigation");
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
         for (int i = 0; i < elements.size(); i++) {
@@ -387,7 +392,7 @@ public abstract class Screenshots {
         waitForPageLoad(driver);
     }
 
-    protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) {
         List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs--accordiontype .gene-component--accordionTabs__item .gene-component--accordionTabs__header, .panel-heading"));
         for (int i = 0; i < tabs.size(); i++) {
             int y = tabs.get(i).getLocation().getY();
@@ -395,7 +400,12 @@ public abstract class Screenshots {
             tabs.get(i).click();
             waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
             scrollTo(driver, 0, 0); // scroll to the top to avoid the natural scrolling coming from the component and to force the recalculation of the height of the page.
-            Thread.sleep(500); 
+            try {
+                Thread.sleep(500); // sleep so that we have enough time for the scrolling to finish
+            } catch (InterruptedException e) {
+                // failed to sleep :(
+                e.printStackTrace();
+            } 
             String screenshotName = prefixName +"-accordion" + Integer.toString(i + 1);
             full(driver, isDesktop, savePath, screenshotName);
             tabs.get(i).click(); //collapse the current one
@@ -433,12 +443,17 @@ public abstract class Screenshots {
         }
     }
 
-    protected void getScreenshotForShareModal(WebDriver driver, String savePath) throws InterruptedException {
+    protected void getScreenshotForShareModal(WebDriver driver, String savePath) {
         if (driver.findElements(By.cssSelector(".genentech-component--button--share, .share-a-page-button")).size() > 0) {
             driver.findElement(By.cssSelector(".genentech-component--button--share, .share-a-page-button")).click();
             WebElement modal = driver.findElement(By.cssSelector(".gene-component--modal--share-via-email, .share-a-page-modal"));
             waitForElementVisible(driver, modal);
-            Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+            try {
+                Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+            } catch (InterruptedException e) {
+                // failed to sleep :(
+                e.printStackTrace();
+            } 
             visible(driver, true, savePath, "modal-share");
             modal.findElement(By.name("fname")).sendKeys("First");
             modal.findElement(By.cssSelector("input[type='submit']")).click();
@@ -454,7 +469,7 @@ public abstract class Screenshots {
         }
     }
 
-    protected void getScreenshotForHCPModal(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForHCPModal(WebDriver driver, String savePath, boolean isDesktop) {
         StringBuffer sb = new StringBuffer();
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -479,7 +494,12 @@ public abstract class Screenshots {
                 } else if ((!isDesktop) && link.findElement(By.xpath("../../..")).getAttribute("class").contains("gene-component--header__nav-section--audience")) {
                     driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--menu")).click();
                     waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
-                    Thread.sleep(400); // jQuery fadeIn takes 400 ms
+                    try {
+                        Thread.sleep(400); // jQuery fadeIn takes 400 ms
+                    } catch (InterruptedException e) {
+                        // failed to sleep :(
+                        e.printStackTrace();
+                    } 
                     link.click();
                     clicked = true;
                     break;
@@ -488,7 +508,12 @@ public abstract class Screenshots {
             if (clicked) {
                 scrollTo(driver, 0, 0);
                 waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial, .hcp-modal")));
-                Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+                try {
+                    Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+                } catch (InterruptedException e) {
+                    // failed to sleep
+                    e.printStackTrace();
+                } 
                 visible(driver, isDesktop, savePath, "modal-HCP");
                 driver.navigate().refresh();
                 waitForPageLoad(driver);
@@ -496,7 +521,7 @@ public abstract class Screenshots {
         }
     }
 
-    protected void getScreenshotForThirdPartyModal(WebDriver driver, String savePath, boolean isDesktop) throws InterruptedException {
+    protected void getScreenshotForThirdPartyModal(WebDriver driver, String savePath, boolean isDesktop) {
         StringBuffer sb = new StringBuffer();
         sb.append(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])");
 
@@ -518,7 +543,12 @@ public abstract class Screenshots {
         thirdPartyLink.click();
         scrollTo(driver, 0, 0);
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party, .external-modal")));
-        Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+        try {
+            Thread.sleep(400); // jQuery fadeIn slowly lows the modal in 
+        } catch (InterruptedException e) {
+            // failed to sleep :(
+            e.printStackTrace();
+        } 
         visible(driver, isDesktop, savePath, "link-modal");
         driver.navigate().refresh();
         waitForPageLoad(driver);
