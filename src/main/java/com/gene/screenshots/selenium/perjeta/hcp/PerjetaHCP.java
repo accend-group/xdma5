@@ -45,47 +45,36 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, true, savePath, "hcp-0.0");
 
 			goToUrl(driver, "/hcp/breast-cancer/about-perjeta.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-1.0");
 
 			goToUrl(driver, "/hcp/breast-cancer/trial-designs.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-2.0-tab1");
 
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-2.0-tab2");
 
 			goToUrl(driver, "/hcp/breast-cancer/efficacy.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-3.0-tab1");
 
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-3.0-tab2");
 
 			goToUrl(driver, "/hcp/breast-cancer/safety-profiles.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-4.0-tab1");
 
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-4.0-tab2");
 
 			goToUrl(driver, "/hcp/breast-cancer/dosing-admin.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-5.0-tab1");
 
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-5.0-tab2");
 
 			goToUrl(driver, "/hcp/breast-cancer/resources.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-6.0");
 
 			goToUrl(driver, "/hcp/breast-cancer/resources/financial-assistance.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-6.1-part1");
 
 			action.moveToElement(driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]"))).build().perform();
@@ -184,11 +173,9 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, true, savePath, "hcp-6.1-tab5");
 
 			goToUrl(driver, "/hcp/breast-cancer/resources/downloads.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-6.2");
 
 			goToUrl(driver, "/hcp/breast-cancer/contact.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-contact-rep");
 
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[1]/div/div")));
@@ -200,7 +187,6 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, true, savePath, "hcp-contact-rep-specialty");
 
 			goToUrl(driver, "/hcp/breast-cancer/register.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-register");
 
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
@@ -235,15 +221,12 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, true, savePath, "hcp-register-submit");
 
 			goToUrl(driver, "/hcp/breast-cancer/isi.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-safety");
 
 			goToUrl(driver, "/hcp/site-map.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-sitemap");
 
 			goToUrl(driver, "/hcp/breast-cancer/references.html");
-			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-references");
 
 		} catch (Exception e) {
@@ -262,7 +245,6 @@ public class PerjetaHCP extends SeleniumHeadless{
         try {
 	        	
 			goToUrl(driver, "/hcp/breast-cancer.html");
-			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-home");
 			
 			driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/div[1]/a[2]/i[1]")).click();
@@ -280,15 +262,13 @@ public class PerjetaHCP extends SeleniumHeadless{
 			visible(driver, false, savePath, "hcp-modal-thirdpartysite");
 			
 			goToUrl(driver, "/hcp/breast-cancer.html");
-			waitForPageLoad(driver);
+
 			full(driver, false, savePath, "hcp-0.0");
 			
 			goToUrl(driver, "/hcp/breast-cancer/about-perjeta.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-1.0");
 			
 			goToUrl(driver, "/hcp/breast-cancer/trial-designs.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-2.0-tab1");
 			
 			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[1]/header/h1")));
@@ -298,7 +278,6 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, false, savePath, "hcp-2.0-tab2");
 			
 			goToUrl(driver, "/hcp/breast-cancer/efficacy.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-3.0-tab1");
 			
 			js.executeScript("window.scrollTo(0, 0)");
@@ -309,7 +288,6 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, false, savePath, "hcp-3.0-tab2");
 			
 			goToUrl(driver, "/hcp/breast-cancer/safety-profiles.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-4.0-tab1");
 			
 			js.executeScript("window.scrollTo(0, 0)");
@@ -320,7 +298,6 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, false, savePath, "hcp-4.0-tab2");
 			
 			goToUrl(driver, "/hcp/breast-cancer/dosing-admin.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-5.0-tab1");
 			
 			js.executeScript("window.scrollTo(0, 0)");
@@ -331,11 +308,9 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, false, savePath, "hcp-5.0-tab2");
 			
 			goToUrl(driver, "/hcp/breast-cancer/resources.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.0");
 			
 			goToUrl(driver, "/hcp/breast-cancer/resources/financial-assistance.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.1");
 			
 			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")));
@@ -402,11 +377,9 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, false, savePath, "hcp-6.1-tab5");
 			
 			goToUrl(driver, "/hcp/breast-cancer/resources/downloads.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.2");
 			
 			goToUrl(driver, "/hcp/breast-cancer/contact.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-contact-rep");
 			
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[1]/div/div")));
@@ -420,7 +393,6 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, false, savePath, "hcp-contact-rep-specialty");
 			
 			goToUrl(driver, "/hcp/breast-cancer/register.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-register");
 
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
@@ -449,26 +421,22 @@ public class PerjetaHCP extends SeleniumHeadless{
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/ul/li[1]")));
 			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
 			Thread.sleep(1000);
-             driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+			driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
 			forceClick(driver, driver.findElement(By.className("submit")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-register-submit");
 			
 			goToUrl(driver, "/hcp/breast-cancer/isi.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-safety");
 			
 			goToUrl(driver, "/hcp/site-map.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-sitemap");
 			
 			goToUrl(driver, "/hcp/breast-cancer/references.html");
-			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-references");
 
         }catch (Exception e) {
             e.printStackTrace();
-
         } finally {
             driver.close();
             driver.quit();

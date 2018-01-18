@@ -15,6 +15,7 @@ public class PerjetaMain extends SeleniumHeadless {
 		try {
 
 			goToUrl(driver, "/patient.html");
+
 			visible(driver, true, savePath, "patient-home");
 
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -27,11 +28,11 @@ public class PerjetaMain extends SeleniumHeadless {
 			visible(driver, true, savePath, "patient-thirdpartysite");
 
 			goToUrl(driver, "/patient.html");
-			Thread.sleep(1000);
+
 			full(driver, true, savePath, "patient-0.0");
 
 			goToUrl(driver, "/hcp.html");
-			Thread.sleep(1000);
+
 			visible(driver, true, savePath, "hcp-modal");
 
 			driver.findElement(By.xpath("/html/body/section[2]/div[4]/div/footer/a[2]")).click();
@@ -42,6 +43,7 @@ public class PerjetaMain extends SeleniumHeadless {
 			visible(driver, true, savePath, "hcp-thirdpartysite");
 
 			goToUrl(driver, "/hcp.html");
+
 			driver.findElement(By.xpath("/html/body/section[2]/div[4]/div/footer/a[2]")).click();
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "hcp-home");
@@ -123,6 +125,7 @@ public class PerjetaMain extends SeleniumHeadless {
 			visible(driver, false, savePath, "hcp-thirdpartysite");
 
 			goToUrl(driver, "/hcp.html");
+
 			driver.findElement(By.xpath("/html/body/section[2]/div[4]/div/footer/a[2]")).click();
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-1.0");

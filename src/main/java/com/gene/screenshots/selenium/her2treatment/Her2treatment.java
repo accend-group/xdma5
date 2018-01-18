@@ -24,7 +24,6 @@ public class Her2treatment extends SeleniumHeadless{
             visible(driver, true, savePath, "her2treatment-visible-0.0-kadcyla");
             
             goToUrl(driver, "/index.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-0.0-herceptin");
             	
             full(driver, true, savePath, "her2treatment-0.0-perjeta", driver.findElement(By.linkText("PERJETA®")), new Long(1000));
@@ -60,6 +59,7 @@ public class Her2treatment extends SeleniumHeadless{
             visible(driver, true, savePath, "her2treatment-share-modal-submit");
             
             goToUrl(driver, "/safety.html");
+            waitForPageLoad(driver);
             Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-0.0-safety-herceptin");
             
@@ -72,51 +72,39 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, true, savePath, "her2treatment-0.0-safety-kadcyla");
             
             goToUrl(driver, "/what-is-her2-positive-breast-cancer.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-1.0");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin.html");
-            Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-visible-2.0-herceptin");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta.html");
-            Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-visible-2.0-perjeta");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla.html");
-            Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-visible-2.0-kadcyla");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0-herceptin");
 
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin/safety.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0-safety-herceptin");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0-perjeta");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta/safety.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0-safety-perjeta");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0-kadcyla");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-2.0-safety-kadcyla");
             
             goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-visible-3.0-herceptin");
             
             driver.findElement(By.linkText("PERJETA®")).click();
@@ -128,7 +116,6 @@ public class Her2treatment extends SeleniumHeadless{
             visible(driver, true, savePath, "her2treatment-visible-3.0-kadcyla");
             
             goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-3.0-herceptin");
             
             full(driver, true, savePath, "her2treatment-3.0-perjeta", driver.findElement(By.linkText("PERJETA®")), new Long(1000));
@@ -136,7 +123,6 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, true, savePath, "her2treatment-3.0-kadcyla", driver.findElement(By.linkText("KADCYLA®")), new Long(1000));
             
             goToUrl(driver, "/breast-cancer-nurse-resources/safety.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-3.0-safety-herceptin");
             
             driver.findElement(By.linkText("PERJETA®")).click();
@@ -148,7 +134,6 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, true, savePath, "her2treatment-3.0-safety-kadcyla");
             
             goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
             forceClick(driver, "/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
             Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-3.0-dropdown");
@@ -228,7 +213,6 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, true, savePath, "her2treatment-3.0-dropdown-8-5", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[17]/div[1]/a")), new Long(1500));
             
             goToUrl(driver, "/breast-cancer-nurse-resources/contact-a-genentech-nurse-educator.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-genentech-nurse-educator");
             
             driver.findElement(By.xpath("//*[@id='riker-form']/div[13]/input")).click();
@@ -236,19 +220,15 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, true, savePath, "her2treatment-genentech-nurse-educator-error-msg");
             
             goToUrl(driver, "/her2-positive-breast-cancer-glossary.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-glossary");
             
             goToUrl(driver, "/user-sitemap.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-sitemap");
             
             goToUrl(driver, "/breast-cancer-treatment-prescribing-information.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-prescribing-info");
             
             goToUrl(driver, "/errorpage.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "her2treatment-errorpage");
 
 		}catch (Exception e) {
@@ -296,7 +276,6 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, false, savePath, "her2treatment-mobile-0.0-kadcyla");
 
             goToUrl(driver, "/safety.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-0.0-safety-herceptin");
             
             scrollAndClickAt(driver, driver.findElement(By.linkText("PERJETA®")));
@@ -308,31 +287,24 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, false, savePath, "her2treatment-mobile-0.0-safety-kadcyla");
             
             goToUrl(driver, "/what-is-her2-positive-breast-cancer.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-1.0");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-2.0");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-2.0-herceptin");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/herceptin/safety.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-2.0-safety-herceptin");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-2.0-perjeta");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/perjeta/safety.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-2.0-safety-perjeta");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-2.0-kadcyla");
             
             goToUrl(driver, "/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
@@ -361,7 +333,6 @@ public class Her2treatment extends SeleniumHeadless{
 
 
             goToUrl(driver, "/breast-cancer-nurse-resources/safety.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-3.0-safety-herceptin");
             
             scrollAndClickAt(driver, driver.findElement(By.linkText("PERJETA®")));
@@ -373,7 +344,6 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, false, savePath, "her2treatment-mobile-3.0-safety-kadcyla");
             
             goToUrl(driver, "/breast-cancer-nurse-resources.html");
-            Thread.sleep(1000);
             forceClick(driver,"/html/body/div[3]/div/div/div[2]/div[4]/div/div[1]/div/div/button");
             Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown");
@@ -454,7 +424,6 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, false, savePath, "her2treatment-mobile-3.0-dropdown-8-5", driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[4]/div/div[17]/div[1]/a")), new Long(1500));
             
             goToUrl(driver, "/breast-cancer-nurse-resources/contact-a-genentech-nurse-educator.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-genentech-nurse-educator");
             
             driver.findElement(By.xpath("//*[@id='riker-form']/div[13]/input")).click();
@@ -462,19 +431,15 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, false, savePath, "her2treatment-mobile-genentech-nurse-educator-error-msg");
             
             goToUrl(driver, "/her2-positive-breast-cancer-glossary.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-glossary");
             
             goToUrl(driver, "/user-sitemap.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-sitemap");
             
             goToUrl(driver, "/breast-cancer-treatment-prescribing-information.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-prescribing-info");
             
             goToUrl(driver, "/errorpage.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "her2treatment-mobile-errorpage");
 		
 		}catch (Exception e) {
