@@ -22,6 +22,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 				WebElement mainMenu = d.findElement(By.name("q"));
 				actions.moveToElement(mainMenu);
 				actions.click().build().perform();
+
 			};
 
 			Actions action = new Actions(driver);
@@ -88,11 +89,11 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, true, savePath, "hcp-6.1-part1");
 
 			action.moveToElement(driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]"))).build().perform();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			full(driver, true, savePath, "hcp-6.1-part2");
 
 			action.moveToElement(driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]"))).build().perform();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			full(driver, true, savePath, "hcp-6.1-part3");
 
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")));
@@ -255,7 +256,6 @@ public class PerjetaHCP extends SeleniumHeadless{
 	}
 	 @Override
 	 public void mobileAutomationTest(String savePath) {
-		
 		WebDriver driver = makeMobileDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -280,7 +280,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 			visible(driver, false, savePath, "hcp-modal-thirdpartysite");
 			
 			goToUrl(driver, "/hcp/breast-cancer.html");
-			Thread.sleep(1000);
+			waitForPageLoad(driver);
 			full(driver, false, savePath, "hcp-0.0");
 			
 			goToUrl(driver, "/hcp/breast-cancer/about-perjeta.html");
