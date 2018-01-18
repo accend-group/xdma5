@@ -32,6 +32,7 @@ public class KadcylaHCP extends SeleniumHeadless {
     private void getScreenshotForContactForm(WebDriver driver, String savePath, boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".hcp-contact-riker-form")).size() > 0) {
             WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
+            scrollTo(driver, 0, providerType.getLocation().getY()); // we want to show off the entire dropdown and that requires viewport space.
             providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
             WebElement providerMenu = providerType.findElement(By.cssSelector(".gene-component--dropdown__menu"));
             waitForElementVisible(driver, providerMenu);
@@ -39,29 +40,17 @@ public class KadcylaHCP extends SeleniumHeadless {
             providerType.click();
             waitForElementNotVisible(driver, providerMenu);
             WebElement specialty = driver.findElement(By.cssSelector(".specialty"));
+            scrollTo(driver, 0, specialty.getLocation().getY()); // we want to show off the entire dropdown and that requires viewport space.
             specialty.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
             waitForElementVisible(driver, specialty.findElement(By.cssSelector(".gene-component--dropdown__menu")));
             full(driver, isDesktop, savePath, "kadcyla-hcp-contact-rep-specialty");
-            // driver.manage().window().maximize();
-
-            // contact-reg - not available since there is captcha
-            // driver.findElement(By.className("gene-component--dropdown")).click();
-            // driver.findElement(By.xpath("//li[@data-value='REF']")).click();
-            // driver.findElement(By.xpath("//form/div/div[2]/div/div")).click();
-            // driver.findElement(By.xpath("//li[@data-value='HO']")).click();
-            // driver.findElement(By.name("first-name")).sendKeys("Marwin");
-            // driver.findElement(By.name("last-name")).sendKeys("Nicolas");
-            // driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-            // driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
-            // driver.findElement(By.name("zip-code-base")).sendKeys("99501");
-            // driver.findElement(By.name("primary-phone-number")).sendKeys("(02) 243-51-02");
-            // driver.findElement(By.name("practice-name")).sendKeys("Accend group");
         }
     }
 
     private void getScreenshotForRegisterForm(WebDriver driver, String savePath, boolean isDesktop) {
         if (driver.findElements(By.cssSelector(".hcp-reg-riker-form")).size() > 0) {
             WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
+            scrollTo(driver, 0, providerType.getLocation().getY()); // we want to show off the entire dropdown and that requires viewport space.
             providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
             WebElement providerMenu = providerType.findElement(By.cssSelector(".gene-component--dropdown__menu"));
             waitForElementVisible(driver, providerMenu);
@@ -69,6 +58,7 @@ public class KadcylaHCP extends SeleniumHeadless {
             providerType.click();
             waitForElementNotVisible(driver, providerMenu);
             WebElement specialty = driver.findElement(By.cssSelector(".specialty"));
+            scrollTo(driver, 0, specialty.getLocation().getY()); // we want to show off the entire dropdown and that requires viewport space.
             specialty.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
             WebElement specialtyMenu = specialty.findElement(By.cssSelector(".gene-component--dropdown__menu"));
             waitForElementVisible(driver, specialtyMenu);
