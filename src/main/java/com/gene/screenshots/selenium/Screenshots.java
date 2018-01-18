@@ -148,12 +148,12 @@ public abstract class Screenshots {
         return toIntExact(result);
     }
 
-    protected void scrollTo(WebDriver driver, int x, int y) {
+    protected static void scrollTo(WebDriver driver, int x, int y) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollTo(arguments[0], arguments[1]);", x, y);
     }
 
-    protected void scrollBy(WebDriver driver, int x, int y) {
+    protected static void scrollBy(WebDriver driver, int x, int y) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
     }

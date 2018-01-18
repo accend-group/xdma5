@@ -129,10 +129,21 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     public static void click(WebDriver driver, WebElement e){
         try {
+            // regular click
             e.click();
         } catch (WebDriverException e1) {
             if(e1.getMessage().contains("is not clickable at point")) {
-                forceClick(driver, e);
+                try{
+                    // scroll into viewport and click
+                    scrollTo(driver, e.getLocation().x, e.getLocation().y);
+                    e.click();
+                }catch(WebDriverException e2){
+                    // javascript click
+                    if(e2.getMessage().contains("is not clickable at point"))
+                        forceClick(driver, e);
+                    else
+                        throw e2;
+                }
             }
             else
                 throw e1;
