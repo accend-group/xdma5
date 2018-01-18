@@ -12,8 +12,8 @@ import com.gene.screenshots.selenium.her2treatment.Her2treatment;
         prod = "https://www.her2treatment.com",
         authorlocal="http://localhost:4502/content/her2treatment/en_us",
         authordev = "https://dev-author.aem.gene.com/content/her2treatment/en_us",
-        authorstage="https://stage-author.aem.gene.com/content/her2treatment/en_us/",
-        authorprod="https://author.aem.gene.com/content/her2treatment/en_us/")
+        authorstage="https://stage-author.aem.gene.com/content/her2treatment/en_us",
+        authorprod="https://author.aem.gene.com/content/her2treatment/en_us")
 
 public class Her2treatmentJob extends ScreenshotJob{
 	
