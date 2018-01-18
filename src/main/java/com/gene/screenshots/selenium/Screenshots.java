@@ -388,25 +388,47 @@ public abstract class Screenshots {
     }
 
     protected void getScreenshotForAccordion(WebDriver driver, String prefixName, String savePath, boolean isDesktop) throws InterruptedException {
-        List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open) .gene-component--accordionTabs__header, .panel-heading"));
-        if (tabs.size() > 0) {
-            int width = isDesktop ? DESKTOP_WIDTH : MOBILE_WIDTH;
-            int height = isDesktop ? DESKTOP_HEIGHT: MOBILE_HEIGHT;
-            boolean isTabs = (!tabs.get(0).getAttribute("class").contains("panel-heading")) && tabs.get(0).findElement(By.xpath("../../..")).getAttribute("class").contains("gene-component--accordionTabs--tabstype") && isDesktop;
-            for (int i = 0; i < tabs.size(); i++) {
-                int y = tabs.get(i).getLocation().getY();
-                scrollTo(driver, 0, y);
-                tabs.get(i).click();
-                waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
-                scrollTo(driver, 0, 0);
-                Thread.sleep(500);
-                driver.manage().window().setSize(new Dimension(width, height + 1)); // workaround to get the driver to realize the height of the doc changed.
-                String screenshotName = prefixName +"-tab" + Integer.toString(i + 1);
-                full(driver, isDesktop, savePath, screenshotName);
-                if (!isTabs) {
-                    tabs.get(i).click(); //collapse the current one
-                    waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
+        List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs--accordiontype .gene-component--accordionTabs__item .gene-component--accordionTabs__header, .panel-heading"));
+        for (int i = 0; i < tabs.size(); i++) {
+            int y = tabs.get(i).getLocation().getY();
+            scrollTo(driver, 0, y);
+            tabs.get(i).click();
+            waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
+            scrollTo(driver, 0, 0); // scroll to the top to avoid the natural scrolling coming from the component and to force the recalculation of the height of the page.
+            Thread.sleep(500); 
+            String screenshotName = prefixName +"-accordion" + Integer.toString(i + 1);
+            full(driver, isDesktop, savePath, screenshotName);
+            tabs.get(i).click(); //collapse the current one
+            waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
+        }
+    }
+
+    protected void getScreenshotForTabs(WebDriver driver, String prefixName, String savePath, boolean isDesktop) {
+        List<WebElement> tabComponents = driver.findElements(By.cssSelector(".gene-component--accordionTabs--tabstype"));
+        for (int j = 0; j < tabComponents.size(); j++) {
+            List<WebElement> tabs = tabComponents.get(j).findElements(By.cssSelector(".gene-component--accordionTabs__item .gene-component--accordionTabs__header"));
+            if (tabs.size() > 1) {
+                if (!isDesktop) {
+                    scrollTo(driver, 0, tabs.get(0).getLocation().getY());
+                    tabs.get(0).click(); // collapse the first tab on mobile
+                    waitForElementNotVisible(driver, tabs.get(0).findElement(By.xpath("following-sibling::*[1]")));
                 }
+                for (int i = 1; i < tabs.size(); i++) {
+                    int y = tabs.get(i).getLocation().getY();
+                    scrollTo(driver, 0, y);
+                    tabs.get(i).click();
+                    waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
+                    scrollTo(driver, 0, getCurrentScrollY(driver) + 1); // scroll down a pixel so the height gets recalculated before we get the doc height.
+                    String screenshotName = prefixName +"-comp" + Integer.toString(j + 1) + "-tab" + Integer.toString(i);
+                    full(driver, isDesktop, savePath, screenshotName);
+                    if (!isDesktop) {
+                        tabs.get(i).click(); //collapse the current one
+                        waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
+                    }
+                }
+                scrollTo(driver, 0, tabs.get(0).getLocation().getY());
+                tabs.get(0).click(); // expand the first tab on mobile again
+                waitForElementVisible(driver, tabs.get(0).findElement(By.xpath("following-sibling::*[1]")));
             }
         }
     }

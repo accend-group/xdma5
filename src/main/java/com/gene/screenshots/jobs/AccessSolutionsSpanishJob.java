@@ -1,13 +1,36 @@
 package com.gene.screenshots.jobs;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.base.annotations.Environment;
 import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import com.gene.screenshots.selenium.accesssolutions.es.*;
-
-import java.util.LinkedList;
-import java.util.List;
+import com.gene.screenshots.selenium.accesssolutions.es.Actemra;
+import com.gene.screenshots.selenium.accesssolutions.es.Alecensa;
+import com.gene.screenshots.selenium.accesssolutions.es.Avastin;
+import com.gene.screenshots.selenium.accesssolutions.es.Cotellic;
+import com.gene.screenshots.selenium.accesssolutions.es.Erivedge;
+import com.gene.screenshots.selenium.accesssolutions.es.Esbriet;
+import com.gene.screenshots.selenium.accesssolutions.es.Gazyva;
+import com.gene.screenshots.selenium.accesssolutions.es.Hemlibra;
+import com.gene.screenshots.selenium.accesssolutions.es.Herceptin;
+import com.gene.screenshots.selenium.accesssolutions.es.Kadcyla;
+import com.gene.screenshots.selenium.accesssolutions.es.Lucentis;
+import com.gene.screenshots.selenium.accesssolutions.es.Ocrevus;
+import com.gene.screenshots.selenium.accesssolutions.es.Patient;
+import com.gene.screenshots.selenium.accesssolutions.es.Perjeta;
+import com.gene.screenshots.selenium.accesssolutions.es.Pulmozyme;
+import com.gene.screenshots.selenium.accesssolutions.es.RituxanGPAMPA;
+import com.gene.screenshots.selenium.accesssolutions.es.RituxanHycela;
+import com.gene.screenshots.selenium.accesssolutions.es.RituxanNHLCLL;
+import com.gene.screenshots.selenium.accesssolutions.es.RituxanRA;
+import com.gene.screenshots.selenium.accesssolutions.es.Tarceva;
+import com.gene.screenshots.selenium.accesssolutions.es.Tecentriq;
+import com.gene.screenshots.selenium.accesssolutions.es.Venclexta;
+import com.gene.screenshots.selenium.accesssolutions.es.Xolair;
+import com.gene.screenshots.selenium.accesssolutions.es.Zelboraf;
 
 @Job(name = "Access_Solutions_ES", ID = 10, info = "Screenshot automation for Access Solutions Spanish.")
 @Environment(local = "http://localhost:4503/content/accesssolutions-site/es",

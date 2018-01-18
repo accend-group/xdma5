@@ -114,6 +114,7 @@ public abstract class SeleniumHeadless extends Screenshots {
                 }
                 full(driver, true, savePath, Integer.toString(i));
                 getScreenshotForPAT(driver, savePath, action,true);
+                getScreenshotForTabs(driver, Integer.toString(i), savePath, true);
                 getScreenshotForAccordion(driver, Integer.toString(i), savePath, true);
                 getScreenshotForSchemaForm(driver, savePath, true);
             }
@@ -142,6 +143,7 @@ public abstract class SeleniumHeadless extends Screenshots {
                 }
                 full(driver, false, savePath, Integer.toString(i));
                 getScreenshotForPAT(driver, savePath, action, false);
+                getScreenshotForTabs(driver, Integer.toString(i), savePath, false);
                 getScreenshotForAccordion(driver, Integer.toString(i), savePath, false);
                 getScreenshotForSchemaForm(driver, savePath, false);
             }

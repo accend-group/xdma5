@@ -1,22 +1,40 @@
 package com.gene.screenshots.jobs;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.gene.screenshots.Variables;
-import com.gene.screenshots.base.annotations.Environment;
-import com.gene.screenshots.base.annotations.Job;
-import com.gene.screenshots.base.ScreenshotJob;
-import com.gene.screenshots.selenium.SeleniumHeadless;
-import com.gene.screenshots.selenium.accesssolutions.en.*;
+import static com.gene.screenshots.EnvironmentType.LOCAL;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
-import static com.gene.screenshots.EnvironmentType.LOCAL;
+import com.gene.screenshots.Variables;
+import com.gene.screenshots.base.ScreenshotJob;
+import com.gene.screenshots.base.annotations.Environment;
+import com.gene.screenshots.base.annotations.Job;
+import com.gene.screenshots.selenium.SeleniumHeadless;
+import com.gene.screenshots.selenium.accesssolutions.en.Actemra;
+import com.gene.screenshots.selenium.accesssolutions.en.Alecensa;
+import com.gene.screenshots.selenium.accesssolutions.en.Avastin;
+import com.gene.screenshots.selenium.accesssolutions.en.Cotellic;
+import com.gene.screenshots.selenium.accesssolutions.en.Erivedge;
+import com.gene.screenshots.selenium.accesssolutions.en.Esbriet;
+import com.gene.screenshots.selenium.accesssolutions.en.Gazyva;
+import com.gene.screenshots.selenium.accesssolutions.en.Hemlibra;
+import com.gene.screenshots.selenium.accesssolutions.en.Herceptin;
+import com.gene.screenshots.selenium.accesssolutions.en.Kadcyla;
+import com.gene.screenshots.selenium.accesssolutions.en.Lucentis;
+import com.gene.screenshots.selenium.accesssolutions.en.Ocrevus;
+import com.gene.screenshots.selenium.accesssolutions.en.Patient;
+import com.gene.screenshots.selenium.accesssolutions.en.Pegasys;
+import com.gene.screenshots.selenium.accesssolutions.en.Perjeta;
+import com.gene.screenshots.selenium.accesssolutions.en.Pulmozyme;
+import com.gene.screenshots.selenium.accesssolutions.en.RituxanGPAMPA;
+import com.gene.screenshots.selenium.accesssolutions.en.RituxanHycela;
+import com.gene.screenshots.selenium.accesssolutions.en.RituxanNHLCLL;
+import com.gene.screenshots.selenium.accesssolutions.en.RituxanRA;
+import com.gene.screenshots.selenium.accesssolutions.en.Tarceva;
+import com.gene.screenshots.selenium.accesssolutions.en.Tecentriq;
+import com.gene.screenshots.selenium.accesssolutions.en.Venclexta;
+import com.gene.screenshots.selenium.accesssolutions.en.Xolair;
+import com.gene.screenshots.selenium.accesssolutions.en.Zelboraf;
 
 @Job(name = "Access_Solutions", ID = 1, info = "Screenshot automation for Access Solutions English.")
 @Environment(local = "http://localhost:4503/content/accesssolutions-site/en_us",

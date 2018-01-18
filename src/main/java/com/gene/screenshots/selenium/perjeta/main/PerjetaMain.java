@@ -76,7 +76,7 @@ public class PerjetaMain extends SeleniumHeadless {
         closeInterstitialModal(driver);
         full(driver, isDesktop, savePath, "hcp-1.0");
 
-        getScreenshotForAccordion(driver, "hcp", savePath, isDesktop);
+        getScreenshotForTabs(driver, "hcp", savePath, isDesktop);
     }
 
     private void closeInterstitialModal(WebDriver driver) throws InterruptedException {
