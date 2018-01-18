@@ -36,6 +36,14 @@ public class KadcylaHCP extends SeleniumHeadless {
             full(driver, true, savePath, "kadcyla-hcp-1.1");
             goToUrl(driver, "/hcp/about-kadcyla/proposed-moa.html");
             remove(driver);
+
+            List<WebElement> dots = driver.findElements(By.cssSelector(".dot:not(.is-selected)"));
+            for(int i = 0; i < dots.size(); ++i){
+                click(driver, dots.get(i));
+                Thread.sleep(1000);
+                full(driver, true, savePath, "kadcyla-carousel-" + i);
+            }
+
             Thread.sleep(1000);
             full(driver, true, savePath, "kadcyla-hcp-1.2");
             goToUrl(driver, "/hcp/about-kadcyla/patient-eligibility.html");
@@ -328,6 +336,13 @@ public class KadcylaHCP extends SeleniumHeadless {
             remove(driver);
             Thread.sleep(1000);
             full(driver, false, savePath, "kadcyla-hcp-mobile-1.2");
+
+            List<WebElement> dots = driver.findElements(By.cssSelector(".dot:not(.is-selected)"));
+            for(int i = 0; i < dots.size(); ++i){
+                click(driver, dots.get(i));
+                Thread.sleep(1000);
+                full(driver, false, savePath, "kadcyla-carousel-" + i);
+            }
 
             goToUrl(driver, "/hcp/about-kadcyla/patient-eligibility.html");
             remove(driver);
