@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import static com.gene.screenshots.selenium.Constants.*;
 import static java.lang.Math.toIntExact;
@@ -71,6 +72,12 @@ public abstract class Screenshots {
     }
 
     public void full(WebDriver driver, boolean ifDesktop, String path, String screenshotName)  {
+
+        List<WebElement> areYouPatientHCPModal = driver.findElements(By.partialLinkText("I am a healthcare professional"));
+        if(areYouPatientHCPModal.size() > 0) {
+            areYouPatientHCPModal.get(0).click();
+        }
+
         fullScreenshot(driver, ifDesktop, path, screenshotName, null, 0L);
         File outputImg = new File(path + "/" + screenshotName + ".png");
         if (ifDesktop)
