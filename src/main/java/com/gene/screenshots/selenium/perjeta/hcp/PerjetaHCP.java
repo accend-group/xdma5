@@ -1,14 +1,14 @@
 package com.gene.screenshots.selenium.perjeta.hcp;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
 import java.util.function.Consumer;
+
+import static com.gene.screenshots.selenium.Constants.DESKTOP_WIDTH;
+import static com.gene.screenshots.selenium.Constants.MOBILE_WIDTH;
 
 public class PerjetaHCP extends SeleniumHeadless{
 	public void desktopAutomationTest(String savePath) {
@@ -178,10 +178,13 @@ public class PerjetaHCP extends SeleniumHeadless{
 			goToUrl(driver, "/hcp/breast-cancer/contact.html");
 			full(driver, true, savePath, "hcp-contact-rep");
 
+			// resize to capture the drop down menu content
+			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[1]/div/div")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-contact-rep-provider");
 
+			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-contact-rep-specialty");
@@ -189,10 +192,12 @@ public class PerjetaHCP extends SeleniumHeadless{
 			goToUrl(driver, "/hcp/breast-cancer/register.html");
 			full(driver, true, savePath, "hcp-register");
 
+			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-register-classification");
 
+			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/div")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-register-specialty");
@@ -382,13 +387,17 @@ public class PerjetaHCP extends SeleniumHeadless{
 			
 			goToUrl(driver, "/hcp/breast-cancer/contact.html");
 			full(driver, false, savePath, "hcp-contact-rep");
-			
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[1]/div/div")));
+
+			// resize to capture the drop down menu content
+			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
+			driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[1]/div/div")).click();
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-contact-rep-provider");
+
 			
 			driver.navigate().refresh();
-			Thread.sleep(1000);
+			waitForPageLoad(driver);
+			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-contact-rep-specialty");
@@ -396,12 +405,14 @@ public class PerjetaHCP extends SeleniumHeadless{
 			goToUrl(driver, "/hcp/breast-cancer/register.html");
 			full(driver, false, savePath, "hcp-register");
 
+			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-register-classification");
 			
 			driver.navigate().refresh();
-			Thread.sleep(1000);
+			waitForPageLoad(driver);
+			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
 			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/div")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-register-specialty");
