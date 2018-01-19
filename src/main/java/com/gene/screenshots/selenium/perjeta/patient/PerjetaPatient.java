@@ -243,7 +243,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 			driver.findElement(By.name("first-name")).sendKeys("marwin");
 			driver.findElement(By.name("last-name")).sendKeys("nicolas");
 			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-			driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+			driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
 			driver.findElement(By.name("address-line-1")).sendKeys("CA");
 			driver.findElement(By.name("address-line-2")).sendKeys("CA");
 			driver.findElement(By.name("city")).sendKeys("CA");
@@ -473,7 +473,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 			driver.findElement(By.name("first-name")).sendKeys("marwin");
 			driver.findElement(By.name("last-name")).sendKeys("nicolas");
 			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-			driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+			driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
 			driver.findElement(By.name("address-line-1")).sendKeys("CA");
 			driver.findElement(By.name("address-line-2")).sendKeys("CA");
 			driver.findElement(By.name("city")).sendKeys("CA");
