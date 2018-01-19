@@ -167,7 +167,7 @@ public class Her2treatment extends SeleniumHeadless{
 	}
 	@Override
 	public void mobileAutomationTest(String savePath) {
-		
+
 	    WebDriver driver = makeMobileDriver();
 	    JavascriptExecutor js = (JavascriptExecutor) driver;
 	    
@@ -325,6 +325,7 @@ public class Her2treatment extends SeleniumHeadless{
                 if(popovers.get(x).isDisplayed()) {
                     driver.manage().window().setSize(new Dimension(width, getDocHeight(driver)));
                     click(driver, popovers.get(x));
+                    waitForElementToExist(driver, "popover");
                     visible(driver, ifDesktop, savePath, String.format("her2treatment-3.0-dropdown-%d-%d", i, index++));
                     driver.manage().window().setSize(new Dimension(width, height));
                 }
