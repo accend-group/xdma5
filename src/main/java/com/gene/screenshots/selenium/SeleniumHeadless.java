@@ -155,6 +155,15 @@ public abstract class SeleniumHeadless extends Screenshots {
         }
     }
 
+    protected static void setStyle(WebDriver driver, String propertyValuePair, WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1]);", element, propertyValuePair);
+    }
+
+    protected static void setStyle(WebDriver driver, String propertyValuePair, String cssString) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1]);", driver.findElement(By.cssSelector(cssString)), propertyValuePair);
+    }
+
+
     // used to check that elements are in the DOM
     protected void waitForElementToExist(WebDriver driver, String cssString) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
