@@ -322,13 +322,13 @@ public class PerjetaPatient extends SeleniumHeadless {
 
 			forceClick(driver, driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])")));
 			Thread.sleep(1000);
-			visible(driver, true, savePath, "patient-modal-thirdpartysite");
+			visible(driver, false, savePath, "patient-modal-thirdpartysite");
 
 			goToUrl(driver, "/patient/breast-cancer.html");
 			setStyle(driver, "display: block;", ".gene-template__modals.exclude-from-glossary");
 			setStyle(driver, "display: block;", ".gene-template__modals.exclude-from-glossary .gene-component--modal.gene-component--modal--hcp-interstitial");
 			Thread.sleep(1000);
-			visible(driver, true, savePath, "patient-modal-HCP");
+			visible(driver, false, savePath, "patient-modal-HCP");
 			/*
 			driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/nav/div/div[1]/ul/li[1]/a/span")).click();
 			Thread.sleep(1000);
