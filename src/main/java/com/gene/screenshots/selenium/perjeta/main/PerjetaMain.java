@@ -13,16 +13,14 @@ public class PerjetaMain extends SeleniumHeadless {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		try {
-
 			goToUrl(driver, "/patient.html");
-
 			visible(driver, true, savePath, "patient-home");
 
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			List<WebElement> thirdPartyLinks = driver.findElements(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
 			for (WebElement link : thirdPartyLinks)
 				if (link.getText().equals("www.fda.gov/medwatch"))
-					forceClick(driver, link);
+					click(driver, link);
 			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "patient-thirdpartysite");
@@ -33,39 +31,39 @@ public class PerjetaMain extends SeleniumHeadless {
 
 			goToUrl(driver, "/hcp.html");
 
+			// wait for fade in modal
+			Thread.sleep(500);
+
 			visible(driver, true, savePath, "hcp-modal");
 
-			driver.findElement(By.xpath("/html/body/section[2]/div[4]/div/footer/a[2]")).click();
-//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			forceClick(driver,"//*[@id=\"safety_reference_cal_1329084969\"]/div/div/div/p[2]/a");
-//			js.executeScript("window.scrollTo(0, 0)");
+			// click the I am a hcp button on modal
+			click(driver, driver.findElement(By.cssSelector("[style='display: block;']  .gene-component--modal__button.gene-component--modal__button--confirm.gene-component--button.gene-component--button--medium")));
+
+			// click scrolled to the element, scrolling back up to the page after clicking
+			click(driver, driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])")));
+			scrollTo(driver, 0, 0);
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "hcp-thirdpartysite");
 
 			goToUrl(driver, "/hcp.html");
 
-			driver.findElement(By.xpath("/html/body/section[2]/div[4]/div/footer/a[2]")).click();
+			// wait for fade in modal
+			Thread.sleep(500);
+
+			// click the I am a hcp button on modal
+			click(driver, driver.findElement(By.cssSelector("[style='display: block;']  .gene-component--modal__button.gene-component--modal__button--confirm.gene-component--button.gene-component--button--medium")));
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "hcp-home");
 
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-1.0");
 
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[2]/header/h1")).click();
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-2.0");
-
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[3]/header/h1")).click();
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-3.0");
-
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[4]/header/h1")).click();
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-4.0");
-
-			driver.findElement(By.xpath("/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[5]/header/h1")).click();
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-5.0");
+			List<WebElement> notOpenTabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open)"));
+			for(int i = 2; i < notOpenTabs.size() + 2; ++i){
+				click(driver, notOpenTabs.get(i - 2));
+				Thread.sleep(1000);
+				full(driver, true, savePath, "hcp-" + i +".0");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,10 +81,9 @@ public class PerjetaMain extends SeleniumHeadless {
 
 		try {
 			goToUrl(driver, "/patient.html");
-			Thread.sleep(1000);
 			visible(driver, false, savePath, "patient-home");
 
-			driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/div[1]/a[2]/i[1]")).click();
+			click(driver, driver.findElement(By.cssSelector(".fa.fa-bars.gene-component--header__toggle-icon--menu")));
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "patient-navigation");
 
@@ -109,48 +106,50 @@ public class PerjetaMain extends SeleniumHeadless {
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-modal");
 
-			driver.findElement(By.xpath("/html/body/section[2]/div[4]/div/footer/a[2]")).click();
+			// click the I am a hcp button on modal
+			click(driver, driver.findElement(By.cssSelector("[style='display: block;']  .gene-component--modal__button.gene-component--modal__button--confirm.gene-component--button.gene-component--button--medium")));
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-home");
 
-			driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/div[1]/a[2]/i[1]")).click();
+			click(driver, driver.findElement(By.cssSelector(".fa.fa-bars.gene-component--header__toggle-icon--menu")));
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-navigation");
 
-//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-//			Thread.sleep(500);
-			forceClick(driver,"//*[@id=\"safety_reference_cal_1329084969\"]/div/div/div/p[2]/a");
-//			js.executeScript("window.scrollTo(0, 0)");
+
+			forceClick(driver,driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])")));
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-thirdpartysite");
 
 			goToUrl(driver, "/hcp.html");
-
-			driver.findElement(By.xpath("/html/body/section[2]/div[4]/div/footer/a[2]")).click();
+			Thread.sleep(500);
+			click(driver, driver.findElement(By.cssSelector("[style='display: block;']  .gene-component--modal__button.gene-component--modal__button--confirm.gene-component--button.gene-component--button--medium")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-1.0");
 
-			forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[1]/header/h1");
+			WebElement openedTab = driver.findElement(By.cssSelector(".gene-component--accordionTabs__item.is-open .gene-component--accordionTabs__header"));
+			List<WebElement> closedTabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open) .gene-component--accordionTabs__header"));
+
+			click(driver, openedTab);
 			Thread.sleep(500);
-			forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[2]/header/h1");
+			forceClick(driver, closedTabs.get(0));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-2.0");
 
-			forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[2]/header/h1");
+			forceClick(driver, closedTabs.get(0));
 			Thread.sleep(500);
-			forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[3]/header/h1");
+			forceClick(driver, closedTabs.get(1));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-3.0");
 
-			forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[3]/header/h1");
+			forceClick(driver, closedTabs.get(1));
 			Thread.sleep(500);
-			forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[4]/header/h1");
+			forceClick(driver, closedTabs.get(2));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-4.0");
 
-			forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[4]/header/h1");
+			forceClick(driver, closedTabs.get(2));
 			Thread.sleep(500);
-			forceClick(driver, "/html/body/main/section[3]/div[1]/div[2]/div/div[2]/section[5]/header/h1");
+			forceClick(driver, closedTabs.get(3));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-5.0");
 
