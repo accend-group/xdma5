@@ -32,18 +32,20 @@ public class Her2treatment extends SeleniumHeadless{
             full(driver, true, savePath, "her2treatment-0.0-kadcyla", driver.findElement(By.linkText("KADCYLA®")), new Long(1000));
 
             driver.navigate().refresh();
-            Thread.sleep(1000);
+            waitForPageLoad(driver);
             click(driver, driver.findElement(By.linkText("http://www.fda.gov/medwatch")));
             js.executeScript("window.scrollTo(0, 0)");
             Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-link-thirdparty-modal");
             
             driver.navigate().refresh();
+            waitForPageLoad(driver);
             click(driver, driver.findElement(By.linkText("Resources for Nurses")));
             Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-3.0-modal");
             
             driver.navigate().refresh();
+            waitForPageLoad(driver);
             click(driver, driver.findElement(By.className("share-a-page-button")));
             Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-share-modal");
