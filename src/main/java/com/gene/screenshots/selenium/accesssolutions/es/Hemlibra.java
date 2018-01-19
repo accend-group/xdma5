@@ -17,11 +17,9 @@ public class Hemlibra extends SeleniumHeadless {
             Actions actions = new Actions(driver);
             // ---->> hemlibra <<---- // 37 screenshots
             goToUrl(driver, "/patient/brands/hemlibra.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-0.0");
 
             goToUrl(driver, "/patient/brands/hemlibra/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-hemlibra-1.0");
 
             jse.executeScript("window.scrollTo(0, 0)");

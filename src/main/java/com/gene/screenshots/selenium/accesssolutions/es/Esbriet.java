@@ -17,11 +17,9 @@ public class Esbriet extends SeleniumHeadless {
 
             // ---->> esbriet <<---- // 40 screenshots
             goToUrl(driver, "/patient/brands/esbriet.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-0.0");
 
             goToUrl(driver, "/patient/brands/esbriet/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -66,7 +64,6 @@ public class Esbriet extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-esbriet-1.0-step3");
 
             goToUrl(driver, "/patient/brands/esbriet/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -82,7 +79,6 @@ public class Esbriet extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-esbriet-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/esbriet/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -146,7 +142,6 @@ public class Esbriet extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-esbriet-3.0-tab12");
 
             goToUrl(driver, "/patient/brands/esbriet/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -206,11 +201,9 @@ public class Esbriet extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-esbriet-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/esbriet/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-search");
 
             goToUrl(driver, "/patient/brands/esbriet/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-esbriet-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -230,11 +223,9 @@ public class Esbriet extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> esbriet <<---- // 40 screenshots
             goToUrl(driver, "/patient/brands/esbriet.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-0.0");
 
             goToUrl(driver, "/patient/brands/esbriet/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -284,7 +275,6 @@ public class Esbriet extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-1.0-step3");
 
             goToUrl(driver, "/patient/brands/esbriet/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -296,7 +286,6 @@ public class Esbriet extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/esbriet/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -360,7 +349,6 @@ public class Esbriet extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-3.0-tab12");
 
             goToUrl(driver, "/patient/brands/esbriet/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -399,11 +387,9 @@ public class Esbriet extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-patient-esbriet-pat-3");
 
             goToUrl(driver, "/patient/brands/esbriet/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-search");
 
             goToUrl(driver, "/patient/brands/esbriet/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-esbriet-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

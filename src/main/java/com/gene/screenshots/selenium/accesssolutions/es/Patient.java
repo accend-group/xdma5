@@ -29,11 +29,9 @@ public class Patient extends SeleniumHeadless {
             visible(driver, true, savePath, "accesssolutions-patient-rituxan-popup");
 
             goToUrl(driver, "/patient.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-0.0");
 
             goToUrl(driver, "/patient/pan.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-pan");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -55,19 +53,15 @@ public class Patient extends SeleniumHeadless {
 //		Thread.sleep(1000); full(driver, true, savePath,   "accesssolutions-patient-pat");
 
             goToUrl(driver, "/patient/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-search");
 
             goToUrl(driver, "/patient/biooncology.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-biooncology");
 
             goToUrl(driver, "/patient/rheumatology.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rheumatology");
 
             goToUrl(driver, "/patient/contact-us.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-contact-us");
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,37 +96,28 @@ public class Patient extends SeleniumHeadless {
             visible(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-popup");
 
             goToUrl(driver, "/patient.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-0.0");
 
             goToUrl(driver, "/patient/home.html");
-            Thread.sleep(500);
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-home");
 
             goToUrl(driver, "/patient/home/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pat");
 
             goToUrl(driver, "/patient/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-search");
 
             goToUrl(driver, "/patient/pan.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-pan");
 
             goToUrl(driver, "/patient/biooncology.html");
             movecursor(driver);
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-biooncology");
 
             goToUrl(driver, "/patient/rheumatology.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rheumatology");
 
             goToUrl(driver, "/patient/contact-us.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-contact-us");
         } catch (Exception e) {
             e.printStackTrace();

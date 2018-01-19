@@ -18,11 +18,9 @@ public class RituxanGPAMPA extends SeleniumHeadless {
 
             // ---->> rituxan_gpampa <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-0.0");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -72,7 +70,6 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-1.0-step3");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -88,7 +85,6 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-3.0");
 
             driver.manage().window().setSize(new Dimension(1621, 740));
@@ -150,7 +146,6 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -210,11 +205,9 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-search");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxan-gpampa-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -233,11 +226,9 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> rituxan_gpampa <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-0.0");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -294,7 +285,6 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-1.0-step3");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -306,7 +296,6 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -364,7 +353,6 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -398,11 +386,9 @@ public class RituxanGPAMPA extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-pat-3");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-search");
 
             goToUrl(driver, "/patient/brands/rituxan/rituxan-gpampa/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxan-gpampa-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

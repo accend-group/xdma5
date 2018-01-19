@@ -18,11 +18,9 @@ public class Kadcyla extends SeleniumHeadless {
 
             //---->> kadcyla <<---- 28 screenshot for kadcyla
             goToUrl(driver, "/patient/brands/kadcyla.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-0.0");
 
             goToUrl(driver, "/patient/brands/kadcyla/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -67,7 +65,6 @@ public class Kadcyla extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-1.0-step3");
 
             goToUrl(driver, "/patient/brands/kadcyla/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -83,7 +80,6 @@ public class Kadcyla extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/kadcyla/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -151,7 +147,6 @@ public class Kadcyla extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/kadcyla/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
@@ -209,11 +204,9 @@ public class Kadcyla extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/kadcyla/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-search");
 
             goToUrl(driver, "/patient/brands/kadcyla/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-kadcyla-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -233,11 +226,9 @@ public class Kadcyla extends SeleniumHeadless {
 
             //---->> kadcyla <<---- 28 screenshot for kadcyla
             goToUrl(driver, "/patient/brands/kadcyla.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-0.0");
 
             goToUrl(driver, "/patient/brands/kadcyla/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -287,7 +278,6 @@ public class Kadcyla extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-1.0-step3");
 
             goToUrl(driver, "/patient/brands/kadcyla/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -299,7 +289,6 @@ public class Kadcyla extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/kadcyla/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -367,7 +356,6 @@ public class Kadcyla extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/kadcyla/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -403,11 +391,9 @@ public class Kadcyla extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-pat-3");
 
             goToUrl(driver, "/patient/brands/kadcyla/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-search");
 
             goToUrl(driver, "/patient/brands/kadcyla/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-kadcyla-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

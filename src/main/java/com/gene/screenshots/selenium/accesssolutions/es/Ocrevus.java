@@ -18,11 +18,9 @@ public class Ocrevus extends SeleniumHeadless {
 
             //---->> ocrevus <<---- 37 screenshot for ocrevus
             goToUrl(driver, "/patient/brands/ocrevus.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-0.0");
 
             goToUrl(driver, "/patient/brands/ocrevus/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -67,7 +65,6 @@ public class Ocrevus extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-1.0-step3");
 
             goToUrl(driver, "/patient/brands/ocrevus/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -83,7 +80,6 @@ public class Ocrevus extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/ocrevus/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -151,7 +147,6 @@ public class Ocrevus extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/ocrevus/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-pat-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
@@ -209,11 +204,9 @@ public class Ocrevus extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/ocrevus/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-search");
 
             goToUrl(driver, "/patient/brands/ocrevus/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-ocrevus-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -232,11 +225,9 @@ public class Ocrevus extends SeleniumHeadless {
 
             //---->> ocrevus <<---- 37 screenshot for ocrevus
             goToUrl(driver, "/patient/brands/ocrevus.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-0.0");
 
             goToUrl(driver, "/patient/brands/ocrevus/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -286,7 +277,6 @@ public class Ocrevus extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-1.0-step3");
 
             goToUrl(driver, "/patient/brands/ocrevus/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -298,7 +288,6 @@ public class Ocrevus extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/ocrevus/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -366,7 +355,6 @@ public class Ocrevus extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/ocrevus/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -402,11 +390,9 @@ public class Ocrevus extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-pat-3");
 
             goToUrl(driver, "/patient/brands/ocrevus/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-search");
 
             goToUrl(driver, "/patient/brands/ocrevus/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-ocrevus-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

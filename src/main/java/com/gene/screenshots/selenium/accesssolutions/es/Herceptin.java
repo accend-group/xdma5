@@ -18,12 +18,10 @@ public class Herceptin extends SeleniumHeadless {
 
             //---->> herceptin <<---- 29 screenshot for herceptin
             goToUrl(driver, "/patient/brands/herceptin.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-0.0");
 
             goToUrl(driver, "/patient/brands/herceptin/how-we-help-you.html");
             movecursor(driver);
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -74,7 +72,6 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-herceptin-1.0-step3");
 
             goToUrl(driver, "/patient/brands/herceptin/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -90,7 +87,6 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-herceptin-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/herceptin/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -158,7 +154,6 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-herceptin-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/herceptin/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-pat-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
@@ -216,11 +211,9 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-herceptin-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/herceptin/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-search");
 
             goToUrl(driver, "/patient/brands/herceptin/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-herceptin-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -240,12 +233,10 @@ public class Herceptin extends SeleniumHeadless {
 
             //---->> herceptin <<---- 29 screenshot for herceptin
             goToUrl(driver, "/patient/brands/herceptin.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-0.0");
 
             goToUrl(driver, "/patient/brands/herceptin/how-we-help-you.html");
             movecursorm(driver);
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -298,7 +289,6 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-1.0-step3");
 
             goToUrl(driver, "/patient/brands/herceptin/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -310,7 +300,6 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/herceptin/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -378,7 +367,6 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/herceptin/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -414,11 +402,9 @@ public class Herceptin extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-pat-3");
 
             goToUrl(driver, "/patient/brands/herceptin/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-search");
 
             goToUrl(driver, "/patient/brands/herceptin/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-herceptin-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

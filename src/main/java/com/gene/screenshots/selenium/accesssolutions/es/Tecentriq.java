@@ -17,11 +17,9 @@ public class Tecentriq extends SeleniumHeadless {
             Actions actions = new Actions(driver);
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/tecentriq.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-0.0");
 
             goToUrl(driver, "/patient/brands/tecentriq/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -71,7 +69,6 @@ public class Tecentriq extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-1.0-step3");
 
             goToUrl(driver, "/patient/brands/tecentriq/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -87,7 +84,6 @@ public class Tecentriq extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/tecentriq/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -146,7 +142,6 @@ public class Tecentriq extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/tecentriq/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-pat-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
@@ -205,11 +200,9 @@ public class Tecentriq extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/tecentriq/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-search");
 
             goToUrl(driver, "/patient/brands/tecentriq/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-tecentriq-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -227,11 +220,9 @@ public class Tecentriq extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/tecentriq.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-0.0");
 
             goToUrl(driver, "/patient/brands/tecentriq/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -288,7 +279,6 @@ public class Tecentriq extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-1.0-step3");
 
             goToUrl(driver, "/patient/brands/tecentriq/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -300,7 +290,6 @@ public class Tecentriq extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/tecentriq/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -358,7 +347,6 @@ public class Tecentriq extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/tecentriq/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -394,11 +382,9 @@ public class Tecentriq extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-pat-3");
 
             goToUrl(driver, "/patient/brands/tecentriq/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-search");
 
             goToUrl(driver, "/patient/brands/tecentriq/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-tecentriq-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

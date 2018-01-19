@@ -20,11 +20,9 @@ public class Erivedge extends SeleniumHeadless {
 
             // ---->> erivedge <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/erivedge.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-erivedge-0.0");
 
             goToUrl(driver, "/patient/brands/erivedge/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-erivedge-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -69,7 +67,6 @@ public class Erivedge extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-erivedge-1.0-step3");
 
             goToUrl(driver, "/patient/brands/erivedge/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-erivedge-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -85,7 +82,6 @@ public class Erivedge extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-erivedge-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/erivedge/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-erivedge-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -151,7 +147,6 @@ public class Erivedge extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-erivedge-3.0-tab12");
 
             goToUrl(driver, "/patient/brands/erivedge/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-erivedge-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -211,11 +206,9 @@ public class Erivedge extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-erivedge-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/erivedge/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-erivedge-search");
 
             goToUrl(driver, "/patient/brands/erivedge/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-erivedge-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -236,11 +229,9 @@ public class Erivedge extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> erivedge <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/erivedge.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-0.0");
 
             goToUrl(driver, "/patient/brands/erivedge/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -291,7 +282,6 @@ public class Erivedge extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-1.0-step3");
 
             goToUrl(driver, "/patient/brands/erivedge/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -303,7 +293,6 @@ public class Erivedge extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/erivedge/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -367,7 +356,6 @@ public class Erivedge extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-3.0-tab12");
 
             goToUrl(driver, "/patient/brands/erivedge/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -403,11 +391,9 @@ public class Erivedge extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-pat-3");
 
             goToUrl(driver, "/patient/brands/erivedge/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-search");
 
             goToUrl(driver, "/patient/brands/erivedge/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-erivedge-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

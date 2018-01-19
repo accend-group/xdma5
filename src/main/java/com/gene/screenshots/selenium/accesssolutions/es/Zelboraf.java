@@ -18,11 +18,9 @@ public class Zelboraf extends SeleniumHeadless {
             Actions actions = new Actions(driver);
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/zelboraf.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-0.0");
 
             goToUrl(driver, "/patient/brands/zelboraf/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -67,11 +65,9 @@ public class Zelboraf extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-1.0-step3");
 
             goToUrl(driver, "/patient/brands/zelboraf/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-2.0-esubmit");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -83,7 +79,6 @@ public class Zelboraf extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/zelboraf/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -149,7 +144,6 @@ public class Zelboraf extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-3.0-tab12");
 
             goToUrl(driver, "/patient/brands/zelboraf/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-pat-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
@@ -208,11 +202,9 @@ public class Zelboraf extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/zelboraf/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-search");
 
             goToUrl(driver, "/patient/brands/zelboraf/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-zelboraf-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

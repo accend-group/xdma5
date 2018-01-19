@@ -17,11 +17,9 @@ public class Xolair extends SeleniumHeadless {
             Actions actions = new Actions(driver);
             // ---->> ituxan_nhl_cll <<---- // 40 screenshots
             goToUrl(driver, "/patient/brands/xolair.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-0.0");
 
             goToUrl(driver, "/patient/brands/xolair/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -71,7 +69,6 @@ public class Xolair extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-xolair-1.0-step3");
 
             goToUrl(driver, "/patient/brands/xolair/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -87,7 +84,6 @@ public class Xolair extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-xolair-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/xolair/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -145,7 +141,6 @@ public class Xolair extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-xolair-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/xolair/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -207,11 +202,9 @@ public class Xolair extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-xolair-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/xolair/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-search");
 
             goToUrl(driver, "/patient/brands/xolair/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-xolair-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -229,11 +222,9 @@ public class Xolair extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> ituxan_nhl_cll <<---- // 40 screenshots
             goToUrl(driver, "/patient/brands/xolair.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-0.0");
 
             goToUrl(driver, "/patient/brands/xolair/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -290,7 +281,6 @@ public class Xolair extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-1.0-step3");
 
             goToUrl(driver, "/patient/brands/xolair/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -302,7 +292,6 @@ public class Xolair extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/xolair/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -360,7 +349,6 @@ public class Xolair extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/xolair/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -395,11 +383,9 @@ public class Xolair extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-pat-3");
 
             goToUrl(driver, "/patient/brands/xolair/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-search");
 
             goToUrl(driver, "/patient/brands/xolair/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-xolair-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

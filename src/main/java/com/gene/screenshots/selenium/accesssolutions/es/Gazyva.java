@@ -18,11 +18,9 @@ public class Gazyva extends SeleniumHeadless {
 
             // ---->> gazyva <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/gazyva.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-gazyva-0.0");
 
             goToUrl(driver, "/patient/brands/gazyva/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-gazyva-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -72,7 +70,6 @@ public class Gazyva extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-gazyva-1.0-step3");
 
             goToUrl(driver, "/patient/brands/gazyva/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-gazyva-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -88,7 +85,6 @@ public class Gazyva extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-gazyva-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/gazyva/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-gazyva-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -147,7 +143,6 @@ public class Gazyva extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-gazyva-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/gazyva/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-gazyva-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -207,11 +202,9 @@ public class Gazyva extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-gazyva-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/gazyva/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-gazyva-search");
 
             goToUrl(driver, "/patient/brands/gazyva/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-gazyva-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -232,11 +225,9 @@ public class Gazyva extends SeleniumHeadless {
 
             // ---->> gazyva <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/gazyva.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-0.0");
 
             goToUrl(driver, "/patient/brands/gazyva/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -293,7 +284,6 @@ public class Gazyva extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-1.0-step3");
 
             goToUrl(driver, "/patient/brands/gazyva/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -305,7 +295,6 @@ public class Gazyva extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/gazyva/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -364,7 +353,6 @@ public class Gazyva extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/gazyva/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -400,11 +388,9 @@ public class Gazyva extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-pat-3");
 
             goToUrl(driver, "/patient/brands/gazyva/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-search");
 
             goToUrl(driver, "/patient/brands/gazyva/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-gazyva-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

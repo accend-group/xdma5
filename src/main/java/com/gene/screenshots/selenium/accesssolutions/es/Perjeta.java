@@ -18,11 +18,9 @@ public class Perjeta extends SeleniumHeadless {
 
             //---->> perjeta <<---- 37 screenshot for perjeta
             goToUrl(driver, "/patient/brands/perjeta.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-0.0");
 
             goToUrl(driver, "/patient/brands/perjeta/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -67,7 +65,6 @@ public class Perjeta extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-perjeta-1.0-step3");
 
             goToUrl(driver, "/patient/brands/perjeta/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -83,7 +80,6 @@ public class Perjeta extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-perjeta-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/perjeta/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -151,7 +147,6 @@ public class Perjeta extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-perjeta-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/perjeta/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-pat-part1");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -210,11 +205,9 @@ public class Perjeta extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-perjeta-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/perjeta/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-search");
 
             goToUrl(driver, "/patient/brands/perjeta/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-perjeta-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -234,11 +227,9 @@ public class Perjeta extends SeleniumHeadless {
 
             //---->> perjeta mobile <<---- 37 screenshot for perjeta
             goToUrl(driver, "/patient/brands/perjeta.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-0.0");
 
             goToUrl(driver, "/patient/brands/perjeta/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -288,7 +279,6 @@ public class Perjeta extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-1.0-step3");
 
             goToUrl(driver, "/patient/brands/perjeta/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -300,7 +290,6 @@ public class Perjeta extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/perjeta/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -368,7 +357,6 @@ public class Perjeta extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/perjeta/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -404,11 +392,9 @@ public class Perjeta extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-pat-3");
 
             goToUrl(driver, "/patient/brands/perjeta/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-search");
 
             goToUrl(driver, "/patient/brands/perjeta/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-perjeta-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

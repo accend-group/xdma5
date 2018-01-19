@@ -18,11 +18,9 @@ public class RituxanHycela extends SeleniumHeadless {
             Actions actions = new Actions(driver);
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/rituxanhycela.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-0.0");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -72,7 +70,6 @@ public class RituxanHycela extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-1.0-step3");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -88,7 +85,6 @@ public class RituxanHycela extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -154,7 +150,6 @@ public class RituxanHycela extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-3.0-tab12");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-pat-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
@@ -213,11 +208,9 @@ public class RituxanHycela extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-search");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-rituxanhycela-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -236,11 +229,9 @@ public class RituxanHycela extends SeleniumHeadless {
             JavascriptExecutor jse = (JavascriptExecutor) driver;
             // ---->> ituxan_nhl_cll <<---- // 38 screenshots
             goToUrl(driver, "/patient/brands/rituxanhycela.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-0.0");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -297,7 +288,6 @@ public class RituxanHycela extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-1.0-step3");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -309,7 +299,6 @@ public class RituxanHycela extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -373,7 +362,6 @@ public class RituxanHycela extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-3.0-tab12");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -409,11 +397,9 @@ public class RituxanHycela extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-pat-3");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-search");
 
             goToUrl(driver, "/patient/brands/rituxanhycela/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-rituxanhycela-sitemap");
         } catch (Exception e) {
             e.printStackTrace();

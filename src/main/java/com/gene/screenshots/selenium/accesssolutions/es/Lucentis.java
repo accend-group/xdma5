@@ -17,11 +17,9 @@ public class Lucentis extends SeleniumHeadless {
 
             //---->> lucentis <<---- 32 screenshot for lucentis
             goToUrl(driver, "/patient/brands/lucentis.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-0.0");
 
             goToUrl(driver, "/patient/brands/lucentis/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -88,7 +86,6 @@ public class Lucentis extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-lucentis-1.0-step3");
 
             goToUrl(driver, "/patient/brands/lucentis/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/div/div[1]/a")).click();
@@ -104,7 +101,6 @@ public class Lucentis extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-lucentis-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/lucentis/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -172,7 +168,6 @@ public class Lucentis extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-lucentis-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/lucentis/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-pat-part1");
 
             actions.moveToElement(driver.findElement(By.xpath("//*[@id='accesssolutionsembed']/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[1]"))).build().perform();
@@ -230,11 +225,9 @@ public class Lucentis extends SeleniumHeadless {
             full(driver, true, savePath, "accesssolutions-patient-lucentis-pat-3-part2");
 
             goToUrl(driver, "/patient/brands/lucentis/search.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-search");
 
             goToUrl(driver, "/patient/brands/lucentis/site-map.html");
-            Thread.sleep(1000);
             full(driver, true, savePath, "accesssolutions-patient-lucentis-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
@@ -255,11 +248,9 @@ public class Lucentis extends SeleniumHeadless {
 
             //---->> lucentis <<---- 32 screenshot for lucentis
             goToUrl(driver, "/patient/brands/lucentis.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-0.0");
 
             goToUrl(driver, "/patient/brands/lucentis/how-we-help-you.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-1.0");
 
             driver.findElement(By.xpath("//*[@id='accordion']/div/div[1]")).click();
@@ -329,7 +320,6 @@ public class Lucentis extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-1.0-step3");
 
             goToUrl(driver, "/patient/brands/lucentis/forms-and-documents.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-2.0");
 
             driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[1]/a")).click();
@@ -341,7 +331,6 @@ public class Lucentis extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-2.0-more-info-2");
 
             goToUrl(driver, "/patient/brands/lucentis/frequently-asked-questions.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-3.0");
 
             jse.executeScript("window.scrollTo(0, 0)");
@@ -409,7 +398,6 @@ public class Lucentis extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-3.0-tab11");
 
             goToUrl(driver, "/patient/brands/lucentis/patient-assistance-tool-page.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-pat");
             jse.executeScript("window.scrollTo(0, 0)");
 
@@ -445,11 +433,9 @@ public class Lucentis extends SeleniumHeadless {
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-pat-3");
 
             goToUrl(driver, "/patient/brands/lucentis/search.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-search");
 
             goToUrl(driver, "/patient/brands/lucentis/site-map.html");
-            Thread.sleep(1000);
             full(driver, false, savePath, "accesssolutions-mobile-patient-lucentis-sitemap");
         } catch (Exception e) {
             e.printStackTrace();
