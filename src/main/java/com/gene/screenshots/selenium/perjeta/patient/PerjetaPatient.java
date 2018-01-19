@@ -319,17 +319,28 @@ public class PerjetaPatient extends SeleniumHeadless {
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "patient-hover-4.0");
 
+
+			forceClick(driver, driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])")));
+			Thread.sleep(1000);
+			visible(driver, true, savePath, "patient-modal-thirdpartysite");
+
+			goToUrl(driver, "/patient/breast-cancer.html");
+			setStyle(driver, "display: block;", ".gene-template__modals.exclude-from-glossary");
+			setStyle(driver, "display: block;", ".gene-template__modals.exclude-from-glossary .gene-component--modal.gene-component--modal--hcp-interstitial");
+			Thread.sleep(1000);
+			visible(driver, true, savePath, "patient-modal-HCP");
+			/*
 			driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/nav/div/div[1]/ul/li[1]/a/span")).click();
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "patient-modal-HCP");
 
 			goToUrl(driver, "/patient/breast-cancer.html");
 
-//				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			forceClick(driver, "//*[@id=\"safety_reference_cal_647752441\"]/div/div/div/p/a[2]");
-//				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			Thread.sleep(1000);
-			visible(driver, false, savePath, "patient-modal-thirdpartysite");
+			visible(driver, false, savePath, "patient-modal-thirdpartysite");*/
 
 			goToUrl(driver, "/patient/breast-cancer.html");
 			full(driver, false, savePath, "patient-0.0");
