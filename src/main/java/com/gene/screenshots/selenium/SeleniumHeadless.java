@@ -8,6 +8,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -127,19 +129,22 @@ public abstract class SeleniumHeadless extends Screenshots {
         click(driver, driver.findElement(By.cssSelector(cssString)));
     }
 
+    // attempts to click an element
+    // if selenium click() fails the function scrolls directory to the element's x,y coordinates and clicks within the viewport
+    // if scrolling to the coordinates also fails the function uses javascript to click as a last resort
     public static void click(WebDriver driver, WebElement e){
         try {
             // regular click
             e.click();
-        } catch (WebDriverException e1) {
-            if(e1.getMessage().contains("is not clickable at point")) {
+        } catch (Exception e1) {
+            if(e1.getMessage().contains("is not clickable at point") || e1.getMessage().contains("element not visible")) {
                 try{
                     // scroll into viewport and click
                     scrollTo(driver, e.getLocation().x, e.getLocation().y);
                     e.click();
-                }catch(WebDriverException e2){
+                }catch(Exception e2){
                     // javascript click
-                    if(e2.getMessage().contains("is not clickable at point"))
+                    if(e2.getMessage().contains("is not clickable at point") || e2.getMessage().contains("element not visible"))
                         forceClick(driver, e);
                     else
                         throw e2;
@@ -148,6 +153,13 @@ public abstract class SeleniumHeadless extends Screenshots {
             else
                 throw e1;
         }
+    }
+
+    // used to check that elements are in the DOM
+    protected void waitForElementToExist(WebDriver driver, String cssString) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssString)));
     }
 
     protected static String getXPath(WebDriver driver, WebElement e) {
