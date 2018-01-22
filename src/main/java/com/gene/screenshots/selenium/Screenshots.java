@@ -21,6 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static com.gene.screenshots.selenium.Constants.*;
+import static com.gene.screenshots.selenium.SeleniumHeadless.click;
 import static java.lang.Math.toIntExact;
 
 /***
@@ -124,25 +125,25 @@ public abstract class Screenshots {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", e);
     }
 
-    protected int getDocWidth(WebDriver driver) {
+    protected static int getDocWidth(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);");
         return toIntExact(result);
     }
 
-    protected int getDocHeight(WebDriver driver) {
+    protected static int getDocHeight(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
         return toIntExact(result);
     }
 
-    protected int getCurrentScrollX(WebDriver driver) {
+    protected static int getCurrentScrollX(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.round(Math.max(document.documentElement.scrollLeft, document.body.scrollLeft));");
         return toIntExact(result);
     }
 
-    protected int getCurrentScrollY(WebDriver driver) {
+    protected static int getCurrentScrollY(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.round(Math.max(document.documentElement.scrollTop, document.body.scrollTop));");
         return toIntExact(result);
@@ -230,25 +231,8 @@ public abstract class Screenshots {
         int _docWidth = width;//getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
 
-        // create tab and visit current url to get the correct browser max height
+        // resize if using scroll-stitch method
         if(_docHeight > CHROME_HEIGHT_CAP) {
-            String currentUrl = driver.getCurrentUrl();
-            createTab(driver, currentUrl);
-            ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-            driver.switchTo().window(tabs.get(1));
-            driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
-            driver.get(currentUrl);
-
-            // wait for page to load on new tab
-            waitForPageLoad(driver);
-            int otherHeight = getDocHeight(driver);
-
-            // in the case the previous tab had dynamically height changing events the new tab doesn't have
-            if(otherHeight > _docHeight)
-                _docHeight = otherHeight;
-            driver.close();
-
-            driver.switchTo().window(tabs.get(0));
             driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
         }
         else
@@ -261,13 +245,15 @@ public abstract class Screenshots {
                 Actions builder = new Actions(driver);
                 builder.moveToElement(e, 5,5).click().build().perform();
             } catch (Exception ex) {
-                forceClick(driver, e);
+                click(driver, e);
             }
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
+            // get new height
+            _docHeight = getDocHeight(driver);
         } else
         // wait for page to be resized correctly, elements may appear differently if taking screenshot instantly
         try {
