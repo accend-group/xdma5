@@ -210,9 +210,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 
         try {
 
-        	driver.get("https://en.wikipedia.org/wiki/Star_Wars");
-        	waitForPageLoad(driver);
-        	full(driver, false, savePath, "starwars");
+
 
 			goToUrl(driver, "/hcp/breast-cancer.html");
 			visible(driver, false, savePath, "hcp-home");
