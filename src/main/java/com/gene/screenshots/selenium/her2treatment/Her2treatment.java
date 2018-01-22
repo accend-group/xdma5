@@ -327,7 +327,7 @@ public class Her2treatment extends SeleniumHeadless{
                 if(popovers.get(x).isDisplayed()) {
                     driver.manage().window().setSize(new Dimension(width, getDocHeight(driver)));
                     click(driver, popovers.get(x));
-                    waitForElementToExist(driver, "popover");
+                    waitForElementToExist(driver, ".popover");
                     visible(driver, ifDesktop, savePath, String.format("her2treatment-3.0-dropdown-%d-%d", i, index++));
                     driver.manage().window().setSize(new Dimension(width, height));
                 }
