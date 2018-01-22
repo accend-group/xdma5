@@ -5,6 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import static com.gene.screenshots.selenium.Constants.DESKTOP_WIDTH;
@@ -14,16 +15,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 	public void desktopAutomationTest(String savePath) {
 
 		WebDriver driver = makeDesktopDriver();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-
 		try {
-			Consumer<WebDriver> movecursor = (d) -> {
-				Actions actions = new Actions(d);
-				WebElement mainMenu = d.findElement(By.name("q"));
-				actions.moveToElement(mainMenu);
-				actions.click().build().perform();
-
-			};
 
 			Actions action = new Actions(driver);
 
@@ -33,10 +25,8 @@ public class PerjetaHCP extends SeleniumHeadless{
 			action.moveToElement(driver.findElement(By.linkText("Resources"))).build().perform();
 			visible(driver, true, savePath, "hcp-hover-6.0");
 
-//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			forceClick(driver, driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])")));
 
-//			js.executeScript("window.scrollTo(0, 0)");
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "hcp-modal-thirdpartysite");
 
@@ -50,25 +40,25 @@ public class PerjetaHCP extends SeleniumHeadless{
 			goToUrl(driver, "/hcp/breast-cancer/trial-designs.html");
 			full(driver, true, savePath, "hcp-2.0-tab1");
 
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
+			click(driver, driver.findElement(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open)")));
 			full(driver, true, savePath, "hcp-2.0-tab2");
 
 			goToUrl(driver, "/hcp/breast-cancer/efficacy.html");
 			full(driver, true, savePath, "hcp-3.0-tab1");
 
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
+			click(driver, driver.findElement(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open)")));
 			full(driver, true, savePath, "hcp-3.0-tab2");
 
 			goToUrl(driver, "/hcp/breast-cancer/safety-profiles.html");
 			full(driver, true, savePath, "hcp-4.0-tab1");
 
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
+			click(driver, driver.findElement(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open)")));
 			full(driver, true, savePath, "hcp-4.0-tab2");
 
 			goToUrl(driver, "/hcp/breast-cancer/dosing-admin.html");
 			full(driver, true, savePath, "hcp-5.0-tab1");
 
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
+			click(driver, driver.findElement(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open)")));
 			full(driver, true, savePath, "hcp-5.0-tab2");
 
 			goToUrl(driver, "/hcp/breast-cancer/resources.html");
@@ -77,100 +67,71 @@ public class PerjetaHCP extends SeleniumHeadless{
 			goToUrl(driver, "/hcp/breast-cancer/resources/financial-assistance.html");
 			full(driver, true, savePath, "hcp-6.1-part1");
 
-			action.moveToElement(driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]"))).build().perform();
+			scrollToElement(driver, driver.findElement(By.cssSelector("[data-track-question='q3'][data-track-action='yes']")));
 			Thread.sleep(1500);
 			full(driver, true, savePath, "hcp-6.1-part2");
 
-			action.moveToElement(driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]"))).build().perform();
+			scrollToElement(driver, driver.findElement(By.cssSelector("[data-track-question='q5'][data-track-action='yes']")));
 			Thread.sleep(1500);
 			full(driver, true, savePath, "hcp-6.1-part3");
 
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")));
+			click(driver, driver.findElement(By.cssSelector("[data-track-action='no'][data-track-question='q1']")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-6.1-pat1-part1");
 
-			action.moveToElement(driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[4]/div/p[6]"))).build().perform();
+			action.moveToElement(driver.findElement(By.cssSelector("[data-track-result='result_gatcf'] div :nth-child(6)"))).build().perform();
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-6.1-pat1-part2");
 
 			scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
+			click(driver, "[data-track-question='q1'][data-track-action='yes']");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")));
+			click(driver, "[data-track-question='q2'][data-track-action='yes']");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")));
+			click(driver, "[data-track-question='q3'][data-track-action='yes']");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")));
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]")));
+			click(driver, "[data-track-question='q4'][data-track-action='no']");
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-6.1-pat2-part1");
 
-			action.moveToElement(driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[3]/div/p[6]"))).build().perform();
+			action.moveToElement(driver.findElement(By.cssSelector("[style='display: block;'] div :nth-child(6)"))).build().perform();
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-6.1-pat2-part2");
 
 			scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")));
+			click(driver, "[data-track-question='q1'][data-track-action='yes']");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")));
+			click(driver, "[data-track-question='q2'][data-track-action='yes']");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")));
+			click(driver, "[data-track-question='q3'][data-track-action='no']");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]")));
+			click(driver, "[data-track-question='q5'][data-track-action='yes']");
 			Thread.sleep(1000);
-			movecursor.accept(driver);
 			full(driver, true, savePath, "hcp-6.1-pat3-part1");
 
-			action.moveToElement(driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[2]/div/p[6]"))).build().perform();
-			Thread.sleep(1000);
-			movecursor.accept(driver);
+            action.moveToElement(driver.findElement(By.cssSelector("[style='display: block;'] div :nth-child(6)"))).build().perform();
+            Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-6.1-pat3-part2");
 
 			scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
 			Thread.sleep(1000);
-			scrollAndClickAt(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")));
+			click(driver, "[data-track-question='q1'][data-track-action='yes']");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[5]/div[2]/button")));
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")));
-			scrollAndClickAt(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")));
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-6.1-q1", driver.findElement(By.className("more-info")), new Long(1000));
+			full(driver, true, savePath, "hcp-6.1-q1", driver.findElement(By.className("more-info")), 1000L);
 
 			scrollAndClickAt(driver, driver.findElement(By.className("start-over")));
 			Thread.sleep(1000);
-			scrollAndClickAt(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[1]/header/h1")));
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-6.1-tab1");
 
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[1]/header/h1")));
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[2]/header/h1")));
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-6.1-tab2");
 
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[2]/header/h1")));
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[3]/header/h1")));
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-6.1-tab3");
+			List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__title"));
+			for(int i = 0; i < tabs.size(); ++i){
+				click(driver, tabs.get(i));
+				Thread.sleep(1000);
+				full(driver, true, savePath, "hcp-6.1-tab" + i);
+				click(driver, tabs.get(i));
+			}
 
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[3]/header/h1")));
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[4]/header/h1")));
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-6.1-tab4");
-
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[4]/header/h1")));
-			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[5]/header/h1")));
-			Thread.sleep(1000);
-			full(driver, true, savePath, "hcp-6.1-tab5");
 
 			goToUrl(driver, "/hcp/breast-cancer/resources/downloads.html");
 			full(driver, true, savePath, "hcp-6.2");
@@ -180,12 +141,12 @@ public class PerjetaHCP extends SeleniumHeadless{
 
 			// resize to capture the drop down menu content
 			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[1]/div/div")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='specialty']")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-contact-rep-provider");
 
 			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='specialty']")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-contact-rep-specialty");
 
@@ -193,31 +154,31 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, true, savePath, "hcp-register");
 
 			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='provider-type']")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-register-classification");
 
 			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/div")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='specialty']")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-register-specialty");
 
 
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[1]/div/div/div")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[1]/div/div/ul/li[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='name-prefix']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-value='DR']")));
 			Thread.sleep(1000);
 			driver.findElement(By.name("first-name")).sendKeys("marwin");
 			driver.findElement(By.name("last-name")).sendKeys("nicolas");
 			driver.findElement(By.name("address-line-1")).sendKeys("CA");
 			driver.findElement(By.name("address-line-2")).sendKeys("CA");
 			driver.findElement(By.name("city")).sendKeys("CA");
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[4]/div[2]/div[1]/div/div")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[4]/div[2]/div[1]/div/ul/li[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='state']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-value='AK']")));
 			driver.findElement(By.name("zip-code-base")).sendKeys("99501");
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/ul/li[1]")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/div")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/ul/li[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='provider-type']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-value='CC']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='specialty']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-value='HO']")));
 			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
 			Thread.sleep(1000);
 			driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
@@ -248,22 +209,24 @@ public class PerjetaHCP extends SeleniumHeadless{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
         try {
-	        	
+
+        	driver.get("https://en.wikipedia.org/wiki/Star_Wars");
+        	waitForPageLoad(driver);
+        	full(driver, false, savePath, "starwars");
+
 			goToUrl(driver, "/hcp/breast-cancer.html");
 			visible(driver, false, savePath, "hcp-home");
 			
-			driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/div[1]/a[2]/i[1]")).click();
+			click(driver, driver.findElement(By.cssSelector(".fa.fa-bars.gene-component--header__toggle-icon--menu")));
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-navigation");
 			
-			driver.findElement(By.xpath("/html/body/header/div[1]/div/div[2]/nav/div/div[2]/div/ul/li[6]/a/i")).click();
+			click(driver, ".fa.fa-chevron-down.gene-component--navigation__icon");
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-hover-6.0");
 			
-//			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
-			forceClick(driver, driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])")));
-//			js.executeScript("window.scrollTo(0, 0)");
+			click(driver, ".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])");
 			Thread.sleep(1000);
 			visible(driver, false, savePath, "hcp-modal-thirdpartysite");
 			
@@ -276,40 +239,38 @@ public class PerjetaHCP extends SeleniumHeadless{
 			
 			goToUrl(driver, "/hcp/breast-cancer/trial-designs.html");
 			full(driver, false, savePath, "hcp-2.0-tab1");
-			
-			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[1]/header/h1")));
+
+			click(driver, ".gene-component--accordionTabs__item.is-open .gene-component--accordionTabs__header");
 			Thread.sleep(1000);
-			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
+			click(driver, ".gene-component--accordionTabs__item--tab2 .gene-component--accordionTabs__header");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-2.0-tab2");
 			
 			goToUrl(driver, "/hcp/breast-cancer/efficacy.html");
 			full(driver, false, savePath, "hcp-3.0-tab1");
-			
-			js.executeScript("window.scrollTo(0, 0)");
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[1]/header/h1")));
+
+			click(driver, ".gene-component--accordionTabs__item.is-open .gene-component--accordionTabs__header");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
+			click(driver, ".gene-component--accordionTabs__item--tab2 .gene-component--accordionTabs__header");
 			Thread.sleep(1000);
+			scrollTo(driver, 0, getDocHeight(driver));
 			full(driver, false, savePath, "hcp-3.0-tab2");
 			
 			goToUrl(driver, "/hcp/breast-cancer/safety-profiles.html");
 			full(driver, false, savePath, "hcp-4.0-tab1");
-			
-			js.executeScript("window.scrollTo(0, 0)");
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[1]/header/h1")));
+
+			click(driver, ".gene-component--accordionTabs__item.is-open .gene-component--accordionTabs__header");
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
+			click(driver, ".gene-component--accordionTabs__item--tab2 .gene-component--accordionTabs__header");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-4.0-tab2");
 			
 			goToUrl(driver, "/hcp/breast-cancer/dosing-admin.html");
 			full(driver, false, savePath, "hcp-5.0-tab1");
-			
-			js.executeScript("window.scrollTo(0, 0)");
-			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[1]/header/h1")));
+
+			click(driver, ".gene-component--accordionTabs__item.is-open .gene-component--accordionTabs__header");
 			Thread.sleep(1000);
-			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section/div[1]/div[3]/div/div[2]/section[2]/header/h1")));
+			click(driver, ".gene-component--accordionTabs__item--tab2 .gene-component--accordionTabs__header");
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-5.0-tab2");
 			
@@ -319,68 +280,53 @@ public class PerjetaHCP extends SeleniumHeadless{
 			goToUrl(driver, "/hcp/breast-cancer/resources/financial-assistance.html");
 			full(driver, false, savePath, "hcp-6.1");
 			
-			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")));
+			scrollAndClickAt(driver,driver.findElement(By.cssSelector("[data-track-question='q1'][data-track-action='no']")));
 			Thread.sleep(1500);
 			full(driver, false, savePath, "hcp-6.1-pat1");
 			
 			scrollAndClickAt(driver,driver.findElement(By.className("start-over")));
             Thread.sleep(1000);
-            forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")));
+            forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q1'][data-track-action='yes']")));
             Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q2'][data-track-action='yes']")));
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q3'][data-track-action='yes']")));
 			Thread.sleep(1000);
-			forceClick(driver, "/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[4]/div[2]/fieldset/button[2]");
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q4'][data-track-action='no']")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.1-pat2");
 			
 			scrollAndClickAt(driver,driver.findElement(By.className("start-over")));
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q1'][data-track-action='yes']")));
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[2]/div[2]/fieldset/button[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q2'][data-track-action='yes']")));
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[3]/div[2]/fieldset/button[2]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q3'][data-track-action='no']")));
 			Thread.sleep(1000);
-			forceClick(driver, "/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[5]/div[2]/fieldset/button[1]");
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q3'][data-track-action='yes']")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.1-pat3");
 			
 			scrollAndClickAt(driver,driver.findElement(By.className("start-over")));
 			Thread.sleep(1000);
-			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[2]")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[5]/div[2]/button")));
+			scrollAndClickAt(driver,driver.findElement(By.cssSelector("[data-track-question='q1'][data-track-action='no']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-action='update-response'][style='display: inline-block;']")));
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div/div/div/div/div[2]/div[1]/ul/li[1]/div[2]/fieldset/button[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q1'][data-track-action='yes']")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.1-q1", driver.findElement(By.className("more-info")), new Long(1000));
 			
 			scrollAndClickAt(driver,driver.findElement(By.className("start-over")));
 			Thread.sleep(1000);
-			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[1]/header/h1")));
-			Thread.sleep(1000);
-			full(driver, false, savePath, "hcp-6.1-tab1");
-			
-			scrollAndClickAt(driver,driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[1]/header/h1")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[2]/header/h1")));
-			Thread.sleep(1000);
-			full(driver, false, savePath, "hcp-6.1-tab2");
-			
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[2]/header/h1")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[5]/div/div/div/div[2]/section[3]/header/h1")));
-			Thread.sleep(1000);
-			full(driver, false, savePath, "hcp-6.1-tab3");
-			
-			forceClick(driver, "/html/body/main/section[5]/div/div/div/div[2]/section[3]/header/h1");
-			forceClick(driver, "/html/body/main/section[5]/div/div/div/div[2]/section[4]/header/h1");
-			Thread.sleep(1000);
-			full(driver, false, savePath, "hcp-6.1-tab4");
-			
-			forceClick(driver, "/html/body/main/section[5]/div/div/div/div[2]/section[4]/header/h1");
-			forceClick(driver, "/html/body/main/section[5]/div/div/div/div[2]/section[5]/header/h1");
-			Thread.sleep(1000);
-			full(driver, false, savePath, "hcp-6.1-tab5");
+
+			List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__title"));
+			for(int i = 0; i < tabs.size(); ++i){
+				click(driver, tabs.get(i));
+				Thread.sleep(1000);
+				full(driver, false, savePath, "hcp-6.1-tab" + i);
+				click(driver, tabs.get(i));
+			}
 			
 			goToUrl(driver, "/hcp/breast-cancer/resources/downloads.html");
 			full(driver, false, savePath, "hcp-6.2");
@@ -398,7 +344,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 			driver.navigate().refresh();
 			waitForPageLoad(driver);
 			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")));
+			click(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-contact-rep-specialty");
 			
@@ -406,31 +352,31 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, false, savePath, "hcp-register");
 
 			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
+			click(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-register-classification");
 			
 			driver.navigate().refresh();
 			waitForPageLoad(driver);
 			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/div")));
+			click(driver, driver.findElement(By.cssSelector("[data-field='specialty']")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-register-specialty");
 
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[1]/div/div/div")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[1]/div/div/ul/li[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='name-prefix']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-value='DR']")));
 			driver.findElement(By.name("first-name")).sendKeys("marwin");
 			driver.findElement(By.name("last-name")).sendKeys("nicolas");
 			driver.findElement(By.name("address-line-1")).sendKeys("CA");
 			driver.findElement(By.name("address-line-2")).sendKeys("CA");
 			driver.findElement(By.name("city")).sendKeys("CA");
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[4]/div[2]/div[1]/div/div")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[4]/div[2]/div[1]/div/ul/li[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='state']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-value='AK']")));
 			driver.findElement(By.name("zip-code-base")).sendKeys("99501");
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/ul/li[1]")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/div")));
-			forceClick(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[2]/div/ul/li[1]")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='provider-type']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-value='CC']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='specialty']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-value='HO']")));
 			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
 			Thread.sleep(1000);
 			driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
