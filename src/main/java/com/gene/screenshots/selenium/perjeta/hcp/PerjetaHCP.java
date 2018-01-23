@@ -67,11 +67,11 @@ public class PerjetaHCP extends SeleniumHeadless{
 			goToUrl(driver, "/hcp/breast-cancer/resources/financial-assistance.html");
 			full(driver, true, savePath, "hcp-6.1-part1");
 
-			scrollToElement(driver, driver.findElement(By.cssSelector("[data-track-question='q3'][data-track-action='yes']")));
+			action.moveToElement(driver.findElement(By.cssSelector("[data-track-question='q3'][data-track-action='yes']"))).build().perform();
 			Thread.sleep(1500);
 			full(driver, true, savePath, "hcp-6.1-part2");
 
-			scrollToElement(driver, driver.findElement(By.cssSelector("[data-track-question='q5'][data-track-action='yes']")));
+			action.moveToElement(driver.findElement(By.cssSelector("[data-track-question='q5'][data-track-action='yes']"))).build().perform();
 			Thread.sleep(1500);
 			full(driver, true, savePath, "hcp-6.1-part3");
 
@@ -127,9 +127,12 @@ public class PerjetaHCP extends SeleniumHeadless{
 			List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__title"));
 			for(int i = 0; i < tabs.size(); ++i){
 				click(driver, tabs.get(i));
-				Thread.sleep(1000);
+				waitForElementToExist(driver, ".is-open");
+				// accordion animation
+				Thread.sleep(450);
 				full(driver, true, savePath, "hcp-6.1-tab" + i);
 				click(driver, tabs.get(i));
+				Thread.sleep(450);
 			}
 
 
@@ -141,7 +144,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 
 			// resize to capture the drop down menu content
 			driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, getDocHeight(driver)));
-			forceClick(driver, driver.findElement(By.cssSelector("[data-field='specialty']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-field='provider-type']")));
 			Thread.sleep(1000);
 			full(driver, true, savePath, "hcp-contact-rep-provider");
 
@@ -321,9 +324,12 @@ public class PerjetaHCP extends SeleniumHeadless{
 			List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__title"));
 			for(int i = 0; i < tabs.size(); ++i){
 				click(driver, tabs.get(i));
-				Thread.sleep(1000);
+				waitForElementToExist(driver, ".is-open");
+				// accordion animation
+				Thread.sleep(450);
 				full(driver, false, savePath, "hcp-6.1-tab" + i);
 				click(driver, tabs.get(i));
+				Thread.sleep(450);
 			}
 			
 			goToUrl(driver, "/hcp/breast-cancer/resources/downloads.html");
@@ -334,7 +340,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 
 			// resize to capture the drop down menu content
 			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-			driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[1]/div/div")).click();
+			driver.findElement(By.cssSelector("[data-field='provider-type']")).click();//xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[1]/div/div")).click();
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-contact-rep-provider");
 
@@ -342,7 +348,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 			driver.navigate().refresh();
 			waitForPageLoad(driver);
 			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-			click(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")));
+			click(driver, "[data-field='specialty']");//driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[3]/form/div[1]/div[2]/div/div")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-contact-rep-specialty");
 			
@@ -350,7 +356,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 			full(driver, false, savePath, "hcp-register");
 
 			driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, getDocHeight(driver)));
-			click(driver, driver.findElement(By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
+			click(driver, "[data-field='provider-type']");//By.xpath("/html/body/main/section[2]/div[2]/div[1]/div[4]/form/div[5]/div[1]/div/div")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-register-classification");
 			
