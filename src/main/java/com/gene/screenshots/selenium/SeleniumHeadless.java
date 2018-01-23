@@ -117,12 +117,11 @@ public abstract class SeleniumHeadless extends Screenshots {
     }
 
     protected static void scrollToElement(WebDriver driver, WebElement e) {
-
-        ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, getXPath(driver, e));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", e);
     }
 
-    protected static void scrollToElement(WebDriver driver, String xpath) {
-        ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, xpath);
+    protected static void scrollToElement(WebDriver driver, String cssString) {
+        scrollToElement(driver, driver.findElement(By.cssSelector(cssString)));
     }
 
     public static void click(WebDriver driver, String cssString) {
@@ -139,9 +138,15 @@ public abstract class SeleniumHeadless extends Screenshots {
         } catch (Exception e1) {
             if(e1.getMessage().contains("is not clickable at point") || e1.getMessage().contains("element not visible")) {
                 try{
+                    int x = getCurrentScrollX(driver), y = getCurrentScrollY(driver);
+
                     // scroll into viewport and click
                     scrollTo(driver, e.getLocation().x, e.getLocation().y);
                     e.click();
+
+                    // return to the previous position
+                    scrollTo(driver, x, y);
+
                 }catch(Exception e2){
                     // javascript click
                     if(e2.getMessage().contains("is not clickable at point") || e2.getMessage().contains("element not visible"))
