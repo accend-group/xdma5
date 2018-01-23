@@ -305,7 +305,7 @@ public class PerjetaHCP extends SeleniumHeadless{
 			Thread.sleep(1000);
 			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q3'][data-track-action='no']")));
 			Thread.sleep(1000);
-			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q3'][data-track-action='yes']")));
+			forceClick(driver, driver.findElement(By.cssSelector("[data-track-question='q5'][data-track-action='yes']")));
 			Thread.sleep(1000);
 			full(driver, false, savePath, "hcp-6.1-pat3");
 			
