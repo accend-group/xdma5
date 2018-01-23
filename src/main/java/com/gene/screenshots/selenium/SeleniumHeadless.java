@@ -8,6 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -158,6 +159,11 @@ public abstract class SeleniumHeadless extends Screenshots {
             else
                 throw e1;
         }
+    }
+
+    public static void moveMouse(WebDriver driver, int x, int y){
+        Actions builder = new Actions(driver);
+        builder.moveToElement(driver.findElement(By.tagName("body")), x, y).build().perform();
     }
 
     protected static void setStyle(WebDriver driver, String propertyValuePair, WebElement element) {
