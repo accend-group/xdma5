@@ -51,10 +51,10 @@ public class PDFMaker {
                 pageContentStream.drawImage(pdImage, 0, 0);
                 pageContentStream.close();
                 // break the image into pages*/
-                int splits = (int) Math.ceil(img.getHeight() / 14000D);
-                int left = img.getHeight() % 14000;
+                int splits = (int) Math.ceil(img.getHeight() / 14400D);
+                int left = img.getHeight() % 14400;
                 for (int i = 0; i < splits; ++i) {
-                    BufferedImage tempImg = img.getSubimage(0, i == splits - 1 ? img.getHeight() - left : i * 14000, img.getWidth(), i == splits - 1 ? left : 14000);
+                    BufferedImage tempImg = img.getSubimage(0, i == splits - 1 ? img.getHeight() - left : i * 14400, img.getWidth(), i == splits - 1 ? left : 14400);
                     if(i == splits - 1 && left == 0)
                         break;
                     PDPage page = new PDPage(new PDRectangle(tempImg.getWidth(), tempImg.getHeight()));
