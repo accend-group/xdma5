@@ -13,7 +13,7 @@ import com.gene.screenshots.selenium.genentech.forum.GenentechForum;
         authorlocal="http://localhost:4502/content/genentech-forum/en_us",
         authordev = "https://dev-author.aem.gene.com/content/genentech-forum/en_us",
         authorstage="https://stage-author.aem.gene.com/content/genentech-forum/en_us",
-        authorprod="https://author.aem.gene.com/content/genentech-forum/en_us")
+        authorprod="https://author.aem.gene.com/content/managed-care/en_us/genentech-forum")
 
 public class GenentechForumJob extends ScreenshotJob{
     

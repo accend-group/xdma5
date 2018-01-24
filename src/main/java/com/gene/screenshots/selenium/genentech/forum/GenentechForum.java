@@ -13,7 +13,7 @@ public class GenentechForum extends SeleniumHeadless{
         try {
             Actions action = new Actions(driver);
             
-            goToUrl(driver, "/");
+            goToUrl(driver, ".html");
             visible(driver, true, savePath, "genetech-forum");
             
             action.moveToElement(driver.findElement(By.linkText("TREND REPORTS"))).build().perform();
@@ -137,7 +137,7 @@ public class GenentechForum extends SeleniumHeadless{
         
         try {
             
-            goToUrl(driver, "/");
+            goToUrl(driver, ".html");
             visible(driver, false, savePath, "genetech-forum-mobile");
             
             driver.findElement(By.className("navbar-toggle")).click();
