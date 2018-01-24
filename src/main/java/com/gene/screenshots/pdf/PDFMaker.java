@@ -53,7 +53,6 @@ public class PDFMaker {
                 // break the image into pages*/
                 int splits = (int) Math.ceil(img.getHeight() / 14000D);
                 int left = img.getHeight() % 14000;
-                System.out.println(left);
                 for (int i = 0; i < splits; ++i) {
                     BufferedImage tempImg = img.getSubimage(0, i == splits - 1 ? img.getHeight() - left : i * 14000, img.getWidth(), i == splits - 1 ? left : 14000);
                     if(i == splits - 1 && left == 0)
