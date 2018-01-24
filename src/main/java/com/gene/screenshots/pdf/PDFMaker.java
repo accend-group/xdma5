@@ -44,12 +44,27 @@ public class PDFMaker {
         try {
             for (String filePath : images) {
                 BufferedImage img = ImageIO.read(new File(filePath));
-                PDPage page = new PDPage(new PDRectangle(img.getWidth(), img.getHeight()));
+                /*PDPage page = new PDPage(new PDRectangle(img.getWidth(), img.getHeight()));
                 pdf.addPage(page);
                 PDImageXObject pdImage = LosslessFactory.createFromImage(pdf, img);
                 PDPageContentStream pageContentStream = new PDPageContentStream(pdf, page);
                 pageContentStream.drawImage(pdImage, 0, 0);
                 pageContentStream.close();
+                // break the image into pages*/
+                int splits = (int) Math.ceil(img.getHeight() / 14000D);
+                int left = img.getHeight() % 14000;
+                System.out.println(left);
+                for (int i = 0; i < splits; ++i) {
+                    BufferedImage tempImg = img.getSubimage(0, i == splits - 1 ? img.getHeight() - left : i * 14000, img.getWidth(), i == splits - 1 ? left : 14000);
+                    if(i == splits - 1 && left == 0)
+                        break;
+                    PDPage page = new PDPage(new PDRectangle(tempImg.getWidth(), tempImg.getHeight()));
+                    pdf.addPage(page);
+                    PDImageXObject pdImage = LosslessFactory.createFromImage(pdf, tempImg);
+                    PDPageContentStream pageContentStream = new PDPageContentStream(pdf, page);
+                    pageContentStream.drawImage(pdImage, 0, 0);
+                    pageContentStream.close();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
