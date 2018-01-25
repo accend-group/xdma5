@@ -40,11 +40,11 @@ public class GenentechForum extends SeleniumHeadless{
             waitForPageLoad(driver);
             full(driver, true, savePath, "genentech-forum-0.0-slide1");
             
-            driver.findElement(By.className("right")).click();
+            driver.findElement(By.cssSelector("[data-slide-to='1']")).click();//By.className("right")).click();
             Thread.sleep(1500);
             full(driver, true, savePath, "genentech-forum-0.0-slide2");
             
-            driver.findElement(By.className("right")).click();
+            driver.findElement(By.cssSelector("[data-slide-to='2']")).click();//By.className("right")).click();
             Thread.sleep(1500);
             full(driver, true, savePath, "genentech-forum-0.0-slide3");
               
@@ -53,60 +53,79 @@ public class GenentechForum extends SeleniumHeadless{
             full(driver, true, savePath, "genentech-forum-1.0");
             
             goToUrl(driver, "/trend-reports/oncology.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-1.1");
             
             goToUrl(driver, "/trend-reports/respiratory.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-1.2");
             
             goToUrl(driver, "/trend-reports/quality.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-1.3");
             
             goToUrl(driver, "/programs-tools.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-2.0");
             
             goToUrl(driver, "/programs-tools/reason-for-mammogram.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-2.1");
             
             goToUrl(driver, "/programs-tools/care-manager-multiple-sclerosis-program.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-2.2");
             
             
             goToUrl(driver, "/programs-tools/open-your-eyes-diabetic-blindness-initiative.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-2.3");
             
             goToUrl(driver, "/programs-tools/love-your-colon-colorectal-cancer-screening-program.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-2.4");
             
             goToUrl(driver, "/programs-tools/genentech-care-management-workshops.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-2.5");
             
             goToUrl(driver, "/patient-centered-resources.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-3.0");
             
             goToUrl(driver, "/population-care-peer-insights.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-4.0");
             
             goToUrl(driver, "/population-care-peer-insights/genentech-oncology-institute.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-4.1");
-            
+
+            goToUrl(driver, "/healthcare-dynamics.html");
+            waitForIframe(driver);
+            Thread.sleep(2000);
+            full(driver, true, savePath, "healthcare_dynamics");
+
             goToUrl(driver, "/advances-in-complex-to-treat-diseases.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-5.0");
             
             goToUrl(driver, "/register-for-genentech-forum-site-updates.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-register");
             
             driver.findElement(By.name("first-name")).sendKeys("Marwin");
@@ -175,72 +194,94 @@ public class GenentechForum extends SeleniumHeadless{
             full(driver, false, savePath, "genentech-forum-mobile-0.0-slide1");
             
             driver.findElement(By.xpath("//*[@id=\"herocarousel-herocarousel\"]/ol/li[2]")).click();
+            waitForIframe(driver);
             Thread.sleep(1500);
             full(driver, false, savePath, "genentech-forum-mobile-0.0-slide2");
             
             driver.findElement(By.xpath("//*[@id=\"herocarousel-herocarousel\"]/ol/li[3]")).click();
+            waitForIframe(driver);
             Thread.sleep(1500);
             full(driver, false, savePath, "genentech-forum-mobile-0.0-slide3");
               
             goToUrl(driver, "/trend-reports.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-1.0");
             
             goToUrl(driver, "/trend-reports/oncology.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-1.1");
             
             goToUrl(driver, "/trend-reports/respiratory.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-1.2");
             
             goToUrl(driver, "/trend-reports/quality.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-1.3");
             
             goToUrl(driver, "/programs-tools.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-2.0");
             
             goToUrl(driver, "/programs-tools/reason-for-mammogram.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-2.1");
             
             goToUrl(driver, "/programs-tools/care-manager-multiple-sclerosis-program.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-2.2");
             
             
             goToUrl(driver, "/programs-tools/open-your-eyes-diabetic-blindness-initiative.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-2.3");
             
             goToUrl(driver, "/programs-tools/love-your-colon-colorectal-cancer-screening-program.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-2.4");
             
             goToUrl(driver, "/programs-tools/genentech-care-management-workshops.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-2.5");
             
             goToUrl(driver, "/patient-centered-resources.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-3.0");
             
             goToUrl(driver, "/population-care-peer-insights.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-4.0");
             
             goToUrl(driver, "/population-care-peer-insights/genentech-oncology-institute.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-4.1");
+
+            goToUrl(driver, "/healthcare-dynamics.html");
+            waitForIframe(driver);
+            Thread.sleep(2000);
+            full(driver, false, savePath, "healthcare_dynamics");
             
             goToUrl(driver, "/advances-in-complex-to-treat-diseases.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-5.0");
             
             goToUrl(driver, "/register-for-genentech-forum-site-updates.html");
-            Thread.sleep(1000);
+            waitForIframe(driver);
+            Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-register");
             
             driver.findElement(By.name("first-name")).sendKeys("Marwin");
@@ -282,6 +323,15 @@ public class GenentechForum extends SeleniumHeadless{
         } finally {
             driver.close();
             driver.quit();
+        }
+    }
+
+    public void waitForIframe(WebDriver driver){
+        if(driver.findElements(By.xpath("//iframe")).size() > 1) {
+            driver.switchTo().frame(0);
+            waitForPageLoad(driver);
+            waitForElementToExist(driver, ".dialog");
+            driver.switchTo().defaultContent();
         }
     }
 }
