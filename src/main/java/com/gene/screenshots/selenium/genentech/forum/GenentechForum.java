@@ -178,6 +178,7 @@ public class GenentechForum extends SeleniumHeadless{
             visible(driver, false, savePath, "genetech-forum-mobile");
             
             driver.findElement(By.className("navbar-toggle")).click();
+            Thread.sleep(2000);
             visible(driver, false, savePath, "genetech-forum-mobile-nav");
             
             driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[1]/a")).click();
