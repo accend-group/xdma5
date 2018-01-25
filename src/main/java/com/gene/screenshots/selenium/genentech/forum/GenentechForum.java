@@ -327,11 +327,20 @@ public class GenentechForum extends SeleniumHeadless{
     }
 
     public void waitForIframe(WebDriver driver){
-        if(driver.findElements(By.xpath("//iframe")).size() > 1) {
+        int size  = driver.findElements(By.xpath("//iframe")).size();
+        if(size > 1) {
             driver.switchTo().frame(0);
             waitForPageLoad(driver);
             waitForElementToExist(driver, ".dialog");
             driver.switchTo().defaultContent();
+        }
+        if(size == 1){
+            if(driver.getCurrentUrl().contains("trend-reports.html")){
+                driver.switchTo().frame(0);
+                waitForPageLoad(driver);
+                waitForElementToExist(driver, ".dialog");
+                driver.switchTo().defaultContent();
+            }
         }
     }
 }
