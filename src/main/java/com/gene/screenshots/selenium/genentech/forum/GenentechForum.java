@@ -2,9 +2,12 @@ package com.gene.screenshots.selenium.genentech.forum;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
+
+import java.util.List;
 
 public class GenentechForum extends SeleniumHeadless{
     public void desktopAutomationTest(String savePath) {
@@ -21,9 +24,12 @@ public class GenentechForum extends SeleniumHeadless{
             
             action.moveToElement(driver.findElement(By.linkText("PROGRAMS & TOOLS"))).build().perform();
             visible(driver, true, savePath, "genetech-forum-hover-2.0");
+
+            action.moveToElement(driver.findElement(By.linkText("PATIENT-CENTERED RESOURCES"))).build().perform();
+            visible(driver, true, savePath, "genetech-forum-hover-3.0");
             
             action.moveToElement(driver.findElement(By.linkText("PEER INSIGHTS"))).build().perform();
-            visible(driver, true, savePath, "genetech-forum-hover-3.0");
+            visible(driver, true, savePath, "genetech-forum-hover-4.0");
             
             driver.findElement(By.className("share-a-page-button")).click();
             Thread.sleep(500);
@@ -102,7 +108,12 @@ public class GenentechForum extends SeleniumHeadless{
             waitForIframe(driver);
             Thread.sleep(2000);
             full(driver, true, savePath, "genentech-forum-3.0");
-            
+
+            goToUrl(driver, "/patient-centered-resources/let-s-talk-treatment-options.html");
+            waitForIframe(driver);
+            Thread.sleep(2000);
+            full(driver, true, savePath, "genentehc-forum-3.1");
+
             goToUrl(driver, "/population-care-peer-insights.html");
             waitForIframe(driver);
             Thread.sleep(2000);
@@ -181,14 +192,21 @@ public class GenentechForum extends SeleniumHeadless{
             Thread.sleep(2000);
             visible(driver, false, savePath, "genetech-forum-mobile-nav");
             
-            driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[1]/a")).click();
+            /*driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[1]/a")).click();
             visible(driver, false, savePath, "genetech-forum-mobile-hover-1.0");
             
             driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[2]/a")).click();
             visible(driver, false, savePath, "genetech-forum-mobile-hover-2.0");
             
             driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[4]/a")).click();
-            visible(driver, false, savePath, "genetech-forum-mobile-hover-3.0");
+            visible(driver, false, savePath, "genetech-forum-mobile-hover-3.0");*/
+
+            List<WebElement> menus = driver.findElements(By.cssSelector(".dropdown-toggle"));
+            for(int i = 0; i < menus.size(); ++i){
+                menus.get(i).click();
+                Thread.sleep(1000);
+                visible(driver, false, savePath, "genentech-forum-hover-" + i);
+            }
             
             driver.navigate().refresh();
             waitForPageLoad(driver);
@@ -259,6 +277,11 @@ public class GenentechForum extends SeleniumHeadless{
             waitForIframe(driver);
             Thread.sleep(2000);
             full(driver, false, savePath, "genentech-forum-mobile-3.0");
+
+            goToUrl(driver, "/patient-centered-resources/let-s-talk-treatment-options.html");
+            waitForIframe(driver);
+            Thread.sleep(2000);
+            full(driver, false, savePath, "genentehc-forum-3.1");
             
             goToUrl(driver, "/population-care-peer-insights.html");
             waitForIframe(driver);
