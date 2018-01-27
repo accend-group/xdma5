@@ -52,9 +52,9 @@ public class Her2treatment extends SeleniumHeadless{
             Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-share-modal-submit-missing");
             
-            driver.findElement(By.name("fname")).sendKeys("marwin");;
-            driver.findElement(By.name("lname")).sendKeys("nicolas");;
-            driver.findElement(By.name("to-email-address")).sendKeys("marwin@accendgroup.com");
+            driver.findElement(By.name("fname")).sendKeys("TestFirstName");;
+            driver.findElement(By.name("lname")).sendKeys("TestLastName");;
+            driver.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
             driver.findElement(By.cssSelector("#share-a-page-riker-form > div.modal-footer > div > input")).click();
             Thread.sleep(1000);
             visible(driver, true, savePath, "her2treatment-share-modal-submit");
