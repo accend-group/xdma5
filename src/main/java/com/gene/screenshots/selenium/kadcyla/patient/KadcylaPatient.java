@@ -231,18 +231,18 @@ public class KadcylaPatient extends SeleniumHeadless {
             Thread.sleep(1500);
             full(driver, true, savePath, "kadcyla-3.3");
 
-            driver.findElement(By.name("first-name")).sendKeys("Marwin");
-            driver.findElement(By.name("last-name")).sendKeys("Nicolas");
-            driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
+            driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
+            driver.findElement(By.name("last-name")).sendKeys("TestLastName");
+            driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
 
-            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+            driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
             driver.findElement(By.className("gene-component--dropdown")).click();
             driver.findElement(By.xpath("//li[@data-value='AK']")).click();
-            driver.findElement(By.name("zip-code-base")).sendKeys("99501");
-            driver.findElement(By.name("primary-phone-number")).sendKeys("(02) 243-51-02");
+            driver.findElement(By.name("zip-code-base")).sendKeys("99999");
+            driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
             driver.findElement(By.name("verify-age")).click();
             driver.findElement(By.className("submit")).click();
 
@@ -379,18 +379,18 @@ public class KadcylaPatient extends SeleniumHeadless {
             Thread.sleep(1500);
             full(driver, false, savePath, "kadcyla-mobile-3.3");
 
-            driver.findElement(By.name("first-name")).sendKeys("Marwin");
-            driver.findElement(By.name("last-name")).sendKeys("Nicolas");
-            driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
+            driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
+            driver.findElement(By.name("last-name")).sendKeys("TestLastName");
+            driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
 
-            driver.findElement(By.name("confirm_email-address")).sendKeys("marwin@accendgroup.com");
+            driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
             driver.findElement(By.name("address-line-1")).sendKeys("CA");
             driver.findElement(By.name("address-line-2")).sendKeys("CA");
             driver.findElement(By.name("city")).sendKeys("CA");
             driver.findElement(By.className("gene-component--dropdown")).click();
             driver.findElement(By.xpath("//li[@data-value='AK']")).click();
-            driver.findElement(By.name("zip-code-base")).sendKeys("99501");
-            driver.findElement(By.name("primary-phone-number")).sendKeys("(02) 243-51-02");
+            driver.findElement(By.name("zip-code-base")).sendKeys("99999");
+            driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
             driver.findElement(By.name("verify-age")).click();
             driver.findElement(By.className("submit")).click();
 
