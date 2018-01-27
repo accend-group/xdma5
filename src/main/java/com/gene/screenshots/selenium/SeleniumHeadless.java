@@ -174,6 +174,11 @@ public abstract class SeleniumHeadless extends Screenshots {
         ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1]);", driver.findElement(By.cssSelector(cssString)), propertyValuePair);
     }
 
+    protected void waitForElementVisible(WebDriver driver, String cssString) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector(cssString))));
+    }
 
     // used to check that elements are in the DOM
     protected void waitForElementToExist(WebDriver driver, String cssString) {
