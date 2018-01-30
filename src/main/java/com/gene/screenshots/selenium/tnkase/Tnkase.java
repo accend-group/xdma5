@@ -40,8 +40,7 @@ public class Tnkase extends SeleniumHeadless {
             Actions actions = new Actions(driver);
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
-                driver.get(links.get(i));
-                waitForPageLoad(driver);
+                goToUrl(driver, links.get(i));
                 if (driver.getCurrentUrl().endsWith("/") || driver.getCurrentUrl().endsWith("/index.jsp")) {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
                     getScreenshotForDesktopNavigation(driver, actions, savePath);
@@ -90,7 +89,7 @@ public class Tnkase extends SeleniumHeadless {
             waitForElementVisible(driver, driver.findElement(By.cssSelector("[name='quantity'] option")));
             driver.findElement(By.cssSelector("[name='quantity'] option:nth-child(2)")).click();
             driver.findElement(By.cssSelector("input[type='submit']")).click();
-            waitForPageLoad(driver);
+            waitForPageLoad(driver); // it does a HTML post, so the page will actually reload
             full(driver, isDesktop, savePath, "tnkase-dosing-card-submit");
         }
     }

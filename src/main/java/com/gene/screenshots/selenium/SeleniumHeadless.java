@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.LogManager;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Dimension;
@@ -103,8 +104,7 @@ public abstract class SeleniumHeadless extends Screenshots {
             List<String> links = getLinksFromSiteMap(driver);
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
-                driver.get(links.get(i));
-                waitForPageLoad(driver);
+                goToUrl(driver, links.get(i));
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, true, savePath, Integer.toString(i) + "-visible");
                     getScreenshotForDesktopNavigation(driver, action, savePath);
@@ -132,8 +132,7 @@ public abstract class SeleniumHeadless extends Screenshots {
             List<String> links = getLinksFromSiteMap(driver);
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
-                driver.get(links.get(i));
-                waitForPageLoad(driver);
+                goToUrl(driver, links.get(i));
                 if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                     visible(driver, false, savePath, Integer.toString(i) + "-visible");
                     getScreenshotForMobileNavigation(driver, savePath);
@@ -202,8 +201,9 @@ public abstract class SeleniumHeadless extends Screenshots {
     }
 
     // redirect a partial url to the correct domain
-    protected static void goToUrl(WebDriver driver, String partialUrl){
+    protected static void goToUrl(WebDriver driver, String partialUrl) {
         driver.get(domain.toString() + partialUrl + (credentialsRequired ? "?wcmmode=disabled" : ""));
+        waitForPageLoad(driver);
     }
 
     public void killDesktop(){
@@ -229,11 +229,10 @@ public abstract class SeleniumHeadless extends Screenshots {
     protected List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = new ArrayList<String>();
         goToUrl(driver, getSiteMapUrl());
-        waitForPageLoad(driver);
         List<WebElement> linkElements = driver.findElements(By.cssSelector(getSiteMapSelector()));
         for (WebElement element : linkElements) {
             if (!element.getText().equalsIgnoreCase("Search")) {
-                links.add(element.getAttribute("href"));
+                links.add(StringUtils.replace(element.getAttribute("href"), domain.toString(), ""));
             }
         }
         return links;

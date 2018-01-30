@@ -38,7 +38,6 @@ public class PerjetaMain extends SeleniumHeadless {
 
     private void getScreenshots(WebDriver driver, JavascriptExecutor js, String savePath, boolean isDesktop) {
         goToUrl(driver, "/patient.html");
-        waitForPageLoad(driver);
         visible(driver, isDesktop, savePath, "patient-home");
 
         if (!isDesktop) {
@@ -51,11 +50,9 @@ public class PerjetaMain extends SeleniumHeadless {
         visible(driver, isDesktop, savePath, "patient-thirdpartysite");
 
         goToUrl(driver, "/patient.html");
-        waitForPageLoad(driver);
         full(driver, isDesktop, savePath, "patient-0.0");
 
         goToUrl(driver, "/hcp.html");
-        waitForPageLoad(driver);
         visible(driver, isDesktop, savePath, "hcp-modal");
 
         closeInterstitialModal(driver);
@@ -70,7 +67,6 @@ public class PerjetaMain extends SeleniumHeadless {
         visible(driver, isDesktop, savePath, "hcp-thirdpartysite");
 
         goToUrl(driver, "/hcp.html");
-        waitForPageLoad(driver);
         closeInterstitialModal(driver);
         full(driver, isDesktop, savePath, "hcp-1.0");
 
@@ -101,7 +97,6 @@ public class PerjetaMain extends SeleniumHeadless {
     }
 
     private void showThirdPartyModal(WebDriver driver, JavascriptExecutor js) {
-        waitForPageLoad(driver);
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         try {
             Thread.sleep(500);

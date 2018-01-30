@@ -42,8 +42,7 @@ public class Her2treatment extends SeleniumHeadless{
             List<String> links = getLinksFromSiteMap(driver);
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
-                driver.get(links.get(i));
-                waitForPageLoad(driver);
+                goToUrl(driver, links.get(i));
                 if (driver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
                     getScreenshotForSafetyTabs(driver, savePath, Integer.toString(i), true);
                     driver.navigate().refresh();
@@ -142,8 +141,7 @@ public class Her2treatment extends SeleniumHeadless{
             List<String> links = getLinksFromSiteMap(driver);
             //--->start full page screenshot <---//
             for (int i = 0; i < links.size(); i++) {
-                driver.get(links.get(i));
-                waitForPageLoad(driver);
+                goToUrl(driver, links.get(i));
                 if (driver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
                     visible(driver, false, savePath, Integer.toString(i));
                     getScreenshotForMobileNavigation(driver, savePath);
