@@ -29,6 +29,8 @@ import static com.gene.screenshots.selenium.Constants.*;
 
 public abstract class SeleniumHeadless extends Screenshots {
 
+    protected static int scaleFactor = 1;
+
     protected static BrandUrl domain;
 
     // window.scrollBy(X, Y);
@@ -69,7 +71,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("disable-infobars");
-        options.addArguments("--force-device-scale-factor=2");
+        options.addArguments("--force-device-scale-factor=" + scaleFactor);
         options.addArguments("--hide-scrollbars");
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
@@ -87,7 +89,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("disable-infobars");
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
-        options.addArguments("--force-device-scale-factor=2");
+        options.addArguments("--force-device-scale-factor=" + scaleFactor);
         options.addArguments("--hide-scrollbars");
         WebDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         if(credentialsRequired)
