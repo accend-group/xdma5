@@ -25,7 +25,6 @@ import java.util.List;
 
 import static com.gene.screenshots.selenium.Constants.*;
 import static com.gene.screenshots.selenium.SeleniumHeadless.click;
-import static com.gene.screenshots.selenium.SeleniumHeadless.scaleFactor;
 import static java.lang.Math.toIntExact;
 
 /***
@@ -192,10 +191,10 @@ public abstract class Screenshots {
         File outputImg = new File(location + "/" + fileName + ".png");
 
         if (ifDesktop) {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, DESKTOP_WIDTH, element, time), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, DESKTOP_WIDTH, true, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
         } else {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, MOBILE_WIDTH, element, time), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, MOBILE_WIDTH, false, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT));
         }
 
@@ -235,7 +234,11 @@ public abstract class Screenshots {
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
-    private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
+    private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, boolean isDesktop, WebElement e, long sleepTime) {
+
+        int scaleFactor = 2;
+        if(isDesktop)
+            scaleFactor = 1;
 
         int _docWidth = width; //* scaleFactor;//getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
@@ -277,14 +280,14 @@ public abstract class Screenshots {
 
             int viewport = CHROME_HEIGHT_CAP;
 
-            // taking large viewport screenshots causes screenshots that miss content
-            if(scaleFactor > 1) {
+            // scaled screenshots screenshots that miss content
+            if(scaleFactor > 1 && !isDesktop ) {
                 if(e ==  null) { // don't break click then resizing code
-                    viewport = 3000; // larger values tend to not capture as much
+                    viewport = 2000; // larger values tend to not capture as much
                     driver.manage().window().setSize(new Dimension(_docWidth, viewport));
                 }
             }
-            removeSafety(driver);
+            removeSafety(driver, isDesktop);
 
             // ===================== SHUTTERBUG code modified =====================================
             scrollTo(driver, 0, 0);
@@ -298,7 +301,7 @@ public abstract class Screenshots {
             for(int i = 0; i < leftover; ++i){
                 if(i == leftover - 1 && remainder != 0) {
                     driver.manage().window().setSize(new Dimension(_docWidth, remainder));
-                    removeSafety(driver);
+                    removeSafety(driver, isDesktop);
                     //viewPortImg = viewPortImg.getSubimage(0, 0, viewPortImg.getWidth(), remainder);
                 }
                 scrollTo(driver, 0, i * viewport);
@@ -322,7 +325,9 @@ public abstract class Screenshots {
         return takeScreenshot(driver);//Shutterbug.shootPage(driver, ScrollStrategy.VERTICALLY, 2000, true).getImage();
     }
 
-    private void removeSafety(WebDriver driver){
+    private void removeSafety(WebDriver driver, boolean isDesktop){
+        if(isDesktop)
+            return;
         List<WebElement> safety = driver.findElements(By.cssSelector(".gene-component--spotlight.is-active"));
         if(safety.size()  > 0) {
             ((JavascriptExecutor) driver).executeScript(
