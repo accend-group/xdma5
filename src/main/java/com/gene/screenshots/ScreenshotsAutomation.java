@@ -39,6 +39,8 @@ public class ScreenshotsAutomation {
         System.out.println("Reading Jenkins parameters!");
         Variables.main(args);
 
+        SeleniumHeadless.setMobileScaleFactor(Variables.isIsMobileScaled());
+        System.out.println("Mobile screenshots are " + (Variables.isIsMobileScaled() ? "scaled" : "not scaled"));
 
         String savePath = Variables.getSavePath();
         String pdfSavePath = Variables.getPdfOutputPath();
