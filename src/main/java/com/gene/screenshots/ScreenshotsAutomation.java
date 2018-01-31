@@ -39,6 +39,8 @@ public class ScreenshotsAutomation {
         System.out.println("Reading Jenkins parameters!");
         Variables.main(args);
 
+        SeleniumHeadless.setMobileScaleFactor(Variables.isIsMobileScaled());
+        System.out.println("Mobile screenshots are " + (Variables.isIsMobileScaled() ? "scaled" : "not scaled"));
 
         String savePath = Variables.getSavePath();
         String pdfSavePath = Variables.getPdfOutputPath();
@@ -51,7 +53,7 @@ public class ScreenshotsAutomation {
         // if merging pdfs or creating desktop/mobile pdfs
         SeleniumHeadless.setIfSinglePDF(Variables.isIfMergePDF());
 
-        // if author are credentials needed
+        // if author credentials are needed
         SeleniumHeadless.isCredentialsRequired(Variables.isCredentialsRequired());
 
         ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
