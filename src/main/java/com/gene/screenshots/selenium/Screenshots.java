@@ -124,7 +124,7 @@ public abstract class Screenshots {
 
     protected int getDocHeight(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
+        long result = (Long) jse.executeScript("return document.body.scrollHeight");
         return toIntExact(result);
     }
 
