@@ -174,10 +174,10 @@ public abstract class Screenshots {
         File outputImg = new File(location + "/" + fileName + ".png");
 
         if (ifDesktop) {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, DESKTOP_WIDTH, true, element, time), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, true, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
         } else {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, MOBILE_WIDTH, false, element, time), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, false, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT));
         }
 
@@ -217,11 +217,11 @@ public abstract class Screenshots {
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
-    private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, boolean isDesktop, WebElement e, long sleepTime) {
+    private BufferedImage takeScreenshotEntirePage(WebDriver driver, boolean isDesktop, WebElement e, long sleepTime) {
 
         int scaleFactor = isDesktop ? 1 : getMobileScaleFactor();
 
-        int _docWidth = width;
+        int _docWidth = isDesktop ? DESKTOP_WIDTH : MOBILE_WIDTH;
         int _docHeight = getDocHeight(driver);
 
         // resize if using scroll-stitch method
