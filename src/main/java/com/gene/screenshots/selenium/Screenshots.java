@@ -2,13 +2,16 @@ package com.gene.screenshots.selenium;
 
 
 
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
+import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
 import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
 import com.gene.screenshots.pdf.Log;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.imageio.ImageIO;
@@ -22,6 +25,7 @@ import java.util.List;
 
 import static com.gene.screenshots.selenium.Constants.*;
 import static com.gene.screenshots.selenium.SeleniumHeadless.click;
+import static com.gene.screenshots.selenium.SeleniumHeadless.scaleFactor;
 import static java.lang.Math.toIntExact;
 
 /***
@@ -133,7 +137,8 @@ public abstract class Screenshots {
 
     protected static int getDocHeight(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
+        long result = (Long) jse.executeScript(" return document.body.scrollHeight;");
+        //long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
         return toIntExact(result);
     }
 
@@ -151,12 +156,16 @@ public abstract class Screenshots {
 
     protected static void scrollTo(WebDriver driver, int x, int y) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollTo(arguments[0], arguments[1]);", x, y);
+        jse.executeScript("window.scrollTo(arguments[0], arguments[1]);", (double)x, (double)y );
     }
 
     protected static void scrollBy(WebDriver driver, int x, int y) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
+    }
+
+    protected static int getViewportHeight(WebDriver driver){
+        return toIntExact((long)((JavascriptExecutor) driver).executeScript("return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;"));
     }
 
     public static boolean isIfSinglePDF() {
@@ -228,15 +237,16 @@ public abstract class Screenshots {
 
     private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
 
-        int _docWidth = width;//getDocWidth(driver);
+        int _docWidth = width; //* scaleFactor;//getDocWidth(driver);
         int _docHeight = getDocHeight(driver);
-
         // resize if using scroll-stitch method
         if(_docHeight > CHROME_HEIGHT_CAP) {
             driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
         }
         else
             driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
+
+
 
 
         //click item after resizing window
@@ -263,21 +273,45 @@ public abstract class Screenshots {
         }
 
         // scroll-stitch
-        if(_docHeight > CHROME_HEIGHT_CAP){
+        if(_docHeight > CHROME_HEIGHT_CAP || scaleFactor > 1){
+
+            int viewport = CHROME_HEIGHT_CAP;
+
+            // taking large viewport screenshots causes screenshots that miss content
+            if(scaleFactor > 1) {
+                if(e ==  null) { // don't break click then resizing code
+                    viewport = 3000; // larger values tend to not capture as much
+                    driver.manage().window().setSize(new Dimension(_docWidth, viewport));
+                }
+            }
+            removeSafety(driver);
+
             // ===================== SHUTTERBUG code modified =====================================
             scrollTo(driver, 0, 0);
-            BufferedImage finalImage = new BufferedImage(_docWidth, _docHeight, BufferedImage.TYPE_INT_ARGB);
+            _docHeight = getDocHeight(driver);
+            BufferedImage finalImage = new BufferedImage(_docWidth * scaleFactor, _docHeight * scaleFactor, BufferedImage.TYPE_INT_ARGB);
             Graphics2D scrollPicsSticthed = finalImage.createGraphics();
-            int leftover = (int) Math.ceil(((double) getDocHeight(driver)) / CHROME_HEIGHT_CAP);
+            int leftover = (int) Math.ceil((((double) _docHeight) / viewport));
+            int remainder = _docHeight < viewport ? _docHeight : _docHeight % viewport;
+            int previousHeights = 0;
+            BufferedImage viewPortImg = null;
             for(int i = 0; i < leftover; ++i){
-                scrollTo(driver, 0, i * CHROME_HEIGHT_CAP);
+                if(i == leftover - 1 && remainder != 0) {
+                    driver.manage().window().setSize(new Dimension(_docWidth, remainder));
+                    removeSafety(driver);
+                    //viewPortImg = viewPortImg.getSubimage(0, 0, viewPortImg.getWidth(), remainder);
+                }
+                scrollTo(driver, 0, i * viewport);
                 try {
                     Thread.sleep(350);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
-                BufferedImage viewPortImg = takeScreenshot(driver);
-                scrollPicsSticthed.drawImage(viewPortImg, 0, getCurrentScrollY(driver), null);
+                if(i != 0)
+                    previousHeights += viewPortImg.getHeight();
+                viewPortImg = takeScreenshot(driver);
+
+                scrollPicsSticthed.drawImage(viewPortImg, 0, previousHeights, null);
             }
             scrollPicsSticthed.dispose();
             return finalImage;
@@ -285,6 +319,31 @@ public abstract class Screenshots {
         }
 
         // else take entire window size for fullpage screenshot
-        return takeScreenshot(driver);
+        return takeScreenshot(driver);//Shutterbug.shootPage(driver, ScrollStrategy.VERTICALLY, 2000, true).getImage();
+    }
+
+    private void removeSafety(WebDriver driver){
+        List<WebElement> safety = driver.findElements(By.cssSelector(".gene-component--spotlight.is-active"));
+        if(safety.size()  > 0) {
+            ((JavascriptExecutor) driver).executeScript(
+                    "        arguments[0].style=\"position: relative; bottom: auto;\";\n" +
+                            "        arguments[0].classList.remove(\"is-active\");\n" +
+                            "        $(window).unbind('scroll');\n" +
+                            "// set the correct link on the right side of the imsafety banner\n" +
+                            "var seeMore = document.getElementsByClassName(\"spotlight-link-active\");\n" +
+                            "if(seeMore.length > 0)\n" +
+                            "    seeMore[0].style=\"display:none;\";\n" +
+                            "var backToTop = document.getElementsByClassName(\"spotlight-link-inactive\");\n" +
+                            "if(backToTop.length > 0)\n" +
+                            "backToTop[0].style=\"display:inline;\";", safety.get(0));
+            try {
+                WebDriverWait wait = new WebDriverWait(driver, 10);
+                wait.ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector(".gene-component--spotlight"))));
+                Thread.sleep(10000);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 }
