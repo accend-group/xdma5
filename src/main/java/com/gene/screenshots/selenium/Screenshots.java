@@ -282,11 +282,31 @@ public abstract class Screenshots {
 
             // scaled screenshots screenshots that miss content
             if(scaleFactor > 1 && !isDesktop ) {
-                if(e ==  null) { // don't break click then resizing code
-                    viewport = 2000; // larger values tend to not capture as much
-                    driver.manage().window().setSize(new Dimension(_docWidth, viewport));
-                }
+                viewport = 2000; // larger values tend to not capture as much
+                driver.manage().window().setSize(new Dimension(_docWidth, viewport));
             }
+
+            if(e != null) {
+                try {
+                    Actions builder = new Actions(driver);
+                    builder.moveToElement(e, 5,5).click().build().perform();
+                } catch (Exception ex) {
+                    click(driver, e);
+                }
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                // get new height
+                _docHeight = getDocHeight(driver);
+            } else
+                // wait for page to be resized correctly, elements may appear differently if taking screenshot instantly
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
             removeSafety(driver, isDesktop);
 
             // ===================== SHUTTERBUG code modified =====================================
@@ -302,6 +322,27 @@ public abstract class Screenshots {
                 if(i == leftover - 1 && remainder != 0) {
                     driver.manage().window().setSize(new Dimension(_docWidth, remainder));
                     removeSafety(driver, isDesktop);
+                    if(e != null) {
+                        try {
+                            Actions builder = new Actions(driver);
+                            builder.moveToElement(e, 5,5).click().build().perform();
+                        } catch (Exception ex) {
+                            click(driver, e);
+                        }
+                        try {
+                            Thread.sleep(sleepTime);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                        // get new height
+                        _docHeight = getDocHeight(driver);
+                    } else
+                        // wait for page to be resized correctly, elements may appear differently if taking screenshot instantly
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
                     //viewPortImg = viewPortImg.getSubimage(0, 0, viewPortImg.getWidth(), remainder);
                 }
                 scrollTo(driver, 0, i * viewport);
