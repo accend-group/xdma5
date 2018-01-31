@@ -29,7 +29,7 @@ import static com.gene.screenshots.selenium.Constants.*;
 
 public abstract class SeleniumHeadless extends Screenshots {
 
-    protected static int scaleFactor = 1;
+    protected static int scaleFactor = 2;
 
     protected static BrandUrl domain;
 
