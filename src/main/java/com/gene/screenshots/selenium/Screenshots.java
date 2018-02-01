@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.imageio.ImageIO;
@@ -32,6 +33,8 @@ import static java.lang.Math.toIntExact;
  *
  ***/
 public abstract class Screenshots {
+
+    private static int mobileScaleFactor = 1;
 
     // viewport height limitation in chrome, do not change value!
     // https://groups.google.com/a/chromium.org/forum/#!msg/headless-dev/DqaAEXyzvR0/P9zmTLMvDQAJ
@@ -121,7 +124,7 @@ public abstract class Screenshots {
 
     protected int getDocHeight(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
+        long result = (Long) jse.executeScript("return document.body.scrollHeight");
         return toIntExact(result);
     }
 
@@ -171,10 +174,10 @@ public abstract class Screenshots {
         File outputImg = new File(location + "/" + fileName + ".png");
 
         if (ifDesktop) {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, DESKTOP_WIDTH, element, time), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, true, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
         } else {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, MOBILE_WIDTH, element, time), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, false, element, time), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT));
         }
 
@@ -214,41 +217,76 @@ public abstract class Screenshots {
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
-    private BufferedImage takeScreenshotEntirePage(WebDriver driver, int width, WebElement e, long sleepTime) {
+    private BufferedImage takeScreenshotEntirePage(WebDriver driver, boolean isDesktop, WebElement e, long sleepTime) {
 
-        int _docWidth = width;//getDocWidth(driver);
+        int scaleFactor = isDesktop ? 1 : getMobileScaleFactor();
+
+        int _docWidth = isDesktop ? DESKTOP_WIDTH : MOBILE_WIDTH;
         int _docHeight = getDocHeight(driver);
 
-        // create tab and visit current url to get the correct browser max height
+        // resize if using scroll-stitch method
         if(_docHeight > CHROME_HEIGHT_CAP) {
-            String currentUrl = driver.getCurrentUrl();
-            createTab(driver, currentUrl);
-            ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-            driver.switchTo().window(tabs.get(1));
-            driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
-            driver.get(currentUrl);
-
-            // wait for page to load on new tab
-            waitForPageLoad(driver);
-            int otherHeight = getDocHeight(driver);
-
-            // in the case the previous tab had dynamically height changing events the new tab doesn't have
-            if(otherHeight > _docHeight)
-                _docHeight = otherHeight;
-            driver.close();
-
-            driver.switchTo().window(tabs.get(0));
             driver.manage().window().setSize(new Dimension(_docWidth, CHROME_HEIGHT_CAP));
         }
         else
             driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
 
-
         //click item after resizing window
-        if(e != null) {
+        _docHeight = clickAfterResizedWindow(driver, e, sleepTime);
+
+        // scroll-stitch
+        if(_docHeight > CHROME_HEIGHT_CAP || scaleFactor > 1){
+
+            int viewport = CHROME_HEIGHT_CAP;
+
+            // scaled display misses content when sized to the chrome cap, the driver struggles to capture large resolution images
+            if(scaleFactor > 1) {
+                viewport = 2000; // larger values tend to not capture as much
+                driver.manage().window().setSize(new Dimension(_docWidth, viewport));
+                _docHeight = clickAfterResizedWindow(driver, e, sleepTime);
+            }
+            removeSafety(driver, isDesktop);
+
+            // ===================== SHUTTERBUG code modified =====================================
+            scrollTo(driver, 0, 0);
+            _docHeight = getDocHeight(driver);
+            BufferedImage finalImage = new BufferedImage(_docWidth * scaleFactor, _docHeight * scaleFactor, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D scrollPicsSticthed = finalImage.createGraphics();
+            int leftover = (int) Math.ceil((((double) _docHeight) / viewport));
+            int lastImageHeight = _docHeight < viewport ? _docHeight : _docHeight % viewport;
+            int previousHeights = 0;
+            BufferedImage viewPortImg = null;
+            for(int i = 0; i < leftover; ++i){
+                if(i == leftover - 1 && lastImageHeight != 0) {
+                    driver.manage().window().setSize(new Dimension(_docWidth, lastImageHeight));
+                    removeSafety(driver, isDesktop);
+                    clickAfterResizedWindow(driver, e, sleepTime);
+                }
+                scrollTo(driver, 0, i * viewport);
+                try {
+                    Thread.sleep(350);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                if(i != 0)
+                    previousHeights += viewPortImg.getHeight();
+                viewPortImg = takeScreenshot(driver);
+                scrollPicsSticthed.drawImage(viewPortImg, 0, previousHeights, null);
+            }
+            scrollPicsSticthed.dispose();
+            return finalImage;
+            // ===================== SHUTTERBUG code modified =====================================
+        }
+
+        // else take entire window size for fullpage screenshot
+        return takeScreenshot(driver);
+    }
+
+    private int clickAfterResizedWindow(WebDriver driver, WebElement e, long sleepTime) {
+        if (e != null) {
             try {
                 Actions builder = new Actions(driver);
-                builder.moveToElement(e, 5,5).click().build().perform();
+                builder.moveToElement(e, 5, 5).click().build().perform();
             } catch (Exception ex) {
                 forceClick(driver, e);
             }
@@ -258,36 +296,43 @@ public abstract class Screenshots {
                 e1.printStackTrace();
             }
         } else
-        // wait for page to be resized correctly, elements may appear differently if taking screenshot instantly
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
-
-        // scroll-stitch
-        if(_docHeight > CHROME_HEIGHT_CAP){
-            // ===================== SHUTTERBUG code modified =====================================
-            scrollTo(driver, 0, 0);
-            BufferedImage finalImage = new BufferedImage(_docWidth, _docHeight, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D scrollPicsSticthed = finalImage.createGraphics();
-            int leftover = (int) Math.ceil(((double) getDocHeight(driver)) / CHROME_HEIGHT_CAP);
-            for(int i = 0; i < leftover; ++i){
-                scrollTo(driver, 0, i * CHROME_HEIGHT_CAP);
-                try {
-                    Thread.sleep(350);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-                BufferedImage viewPortImg = takeScreenshot(driver);
-                scrollPicsSticthed.drawImage(viewPortImg, 0, getCurrentScrollY(driver), null);
+            // wait for page to be resized correctly, elements may appear differently if taking screenshot instantly
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
             }
-            scrollPicsSticthed.dispose();
-            return finalImage;
-            // ===================== SHUTTERBUG code modified =====================================
-        }
+        return getDocHeight(driver);
+    }
 
-        // else take entire window size for fullpage screenshot
-        return takeScreenshot(driver);
+    // imsafety needs to be disabled when mobile screenshots are scaled
+    private static final String REMOVE_SAFETY = "arguments[0].style='position: relative; bottom: auto;'; arguments[0].classList.remove('is-active'); $(window).unbind('scroll'); var seeMore = document.getElementsByClassName('spotlight-link-active'); if(seeMore.length > 0) seeMore[0].style='display:none;'; var backToTop = document.getElementsByClassName('spotlight-link-inactive'); if(backToTop.length > 0) backToTop[0].style='display:inline;';";
+
+    // when scaled the viewport size is reduced from the chrome cap because the scaled driver struggles capture everything
+    // when resizing the browser the safety is enabled again
+    private void removeSafety(WebDriver driver, boolean isDesktop){
+        if(isDesktop)
+            return;
+        java.util.List<WebElement> safety = driver.findElements(By.cssSelector(".gene-component--spotlight.is-active"));
+        if(safety.size()  > 0) {
+            ((JavascriptExecutor) driver).executeScript(REMOVE_SAFETY, safety.get(0));
+            try {
+                WebDriverWait wait = new WebDriverWait(driver, 10);
+                wait.ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector(".gene-component--spotlight"))));
+                Thread.sleep(1000); // wait for the animation
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    public static int getMobileScaleFactor() {
+        return mobileScaleFactor;
+    }
+
+    public static void setMobileScaleFactor(boolean isScaled){
+        if(isScaled)
+            mobileScaleFactor = 2;
     }
 }

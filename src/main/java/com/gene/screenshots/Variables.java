@@ -32,6 +32,7 @@ public class Variables {
         return arg.contains(param) && arg.indexOf(param) == 0;
     }
 
+    private static boolean isMobileScaled = false;
 
     private static String authorUsername = null;
     private static String authorPassword = null;
@@ -45,6 +46,9 @@ public class Variables {
     public static void main(String[] args) {
 
         for (String arg : args) {
+
+            if(arg.equals("mobile-scaled=true"))
+                isMobileScaled = true;
 
             if(arg.equals("pdfbreakpoint=false"))
                 ifMergePDF = false;
@@ -160,6 +164,10 @@ public class Variables {
 
     public static String getAuthorPassword() {
         return authorPassword;
+    }
+
+    public static boolean isIsMobileScaled(){
+        return isMobileScaled;
     }
 
 }

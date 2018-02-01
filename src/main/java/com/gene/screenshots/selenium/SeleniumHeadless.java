@@ -84,7 +84,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("disable-infobars");
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
-        options.addArguments("--force-device-scale-factor=1");
+        options.addArguments("--force-device-scale-factor=" + getMobileScaleFactor());
         options.addArguments("--hide-scrollbars");
         WebDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         if(credentialsRequired)
