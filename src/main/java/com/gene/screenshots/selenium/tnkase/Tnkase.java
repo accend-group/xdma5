@@ -27,8 +27,8 @@ public class Tnkase extends SeleniumHeadless {
     public List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = super.getLinksFromSiteMap(driver);
         // because sitemap doesn't have everything
-        links.add(getDomain().toString() + getSiteMapUrl());
-        links.add(getDomain().toString() + "/tnkase-search-results");
+        links.add(getSiteMapUrl());
+        links.add("/tnkase-search-results");
         links.remove("https://www.gene.com/contact-us");
         links.remove("https://www.tnkase.com/unsubscribe");
         return links;

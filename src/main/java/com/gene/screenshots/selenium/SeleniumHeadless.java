@@ -196,10 +196,6 @@ public abstract class SeleniumHeadless extends Screenshots {
         domain = url;
     }
 
-    public static BrandUrl getDomain() {
-        return domain;
-    }
-
     // redirect a partial url to the correct domain
     protected static void goToUrl(WebDriver driver, String partialUrl) {
         driver.get(domain.toString() + partialUrl + (credentialsRequired ? "?wcmmode=disabled" : ""));
