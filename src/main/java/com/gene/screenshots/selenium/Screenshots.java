@@ -406,7 +406,11 @@ public abstract class Screenshots {
         List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs--accordiontype .gene-component--accordionTabs__item .gene-component--accordionTabs__header, .panel-heading"));
         for (int i = 0; i < tabs.size(); i++) {
             scrollTo(driver, 0, tabs.get(i).getLocation().getY());
-            tabs.get(i).click();
+            try {
+                tabs.get(i).click();
+            }catch (Exception e){
+                forceClick(driver, tabs.get(i));
+            }
             waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
             scrollTo(driver, 0, 0); // scroll to the top to avoid the natural scrolling coming from the component and to force the recalculation of the height of the page.
             try {
@@ -417,7 +421,11 @@ public abstract class Screenshots {
             } 
             String screenshotName = prefixName +"-accordion" + Integer.toString(i + 1);
             full(driver, isDesktop, savePath, screenshotName);
-            tabs.get(i).click(); //collapse the current one
+            try {
+                tabs.get(i).click(); //collapse the current one
+            }catch (Exception e){
+                forceClick(driver, tabs.get(i));
+            }
             waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
         }
     }
