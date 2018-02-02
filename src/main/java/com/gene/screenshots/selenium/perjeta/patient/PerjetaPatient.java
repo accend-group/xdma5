@@ -59,7 +59,7 @@ public class PerjetaPatient extends SeleniumHeadless {
 			
 			driver.findElement(By.name("fname")).sendKeys("marwin");
 			driver.findElement(By.name("lname")).sendKeys("nicolas");
-			driver.findElement(By.name("to-email-address")).sendKeys("marwin@accendgroup.com");
+			driver.findElement(By.name("to-email-address")).sendKeys("test@gene.com");
 			driver.findElement(By.xpath("/html/body/section[2]/div[3]/div/div/form/div/div[3]/input")).click();
 			Thread.sleep(1000);
 			visible(driver, true, savePath, "patient-modal-share-submit");*/
@@ -221,18 +221,18 @@ public class PerjetaPatient extends SeleniumHeadless {
 			Thread.sleep(1000);
 			full(driver, true, savePath, "patient-4.3-metastatic");
 
-			driver.findElement(By.name("first-name")).sendKeys("marwin");
-			driver.findElement(By.name("last-name")).sendKeys("nicolas");
-			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-			driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
+			driver.findElement(By.name("first-name")).sendKeys("Test");
+			driver.findElement(By.name("last-name")).sendKeys("Test");
+			driver.findElement(By.name("email-address")).sendKeys("test@gene.com");
+			driver.findElement(By.name("confirm_email-address")).sendKeys("test@gene.com");
 			driver.findElement(By.name("address-line-1")).sendKeys("CA");
 			driver.findElement(By.name("address-line-2")).sendKeys("CA");
 			driver.findElement(By.name("city")).sendKeys("CA");
 			driver.findElement(By.cssSelector(".gene-component--dropdown__select [data-field='state']")).click();
 			Thread.sleep(1000);
 			driver.findElement(By.cssSelector("[data-value='AK']")).click();
-			driver.findElement(By.name("zip-code-base")).sendKeys("95126");
-			driver.findElement(By.name("primary-phone-number")).sendKeys("4084069201");
+			driver.findElement(By.name("zip-code-base")).sendKeys("99999");
+			driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
 			driver.findElement(By.name("verify-age")).click();
 			driver.findElement(By.className("submit")).click();
 			Thread.sleep(1000);
@@ -429,18 +429,18 @@ public class PerjetaPatient extends SeleniumHeadless {
 			Thread.sleep(1000);
 			full(driver, false, savePath, "patient-4.3-metastatic");
 
-			driver.findElement(By.name("first-name")).sendKeys("marwin");
-			driver.findElement(By.name("last-name")).sendKeys("nicolas");
-			driver.findElement(By.name("email-address")).sendKeys("marwin@accendgroup.com");
-			driver.findElement(By.name("confirm-email-address")).sendKeys("marwin@accendgroup.com");
+			driver.findElement(By.name("first-name")).sendKeys("Test");
+			driver.findElement(By.name("last-name")).sendKeys("Test");
+			driver.findElement(By.name("email-address")).sendKeys("test@gene.com");
+			driver.findElement(By.name("confirm_email-address")).sendKeys("test@gene.com");
 			driver.findElement(By.name("address-line-1")).sendKeys("CA");
 			driver.findElement(By.name("address-line-2")).sendKeys("CA");
 			driver.findElement(By.name("city")).sendKeys("CA");
 			driver.findElement(By.cssSelector(".gene-component--dropdown__select [data-field='state']")).click();
 			Thread.sleep(1000);
 			driver.findElement(By.cssSelector("[data-value='AK']"));
-			driver.findElement(By.name("zip-code-base")).sendKeys("95126");
-			driver.findElement(By.name("primary-phone-number")).sendKeys("4084069201");
+			driver.findElement(By.name("zip-code-base")).sendKeys("99999");
+			driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
 			driver.findElement(By.name("verify-age")).click();
 			driver.findElement(By.className("submit")).click();
 			Thread.sleep(1000);
