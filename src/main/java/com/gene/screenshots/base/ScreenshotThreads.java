@@ -5,12 +5,8 @@ import com.gene.screenshots.selenium.SeleniumHeadless;
 import com.google.common.collect.Lists;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Semaphore;
 
 // creates 2 thread lists for capturing screenshots and generate pdfs
 public abstract class ScreenshotThreads {
@@ -73,6 +69,17 @@ public abstract class ScreenshotThreads {
         pdfThreads.add(pdfThread);
     }
 
+    //http://www.davekoelle.com/files/AlphanumComparator.java
+   /*public static class ImageNameComparator implements Comparator<String> {
+        @Override
+        public int compare(String a, String b){
+            //a = a.replace(savePath, "").toLowerCase().replace("-", "").replace("_", "");
+            //b = b.replace(savePath, "").toLowerCase().replace("-", "").replace("_", "");
+
+            //return naturalComparator(b);//a.compareTo(b);
+        }
+    }*/
+
     private static void createPDFS(SeleniumHeadless test, String pdfName){
 
         if (savePath == null)
@@ -85,15 +92,19 @@ public abstract class ScreenshotThreads {
                 imageNames.addAll(test.getDesktopScreenshots());
             if(test.getMobileScreenshots() != null)
                 imageNames.addAll(test.getMobileScreenshots());
-            Collections.sort(imageNames);
+            Collections.sort(imageNames, new AlphanumComparator());
             makePDF(new PDFMaker(), imageNames, pdfName);
         } else {
-            List<String> desktopImages = Lists.newArrayList(test.getDesktopScreenshots());
-            List<String> mobileImages = Lists.newArrayList(test.getMobileScreenshots());
-            Collections.sort(desktopImages);
-            Collections.sort(mobileImages);
-            makePDF(new PDFMaker(), desktopImages, "desktop_" + pdfName);
-            makePDF(new PDFMaker(), mobileImages, "mobile_" + pdfName);
+            if(test.getDesktopScreenshots() != null) {
+                List<String> desktopImages = Lists.newArrayList(test.getDesktopScreenshots());
+                Collections.sort(desktopImages, new AlphanumComparator());
+                makePDF(new PDFMaker(), desktopImages, "desktop_" + pdfName);
+            }
+            if(test.getMobileScreenshots() != null) {
+                List<String> mobileImages = Lists.newArrayList(test.getMobileScreenshots());
+                Collections.sort(mobileImages, new AlphanumComparator());
+                makePDF(new PDFMaker(), mobileImages, "mobile_" + pdfName);
+            }
         }
     }
 
