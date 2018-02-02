@@ -24,8 +24,8 @@ public class PerjetaHCP extends SeleniumHeadless {
     public List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = super.getLinksFromSiteMap(driver);
         // because sitemap doesn't have everything
-        links.add(getDomain().toString() + "/hcp/breast-cancer/isi.html");
-        links.add(getDomain().toString() + "/hcp/site-map.html");
+        links.add("/hcp/breast-cancer/isi.html");
+        links.add("/hcp/site-map.html");
         return links;
     }
 

@@ -23,8 +23,8 @@ public class PerjetaPatient extends SeleniumHeadless {
     public List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = super.getLinksFromSiteMap(driver);
         // because sitemap doesn't have everything
-        links.add(getDomain().toString() + "/patient/breast-cancer/safety.html");
-        links.add(getDomain().toString() + "/patient/site-map.html");
+        links.add("/patient/breast-cancer/safety.html");
+        links.add("/patient/site-map.html");
         return links;
     }
 

@@ -24,13 +24,13 @@ public class Her2treatment extends SeleniumHeadless{
     public List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = super.getLinksFromSiteMap(driver);
         // because sitemap doesn't have everything
-        links.add(getDomain().toString() + "/safety.html");
-        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/herceptin/safety.html");
-        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/perjeta/safety.html");
-        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
-        links.add(getDomain().toString() + "/breast-cancer-nurse-resources/safety.html");
-        links.add(getDomain().toString() + getSiteMapUrl());
-        links.add(getDomain().toString() + "/errorpage.html");
+        links.add("/safety.html");
+        links.add("/her2-positive-breast-cancer-treatments/herceptin/safety.html");
+        links.add("/her2-positive-breast-cancer-treatments/perjeta/safety.html");
+        links.add("/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
+        links.add("/breast-cancer-nurse-resources/safety.html");
+        links.add(getSiteMapUrl());
+        links.add("/errorpage.html");
         return links;
     }
 
