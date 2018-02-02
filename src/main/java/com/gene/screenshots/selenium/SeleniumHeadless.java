@@ -100,7 +100,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         return driver;
     }
     
-    private List<Thread> createScreenCaptureThreads(String savePath, boolean isDesktop){
+    public List<Thread> createScreenCaptureThreads(String savePath, boolean isDesktop){
         List<String> links = new LinkedList<String>();
         List<Thread> threads = new LinkedList<Thread>();
         WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
