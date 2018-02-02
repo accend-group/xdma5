@@ -234,6 +234,27 @@ public abstract class SeleniumHeadless extends Screenshots {
         return links;
     }
 
+    protected static void setStyle(WebDriver driver, String propertyValuePair, WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1]);", element, propertyValuePair);
+    }
+
+    protected static void setStyle(WebDriver driver, String propertyValuePair, String cssString) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1]);", driver.findElement(By.cssSelector(cssString)), propertyValuePair);
+    }
+
+    protected static void setClass(WebDriver driver, String classString, String cssString){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', arguments[1]);", driver.findElement(By.cssSelector(cssString)), classString);
+    }
+
+    protected static void setClass(WebDriver driver, String classString, WebElement element){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', arguments[1]);", element, classString);
+    }
+
+    protected static List<Object> getChildrenElements(WebDriver driver, WebElement parent) {
+        return (List<Object>) ((JavascriptExecutor) driver).executeScript("return arguments[0].childNodes;", parent);
+    }
+
+
     public void setPdfName(String name){
         pdfName = name;
     }

@@ -353,6 +353,12 @@ public abstract class Screenshots {
             mobileScaleFactor = 2;
     }
 
+    protected void waitForElementVisible(WebDriver driver, String cssString) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector(cssString))));
+    }
+
     public void waitForElementVisible(WebDriver driver, WebElement e) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(e));
