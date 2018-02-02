@@ -1,18 +1,18 @@
 package com.gene.screenshots.base;
 
-import com.gene.screenshots.Variables;
 import com.gene.screenshots.pdf.PDFMaker;
 import com.gene.screenshots.selenium.SeleniumHeadless;
+import com.google.common.collect.Lists;
 
-import java.io.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 
-// creates 2 thread lists for ScreenshotsAutomation
-// 1 is for screenshots and the second is for creating pdfs
-// Each Job is required to use SeleniumHeadless classes as the methods use SeleninumHeadless
-
+// creates 2 thread lists for capturing screenshots and generate pdfs
 public abstract class ScreenshotThreads {
 
     protected static String savePath = null;
@@ -25,62 +25,46 @@ public abstract class ScreenshotThreads {
         ScreenshotThreads.pdfSavePath = pdfPath;
     }
 
-    public static void setSemaphore(Semaphore limit){
-        threadLock = limit;
-    }
-    private static Semaphore threadLock;
 
-
-    public List<Thread> getScreenshotThreads() {
+    public ConcurrentLinkedQueue<Thread> getScreenshotThreads() {
         return screenshotThreads;
     }
-    public List<Thread> getPdfThreads() {
+    public ConcurrentLinkedQueue<Thread> getPdfThreads() {
         return pdfThreads;
     }
 
-    private List<Thread> screenshotThreads = new LinkedList<>();
-    private  List<Thread> pdfThreads = new LinkedList<>();
+    // multiple scripts may be adding their own threads
+    private ConcurrentLinkedQueue<Thread> screenshotThreads = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<Thread> pdfThreads = new ConcurrentLinkedQueue<>();
 
 
     // mobile, desktop, and pdf threads created
     public void createThreads(SeleniumHeadless test) {
 
-        String screenshotScriptName = test.getClass().getSimpleName();
-        Thread[] deskMobThreads = new Thread[]{
-                new Thread(() -> {
-                    try {
-                        threadLock.acquire();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println(screenshotScriptName + " mobile screenshot automation started!");
-                    test.mobileAutomationTest(savePath + "/mobile/" + screenshotScriptName);
-                    threadLock.release();
-                }),
-                new Thread(() -> {
-                    try {
-                        threadLock.acquire();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println(screenshotScriptName + " desktop screenshot automation started!");
-                    test.desktopAutomationTest(savePath + "/desktop/" + screenshotScriptName);
-                    threadLock.release();
-                })
-        };
-        deskMobThreads[0].setDaemon(true);
-        deskMobThreads[1].setDaemon(true);
-        screenshotThreads.add(deskMobThreads[0]);
-        screenshotThreads.add(deskMobThreads[1]);
+        String screenshotScriptName = test.getPdfName();
+        List<Thread> currentThreadsFromTest = new LinkedList<Thread>();
+        List<Thread> desktopThreads = test.desktopAutomationTest(savePath + "/desktop/" + screenshotScriptName);
+        List<Thread> mobileThreads = test.mobileAutomationTest(savePath + "/mobile/" + screenshotScriptName);
+        if(desktopThreads != null)
+            currentThreadsFromTest.addAll(desktopThreads);
+        if(mobileThreads != null)
+            currentThreadsFromTest.addAll(mobileThreads);
+
+        currentThreadsFromTest.iterator().forEachRemaining(x -> { x.setDaemon(true); });
+
+        screenshotThreads.addAll(currentThreadsFromTest);
 
         Thread pdfThread = new Thread(() -> {
             try {
-                // wait for the threads to finish to read in the log file
-                deskMobThreads[0].join();
-                deskMobThreads[1].join();
-                //threadLock.acquire();
+                // wait for the test's threads to finish in order to read in the images
+                currentThreadsFromTest.iterator().forEachRemaining(x -> {
+                    try {
+                        x.join();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
                 createPDFS(test, screenshotScriptName);
-                //threadLock.release();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -96,17 +80,24 @@ public abstract class ScreenshotThreads {
 
         if(SeleniumHeadless.isIfSinglePDF()) {
             // append mobile screenshots to desktop screenshots for 1 pdf
-            LinkedList<String> imageNames = test.getDesktopScreenshots();
-            imageNames.addAll(test.getMobileScreenshots());
-
+            List<String> imageNames = Lists.newArrayList();
+            if(test.getDesktopScreenshots() != null)
+                imageNames.addAll(test.getDesktopScreenshots());
+            if(test.getMobileScreenshots() != null)
+                imageNames.addAll(test.getMobileScreenshots());
+            Collections.sort(imageNames);
             makePDF(new PDFMaker(), imageNames, pdfName);
         } else {
-            makePDF(new PDFMaker(), test.getDesktopScreenshots(), "desktop_" + pdfName);
-            makePDF(new PDFMaker(), test.getMobileScreenshots(), "mobile_" + pdfName);
+            List<String> desktopImages = Lists.newArrayList(test.getDesktopScreenshots());
+            List<String> mobileImages = Lists.newArrayList(test.getMobileScreenshots());
+            Collections.sort(desktopImages);
+            Collections.sort(mobileImages);
+            makePDF(new PDFMaker(), desktopImages, "desktop_" + pdfName);
+            makePDF(new PDFMaker(), mobileImages, "mobile_" + pdfName);
         }
     }
 
-    private static void makePDF(PDFMaker pdf,List<String> imagePaths, String pdfName){
+    private static void makePDF(PDFMaker pdf, List<String> imagePaths, String pdfName){
         if(imagePaths.size() == 0)
             return;
         try {

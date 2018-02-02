@@ -1,5 +1,6 @@
 package com.gene.screenshots.selenium.perjeta.main;
 
+import com.gene.screenshots.selenium.ChromeDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -7,33 +8,33 @@ import org.openqa.selenium.WebElement;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
-public class PerjetaMain extends SeleniumHeadless {
-    @Override
-    public void desktopAutomationTest(String savePath) {
-        WebDriver driver = makeDesktopDriver();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+import java.util.LinkedList;
+import java.util.List;
 
-        try {
-            getScreenshots(driver, js, savePath, true);
-        } finally {
-            driver.close();
-            driver.quit();
-        }
+public class PerjetaMain extends SeleniumHeadless {
+
+    private List<Thread> createThreads(String savePath, boolean isDesktop){
+        List<Thread> thread = new LinkedList<>();
+        thread.add(new Thread( ()-> {
+            WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            try {
+                getScreenshots(driver, js, savePath, isDesktop);
+            } finally {
+                ChromeDriverManager.releaseDriver(driver, isDesktop);
+            }
+        }));
+        return thread;
     }
 
     @Override
-    public void mobileAutomationTest(String savePath) {
-        WebDriver driver = makeMobileDriver();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+    public List<Thread> desktopAutomationTest(String savePath) {
+        return createThreads(savePath, true);
+    }
 
-        try {
-            getScreenshots(driver, js, savePath, false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            driver.close();
-            driver.quit();
-        }
+    @Override
+    public List<Thread> mobileAutomationTest(String savePath) {
+        return createThreads(savePath, false);
     }
 
     private void getScreenshots(WebDriver driver, JavascriptExecutor js, String savePath, boolean isDesktop) {

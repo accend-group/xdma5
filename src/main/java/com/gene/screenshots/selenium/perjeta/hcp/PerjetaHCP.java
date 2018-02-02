@@ -29,10 +29,7 @@ public class PerjetaHCP extends SeleniumHeadless {
         return links;
     }
 
-    @Override
-    public void desktopAutomationTest(String savePath) {
-        super.desktopAutomationTest(savePath);
-    }
+
 
     @Override
     public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
@@ -102,8 +99,5 @@ public class PerjetaHCP extends SeleniumHeadless {
         }
     }
 
-    @Override
-    public void mobileAutomationTest(String savePath) {
-        super.mobileAutomationTest(savePath);
-    }
+
 }

@@ -9,6 +9,7 @@ import com.gene.screenshots.base.ScreenshotThreads;
 import com.gene.screenshots.base.annotations.Environment;
 import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.base.ScreenshotJob;
+import com.gene.screenshots.selenium.ChromeDriverManager;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import com.google.errorprone.annotations.Var;
 import org.reflections.Configuration;
@@ -21,6 +22,7 @@ import org.reflections.util.FilterBuilder;
 import java.io.*;
 import java.lang.annotation.Annotation;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 
 import static com.gene.screenshots.EnvironmentType.*;
@@ -32,12 +34,15 @@ import static com.gene.screenshots.EnvironmentType.*;
 
 public class ScreenshotsAutomation {
 
-    private static final int THREAD_LIMIT = 2;
+
 
     public static void main(String[] args) throws InterruptedException {
 
         System.out.println("Reading Jenkins parameters!");
         Variables.main(args);
+        final int THREAD_LIMIT = Variables.getThreadLimit();
+
+        System.out.println("Thread limit: " + THREAD_LIMIT);
 
         SeleniumHeadless.setMobileScaleFactor(Variables.isIsMobileScaled());
         System.out.println("Mobile screenshots are " + (Variables.isIsMobileScaled() ? "scaled" : "not scaled"));
@@ -55,8 +60,6 @@ public class ScreenshotsAutomation {
 
         // if author are credentials needed
         SeleniumHeadless.isCredentialsRequired(Variables.isCredentialsRequired());
-
-        ScreenshotThreads.setSemaphore(new Semaphore(THREAD_LIMIT, true));
 
         // search project path for classes with @Job
         Reflections reflections = Reflections.collect();
@@ -100,12 +103,14 @@ public class ScreenshotsAutomation {
             System.exit(1);
         }
 
+        new ChromeDriverManager(THREAD_LIMIT);
+
         // create worker threads that generate the pdf results
         screenshotJob.createResult();
 
         // get threads
-        final List<Thread> screenshotThreads = screenshotJob.getScreenshotThreads();
-        final List<Thread> pdfThreads = screenshotJob.getPdfThreads();
+        final ConcurrentLinkedQueue<Thread> screenshotThreads = screenshotJob.getScreenshotThreads();
+        final ConcurrentLinkedQueue<Thread> pdfThreads = screenshotJob.getPdfThreads();
 
         // concurrent run, run all threads by appending pdf threads to screenshot threads
         screenshotThreads.addAll(pdfThreads);
@@ -114,6 +119,9 @@ public class ScreenshotsAutomation {
         // wait for pdfs to be completed
         for (Thread thread : pdfThreads)
             thread.join();
+
+        // quit all mobile and desktop chrome drivers
+        ChromeDriverManager.killAll();
 
         if(Variables.getBucketName() != null && Variables.getAwsSecretKey() != null && Variables.getAwsAccessKey() != null){
             System.out.println("Connecting to S3...");

@@ -1,13 +1,17 @@
 package com.gene.screenshots.selenium.her2treatment;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import com.gene.screenshots.selenium.ChromeDriverManager;
+import groovy.json.internal.Chr;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Her2treatment extends SeleniumHeadless{
     @Override
@@ -24,45 +28,59 @@ public class Her2treatment extends SeleniumHeadless{
     public List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = super.getLinksFromSiteMap(driver);
         // because sitemap doesn't have everything
-        links.add(getDomain().toString() + "/safety.html");
-        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/herceptin/safety.html");
-        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/perjeta/safety.html");
-        links.add(getDomain().toString() + "/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
-        links.add(getDomain().toString() + "/breast-cancer-nurse-resources/safety.html");
-        links.add(getDomain().toString() + getSiteMapUrl());
-        links.add(getDomain().toString() + "/errorpage.html");
+        links.add("/safety.html");
+        links.add("/her2-positive-breast-cancer-treatments/herceptin/safety.html");
+        links.add("/her2-positive-breast-cancer-treatments/perjeta/safety.html");
+        links.add("/her2-positive-breast-cancer-treatments/kadcyla/safety.html");
+        links.add("/breast-cancer-nurse-resources/safety.html");
+        links.add(getSiteMapUrl());
+        links.add("/errorpage.html");
         return links;
     }
 
     @Override
-    public void desktopAutomationTest(String savePath) {
-        WebDriver driver = makeDesktopDriver();
+    public List<Thread> desktopAutomationTest(String savePath) {
 
+        List<Thread> desktopTheads = new LinkedList<>();
+        List<String> links = new LinkedList<>();
+
+        WebDriver driver = ChromeDriverManager.requestDesktopDriver();
         try {
-            List<String> links = getLinksFromSiteMap(driver);
-            //--->start full page screenshot <---//
-            for (int i = 0; i < links.size(); i++) {
-                goToUrl(driver, links.get(i));
-                if (driver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
-                    getScreenshotForSafetyTabs(driver, savePath, Integer.toString(i), true);
-                    driver.navigate().refresh();
-                    waitForPageLoad(driver);
-                    getScreenshotForThirdPartyModal(driver, savePath, true);
-                    getScreenshotForHCPModal(driver, savePath, true);
-                    getScreenshotForShareModal(driver, savePath);
-                } else {
-                    if (driver.findElements(By.cssSelector(".brand-page")).size() > 0 && !driver.getCurrentUrl().endsWith("safety.html")) {
-                        visible(driver, true, savePath, Integer.toString(i) + "-visible");
-                    }
-                    full(driver, true, savePath, Integer.toString(i));
-                    getScreenshotForDownloadsFilter(driver, savePath, true);
-                    getScreenshotForSchemaForm(driver, savePath, true);
-                }
-            }
-        } finally {
-            driver.close();
-            driver.quit();
+            links = getLinksFromSiteMap(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        ChromeDriverManager.releaseDesktopDriver(driver);
+
+        int pageNumber = 1;
+        for (String link : links) {
+            final int currentPageNumber = pageNumber++;
+            desktopTheads.add(new Thread( ()-> {
+                WebDriver threadDriver = ChromeDriverManager.requestDesktopDriver();
+                try {
+                    goToUrl(threadDriver, link);
+                    if (threadDriver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
+                        getScreenshotForSafetyTabs(threadDriver, savePath, Integer.toString(currentPageNumber), true);
+                        threadDriver.navigate().refresh();
+                        waitForPageLoad(threadDriver);
+                        getScreenshotForThirdPartyModal(threadDriver, savePath, true);
+                        getScreenshotForHCPModal(threadDriver, savePath, true);
+                        getScreenshotForShareModal(threadDriver, savePath);
+                    } else {
+                        if (threadDriver.findElements(By.cssSelector(".brand-page")).size() > 0 && !threadDriver.getCurrentUrl().endsWith("safety.html")) {
+                            visible(threadDriver, true, savePath, Integer.toString(currentPageNumber) + "-visible");
+                        }
+                        full(threadDriver, true, savePath, Integer.toString(currentPageNumber));
+                        getScreenshotForDownloadsFilter(threadDriver, savePath, true);
+                        getScreenshotForSchemaForm(threadDriver, savePath, true);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                ChromeDriverManager.releaseDesktopDriver(threadDriver);
+            }));
+        }
+        return desktopTheads;
 	}
 
     @Override
@@ -135,33 +153,47 @@ public class Her2treatment extends SeleniumHeadless{
     }
 
     @Override
-    public void mobileAutomationTest(String savePath) {
-        WebDriver driver = makeMobileDriver();
+    public List<Thread> mobileAutomationTest(String savePath) {
+        List<Thread> mobileTheads = new LinkedList<>();
+        List<String> links = new LinkedList<>();
+
+        WebDriver driver = ChromeDriverManager.requestMobileDriver();
         try {
-            List<String> links = getLinksFromSiteMap(driver);
-            //--->start full page screenshot <---//
-            for (int i = 0; i < links.size(); i++) {
-                goToUrl(driver, links.get(i));
-                if (driver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
-                    visible(driver, false, savePath, Integer.toString(i));
-                    getScreenshotForMobileNavigation(driver, savePath);
-                    getScreenshotForHCPModal(driver, savePath, false);
-                    getScreenshotForThirdPartyModal(driver, savePath, false);
-                    getScreenshotForSafetyTabs(driver, savePath, Integer.toString(i), false);
-                    driver.navigate().refresh();
-                    waitForPageLoad(driver);
-                } else {
-                    if (driver.findElements(By.cssSelector(".brand-page")).size() > 0) {
-                        visible(driver, false, savePath, Integer.toString(i) + "-visible");
-                    }
-                    full(driver, false, savePath, Integer.toString(i));
-                    getScreenshotForDownloadsFilter(driver, savePath, false);
-                    getScreenshotForSchemaForm(driver, savePath, false);
-                }
-            }
-        } finally {
-            driver.close();
-            driver.quit();
+            links = getLinksFromSiteMap(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-	}
+        ChromeDriverManager.releaseMobileDriver(driver);
+        int pageNumber = 1;
+        for (String link : links) {
+            final int currentPageNumber = pageNumber++;
+            mobileTheads.add(new Thread( ()-> {
+                WebDriver threadDriver = ChromeDriverManager.requestMobileDriver();
+                try {
+                    goToUrl(threadDriver, link);
+                    if (threadDriver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
+                        visible(threadDriver, false, savePath, Integer.toString(currentPageNumber));
+                        getScreenshotForMobileNavigation(threadDriver, savePath);
+                        getScreenshotForHCPModal(threadDriver, savePath, false);
+                        getScreenshotForThirdPartyModal(threadDriver, savePath, false);
+                        getScreenshotForSafetyTabs(threadDriver, savePath, Integer.toString(currentPageNumber), false);
+                        threadDriver.navigate().refresh();
+                        waitForPageLoad(threadDriver);
+                    } else {
+                        if (threadDriver.findElements(By.cssSelector(".brand-page")).size() > 0) {
+                            visible(threadDriver, false, savePath, Integer.toString(currentPageNumber) + "-visible");
+                        }
+                        full(threadDriver, false, savePath, Integer.toString(currentPageNumber));
+                        getScreenshotForDownloadsFilter(threadDriver, savePath, false);
+                        getScreenshotForSchemaForm(threadDriver, savePath, false);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                ChromeDriverManager.releaseMobileDriver(threadDriver);
+
+            }));
+        }
+        return mobileTheads;
+    }
 }

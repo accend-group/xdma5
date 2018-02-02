@@ -1,7 +1,10 @@
 package com.gene.screenshots.selenium.tnkase;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import com.gene.screenshots.selenium.ChromeDriverManager;
+import groovy.json.internal.Chr;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,26 +35,40 @@ public class Tnkase extends SeleniumHeadless {
     }
 
     @Override
-    public void desktopAutomationTest(String savePath) {
-        WebDriver driver = makeDesktopDriver();
-	
+    public List<Thread> desktopAutomationTest(String savePath) {
+
+        List<Thread> desktopThreads = new LinkedList<Thread>();
+        List<String> links = new LinkedList<String>();
+        WebDriver driver = ChromeDriverManager.requestDriver(true);
+
         try {
-            List<String> links = getLinksFromSiteMap(driver);
-            Actions actions = new Actions(driver);
-            //--->start full page screenshot <---//
-            for (int i = 0; i < links.size(); i++) {
-                goToUrl(driver, links.get(i));
-                if (driver.getCurrentUrl().endsWith("/") || driver.getCurrentUrl().endsWith("/index.jsp")) {
-                    visible(driver, true, savePath, Integer.toString(i) + "-visible");
-                    getScreenshotForDesktopNavigation(driver, actions, savePath);
-                }
-                full(driver, true, savePath, Integer.toString(i));
-                getScreenshotForSchemaForm(driver, savePath, true);
-            }
-        } finally {
-            driver.close();
-            driver.quit();
+            links = getLinksFromSiteMap(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        ChromeDriverManager.releaseDriver(driver, true);
+
+        int pageNumber = 1;
+        for (String link : links) {
+            final int currentPageNumber = pageNumber++;
+            desktopThreads.add(new Thread(() -> {
+                WebDriver threadDriver = ChromeDriverManager.requestDesktopDriver();
+                try {
+                    Actions actions = new Actions(threadDriver);
+                    goToUrl(threadDriver, link);
+                    if (threadDriver.getCurrentUrl().endsWith("/") || threadDriver.getCurrentUrl().endsWith("/index.jsp")) {
+                        visible(threadDriver, true, savePath, Integer.toString(currentPageNumber) + "-visible");
+                        getScreenshotForDesktopNavigation(threadDriver, actions, savePath);
+                    }
+                    full(threadDriver, true, savePath, Integer.toString(currentPageNumber));
+                    getScreenshotForSchemaForm(threadDriver, savePath, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                ChromeDriverManager.releaseDesktopDriver(threadDriver);
+            }));
+        }
+        return desktopThreads;
     }
 
     @Override
@@ -95,7 +112,9 @@ public class Tnkase extends SeleniumHeadless {
     }
 
     @Override
-    public void mobileAutomationTest(String savePath) {
+    public List<Thread> mobileAutomationTest(String savePath) {
         // do nothing
+        return null;
     }
+
 }

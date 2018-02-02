@@ -18,10 +18,7 @@ public class KadcylaHCP extends SeleniumHeadless {
         return ".gene-component--sitemap__item--hcp .gene-component--sitemap__link";
     }
 
-    @Override
-    public void desktopAutomationTest(String savePath) {
-        super.desktopAutomationTest(savePath);
-    }
+
 
     @Override
     public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
@@ -89,8 +86,5 @@ public class KadcylaHCP extends SeleniumHeadless {
         }
     }
 
-    @Override
-    public void mobileAutomationTest(String savePath) {
-        super.mobileAutomationTest(savePath);
-    }
+
 }

@@ -135,8 +135,12 @@ public abstract class Screenshots {
 
     protected int getDocHeight(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        long result = (Long) jse.executeScript("return document.body.scrollHeight");
+        long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
         return toIntExact(result);
+        /*//Object value = jse.executeScript("return document.body.getBoundingClientRect().height");//document.body.scrollHeight");
+        if(value instanceof Double)
+            return (int) Math.ceil((Double) value);
+        return toIntExact((Long) value);*/
     }
 
     protected int getCurrentScrollX(WebDriver driver) {
@@ -351,8 +355,7 @@ public abstract class Screenshots {
 
     public void waitForElementVisible(WebDriver driver, WebElement e) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(
-                ExpectedConditions.visibilityOf(e));
+        wait.until(ExpectedConditions.visibilityOf(e));
     }
 
     public void waitForElementNotVisible(WebDriver driver, WebElement e) {

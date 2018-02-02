@@ -27,6 +27,7 @@ public class Variables {
         return arg.contains(param) && arg.indexOf(param) == 0;
     }
 
+    private static int threadLimit = 2;
     private static boolean isMobileScaled = false;
 
     private static String authorUsername = null;
@@ -41,6 +42,9 @@ public class Variables {
     public static void main(String[] args) {
 
         for (String arg : args) {
+
+            if(validArgument("threadlimit=", arg))
+                threadLimit = Integer.parseInt(arg.substring(12, arg.length()));
 
             if(arg.equals("mobile-scaled=true"))
                 isMobileScaled = true;
@@ -163,6 +167,10 @@ public class Variables {
 
     public static boolean isIsMobileScaled(){
         return isMobileScaled;
+    }
+
+    public static int getThreadLimit(){
+        return threadLimit;
     }
 
 }

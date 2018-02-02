@@ -1,6 +1,7 @@
 package com.gene.screenshots.selenium;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.LogManager;
 
@@ -30,6 +31,8 @@ import com.gene.screenshots.authentication.AuthorCredentials;
  */
 
 public abstract class SeleniumHeadless extends Screenshots {
+
+    protected String pdfName = this.getClass().getSimpleName();
 
     protected static BrandUrl domain;
 
@@ -96,60 +99,57 @@ public abstract class SeleniumHeadless extends Screenshots {
             authenticate(driver);
         return driver;
     }
-
-    public void desktopAutomationTest(String savePath) {
-        WebDriver driver = makeDesktopDriver();
+    
+    private List<Thread> createScreenCaptureThreads(String savePath, boolean isDesktop){
+        List<String> links = new LinkedList<String>();
+        List<Thread> threads = new LinkedList<Thread>();
+        WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
         try {
-            Actions action = new Actions(driver);
-            List<String> links = getLinksFromSiteMap(driver);
-            //--->start full page screenshot <---//
-            for (int i = 0; i < links.size(); i++) {
-                goToUrl(driver, links.get(i));
-                if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
-                    visible(driver, true, savePath, Integer.toString(i) + "-visible");
-                    getScreenshotForDesktopNavigation(driver, action, savePath);
-                    getScreenshotForShareModal(driver, savePath);
-                    getScreenshotForThirdPartyModal(driver, savePath, true);
-                    getScreenshotForHCPModal(driver, savePath, true);
-                }
-                full(driver, true, savePath, Integer.toString(i));
-                getScreenshotForPAT(driver, savePath, action,true);
-                getScreenshotForCarousels(driver, Integer.toString(i), savePath, true);
-                getScreenshotForTabs(driver, Integer.toString(i), savePath, true);
-                getScreenshotForAccordion(driver, Integer.toString(i), savePath, true);
-                getScreenshotForSchemaForm(driver, savePath, true);
-            }
-        } finally {
-            driver.close();
-            driver.quit();
+            links = getLinksFromSiteMap(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        ChromeDriverManager.releaseDriver(driver, isDesktop);
+        int pageNumber = 1;
+        for (String link : links) {
+            final int currentPageNumber = pageNumber++;
+            threads.add(new Thread(() -> {
+                WebDriver threadDriver = ChromeDriverManager.requestDriver(isDesktop);
+                try {
+                    Actions action = new Actions(threadDriver);
+                    goToUrl(threadDriver, link);
+                    if (threadDriver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
+                        visible(threadDriver, isDesktop, savePath, Integer.toString(currentPageNumber) + "-visible");
+                        if(isDesktop)
+                            getScreenshotForDesktopNavigation(threadDriver, action, savePath);
+                        else
+                            getScreenshotForMobileNavigation(threadDriver, savePath);
+                        getScreenshotForShareModal(threadDriver, savePath);
+                        getScreenshotForThirdPartyModal(threadDriver, savePath, isDesktop);
+                        getScreenshotForHCPModal(threadDriver, savePath, isDesktop);
+                    }
+                    full(threadDriver, isDesktop, savePath, Integer.toString(currentPageNumber));
+                    getScreenshotForPAT(threadDriver, savePath, action, isDesktop);
+                    getScreenshotForCarousels(threadDriver, Integer.toString(currentPageNumber), savePath, isDesktop);
+                    getScreenshotForTabs(threadDriver, Integer.toString(currentPageNumber), savePath, isDesktop);
+                    getScreenshotForAccordion(threadDriver, Integer.toString(currentPageNumber), savePath, isDesktop);
+                    getScreenshotForSchemaForm(threadDriver, savePath, isDesktop);
+                } catch (Exception e) {
+                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile"));
+                    e.printStackTrace();
+                }
+                ChromeDriverManager.releaseDriver(threadDriver, isDesktop);
+            }));
+        }
+        return threads;
     }
 
-    public void mobileAutomationTest(String savePath) {
-        WebDriver driver = makeMobileDriver();
-        try {
-            Actions action = new Actions(driver);
-            List<String> links = getLinksFromSiteMap(driver);
-            //--->start full page screenshot <---//
-            for (int i = 0; i < links.size(); i++) {
-                goToUrl(driver, links.get(i));
-                if (driver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
-                    visible(driver, false, savePath, Integer.toString(i) + "-visible");
-                    getScreenshotForMobileNavigation(driver, savePath);
-                    getScreenshotForHCPModal(driver, savePath, false);
-                    getScreenshotForThirdPartyModal(driver, savePath, false);
-                }
-                full(driver, false, savePath, Integer.toString(i));
-                getScreenshotForPAT(driver, savePath, action, false);
-                getScreenshotForCarousels(driver, Integer.toString(i), savePath, false);
-                getScreenshotForTabs(driver, Integer.toString(i), savePath, false);
-                getScreenshotForAccordion(driver, Integer.toString(i), savePath, false);
-                getScreenshotForSchemaForm(driver, savePath, false);
-            }
-        } finally {
-            driver.close();
-            driver.quit();
-        }
+    public List<Thread> desktopAutomationTest(String savePath) {
+       return createScreenCaptureThreads(savePath, true);
+    }
+
+    public List<Thread> mobileAutomationTest(String savePath) {
+       return createScreenCaptureThreads(savePath, false);
     }
 
 
@@ -237,4 +237,13 @@ public abstract class SeleniumHeadless extends Screenshots {
         }
         return links;
     }
+
+    public void setPdfName(String name){
+        pdfName = name;
+    }
+    public String getPdfName(){
+        return pdfName;
+    }
+
+
 }
