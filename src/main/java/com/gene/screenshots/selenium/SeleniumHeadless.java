@@ -120,11 +120,13 @@ public abstract class SeleniumHeadless extends Screenshots {
                     goToUrl(threadDriver, link);
                     if (threadDriver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                         visible(threadDriver, isDesktop, savePath, Integer.toString(currentPageNumber) + "-visible");
-                        if(isDesktop)
+                        if(isDesktop) {
                             getScreenshotForDesktopNavigation(threadDriver, action, savePath);
-                        else
+                            getScreenshotForShareModal(threadDriver, savePath);
+                        }
+                        else {
                             getScreenshotForMobileNavigation(threadDriver, savePath);
-                        getScreenshotForShareModal(threadDriver, savePath);
+                        }
                         getScreenshotForThirdPartyModal(threadDriver, savePath, isDesktop);
                         getScreenshotForHCPModal(threadDriver, savePath, isDesktop);
                     }
