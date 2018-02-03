@@ -38,6 +38,7 @@ public class Her2treatment extends SeleniumHeadless{
         return links;
     }
 
+
     @Override
     public List<Thread> desktopAutomationTest(String savePath) {
 
@@ -75,6 +76,7 @@ public class Her2treatment extends SeleniumHeadless{
                         getScreenshotForSchemaForm(threadDriver, savePath, true);
                     }
                 }catch (Exception e){
+                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for desktop");
                     e.printStackTrace();
                 }
                 ChromeDriverManager.releaseDesktopDriver(threadDriver);
@@ -152,6 +154,7 @@ public class Her2treatment extends SeleniumHeadless{
         waitForPageLoad(driver);
     }
 
+
     @Override
     public List<Thread> mobileAutomationTest(String savePath) {
         List<Thread> mobileTheads = new LinkedList<>();
@@ -188,6 +191,7 @@ public class Her2treatment extends SeleniumHeadless{
                         getScreenshotForSchemaForm(threadDriver, savePath, false);
                     }
                 } catch (Exception e) {
+                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for mobile");
                     e.printStackTrace();
                 }
                 ChromeDriverManager.releaseMobileDriver(threadDriver);
