@@ -40,7 +40,7 @@ public class Her2treatment extends SeleniumHeadless{
 
 
     @Override
-    public List<Thread> desktopAutomationTest(String savePath) {
+    public List<Thread> desktopAutomationTest() {
 
         List<Thread> desktopTheads = new LinkedList<>();
         List<String> links = new LinkedList<>();
@@ -48,12 +48,13 @@ public class Her2treatment extends SeleniumHeadless{
         WebDriver driver = ChromeDriverManager.requestDesktopDriver();
         try {
             links = getLinksFromSiteMap(driver);
+            setNumberOfPageVisits(links.size(), true);
         } catch (Exception e) {
             e.printStackTrace();
         }
         ChromeDriverManager.releaseDesktopDriver(driver);
 
-        int pageNumber = 1;
+        int pageNumber = 0;
         for (String link : links) {
             final int currentPageNumber = pageNumber++;
             desktopTheads.add(new Thread( ()-> {
@@ -61,19 +62,19 @@ public class Her2treatment extends SeleniumHeadless{
                 try {
                     goToUrl(threadDriver, link);
                     if (threadDriver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
-                        getScreenshotForSafetyTabs(threadDriver, savePath, Integer.toString(currentPageNumber), true);
+                        getScreenshotForSafetyTabs(threadDriver, true, currentPageNumber);
                         threadDriver.navigate().refresh();
                         waitForPageLoad(threadDriver);
-                        getScreenshotForThirdPartyModal(threadDriver, savePath, true);
-                        getScreenshotForHCPModal(threadDriver, savePath, true);
-                        getScreenshotForShareModal(threadDriver, savePath);
+                        getScreenshotForThirdPartyModal(threadDriver, true, currentPageNumber);
+                        getScreenshotForHCPModal(threadDriver, true, currentPageNumber);
+                        getScreenshotForShareModal(threadDriver, currentPageNumber);
                     } else {
                         if (threadDriver.findElements(By.cssSelector(".brand-page")).size() > 0 && !threadDriver.getCurrentUrl().endsWith("safety.html")) {
-                            visible(threadDriver, true, savePath, Integer.toString(currentPageNumber) + "-visible");
+                            visible(threadDriver, true, currentPageNumber);
                         }
-                        full(threadDriver, true, savePath, Integer.toString(currentPageNumber));
-                        getScreenshotForDownloadsFilter(threadDriver, savePath, true);
-                        getScreenshotForSchemaForm(threadDriver, savePath, true);
+                        full(threadDriver, true, currentPageNumber);
+                        getScreenshotForDownloadsFilter(threadDriver, true, currentPageNumber);
+                        getScreenshotForSchemaForm(threadDriver, true, currentPageNumber);
                     }
                 }catch (Exception e){
                     System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for desktop");
@@ -86,15 +87,15 @@ public class Her2treatment extends SeleniumHeadless{
 	}
 
     @Override
-    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
+    public void getScreenshotForSchemaForm(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         if (driver.findElements(By.cssSelector("#riker-form")).size() > 0) {
             driver.findElement(By.cssSelector("#riker-form .submit")).click();
             waitForElementVisible(driver, driver.findElement(By.cssSelector("#riker-form .message")));
-            full(driver, isDesktop, savePath, "her2treatment-genentech-nurse-educator-error-msg");
+            full(driver, isDesktop, currentPageIndex);
         }
     }
 
-    private void getScreenshotForDownloadsFilter(WebDriver driver, String savePath, boolean isDesktop) {
+    private void getScreenshotForDownloadsFilter(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         if (driver.findElements(By.cssSelector(".forms-documents .dropdown")).size() > 0) {
             WebElement dropdownButton = driver.findElement(By.cssSelector(".forms-documents .dropdown button"));
             WebElement dropdownMenu = driver.findElement(By.cssSelector(".forms-documents .dropdown-menu"));
@@ -106,25 +107,25 @@ public class Her2treatment extends SeleniumHeadless{
                 dropdownButton.click();
                 waitForElementVisible(driver, dropdownMenu);
                 if (i == 0) {
-                    full(driver, isDesktop, savePath, "her2treatment-3.0-dropdown");
+                    full(driver, isDesktop, currentPageIndex);
                 }
                 indicationFilter.click();
                 String filter = indicationFilter.getAttribute("data-indication");
                 List<WebElement> indications = driver.findElements(By.cssSelector(".forms-documents-item[data-indication='" + filter +"']"));
                 waitForElementVisible(driver, indications.get(0));
-                full(driver, isDesktop, savePath, "her2treatment-3.0-dropdown-" + Integer.toString(i + 1));
+                full(driver, isDesktop, currentPageIndex);
                 for (int j = 0; j < indications.size(); j++) {
                     List<WebElement> moreInfo = indications.get(j).findElements(By.cssSelector(".more-info"));
                     if (moreInfo.size() > 0) {
                         // resizing the screen seems to turn off the popover. so we have to do the click after the screen is resized
-                        full(driver, isDesktop, savePath, "her2treatment-3.0-dropdown-" + Integer.toString(i + 1) +"-" + Integer.toString(j + 1), moreInfo.get(0), new Long(1000));
+                        full(driver, isDesktop, currentPageIndex, moreInfo.get(0), new Long(1000));
                     }
                 }
             }
         }
     }
 
-    private void getScreenshotForSafetyTabs(WebDriver driver, String savePath, String prefix, boolean isDesktop) {
+    private void getScreenshotForSafetyTabs(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         if (!isDesktop) {
             driver.findElement(By.cssSelector(".spotlight-link-active")).click(); // for mobile devices that has safety spotlights
         }
@@ -137,37 +138,39 @@ public class Her2treatment extends SeleniumHeadless{
                 waitForElementVisible(driver, driver.findElement(By.cssSelector(".tabbed-chart " + tabsHref)));
             }
             if (isDesktop) {
-                visible(driver, isDesktop, savePath, prefix + "-visible-" + Integer.toString(j));
+                visible(driver, isDesktop, currentPageIndex);
             }
             int currentYPos = getCurrentScrollY(driver);
             scrollTo(driver, 0, currentYPos + 1); // scrolling or resizing the window will forcibly get the new document height.
-            full(driver, isDesktop, savePath, prefix + "-full-" + Integer.toString(j));
+            full(driver, isDesktop, currentPageIndex);
             scrollTo(driver, 0, currentYPos);
         }
     }
 
     @Override
-    protected void getScreenshotForMobileNavigation(WebDriver driver, String savePath) {
+    protected void getScreenshotForMobileNavigation(WebDriver driver, int currentPageIndex) {
         driver.findElement(By.cssSelector(".navbar-toggle")).click();
-        visible(driver, false, savePath, "mobile-navigation");
+        visible(driver, false, currentPageIndex);
         driver.navigate().refresh();
         waitForPageLoad(driver);
     }
 
 
     @Override
-    public List<Thread> mobileAutomationTest(String savePath) {
+    public List<Thread> mobileAutomationTest() {
         List<Thread> mobileTheads = new LinkedList<>();
         List<String> links = new LinkedList<>();
 
         WebDriver driver = ChromeDriverManager.requestMobileDriver();
         try {
             links = getLinksFromSiteMap(driver);
+            setNumberOfPageVisits(links.size(), false);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         ChromeDriverManager.releaseMobileDriver(driver);
-        int pageNumber = 1;
+        int pageNumber = 0;
         for (String link : links) {
             final int currentPageNumber = pageNumber++;
             mobileTheads.add(new Thread( ()-> {
@@ -175,20 +178,20 @@ public class Her2treatment extends SeleniumHeadless{
                 try {
                     goToUrl(threadDriver, link);
                     if (threadDriver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
-                        visible(threadDriver, false, savePath, Integer.toString(currentPageNumber));
-                        getScreenshotForMobileNavigation(threadDriver, savePath);
-                        getScreenshotForHCPModal(threadDriver, savePath, false);
-                        getScreenshotForThirdPartyModal(threadDriver, savePath, false);
-                        getScreenshotForSafetyTabs(threadDriver, savePath, Integer.toString(currentPageNumber), false);
+                        visible(threadDriver, false, currentPageNumber);
+                        getScreenshotForMobileNavigation(threadDriver, currentPageNumber);
+                        getScreenshotForHCPModal(threadDriver, false, currentPageNumber);
+                        getScreenshotForThirdPartyModal(threadDriver, false, currentPageNumber);
+                        getScreenshotForSafetyTabs(threadDriver, false, currentPageNumber);
                         threadDriver.navigate().refresh();
                         waitForPageLoad(threadDriver);
                     } else {
                         if (threadDriver.findElements(By.cssSelector(".brand-page")).size() > 0) {
-                            visible(threadDriver, false, savePath, Integer.toString(currentPageNumber) + "-visible");
+                            visible(threadDriver, false, currentPageNumber);
                         }
-                        full(threadDriver, false, savePath, Integer.toString(currentPageNumber));
-                        getScreenshotForDownloadsFilter(threadDriver, savePath, false);
-                        getScreenshotForSchemaForm(threadDriver, savePath, false);
+                        full(threadDriver, false, currentPageNumber);
+                        getScreenshotForDownloadsFilter(threadDriver, false, currentPageNumber);
+                        getScreenshotForSchemaForm(threadDriver, false, currentPageNumber);
                     }
                 } catch (Exception e) {
                     System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for mobile");

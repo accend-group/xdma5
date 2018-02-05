@@ -20,7 +20,7 @@ public class KadcylaPatient extends SeleniumHeadless {
 
 
     @Override
-    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
+    public void getScreenshotForSchemaForm(WebDriver driver, boolean isDesktop, int pageIndex) {
         if (driver.findElements(By.cssSelector(".gene-template__main .riker")).size() > 0) {
             driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
             driver.findElement(By.name("last-name")).sendKeys("TestLastName");
@@ -37,7 +37,7 @@ public class KadcylaPatient extends SeleniumHeadless {
             driver.findElement(By.cssSelector(".riker .submit")).click();
 
             waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-template__container--form-thanks")));
-            full(driver, isDesktop, savePath, "kadcyla-3.3-submit");
+            full(driver, isDesktop, pageIndex);
         }
     }
 

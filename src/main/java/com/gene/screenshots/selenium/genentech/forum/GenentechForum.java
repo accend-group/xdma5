@@ -11,7 +11,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class GenentechForum extends SeleniumHeadless{
-    public List<Thread> desktopAutomationTest(String savePath) {
+
+    public List<Thread> desktopAutomationTest() {
+        setNumberOfPageVisits(1, true);
         List<Thread> desktopThread = new LinkedList<>();
         desktopThread.add(new Thread( ()-> {
             WebDriver driver = ChromeDriverManager.requestDesktopDriver();
@@ -19,83 +21,83 @@ public class GenentechForum extends SeleniumHeadless{
             try {
                 Actions action = new Actions(driver);
 
-                goToUrl(driver, "/");
-                visible(driver, true, savePath, "genetech-forum");
+                goToUrl(driver, ".html");
+                visible(driver, true, 0);
 
                 action.moveToElement(driver.findElement(By.linkText("TREND REPORTS"))).build().perform();
-                visible(driver, true, savePath, "genetech-forum-hover-1.0");
+                visible(driver, true, 0);
 
                 action.moveToElement(driver.findElement(By.linkText("PROGRAMS & TOOLS"))).build().perform();
-                visible(driver, true, savePath, "genetech-forum-hover-2.0");
+                visible(driver, true, 0);
 
                 action.moveToElement(driver.findElement(By.linkText("PEER INSIGHTS"))).build().perform();
-                visible(driver, true, savePath, "genetech-forum-hover-3.0");
+                visible(driver, true, 0);
 
                 driver.findElement(By.className("share-a-page-button")).click();
                 Thread.sleep(500);
-                visible(driver, true, savePath, "genentech-forum-share-modal");
+                visible(driver, true, 0);
 
-                driver.findElement(By.name("fname")).sendKeys("Marwin");
-                driver.findElement(By.name("lname")).sendKeys("Nicolas");
-                driver.findElement(By.name("to-email-address")).sendKeys("marwin@accendgroup.com");
+                driver.findElement(By.name("fname")).sendKeys("Test");
+                driver.findElement(By.name("lname")).sendKeys("Test");
+                driver.findElement(By.name("to-email-address")).sendKeys("test@gene.com");
                 driver.findElement(By.xpath("//*[@id=\"share-a-page-riker-form\"]/div[2]/div/input")).click();
                 Thread.sleep(1500);
-                visible(driver, true, savePath, "genentech-forum-share-modal-submit");
+                visible(driver, true, 0);
 
                 driver.navigate().refresh();
-                full(driver, true, savePath, "genentech-forum-0.0-slide1");
+                full(driver, true, 0);
 
                 driver.findElement(By.className("right")).click();
-                full(driver, true, savePath, "genentech-forum-0.0-slide2");
+                full(driver, true, 0);
 
                 driver.findElement(By.className("right")).click();
-                full(driver, true, savePath, "genentech-forum-0.0-slide3");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/trend-reports.html");
-                full(driver, true, savePath, "genentech-forum-1.0");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/trend-reports/oncology.html");
-                full(driver, true, savePath, "genentech-forum-1.1");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/trend-reports/respiratory.html");
-                full(driver, true, savePath, "genentech-forum-1.2");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/trend-reports/quality.html");
-                full(driver, true, savePath, "genentech-forum-1.3");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/programs-tools.html");
-                full(driver, true, savePath, "genentech-forum-2.0");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/programs-tools/reason-for-mammogram.html");
-                full(driver, true, savePath, "genentech-forum-2.1");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/programs-tools/care-manager-multiple-sclerosis-program.html");
-                full(driver, true, savePath, "genentech-forum-2.2");
+                full(driver, true, 0);
 
 
                 goToUrl(driver, "/programs-tools/open-your-eyes-diabetic-blindness-initiative.html");
-                full(driver, true, savePath, "genentech-forum-2.3");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/programs-tools/love-your-colon-colorectal-cancer-screening-program.html");
-                full(driver, true, savePath, "genentech-forum-2.4");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/programs-tools/genentech-care-management-workshops.html");
-                full(driver, true, savePath, "genentech-forum-2.5");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/patient-centered-resources.html");
-                full(driver, true, savePath, "genentech-forum-3.0");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/population-care-peer-insights.html");
-                full(driver, true, savePath, "genentech-forum-4.0");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/population-care-peer-insights/genentech-oncology-institute.html");
-                full(driver, true, savePath, "genentech-forum-4.1");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/advances-in-complex-to-treat-diseases.html");
-                full(driver, true, savePath, "genentech-forum-5.0");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/register-for-genentech-forum-site-updates.html");
-                full(driver, true, savePath, "genentech-forum-register");
+                full(driver, true, 0);
 
                 driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
                 driver.findElement(By.name("last-name")).sendKeys("TestLastName");
@@ -107,10 +109,10 @@ public class GenentechForum extends SeleniumHeadless{
                 driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
                 driver.findElement(By.xpath("//*[@id=\"managed-care-reg-form\"]/div[11]/input")).submit();
                 Thread.sleep(1500);
-                full(driver, true, savePath, "genentech-forum-register-submit");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/contact-genentech-account-manager.html");
-                full(driver, true, savePath, "genentech-forum-contact");
+                full(driver, true, 0);
 
                 driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
                 driver.findElement(By.name("last-name")).sendKeys("TestLastName");
@@ -126,10 +128,10 @@ public class GenentechForum extends SeleniumHeadless{
                 driver.findElement(By.name("my-request")).click();
                 driver.findElement(By.xpath("//*[@id=\"cam-riker-form\"]/div[12]/input")).submit();
                 Thread.sleep(1500);
-                full(driver, true, savePath, "genentech-forum-contact-submit");
+                full(driver, true, 0);
 
                 goToUrl(driver, "/sitemap.html");
-                full(driver, true, savePath, "genentech-forum-sitemap");
+                full(driver, true, 0);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -140,82 +142,83 @@ public class GenentechForum extends SeleniumHeadless{
         return desktopThread;
     }
 
-    public List<Thread> mobileAutomationTest(String savePath) {
+    public List<Thread> mobileAutomationTest() {
+        setNumberOfPageVisits(1, false);
         List<Thread> mobileThead = new LinkedList<>();
         mobileThead.add(new Thread( ()-> {
             WebDriver driver = ChromeDriverManager.requestMobileDriver();
 
             try {
 
-                goToUrl(driver, "/");
-                visible(driver, false, savePath, "genetech-forum-mobile");
+                goToUrl(driver, ".html");
+                visible(driver, false, 0);
 
                 driver.findElement(By.className("navbar-toggle")).click();
-                visible(driver, false, savePath, "genetech-forum-mobile-nav");
+                visible(driver, false, 0);
 
                 driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[1]/a")).click();
-                visible(driver, false, savePath, "genetech-forum-mobile-hover-1.0");
+                visible(driver, false, 0);
 
                 driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[2]/a")).click();
-                visible(driver, false, savePath, "genetech-forum-mobile-hover-2.0");
+                visible(driver, false, 0);
 
                 driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[4]/a")).click();
-                visible(driver, false, savePath, "genetech-forum-mobile-hover-3.0");
+                visible(driver, false, 0);
 
                 driver.navigate().refresh();
-                full(driver, false, savePath, "genentech-forum-mobile-0.0-slide1");
+                full(driver, false, 0);
 
                 driver.findElement(By.xpath("//*[@id=\"herocarousel-herocarousel\"]/ol/li[2]")).click();
-                full(driver, false, savePath, "genentech-forum-mobile-0.0-slide2");
+                full(driver, false, 0);
 
                 driver.findElement(By.xpath("//*[@id=\"herocarousel-herocarousel\"]/ol/li[3]")).click();
-                full(driver, false, savePath, "genentech-forum-mobile-0.0-slide3");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/trend-reports.html");
-                full(driver, false, savePath, "genentech-forum-mobile-1.0");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/trend-reports/oncology.html");
-                full(driver, false, savePath, "genentech-forum-mobile-1.1");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/trend-reports/respiratory.html");
-                full(driver, false, savePath, "genentech-forum-mobile-1.2");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/trend-reports/quality.html");
-                full(driver, false, savePath, "genentech-forum-mobile-1.3");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/programs-tools.html");
-                full(driver, false, savePath, "genentech-forum-mobile-2.0");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/programs-tools/reason-for-mammogram.html");
-                full(driver, false, savePath, "genentech-forum-mobile-2.1");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/programs-tools/care-manager-multiple-sclerosis-program.html");
-                full(driver, false, savePath, "genentech-forum-mobile-2.2");
+                full(driver, false, 0);
 
 
                 goToUrl(driver, "/programs-tools/open-your-eyes-diabetic-blindness-initiative.html");
-                full(driver, false, savePath, "genentech-forum-mobile-2.3");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/programs-tools/love-your-colon-colorectal-cancer-screening-program.html");
-                full(driver, false, savePath, "genentech-forum-mobile-2.4");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/programs-tools/genentech-care-management-workshops.html");
-                full(driver, false, savePath, "genentech-forum-mobile-2.5");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/patient-centered-resources.html");
-                full(driver, false, savePath, "genentech-forum-mobile-3.0");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/population-care-peer-insights.html");
-                full(driver, false, savePath, "genentech-forum-mobile-4.0");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/population-care-peer-insights/genentech-oncology-institute.html");
-                full(driver, false, savePath, "genentech-forum-mobile-4.1");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/advances-in-complex-to-treat-diseases.html");
-                full(driver, false, savePath, "genentech-forum-mobile-5.0");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/register-for-genentech-forum-site-updates.html");
-                full(driver, false, savePath, "genentech-forum-mobile-register");
+                full(driver, false, 0);
 
                 driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
                 driver.findElement(By.name("last-name")).sendKeys("TestLastName");
@@ -227,10 +230,10 @@ public class GenentechForum extends SeleniumHeadless{
                 driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
                 driver.findElement(By.xpath("//*[@id=\"managed-care-reg-form\"]/div[11]/input")).submit();
                 Thread.sleep(2000);
-                full(driver, false, savePath, "genentech-forum-mobile-register-submit");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/contact-genentech-account-manager.html");
-                full(driver, false, savePath, "genentech-forum-contact");
+                full(driver, false, 0);
 
                 driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
                 driver.findElement(By.name("last-name")).sendKeys("TestLastName");
@@ -246,10 +249,10 @@ public class GenentechForum extends SeleniumHeadless{
                 driver.findElement(By.name("my-request")).click();
                 driver.findElement(By.xpath("//*[@id=\"cam-riker-form\"]/div[12]/input")).submit();
                 Thread.sleep(2000);
-                full(driver, false, savePath, "genentech-forum-mobile-contact-submit");
+                full(driver, false, 0);
 
                 goToUrl(driver, "/sitemap.html");
-                full(driver, false, savePath, "genentech-forum-mobile-sitemap");
+                full(driver, false, 0);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -259,4 +262,5 @@ public class GenentechForum extends SeleniumHeadless{
         }));
         return mobileThead;
     }
+
 }

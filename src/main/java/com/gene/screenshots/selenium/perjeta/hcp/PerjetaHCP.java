@@ -32,21 +32,19 @@ public class PerjetaHCP extends SeleniumHeadless {
 
 
     @Override
-    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
-        getScreenshotForContactForm(driver, savePath, isDesktop);
-        getScreenshotForRegisterForm(driver, savePath, isDesktop);
+    public void getScreenshotForSchemaForm(WebDriver driver, boolean isDesktop, int pageIndex) {
+        getScreenshotForContactForm(driver, isDesktop, pageIndex);
+        getScreenshotForRegisterForm(driver, isDesktop, pageIndex);
     }
 
-    private void getScreenshotForRegisterForm(WebDriver driver,
-                                              String savePath,
-                                              boolean isDesktop) {
+    private void getScreenshotForRegisterForm(WebDriver driver, boolean isDesktop, int pageIndex) {
         if (driver.findElements(By.cssSelector(".hcp-reg-riker-form")).size() > 0) {
             WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
             scrollTo(driver, 0, providerType.getLocation().getY()); // we want to show off the entire dropdown and that requires viewport space.
             providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
             WebElement providerMenu = providerType.findElement(By.cssSelector(".gene-component--dropdown__menu"));
             waitForElementVisible(driver, providerMenu);
-            full(driver, isDesktop, savePath, "hcp-register-classification");
+            full(driver, isDesktop, pageIndex);
             providerType.click();
             waitForElementNotVisible(driver, providerMenu);
             WebElement specialty = driver.findElement(By.cssSelector(".specialty"));
@@ -54,7 +52,7 @@ public class PerjetaHCP extends SeleniumHeadless {
             specialty.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
             WebElement specialtyMenu = specialty.findElement(By.cssSelector(".gene-component--dropdown__menu"));
             waitForElementVisible(driver, specialtyMenu);
-            full(driver, isDesktop, savePath, "hcp-register-specialty");
+            full(driver, isDesktop, pageIndex);
 
             // register
             driver.findElement(By.cssSelector(".prefix .gene-component--dropdown__select")).click();
@@ -75,27 +73,25 @@ public class PerjetaHCP extends SeleniumHeadless {
             driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
             driver.findElement(By.cssSelector(".riker .submit")).click();
             waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-template__container--form-thanks")));
-            full(driver, isDesktop, savePath, "hcp-register-submit");
+            full(driver, isDesktop, pageIndex);
         }
     }
 
-    private void getScreenshotForContactForm(WebDriver driver,
-                                             String savePath,
-                                             boolean isDesktop) {
+    private void getScreenshotForContactForm(WebDriver driver, boolean isDesktop, int pageIndex) {
         if (driver.findElements(By.cssSelector(".hcp-contact-riker-form")).size() > 0) {
             WebElement providerType = driver.findElement(By.cssSelector(".provider-type"));
             scrollTo(driver, 0, providerType.getLocation().getY()); // we want to show off the entire dropdown and that requires viewport space.
             providerType.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
             WebElement providerMenu = providerType.findElement(By.cssSelector(".gene-component--dropdown__menu"));
             waitForElementVisible(driver, providerMenu);
-            full(driver, isDesktop, savePath, "hcp-contact-rep-provider-type");
+            full(driver, isDesktop, pageIndex);
             providerType.click();
             waitForElementNotVisible(driver, providerMenu);
             WebElement specialty = driver.findElement(By.cssSelector(".specialty"));
             scrollTo(driver, 0, specialty.getLocation().getY()); // we want to show off the entire dropdown and that requires viewport space.
             specialty.findElement(By.cssSelector(".gene-component--dropdown__select")).click();
             waitForElementVisible(driver, specialty.findElement(By.cssSelector(".gene-component--dropdown__menu")));
-            full(driver, isDesktop, savePath, "hcp-contact-rep-specialty");
+            full(driver, isDesktop, pageIndex);
         }
     }
 

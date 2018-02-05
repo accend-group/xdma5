@@ -13,13 +13,14 @@ import java.util.List;
 
 public class PerjetaMain extends SeleniumHeadless {
 
-    private List<Thread> createThreads(String savePath, boolean isDesktop){
+    private List<Thread> createThreads(boolean isDesktop){
+        setNumberOfPageVisits(1, isDesktop); // single thread
         List<Thread> thread = new LinkedList<>();
         thread.add(new Thread( ()-> {
             WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             try {
-                getScreenshots(driver, js, savePath, isDesktop);
+                getScreenshots(driver, js, isDesktop, 0);
             } finally {
                 ChromeDriverManager.releaseDriver(driver, isDesktop);
             }
@@ -28,50 +29,50 @@ public class PerjetaMain extends SeleniumHeadless {
     }
 
     @Override
-    public List<Thread> desktopAutomationTest(String savePath) {
-        return createThreads(savePath, true);
+    public List<Thread> desktopAutomationTest() {
+        return createThreads(true);
     }
 
     @Override
-    public List<Thread> mobileAutomationTest(String savePath) {
-        return createThreads(savePath, false);
+    public List<Thread> mobileAutomationTest() {
+        return createThreads(false);
     }
 
-    private void getScreenshots(WebDriver driver, JavascriptExecutor js, String savePath, boolean isDesktop) {
+    private void getScreenshots(WebDriver driver, JavascriptExecutor js, boolean isDesktop, int pageIndex) {
         goToUrl(driver, "/patient.html");
-        visible(driver, isDesktop, savePath, "patient-home");
+        visible(driver, isDesktop, pageIndex);
 
         if (!isDesktop) {
             showMobileNavigation(driver);
-            visible(driver, false, savePath, "patient-navigation");
+            visible(driver, false, pageIndex);
         }
 
         goToUrl(driver, "/patient.html");
         showThirdPartyModal(driver, js);
-        visible(driver, isDesktop, savePath, "patient-thirdpartysite");
+        visible(driver, isDesktop, pageIndex);
 
         goToUrl(driver, "/patient.html");
-        full(driver, isDesktop, savePath, "patient-0.0");
+        full(driver, isDesktop, pageIndex);
 
         goToUrl(driver, "/hcp.html");
-        visible(driver, isDesktop, savePath, "hcp-modal");
+        visible(driver, isDesktop, pageIndex);
 
         closeInterstitialModal(driver);
-        visible(driver, isDesktop, savePath, "hcp-home");
+        visible(driver, isDesktop, pageIndex);
 
         if (!isDesktop) {
             showMobileNavigation(driver);
-            visible(driver, false, savePath, "hcp-navigation");
+            visible(driver, false, pageIndex);
         }
 
         showThirdPartyModal(driver, js);
-        visible(driver, isDesktop, savePath, "hcp-thirdpartysite");
+        visible(driver, isDesktop, pageIndex);
 
         goToUrl(driver, "/hcp.html");
         closeInterstitialModal(driver);
-        full(driver, isDesktop, savePath, "hcp-1.0");
+        full(driver, isDesktop, pageIndex);
 
-        getScreenshotForTabs(driver, "hcp", savePath, isDesktop);
+        getScreenshotForTabs(driver, isDesktop, pageIndex);
     }
 
     private void closeInterstitialModal(WebDriver driver) {

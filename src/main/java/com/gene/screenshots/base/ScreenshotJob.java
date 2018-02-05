@@ -23,13 +23,6 @@ import java.util.zip.ZipOutputStream;
 
 public abstract class ScreenshotJob extends ScreenshotThreads {
 
-    // linear run of selenium codes
-    public void run(){
-        for(SeleniumHeadless code : screenshotCodes) {
-            code.desktopAutomationTest(savePath);
-            code.mobileAutomationTest(savePath);
-        }
-    }
 
     private static List<SeleniumHeadless> screenshotCodes;
 

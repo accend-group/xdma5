@@ -35,7 +35,7 @@ public class Tnkase extends SeleniumHeadless {
     }
 
     @Override
-    public List<Thread> desktopAutomationTest(String savePath) {
+    public List<Thread> desktopAutomationTest() {
 
         List<Thread> desktopThreads = new LinkedList<Thread>();
         List<String> links = new LinkedList<String>();
@@ -43,12 +43,13 @@ public class Tnkase extends SeleniumHeadless {
 
         try {
             links = getLinksFromSiteMap(driver);
+            setNumberOfPageVisits(links.size(), true);
         } catch (Exception e) {
             e.printStackTrace();
         }
         ChromeDriverManager.releaseDriver(driver, true);
 
-        int pageNumber = 1;
+        int pageNumber = 0;
         for (String link : links) {
             final int currentPageNumber = pageNumber++;
             desktopThreads.add(new Thread(() -> {
@@ -57,11 +58,11 @@ public class Tnkase extends SeleniumHeadless {
                     Actions actions = new Actions(threadDriver);
                     goToUrl(threadDriver, link);
                     if (threadDriver.getCurrentUrl().endsWith("/") || threadDriver.getCurrentUrl().endsWith("/index.jsp")) {
-                        visible(threadDriver, true, savePath, Integer.toString(currentPageNumber) + "-visible");
-                        getScreenshotForDesktopNavigation(threadDriver, actions, savePath);
+                        visible(threadDriver, true, currentPageNumber);
+                        getScreenshotForDesktopNavigation(threadDriver, actions, currentPageNumber);
                     }
-                    full(threadDriver, true, savePath, Integer.toString(currentPageNumber));
-                    getScreenshotForSchemaForm(threadDriver, savePath, true);
+                    full(threadDriver, true, currentPageNumber);
+                    getScreenshotForSchemaForm(threadDriver,true, currentPageNumber);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -72,16 +73,16 @@ public class Tnkase extends SeleniumHeadless {
     }
 
     @Override
-    public void getScreenshotForDesktopNavigation(WebDriver driver, Actions actions, String savePath) {
+    public void getScreenshotForDesktopNavigation(WebDriver driver, Actions actions, int pageIndex) {
         List<WebElement> elements = driver.findElements(By.cssSelector(".navigationText[onmouseover]"));
         for (int i = 0; i < elements.size(); i++) {
             actions.moveToElement(elements.get(i), 5, 5).perform();
-            visible(driver, true, savePath, "hover" + Integer.toString(i + 1));
+            visible(driver, true, pageIndex);
         }
     }
 
     @Override
-    protected void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
+    protected void getScreenshotForSchemaForm(WebDriver driver, boolean isDesktop, int pageIndex) {
         if (driver.getCurrentUrl().endsWith("/tnkase-dosing-card")) {
             driver.findElement(By.name("firstname")).sendKeys("TestFirstName");
             driver.findElement(By.name("lastname")).sendKeys("TestLastName");
@@ -107,12 +108,12 @@ public class Tnkase extends SeleniumHeadless {
             driver.findElement(By.cssSelector("[name='quantity'] option:nth-child(2)")).click();
             driver.findElement(By.cssSelector("input[type='submit']")).click();
             waitForPageLoad(driver); // it does a HTML post, so the page will actually reload
-            full(driver, isDesktop, savePath, "tnkase-dosing-card-submit");
+            full(driver, isDesktop, pageIndex);
         }
     }
 
     @Override
-    public List<Thread> mobileAutomationTest(String savePath) {
+    public List<Thread> mobileAutomationTest() {
         // do nothing
         return null;
     }

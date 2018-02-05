@@ -31,15 +31,15 @@ public class PerjetaPatient extends SeleniumHeadless {
 
 
     @Override
-    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
+    public void getScreenshotForSchemaForm(WebDriver driver, boolean isDesktop, int pageIndex) {
         if (driver.findElements(By.cssSelector(".patient-reg-riker-form")).size() > 0) {
             driver.findElement(By.cssSelector(".perjeta-personal-description input[value='early no surgery']")).click();
             waitForElementVisible(driver, driver.findElement(By.cssSelector(".section-ebc")));
-            full(driver, isDesktop, savePath, "patient-4.3-earlystage");
+            full(driver, isDesktop, pageIndex);
 
             driver.findElement(By.cssSelector(".perjeta-personal-description input[value='metastatic']")).click();
             waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".section-ebc")));
-            full(driver, isDesktop, savePath, "patient-4.3-metastatic");
+            full(driver, isDesktop, pageIndex);
 
             driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
             driver.findElement(By.name("last-name")).sendKeys("TestLastName");
@@ -56,7 +56,7 @@ public class PerjetaPatient extends SeleniumHeadless {
             driver.findElement(By.name("verify-age")).click();
             driver.findElement(By.cssSelector(".submit")).click();
             waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-template__container--form-thanks")));
-            full(driver, isDesktop, savePath, "patient-4.3-submit");
+            full(driver, isDesktop, pageIndex);
         }
     }
 

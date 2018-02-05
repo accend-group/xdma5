@@ -32,7 +32,7 @@ public class Ocrevus extends SeleniumHeadless {
     }
 
     // handles the hcp and third party modal from the index page
-    private void modals(WebDriver driver, boolean isDesktop, String savePath){
+    private void modals(WebDriver driver, boolean isDesktop, int pageIndex){
         if(driver.getCurrentUrl().contains("index.html")) {
 
             // wait for modal
@@ -43,7 +43,7 @@ public class Ocrevus extends SeleniumHeadless {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            visible(driver, isDesktop, savePath, "hcp_modal");
+            visible(driver, isDesktop, pageIndex);
 
             // close hcp modal
             driver.findElement(By.cssSelector("[style='display: block;'] .gene-component--modal__button.gene-component--modal__button--confirm")).click();
@@ -62,7 +62,7 @@ public class Ocrevus extends SeleniumHeadless {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            visible(driver, isDesktop, savePath, "third_party_link");
+            visible(driver, isDesktop, pageIndex);
 
             // remove hcp modal
             driver.navigate().refresh();
@@ -84,9 +84,12 @@ public class Ocrevus extends SeleniumHeadless {
         }
     }
 
+    // single thread since there are ony 4 pages to visit
+
     @Override
-    public List<Thread> createScreenCaptureThreads(String savePath, boolean isDesktop){
+    public List<Thread> createScreenCaptureThreads(boolean isDesktop){
         List<Thread> threads = new LinkedList<>();
+        setNumberOfPageVisits(1, isDesktop);
         threads.add(new Thread( ()-> {
             WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
             try {
@@ -94,8 +97,8 @@ public class Ocrevus extends SeleniumHeadless {
                 List<String> links = getLinksFromSiteMap(driver);
                 for (String link : links) {
                     goToUrl(driver, link);
-                    modals(driver, isDesktop, savePath);
-                    full(driver, isDesktop, savePath, String.valueOf(pageCount++));
+                    modals(driver, isDesktop, pageCount);
+                    full(driver, isDesktop, pageCount);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

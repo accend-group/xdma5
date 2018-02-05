@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+
 // creates 2 thread lists for capturing screenshots and generate pdfs
 public abstract class ScreenshotThreads {
 
@@ -33,14 +34,15 @@ public abstract class ScreenshotThreads {
     private ConcurrentLinkedQueue<Thread> screenshotThreads = new ConcurrentLinkedQueue<>();
     private ConcurrentLinkedQueue<Thread> pdfThreads = new ConcurrentLinkedQueue<>();
 
-
     // mobile, desktop, and pdf threads created
     public void createThreads(SeleniumHeadless test) {
 
         String screenshotScriptName = test.getPdfName();
         List<Thread> currentThreadsFromTest = new LinkedList<Thread>();
-        List<Thread> desktopThreads = test.desktopAutomationTest(savePath + "/desktop/" + screenshotScriptName);
-        List<Thread> mobileThreads = test.mobileAutomationTest(savePath + "/mobile/" + screenshotScriptName);
+        test.setDesktopSavePath(savePath + "/desktop/" + screenshotScriptName);
+        test.setMobileSavePath(savePath + "/mobile/" + screenshotScriptName);
+        List<Thread> desktopThreads = test.desktopAutomationTest();
+        List<Thread> mobileThreads = test.mobileAutomationTest();
         if(desktopThreads != null)
             currentThreadsFromTest.addAll(desktopThreads);
         if(mobileThreads != null)
@@ -68,17 +70,6 @@ public abstract class ScreenshotThreads {
         pdfThread.setDaemon(true);
         pdfThreads.add(pdfThread);
     }
-
-    //http://www.davekoelle.com/files/AlphanumComparator.java
-   /*public static class ImageNameComparator implements Comparator<String> {
-        @Override
-        public int compare(String a, String b){
-            //a = a.replace(savePath, "").toLowerCase().replace("-", "").replace("_", "");
-            //b = b.replace(savePath, "").toLowerCase().replace("-", "").replace("_", "");
-
-            //return naturalComparator(b);//a.compareTo(b);
-        }
-    }*/
 
     private static void createPDFS(SeleniumHeadless test, String pdfName){
 
