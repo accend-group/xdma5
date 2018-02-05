@@ -11,9 +11,9 @@ import com.gene.screenshots.selenium.genentech.forum.GenentechForum;
         stage = "https://stage-genentech-forum.gene.com",
         prod = "https://www.genentech-forum.com",
         authorlocal="http://localhost:4502/content/genentech-forum/en_us",
-        authordev = "https://dev-author.aem.gene.com/content/genentech-forum/en_us",
-        authorstage="https://stage-author.aem.gene.com/content/genentech-forum/en_us",
-        authorprod="https://author.aem.gene.com/content/genentech-forum/en_us")
+        authordev = "https://dev-author.aem.gene.com/content/managed-care/en_us",
+        authorstage="https://stage-author.aem.gene.com/content/managed-care/en_us",
+        authorprod="https://author.aem.gene.com/content/managed-care/en_us")
 
 public class GenentechForumJob extends ScreenshotJob{
     
