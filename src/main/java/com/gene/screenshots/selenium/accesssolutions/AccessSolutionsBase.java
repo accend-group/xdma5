@@ -15,15 +15,15 @@ import static com.gene.screenshots.selenium.Constants.*;
 // provides default mobile and desktop automation functions
 public class AccessSolutionsBase extends SeleniumHeadless {
 
-    // keep track of pages that have their own tabs, not to override other tab screenshots from other pages
-    private int []desktopNumOfPagesWithTabs = null;
-    private int []mobileNumOfPagesWithTabs = null;
-
     public AccessSolutionsBase(){ brandName = getPdfName().toLowerCase(); }
 
     public AccessSolutionsBase(String pdfName){
+        if(pdfName.contains("/")){
+            String [] actualPdfName = pdfName.split("/");
+            setPdfName(actualPdfName[actualPdfName.length - 1]);
+        }else
+            setPdfName(pdfName);
         this.brandName = pdfName.toLowerCase();
-        setPdfName(pdfName);
     }
 
     private String brandName;
@@ -59,23 +59,20 @@ public class AccessSolutionsBase extends SeleniumHeadless {
     }
 
     @Override
-    public List<Thread> createScreenCaptureThreads(String savePath, boolean isDesktop){
+    public List<Thread> createScreenCaptureThreads(boolean isDesktop){
         List<Thread> threads = new ArrayList<>();
         List<String> links = new ArrayList<>();
 
         WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
         try {
             links = getLinksFromSiteMap(driver);
-            if(isDesktop)
-                desktopNumOfPagesWithTabs = new int[links.size()];
-            else
-                mobileNumOfPagesWithTabs = new int[links.size()];
+            setNumberOfPageVisits(links.size(), isDesktop);
         } catch (Exception e) {
             e.printStackTrace();
         }
         ChromeDriverManager.releaseDriver(driver, isDesktop);
 
-        int pageNumber = 1;
+        int pageNumber = 0;
 
         // create a thread per link
         for (String currentPage : links) {
@@ -86,12 +83,12 @@ public class AccessSolutionsBase extends SeleniumHeadless {
                 WebDriver threadDriver =  ChromeDriverManager.requestDriver(isDesktop);
                 try {
                     goToUrl(threadDriver, currentPage);
-                    full(threadDriver, isDesktop, savePath, String.valueOf(threadPageNumber));
-                    getGATCFscreenshots(threadDriver, isDesktop, savePath, threadPageNumber);
-                    getThreeStepDialogs(threadDriver, isDesktop, savePath, threadPageNumber);
-                    getFormsDocInfo(threadDriver, isDesktop, savePath, threadPageNumber);
-                    getScreenshotForAccordion(threadDriver, isDesktop, savePath, threadPageNumber);
-                    getScreenshotForPAT(threadDriver, savePath, new Actions(threadDriver), isDesktop, threadPageNumber);
+                    full(threadDriver, isDesktop, threadPageNumber);
+                    getGATCFscreenshots(threadDriver, isDesktop, threadPageNumber);
+                    getThreeStepDialogs(threadDriver, isDesktop, threadPageNumber);
+                    getFormsDocInfo(threadDriver, isDesktop, threadPageNumber);
+                    getScreenshotForAccordion(threadDriver, isDesktop, threadPageNumber);
+                    getScreenshotForPAT(threadDriver, new Actions(threadDriver), isDesktop, threadPageNumber);
                 } catch (Exception e) {
                     System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile"));
                     e.printStackTrace();
@@ -104,7 +101,7 @@ public class AccessSolutionsBase extends SeleniumHeadless {
     }
 
 
-    protected void getScreenshotForAccordion(WebDriver driver, boolean isDesktop, String savePath, int pageVisitNumber) {
+    protected void getScreenshotForAccordion(WebDriver driver, boolean isDesktop, int pageIndex) {
         List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs__item:not(.is-open) .gene-component--accordionTabs__header, .panel-heading"));
         if (tabs.size() > 0) {
             for (int i = 0; i < tabs.size(); i++) {
@@ -118,19 +115,14 @@ public class AccessSolutionsBase extends SeleniumHeadless {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                String screenshotName = String.format("%d_%s%d-tab%d", pageVisitNumber, getBrandName(), isDesktop ? desktopNumOfPagesWithTabs[pageVisitNumber - 1] : mobileNumOfPagesWithTabs[pageVisitNumber - 1], i + 1);
-                full(driver, isDesktop, savePath, screenshotName);
+                full(driver, isDesktop, pageIndex);
                 forceClick(driver, tabs.get(i));
             }
-            if (isDesktop)
-                desktopNumOfPagesWithTabs[pageVisitNumber - 1]++;
-            else
-                mobileNumOfPagesWithTabs[pageVisitNumber - 1]++;
         }
     }
 
 
-    public void getGATCFscreenshots(WebDriver driver, boolean ifDesktop, String savePath, int pageVisitNumber) {
+    public void getGATCFscreenshots(WebDriver driver, boolean ifDesktop, int pageIndex) {
         String url = driver.getCurrentUrl();
         if (!url.contains("how-we-help-you.html"))
             return;
@@ -167,11 +159,11 @@ public class AccessSolutionsBase extends SeleniumHeadless {
         setStyle(driver, "display: block;", updateResponse);
 
         setStyle(driver, "display: block;", gatcf1);
-        full(driver, ifDesktop, savePath, pageVisitNumber+ "-GATCF-1");
+        full(driver, ifDesktop, pageIndex);
         setStyle(driver, "display: none;", gatcf1);
 
         setStyle(driver, "display: block;", gatcf2);
-        full(driver, ifDesktop, savePath, pageVisitNumber+ "-GATCF-2");
+        full(driver, ifDesktop, pageIndex);
         setStyle(driver, "display: none;", gatcf2);
 
         forceClick(driver, startOver);
@@ -181,7 +173,7 @@ public class AccessSolutionsBase extends SeleniumHeadless {
 
 
     // fade in divs from popover links
-    protected void getScreenshotsFromFadeInDiv(WebDriver driver, boolean ifDesktop, String savePath, String cssString, String imageName) {
+    protected void getScreenshotsFromFadeInDiv(WebDriver driver, boolean ifDesktop, String cssString, int pageIndex) {
 
         int currentLink = 1;
         List<WebElement> links = driver.findElements(By.cssSelector(cssString));
@@ -205,26 +197,26 @@ public class AccessSolutionsBase extends SeleniumHeadless {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            visible(driver, ifDesktop, savePath, String.format("%s-%d", imageName, currentLink++));
+            visible(driver, ifDesktop, pageIndex);
         }
         driver.manage().window().setSize(new Dimension(width, height));
     }
 
     // issue? forceClick not working with link web element!
-    public void getThreeStepDialogs(WebDriver driver, boolean ifDesktop, String savePath, int pageVisitNumber) {
-        getScreenshotsFromFadeInDiv(driver, ifDesktop, savePath, "a[data-toggle][data-html]", pageVisitNumber+"_step");
+    public void getThreeStepDialogs(WebDriver driver, boolean ifDesktop, int pageIndex) {
+        getScreenshotsFromFadeInDiv(driver, ifDesktop, "a[data-toggle][data-html]", pageIndex);
     }
 
 
     // fade in divs from 3 links, e submit link and 2 more info links
     // a[data-toggle][role=button] - old css selector,
-    public void getFormsDocInfo(WebDriver driver, boolean ifDesktop, String savePath, int pageVisitNumber) {
+    public void getFormsDocInfo(WebDriver driver, boolean ifDesktop, int pageIndex) {
         if(driver.getCurrentUrl().contains("forms-and-documents.html"))
-            getScreenshotsFromFadeInDiv(driver, ifDesktop, savePath, ".e-submit-popover, .more-info", pageVisitNumber+"_form-and-doc-fade-popover");
+            getScreenshotsFromFadeInDiv(driver, ifDesktop, ".e-submit-popover, .more-info", pageIndex);
     }
 
 
-    protected void getScreenshotForPAT(WebDriver driver, String savePath, Actions action, boolean isDesktop, int pageVisitNumber) {
+    protected void getScreenshotForPAT(WebDriver driver, Actions action, boolean isDesktop, int pageIndex) {
         if (driver.findElements(By.cssSelector(".patient-assistance-tool-page")).size() == 0)
             return;
 
@@ -234,7 +226,7 @@ public class AccessSolutionsBase extends SeleniumHeadless {
             for (int i = 2; i < questions.size(); i += 2) {
                 action.moveToElement(questions.get(i == questions.size() - 1 ? i : i + 1)).build().perform();
                 waitForElementVisible(driver, questions.get(i == questions.size() - 1 ? i : i + 1));
-                full(driver, isDesktop, savePath, pageVisitNumber+"-pat0-part" + Integer.toString(i));
+                full(driver, isDesktop, pageIndex);
             }
         }
 
@@ -249,7 +241,7 @@ public class AccessSolutionsBase extends SeleniumHeadless {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            full(driver, isDesktop, savePath, pageVisitNumber + "_pat" + Integer.toString(i + 1) + "-part1");
+            full(driver, isDesktop, pageIndex);
             if (isDesktop) {
                 action.moveToElement(driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"))).build().perform();
                 try {
@@ -257,7 +249,7 @@ public class AccessSolutionsBase extends SeleniumHeadless {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                full(driver, isDesktop, savePath, pageVisitNumber + "_pat" + Integer.toString(i + 1) + "-part2");
+                full(driver, isDesktop, pageIndex);
             }
             setStyle(driver, "display: none;", results.get(i));
         }
@@ -293,7 +285,7 @@ public class AccessSolutionsBase extends SeleniumHeadless {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                visible(driver, isDesktop, savePath,  pageVisitNumber+"_pat-q" + Integer.toString(j + 1));
+                visible(driver, isDesktop, pageIndex);
                 driver.manage().window().setSize(new Dimension(width, height));
             }
 

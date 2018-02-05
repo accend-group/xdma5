@@ -32,22 +32,22 @@ public class Patient extends AccessSolutionsBase {
         return links;
     }
 
-    private void visibleScreensOfModals(WebDriver driver, boolean ifDesktop, String savePath) {
+    private void visibleScreensOfModals(WebDriver driver, boolean ifDesktop, int pageCount) {
         if (!driver.getCurrentUrl().contains("/patient.html"))
             return;
 
         driver.findElement(By.id("select-treatment")).click();
         waitForElementVisible(driver, ".dropdown.open");
-        visible(driver, ifDesktop, savePath, "accesssolutions-patient-select-treatment");
+        visible(driver, ifDesktop, pageCount);
 
 
         setStyle(driver, "display: block;", "#product-selector");
-        visible(driver, ifDesktop, savePath, "accesssolutions-patient-product-popup");
+        visible(driver, ifDesktop, pageCount);
         setStyle(driver, "display: none;", "#product-selector");
 
         setStyle(driver, "display: block;", "#sub-indications-selector");
         setStyle(driver, "display: block;", "#sub-indications-selector .sub-indication-list");
-        visible(driver, ifDesktop, savePath, "accesssolutions-patient-rituxan-popup");
+        visible(driver, ifDesktop, pageCount);
         setStyle(driver, "display: none;", "#sub-indications-selector");
         setStyle(driver, "display: none;", "#sub-indications-selector .sub-indication-list");
 
@@ -62,7 +62,7 @@ public class Patient extends AccessSolutionsBase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        visible(driver, ifDesktop, savePath, "accesssolutions-patient-hcp-modal");
+        visible(driver, ifDesktop, pageCount);
         }
         driver.navigate().refresh();
         waitForPageLoad(driver);
@@ -71,17 +71,18 @@ public class Patient extends AccessSolutionsBase {
 
     // small number of pages and events per page so using single thread
     @Override
-    public List<Thread> createScreenCaptureThreads(String savePath, boolean isDesktop){
+    public List<Thread> createScreenCaptureThreads(boolean isDesktop){
         List<Thread> threads = new LinkedList<>();
         threads.add(new Thread(() -> {
             WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
             try {
                 List<String> links = getLinksFromSiteMap(driver);
-                int pageNumber = 1;
+                setNumberOfPageVisits(links.size(), isDesktop);
+                int pageNumber = 0;
                 for (String currentPage : links) {
                     goToUrl(driver, currentPage);
-                    full(driver, isDesktop, savePath, String.valueOf(pageNumber++));
-                    visibleScreensOfModals(driver, isDesktop, savePath);
+                    full(driver, isDesktop, 0);
+                    visibleScreensOfModals(driver, isDesktop, pageNumber);
                 }
             } catch (Exception e) {
                 System.out.println("Issue at " + driver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile"));

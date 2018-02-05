@@ -49,14 +49,12 @@ public class AccessSolutionsJob extends ScreenshotJob {
         result.add(new AccessSolutionsBase("Ocrevus"));
         // not up on prod, dev, and stage
         // result.add(new AccessSolutionsBase("Pegasys"));
+
         result.add(new AccessSolutionsBase("Perjeta"));
         result.add(new AccessSolutionsBase("Pulmozyme"));
-        result.add(new AccessSolutionsBase("RituxanGPAMPA"));
-
-        // gone ?
-        //result.add(new AccessSolutionsBase("RituxanNHLCLL"));
-
-        result.add(new AccessSolutionsBase("RituxanRA"));
+        result.add(new AccessSolutionsBase("Rituxan/Rituxan-NHL-CLL"));
+        result.add(new AccessSolutionsBase("Rituxan/Rituxan-RA"));
+        result.add(new AccessSolutionsBase("Rituxan/Rituxan-GPAMPA"));
         result.add(new AccessSolutionsBase("RituxanHycela"));
         result.add(new AccessSolutionsBase("Tarceva"));
         result.add(new AccessSolutionsBase("Tecentriq"));
