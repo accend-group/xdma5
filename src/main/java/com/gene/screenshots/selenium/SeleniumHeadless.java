@@ -34,15 +34,14 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     protected String pdfName = this.getClass().getSimpleName();
 
+
+
     protected static BrandUrl domain;
 
     // window.scrollBy(X, Y);
     // https://stackoverflow.com/a/4403822
     private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(); ";
 
-    // TODO optimize mobiledriver/desktop with limited thread count?
-    protected WebDriver desktopDriver;
-    protected WebDriver mobileDriver;
 
     private static boolean credentialsRequired = false;
 
@@ -100,17 +99,18 @@ public abstract class SeleniumHeadless extends Screenshots {
         return driver;
     }
     
-    public List<Thread> createScreenCaptureThreads(String savePath, boolean isDesktop){
+    public List<Thread> createScreenCaptureThreads(boolean isDesktop){
         List<String> links = new LinkedList<String>();
         List<Thread> threads = new LinkedList<Thread>();
         WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
         try {
             links = getLinksFromSiteMap(driver);
+            setNumberOfPageVisits(links.size(), isDesktop);
         } catch (Exception e) {
             e.printStackTrace();
         }
         ChromeDriverManager.releaseDriver(driver, isDesktop);
-        int pageNumber = 1;
+        int pageNumber = 0;
         for (String link : links) {
             final int currentPageNumber = pageNumber++;
             threads.add(new Thread(() -> {
@@ -119,25 +119,25 @@ public abstract class SeleniumHeadless extends Screenshots {
                     Actions action = new Actions(threadDriver);
                     goToUrl(threadDriver, link);
                     if (threadDriver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
-                        visible(threadDriver, isDesktop, savePath, Integer.toString(currentPageNumber) + "-visible");
+                        visible(threadDriver, isDesktop, currentPageNumber);
                         if(isDesktop) {
-                            getScreenshotForDesktopNavigation(threadDriver, action, savePath);
-                            getScreenshotForShareModal(threadDriver, savePath);
+                            getScreenshotForDesktopNavigation(threadDriver, action, currentPageNumber);
+                            getScreenshotForShareModal(threadDriver, currentPageNumber);
                         }
                         else {
-                            getScreenshotForMobileNavigation(threadDriver, savePath);
+                            getScreenshotForMobileNavigation(threadDriver, currentPageNumber);
                         }
-                        getScreenshotForThirdPartyModal(threadDriver, savePath, isDesktop);
-                        getScreenshotForHCPModal(threadDriver, savePath, isDesktop);
+                        getScreenshotForThirdPartyModal(threadDriver, isDesktop, currentPageNumber);
+                        getScreenshotForHCPModal(threadDriver, isDesktop, currentPageNumber);
                     }
-                    full(threadDriver, isDesktop, savePath, Integer.toString(currentPageNumber));
-                    getScreenshotForPAT(threadDriver, savePath, action, isDesktop);
-                    getScreenshotForCarousels(threadDriver, Integer.toString(currentPageNumber), savePath, isDesktop);
-                    getScreenshotForTabs(threadDriver, Integer.toString(currentPageNumber), savePath, isDesktop);
-                    getScreenshotForAccordion(threadDriver, Integer.toString(currentPageNumber), savePath, isDesktop);
-                    getScreenshotForSchemaForm(threadDriver, savePath, isDesktop);
+                    full(threadDriver, isDesktop, currentPageNumber);
+                    getScreenshotForPAT(threadDriver, action, isDesktop, currentPageNumber);
+                    getScreenshotForCarousels(threadDriver, isDesktop, currentPageNumber);
+                    getScreenshotForTabs(threadDriver, isDesktop, currentPageNumber);
+                    getScreenshotForAccordion(threadDriver, isDesktop, currentPageNumber);
+                    getScreenshotForSchemaForm(threadDriver, isDesktop, currentPageNumber);
                 } catch (Exception e) {
-                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile"));
+                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile" + currentPageNumber));
                     e.printStackTrace();
                 }
                 ChromeDriverManager.releaseDriver(threadDriver, isDesktop);
@@ -146,12 +146,12 @@ public abstract class SeleniumHeadless extends Screenshots {
         return threads;
     }
 
-    public List<Thread> desktopAutomationTest(String savePath) {
-       return createScreenCaptureThreads(savePath, true);
+    public List<Thread> desktopAutomationTest() {
+       return createScreenCaptureThreads(true);
     }
 
-    public List<Thread> mobileAutomationTest(String savePath) {
-       return createScreenCaptureThreads(savePath, false);
+    public List<Thread> mobileAutomationTest() {
+       return createScreenCaptureThreads(false);
     }
 
 
@@ -204,14 +204,6 @@ public abstract class SeleniumHeadless extends Screenshots {
         waitForPageLoad(driver);
     }
 
-    public void killDesktop(){
-        desktopDriver.quit();
-    }
-
-    public void killMobile(){
-        mobileDriver.quit();
-    }
-
     protected String getSiteMapUrl() {
         return "";
     }
@@ -220,7 +212,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         return "";
     }
 
-    protected void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
+    protected void getScreenshotForSchemaForm(WebDriver driver, boolean isDesktop, int currentPageNumber) {
         return;
     }
 
