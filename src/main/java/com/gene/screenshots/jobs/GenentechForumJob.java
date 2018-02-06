@@ -10,10 +10,10 @@ import com.gene.screenshots.selenium.genentech.forum.GenentechForum;
         dev = "https://dev-genentech-forum.gene.com",
         stage = "https://stage-genentech-forum.gene.com",
         prod = "https://www.genentech-forum.com",
-        authorlocal="http://localhost:4502/content/genentech-forum/en_us",
-        authordev = "https://dev-author.aem.gene.com/content/managed-care/en_us",
-        authorstage="https://stage-author.aem.gene.com/content/managed-care/en_us",
-        authorprod="https://author.aem.gene.com/content/managed-care/en_us")
+        authorlocal="http://localhost:4502/content/managed-care/en_us/genentech-forum",
+        authordev = "https://dev-author.aem.gene.com/content/managed-care/en_us/genentech-forum",
+        authorstage="https://stage-author.aem.gene.com/content/managed-care/en_us/genentech-forum",
+        authorprod="https://author.aem.gene.com/content/managed-care/en_us/genentech-forum")
 
 public class GenentechForumJob extends ScreenshotJob{
     

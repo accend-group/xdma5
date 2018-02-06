@@ -221,7 +221,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         goToUrl(driver, getSiteMapUrl());
         List<WebElement> linkElements = driver.findElements(By.cssSelector(getSiteMapSelector()));
         for (WebElement element : linkElements) {
-            if (!element.getText().equalsIgnoreCase("Search")) {
+            if (!element.getText().equalsIgnoreCase("Search") && StringUtils.startsWith(element.getAttribute("href"), domain.toString())) {
                 links.add(StringUtils.replace(element.getAttribute("href"), domain.toString(), ""));
             }
         }
