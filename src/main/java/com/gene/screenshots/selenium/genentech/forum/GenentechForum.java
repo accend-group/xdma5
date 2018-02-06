@@ -1,248 +1,165 @@
 package com.gene.screenshots.selenium.genentech.forum;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
-public class GenentechForum extends SeleniumHeadless{
-    public void desktopAutomationTest(String savePath) {
-        WebDriver driver = makeDesktopDriver();
-        
-        try {
-            Actions action = new Actions(driver);
-            
-            goToUrl(driver, "/");
-            visible(driver, true, savePath, "genetech-forum");
-            
-            action.moveToElement(driver.findElement(By.linkText("TREND REPORTS"))).build().perform();
-            visible(driver, true, savePath, "genetech-forum-hover-1.0");
-            
-            action.moveToElement(driver.findElement(By.linkText("PROGRAMS & TOOLS"))).build().perform();
-            visible(driver, true, savePath, "genetech-forum-hover-2.0");
-            
-            action.moveToElement(driver.findElement(By.linkText("PEER INSIGHTS"))).build().perform();
-            visible(driver, true, savePath, "genetech-forum-hover-3.0");
-            
-            driver.findElement(By.className("share-a-page-button")).click();
-            Thread.sleep(500);
-            visible(driver, true, savePath, "genentech-forum-share-modal");
-            
-            driver.findElement(By.name("fname")).sendKeys("Marwin");
-            driver.findElement(By.name("lname")).sendKeys("Nicolas");
-            driver.findElement(By.name("to-email-address")).sendKeys("marwin@accendgroup.com");
-            driver.findElement(By.xpath("//*[@id=\"share-a-page-riker-form\"]/div[2]/div/input")).click();
-            Thread.sleep(1500);
-            visible(driver, true, savePath, "genentech-forum-share-modal-submit");
-            
-            driver.navigate().refresh();
-            full(driver, true, savePath, "genentech-forum-0.0-slide1");
-            
-            driver.findElement(By.className("right")).click();
-            full(driver, true, savePath, "genentech-forum-0.0-slide2");
-            
-            driver.findElement(By.className("right")).click();
-            full(driver, true, savePath, "genentech-forum-0.0-slide3");
-              
-            goToUrl(driver, "/trend-reports.html");
-            full(driver, true, savePath, "genentech-forum-1.0");
-            
-            goToUrl(driver, "/trend-reports/oncology.html");
-            full(driver, true, savePath, "genentech-forum-1.1");
-            
-            goToUrl(driver, "/trend-reports/respiratory.html");
-            full(driver, true, savePath, "genentech-forum-1.2");
-            
-            goToUrl(driver, "/trend-reports/quality.html");
-            full(driver, true, savePath, "genentech-forum-1.3");
-            
-            goToUrl(driver, "/programs-tools.html");
-            full(driver, true, savePath, "genentech-forum-2.0");
-            
-            goToUrl(driver, "/programs-tools/reason-for-mammogram.html");
-            full(driver, true, savePath, "genentech-forum-2.1");
-            
-            goToUrl(driver, "/programs-tools/care-manager-multiple-sclerosis-program.html");
-            full(driver, true, savePath, "genentech-forum-2.2");
-            
-            
-            goToUrl(driver, "/programs-tools/open-your-eyes-diabetic-blindness-initiative.html");
-            full(driver, true, savePath, "genentech-forum-2.3");
-            
-            goToUrl(driver, "/programs-tools/love-your-colon-colorectal-cancer-screening-program.html");
-            full(driver, true, savePath, "genentech-forum-2.4");
-            
-            goToUrl(driver, "/programs-tools/genentech-care-management-workshops.html");
-            full(driver, true, savePath, "genentech-forum-2.5");
-            
-            goToUrl(driver, "/patient-centered-resources.html");
-            full(driver, true, savePath, "genentech-forum-3.0");
-            
-            goToUrl(driver, "/population-care-peer-insights.html");
-            full(driver, true, savePath, "genentech-forum-4.0");
-            
-            goToUrl(driver, "/population-care-peer-insights/genentech-oncology-institute.html");
-            full(driver, true, savePath, "genentech-forum-4.1");
-            
-            goToUrl(driver, "/advances-in-complex-to-treat-diseases.html");
-            full(driver, true, savePath, "genentech-forum-5.0");
-            
-            goToUrl(driver, "/register-for-genentech-forum-site-updates.html");
-            full(driver, true, savePath, "genentech-forum-register");
-            
+public class GenentechForum extends SeleniumHeadless {
+
+    @Override
+    public String getSiteMapUrl() {
+        return "/sitemap.html";
+    }
+
+    @Override
+    public String getSiteMapSelector() {
+        return ".main-content .sitemap a, .main-content .richtext a";
+    }
+
+    @Override
+    public List<String> getLinksFromSiteMap(WebDriver driver) {
+        List<String> links = super.getLinksFromSiteMap(driver);
+        // because sitemap page doesn't have everything
+        links.add(getSiteMapUrl());
+        // because we don't want to go to genentech's unsubscribe page
+        links.remove("/unsubscribe-from-genentech-forum-site-updates.html");
+        return links;
+    }
+
+    @Override
+    public void getScreenshotForCarousels(WebDriver driver, String prefix, String savePath, boolean isDesktop) {
+        List<WebElement> carousels = driver.findElements(By.cssSelector(".carousel.slide"));
+        for (int i = 0; i < carousels.size(); i++) {
+            WebElement carousel = carousels.get(i);
+            scrollTo(driver, 0, carousel.getLocation().getY());
+            List<WebElement> dots = carousel.findElements(By.cssSelector(".carousel-indicators li"));
+            if (dots.size() > 1) { // if the carousel has 0 or 1 item, don't bother trying to click the dots
+                for (int j = 1; j < dots.size(); j++) {
+                    dots.get(j).click();
+                    waitForElementVisible(driver, carousel.findElement(By.cssSelector(".carousel-inner .item:nth-child(" + Integer.toString(j + 1) + ")")));
+                    full(driver, isDesktop, savePath, prefix + "-carousel-comp" + Integer.toString(i + 1) + "-slide" + Integer.toString(j + 1));
+                }
+                // reset it back to the first slide before we go and do this to other slides
+                dots.get(0).click();
+                waitForElementVisible(driver, carousel.findElement(By.cssSelector(".carousel-inner .item:nth-child(1)")));
+            }
+        }
+    }
+
+    @Override
+    public void getScreenshotForSchemaForm(WebDriver driver, String savePath, boolean isDesktop) {
+        getScreenshotForContactForm(driver, savePath, isDesktop);
+        getScreenshotForRegisterForm(driver, savePath, isDesktop);
+    }
+
+    private void getScreenshotForRegisterForm(WebDriver driver,
+                                              String savePath,
+                                              boolean isDesktop) {
+        if (driver.findElements(By.cssSelector("#managed-care-reg-form")).size() > 0) {
             driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
             driver.findElement(By.name("last-name")).sendKeys("TestLastName");
             driver.findElement(By.name("title")).sendKeys("Test Title");
             driver.findElement(By.name("organization")).sendKeys("Test Company");
             driver.findElement(By.name("zip-code-base")).sendKeys("99999");
-            driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
+            driver.findElement(By.name("email-address")).sendKeys("test@gene.com");
+            driver.findElement(By.name("confirm_email-address")).sendKeys("test@gene.com");
             driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
-            driver.findElement(By.xpath("//*[@id=\"managed-care-reg-form\"]/div[11]/input")).submit();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "genentech-forum-register-submit");
-            
-            goToUrl(driver, "/contact-genentech-account-manager.html");
-            full(driver, true, savePath, "genentech-forum-contact");
-            
+            driver.findElement(By.cssSelector(".managed-care-form .submit")).click();
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".thank-you-message .richtext")));
+            full(driver, isDesktop, savePath, "genentech-forum-register-submit");
+        }
+    }
+
+    private void getScreenshotForContactForm(WebDriver driver,
+                                             String savePath,
+                                             boolean isDesktop) {
+        if (driver.findElements(By.cssSelector("#cam-riker-form")).size() > 0) {
             driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
             driver.findElement(By.name("last-name")).sendKeys("TestLastName");
             driver.findElement(By.name("title")).sendKeys("Test Title");
             driver.findElement(By.name("organization")).sendKeys("Test Company Name");
             driver.findElement(By.name("city")).sendKeys("CA");
-            driver.findElement(By.className("selected")).click();
-            driver.findElement(By.xpath("//*[@id=\"cam-riker-form\"]/div[6]/div[2]/ul/li[1]")).click();
+            driver.findElement(By.cssSelector("[data-toggle='dropdown'][data-field='state']")).click();
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".dropdown-menu[data-field='state']")));
+            driver.findElement(By.cssSelector(".dropdown-menu[data-field='state'] li")).click();
             driver.findElement(By.name("zip-code-base")).sendKeys("99999");
-            driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
+            driver.findElement(By.name("email-address")).sendKeys("test@gene.com");
+            driver.findElement(By.name("confirm_email-address")).sendKeys("test@gene.com");
             driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
             driver.findElement(By.name("my-request")).click();
-            driver.findElement(By.xpath("//*[@id=\"cam-riker-form\"]/div[12]/input")).submit();
-            Thread.sleep(1500);
-            full(driver, true, savePath, "genentech-forum-contact-submit");
-            
-            goToUrl(driver, "/sitemap.html");
-            full(driver, true, savePath, "genentech-forum-sitemap");
-            
-        } catch (Exception e) {
+            driver.findElement(By.cssSelector("#cam-riker-form .submit")).click();
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".thank-you-message .richtext")));
+            full(driver, isDesktop, savePath, "genentech-forum-contact-submit");
+        }
+    }
+
+    @Override
+    public void getScreenshotForMobileNavigation(WebDriver driver, String savePath) {
+        driver.findElement(By.cssSelector(".navbar-toggle")).click();
+        waitForElementVisible(driver, driver.findElement(By.cssSelector(".navbar-nav")));
+        try {
+            Thread.sleep(400); // jQuery fadeIn takes 400 ms
+        } catch (InterruptedException e) {
+            // failed to sleep :(
             e.printStackTrace();
+        }
+        visible(driver, false, savePath, "mobile-navigation");
+        List<WebElement> elements = driver.findElements(By.cssSelector(".navbar-collapse .navbar-nav .has-dropdown"));
+        for (int i = 0; i < elements.size(); i++) {
+            elements.get(i).findElement(By.cssSelector(".dropdown-toggle")).click();
+            waitForElementVisible(driver, elements.get(i).findElement(By.cssSelector(".dropdown-menu")));
+            scrollTo(driver, 0, 0); // scroll back to the top before taking a screenshot
+            visible(driver, false, savePath, "mobile-hover-" + Integer.toString(i + 1));
+        }
+        driver.navigate().refresh();
+        waitForPageLoad(driver);
+    }
+
+    @Override
+    public void desktopAutomationTest(String savePath) {
+        WebDriver driver = makeDesktopDriver();
+        try {
+            Actions action = new Actions(driver);
+            List<String> links = getLinksFromSiteMap(driver);
+            //--->start full page screenshot <---//
+            for (int i = 0; i < links.size(); i++) {
+                goToUrl(driver, links.get(i));
+                if (driver.findElements(By.cssSelector(".splash-page")).size() > 0) {
+                    visible(driver, true, savePath, Integer.toString(i) + "-visible");
+                    getScreenshotForDesktopNavigation(driver, action, savePath);
+                    getScreenshotForShareModal(driver, savePath);
+                }
+                full(driver, true, savePath, Integer.toString(i));
+                getScreenshotForCarousels(driver, Integer.toString(i), savePath, true);
+                getScreenshotForSchemaForm(driver, savePath, true);
+            }
         } finally {
             driver.close();
             driver.quit();
         }
     }
+
+    @Override
     public void mobileAutomationTest(String savePath) {
         WebDriver driver = makeMobileDriver();
-        
         try {
-            
-            goToUrl(driver, "/");
-            visible(driver, false, savePath, "genetech-forum-mobile");
-            
-            driver.findElement(By.className("navbar-toggle")).click();
-            visible(driver, false, savePath, "genetech-forum-mobile-nav");
-            
-            driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[1]/a")).click();
-            visible(driver, false, savePath, "genetech-forum-mobile-hover-1.0");
-            
-            driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[2]/a")).click();
-            visible(driver, false, savePath, "genetech-forum-mobile-hover-2.0");
-            
-            driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/div[2]/nav/div/div[2]/div/ul/li[4]/a")).click();
-            visible(driver, false, savePath, "genetech-forum-mobile-hover-3.0");
-            
-            driver.navigate().refresh();
-            full(driver, false, savePath, "genentech-forum-mobile-0.0-slide1");
-            
-            driver.findElement(By.xpath("//*[@id=\"herocarousel-herocarousel\"]/ol/li[2]")).click();
-            full(driver, false, savePath, "genentech-forum-mobile-0.0-slide2");
-            
-            driver.findElement(By.xpath("//*[@id=\"herocarousel-herocarousel\"]/ol/li[3]")).click();
-            full(driver, false, savePath, "genentech-forum-mobile-0.0-slide3");
-              
-            goToUrl(driver, "/trend-reports.html");
-            full(driver, false, savePath, "genentech-forum-mobile-1.0");
-            
-            goToUrl(driver, "/trend-reports/oncology.html");
-            full(driver, false, savePath, "genentech-forum-mobile-1.1");
-            
-            goToUrl(driver, "/trend-reports/respiratory.html");
-            full(driver, false, savePath, "genentech-forum-mobile-1.2");
-            
-            goToUrl(driver, "/trend-reports/quality.html");
-            full(driver, false, savePath, "genentech-forum-mobile-1.3");
-            
-            goToUrl(driver, "/programs-tools.html");
-            full(driver, false, savePath, "genentech-forum-mobile-2.0");
-            
-            goToUrl(driver, "/programs-tools/reason-for-mammogram.html");
-            full(driver, false, savePath, "genentech-forum-mobile-2.1");
-            
-            goToUrl(driver, "/programs-tools/care-manager-multiple-sclerosis-program.html");
-            full(driver, false, savePath, "genentech-forum-mobile-2.2");
-            
-            
-            goToUrl(driver, "/programs-tools/open-your-eyes-diabetic-blindness-initiative.html");
-            full(driver, false, savePath, "genentech-forum-mobile-2.3");
-            
-            goToUrl(driver, "/programs-tools/love-your-colon-colorectal-cancer-screening-program.html");
-            full(driver, false, savePath, "genentech-forum-mobile-2.4");
-            
-            goToUrl(driver, "/programs-tools/genentech-care-management-workshops.html");
-            full(driver, false, savePath, "genentech-forum-mobile-2.5");
-            
-            goToUrl(driver, "/patient-centered-resources.html");
-            full(driver, false, savePath, "genentech-forum-mobile-3.0");
-            
-            goToUrl(driver, "/population-care-peer-insights.html");
-            full(driver, false, savePath, "genentech-forum-mobile-4.0");
-            
-            goToUrl(driver, "/population-care-peer-insights/genentech-oncology-institute.html");
-            full(driver, false, savePath, "genentech-forum-mobile-4.1");
-            
-            goToUrl(driver, "/advances-in-complex-to-treat-diseases.html");
-            full(driver, false, savePath, "genentech-forum-mobile-5.0");
-            
-            goToUrl(driver, "/register-for-genentech-forum-site-updates.html");
-            full(driver, false, savePath, "genentech-forum-mobile-register");
-            
-            driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
-            driver.findElement(By.name("last-name")).sendKeys("TestLastName");
-            driver.findElement(By.name("title")).sendKeys("Test Title");
-            driver.findElement(By.name("organization")).sendKeys("Test Company");
-            driver.findElement(By.name("zip-code-base")).sendKeys("99999");
-            driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
-            driver.findElement(By.xpath("//*[@id=\"managed-care-reg-form\"]/div[11]/input")).submit();
-            Thread.sleep(2000);
-            full(driver, false, savePath, "genentech-forum-mobile-register-submit");
-            
-            goToUrl(driver, "/contact-genentech-account-manager.html");
-            full(driver, false, savePath, "genentech-forum-contact");
-            
-            driver.findElement(By.name("first-name")).sendKeys("TestFirstName");
-            driver.findElement(By.name("last-name")).sendKeys("TestLastName");
-            driver.findElement(By.name("title")).sendKeys("Test Title");
-            driver.findElement(By.name("organization")).sendKeys("Test Company Name");
-            driver.findElement(By.name("city")).sendKeys("CA");
-            driver.findElement(By.className("selected")).click();
-            driver.findElement(By.xpath("//*[@id=\"cam-riker-form\"]/div[6]/div[2]/ul/li[1]")).click();
-            driver.findElement(By.name("zip-code-base")).sendKeys("99999");
-            driver.findElement(By.name("email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.name("confirm_email-address")).sendKeys("test@genentech.com");
-            driver.findElement(By.name("primary-phone-number")).sendKeys("9999999999");
-            driver.findElement(By.name("my-request")).click();
-            driver.findElement(By.xpath("//*[@id=\"cam-riker-form\"]/div[12]/input")).submit();
-            Thread.sleep(2000);
-            full(driver, false, savePath, "genentech-forum-mobile-contact-submit");
-            
-            goToUrl(driver, "/sitemap.html");
-            full(driver, false, savePath, "genentech-forum-mobile-sitemap");
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+            List<String> links = getLinksFromSiteMap(driver);
+            //--->start full page screenshot <---//
+            for (int i = 0; i < links.size(); i++) {
+                goToUrl(driver, links.get(i));
+                if (driver.findElements(By.cssSelector(".splash-page")).size() > 0) {
+                    visible(driver, false, savePath, Integer.toString(i) + "-visible");
+                    getScreenshotForMobileNavigation(driver, savePath);
+                }
+                full(driver, false, savePath, Integer.toString(i));
+                getScreenshotForCarousels(driver, Integer.toString(i), savePath, false);
+                getScreenshotForSchemaForm(driver, savePath, false);
+            }
         } finally {
             driver.close();
             driver.quit();
