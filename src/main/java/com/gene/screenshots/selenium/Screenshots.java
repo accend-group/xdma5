@@ -362,10 +362,10 @@ public abstract class Screenshots {
     }
 
     protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, String savePath) {
-        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
+        List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent, .navbar-nav .has-dropdown"));
         for (int i = 0; i < elements.size(); i++) {
-            action.moveToElement(elements.get(i).findElement(By.cssSelector(".gene-component--navigation__link--tab"))).build().perform();
-            waitForElementVisible(driver, elements.get(i).findElement(By.cssSelector(".gene-component--navigation__list")));
+            action.moveToElement(elements.get(i).findElement(By.cssSelector(".gene-component--navigation__link--tab, .dropdown-toggle"))).build().perform();
+            waitForElementVisible(driver, elements.get(i).findElement(By.cssSelector(".gene-component--navigation__list, .dropdown-menu")));
             visible(driver, true, savePath, "hover-" + Integer.toString(i + 1));
         }
         driver.navigate().refresh();
@@ -459,7 +459,7 @@ public abstract class Screenshots {
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".to-email-address .message")));
             visible(driver, true, savePath,  "modal-share-error");
             modal.findElement(By.name("lname")).sendKeys("Last");
-            modal.findElement(By.name("to-email-address")).sendKeys("test@genentech.com");
+            modal.findElement(By.name("to-email-address")).sendKeys("test@gene.com");
             modal.findElement(By.cssSelector("input[type='submit']")).click();
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success, .share-thank-you-message")));
             visible(driver, true, savePath, "modal-share-submit");

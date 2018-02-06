@@ -26,8 +26,7 @@ public class Tnkase extends SeleniumHeadless {
         // because sitemap doesn't have everything
         links.add(getSiteMapUrl());
         links.add("/tnkase-search-results");
-        links.remove("https://www.gene.com/contact-us");
-        links.remove("https://www.tnkase.com/unsubscribe");
+        links.remove("/unsubscribe");
         return links;
     }
 
