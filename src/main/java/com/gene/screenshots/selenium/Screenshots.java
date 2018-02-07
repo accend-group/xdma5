@@ -460,6 +460,7 @@ public abstract class Screenshots {
                 e.printStackTrace();
             }
             full(driver, isDesktop, currentPageIndex);
+            scrollTo(driver, 0, tab.getLocation().getY());
             try {
                 Thread.sleep(500);
             }catch (Exception e){
@@ -608,7 +609,11 @@ public abstract class Screenshots {
         WebElement thirdPartyLink = driver.findElement(By.cssSelector(sb.toString()));
         int y = thirdPartyLink.getLocation().getY();
         scrollTo(driver, 0, y);
-        //Thread.sleep(500);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         thirdPartyLink.click();
         scrollTo(driver, 0, 0);
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party, .external-modal")));
