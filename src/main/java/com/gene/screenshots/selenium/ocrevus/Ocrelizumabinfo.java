@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Ocrevus extends SeleniumHeadless {
+public class Ocrelizumbainfo extends SeleniumHeadless {
     // sitemap doesn't exist
     @Override
     public String getSiteMapUrl() {
