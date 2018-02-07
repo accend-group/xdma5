@@ -220,6 +220,7 @@ public abstract class SeleniumHeadless extends Screenshots {
         List<String> links = new ArrayList<String>();
         goToUrl(driver, getSiteMapUrl());
         List<WebElement> linkElements = driver.findElements(By.cssSelector(getSiteMapSelector()));
+
         for (WebElement element : linkElements) {
             if (!element.getText().equalsIgnoreCase("Search") && StringUtils.startsWith(element.getAttribute("href"), domain.toString())) {
                 links.add(StringUtils.replace(element.getAttribute("href"), domain.toString(), ""));
@@ -242,10 +243,6 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     protected static void setClass(WebDriver driver, String classString, WebElement element){
         ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', arguments[1]);", element, classString);
-    }
-
-    protected static List<Object> getChildrenElements(WebDriver driver, WebElement parent) {
-        return (List<Object>) ((JavascriptExecutor) driver).executeScript("return arguments[0].childNodes;", parent);
     }
 
 
