@@ -3,8 +3,6 @@ package com.gene.screenshots.selenium.genentech.forum;
 import com.gene.screenshots.selenium.ChromeDriverManager;
 import java.util.List;
 
-import groovy.json.internal.Chr;
-import org.apache.xerces.xs.LSInputList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +11,6 @@ import org.openqa.selenium.interactions.Actions;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class GenentechForum extends SeleniumHeadless {
 
@@ -40,8 +37,7 @@ public class GenentechForum extends SeleniumHeadless {
     @Override
     public void getScreenshotForCarousels(WebDriver driver, boolean isDesktop, int pageIndex) {
         List<WebElement> carousels = driver.findElements(By.cssSelector(".carousel.slide"));
-        for (int i = 0; i < carousels.size(); i++) {
-            WebElement carousel = carousels.get(i);
+        for (WebElement carousel : carousels) {
             scrollTo(driver, 0, carousel.getLocation().getY());
             List<WebElement> dots = carousel.findElements(By.cssSelector(".carousel-indicators li"));
             if (dots.size() > 1) { // if the carousel has 0 or 1 item, don't bother trying to click the dots
@@ -192,7 +188,7 @@ public class GenentechForum extends SeleniumHeadless {
                     getScreenshotForCarousels(threadDriver, false, pageIndex);
                     getScreenshotForSchemaForm(threadDriver, false, pageIndex);
                 } catch (Exception e) {
-                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for desktop");
+                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for mobile");
                     e.printStackTrace();
                 }
                 ChromeDriverManager.releaseMobileDriver(threadDriver);
@@ -202,11 +198,11 @@ public class GenentechForum extends SeleniumHeadless {
     }
 
     public void waitForIframe(WebDriver driver) {
-        int size = driver.findElements(By.xpath("//iframe")).size();
+        int size = driver.findElements(By.cssSelector("iframe")).size();
         if (size > 1 || driver.getCurrentUrl().contains("trend-reports.html")) {
             driver.switchTo().frame(0);
             waitForPageLoad(driver);
-            waitForElementVisible(driver, ".dialog");
+            waitForElementVisiblyLocated(driver, ".dialog");
             try {
                 Thread.sleep(4500);
             } catch (InterruptedException e) {
