@@ -37,35 +37,50 @@ public class Patient extends AccessSolutionsBase {
             return;
 
         driver.findElement(By.id("select-treatment")).click();
-        waitForElementVisible(driver, ".dropdown.open");
+        waitForElementVisiblyLocated(driver, "#select-treatment + .dropdown-menu");
+
+        // drop down menu
         visible(driver, ifDesktop, pageCount);
 
-
-        setStyle(driver, "display: block;", "#product-selector");
-        visible(driver, ifDesktop, pageCount);
-        setStyle(driver, "display: none;", "#product-selector");
-
-        setStyle(driver, "display: block;", "#sub-indications-selector");
-        setStyle(driver, "display: block;", "#sub-indications-selector .sub-indication-list");
-        visible(driver, ifDesktop, pageCount);
-        setStyle(driver, "display: none;", "#sub-indications-selector");
-        setStyle(driver, "display: none;", "#sub-indications-selector .sub-indication-list");
-
-        List<WebElement> hcpModalLink = driver.findElements(By.cssSelector("[href*='/hcp.html']"));
-        if(hcpModalLink.size() > 0){
-
-        forceClick(driver, hcpModalLink.get(0));
-        waitForElementVisible(driver, "[class='hcp-modal modal fade in']");
+        //setStyle(driver, "display: block;", "#product-selector");
+        List<WebElement> selectModal = driver.findElements(By.cssSelector(".product-popup"));
+        for (WebElement modalLink : selectModal)
+            if (modalLink.isDisplayed()) {
+                modalLink.click();
+                break;
+            }
+        waitForElementVisiblyLocated(driver, ".product-selector");
         // wait for fade in animation to complete
         try {
             Thread.sleep(450);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        // brand selection modal
         visible(driver, ifDesktop, pageCount);
+
+        List<WebElement> rituxanLinks = driver.findElements(By.cssSelector("[href*='rituxan.html']"));
+        for (WebElement rituxanLink : rituxanLinks) {
+            if (rituxanLink.isDisplayed()) {
+                rituxanLink.click();
+                break;
+            }
         }
+        waitForElementVisiblyLocated(driver, ".sub-indication-selector.modal");
+        // wait for fade in animation to complete
+        try {
+            Thread.sleep(450);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // rituxan modal selection
+        visible(driver, ifDesktop, pageCount);
+
         driver.navigate().refresh();
         waitForPageLoad(driver);
+
     }
 
 
@@ -77,12 +92,16 @@ public class Patient extends AccessSolutionsBase {
             WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
             try {
                 List<String> links = getLinksFromSiteMap(driver);
-                setNumberOfPageVisits(links.size(), isDesktop);
-                int pageNumber = 0;
+                setNumberOfPageVisits(1, isDesktop);
                 for (String currentPage : links) {
                     goToUrl(driver, currentPage);
                     full(driver, isDesktop, 0);
-                    visibleScreensOfModals(driver, isDesktop, pageNumber);
+                    visibleScreensOfModals(driver, isDesktop, 0);
+                    if(!isDesktop) {
+                        driver.findElement(By.cssSelector(".navbar-toggle")).click();
+                        waitForElementVisiblyLocated(driver, ".dynamicnav.header");
+                    }
+                    getScreenshotForHCPModal(driver, isDesktop, 0);
                 }
             } catch (Exception e) {
                 System.out.println("Issue at " + driver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile"));
