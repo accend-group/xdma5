@@ -37,7 +37,7 @@ public class Patient extends AccessSolutionsBase {
             return;
 
         driver.findElement(By.id("select-treatment")).click();
-        waitForElementVisiblyLocated(driver, "#select-treatment + .dropdown-menu");
+        waitForElementVisible(driver, driver.findElement(By.cssSelector("#select-treatment + .dropdown-menu")));
 
         // drop down menu
         visible(driver, ifDesktop, pageCount);
@@ -49,7 +49,7 @@ public class Patient extends AccessSolutionsBase {
                 modalLink.click();
                 break;
             }
-        waitForElementVisiblyLocated(driver, ".product-selector");
+        waitForElementVisible(driver, driver.findElement(By.cssSelector(".product-selector")));
         // wait for fade in animation to complete
         try {
             Thread.sleep(450);
@@ -67,7 +67,7 @@ public class Patient extends AccessSolutionsBase {
                 break;
             }
         }
-        waitForElementVisiblyLocated(driver, ".sub-indication-selector.modal");
+        waitForElementVisible(driver, driver.findElement(By.cssSelector(".sub-indication-selector.modal")));
         // wait for fade in animation to complete
         try {
             Thread.sleep(450);
@@ -80,6 +80,13 @@ public class Patient extends AccessSolutionsBase {
 
         driver.navigate().refresh();
         waitForPageLoad(driver);
+
+        // only get the hcp modal for patient.html
+        if(!ifDesktop) {
+            driver.findElement(By.cssSelector(".navbar-toggle")).click();
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".dynamicnav.header")));
+        }
+        getScreenshotForHCPModal(driver, ifDesktop, 0);
 
     }
 
@@ -97,11 +104,6 @@ public class Patient extends AccessSolutionsBase {
                     goToUrl(driver, currentPage);
                     full(driver, isDesktop, 0);
                     visibleScreensOfModals(driver, isDesktop, 0);
-                    if(!isDesktop) {
-                        driver.findElement(By.cssSelector(".navbar-toggle")).click();
-                        waitForElementVisiblyLocated(driver, ".dynamicnav.header");
-                    }
-                    getScreenshotForHCPModal(driver, isDesktop, 0);
                 }
             } catch (Exception e) {
                 System.out.println("Issue at " + driver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile"));
