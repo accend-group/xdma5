@@ -156,10 +156,6 @@ public abstract class Screenshots {
     }
 
     // uses javascript to click the element, even if its not visible
-    public static void forceClick(WebDriver driver, String xpath){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.xpath(xpath)));
-    }
-
     public static void forceClick(WebDriver driver, WebElement e){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", e);
     }
@@ -196,6 +192,10 @@ public abstract class Screenshots {
     protected void scrollBy(WebDriver driver, int x, int y) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
+    }
+
+    protected void scrollToElement(WebDriver driver, WebElement e) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", e);
     }
 
     public static boolean isIfSinglePDF() {
@@ -642,9 +642,9 @@ public abstract class Screenshots {
     }
 
     protected void getScreenshotForPAT(WebDriver driver, Actions action, boolean isDesktop, int currentPageIndex) {
-        if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0 || driver.findElements(By.cssSelector(".access-solutions")).size() > 0) {
+        if (driver.findElements(By.cssSelector(".access-solutions")).size() > 0) {
             List<WebElement> questions = driver.findElements(By.cssSelector(".questions li"));
-            if (isDesktop && questions.size() > 2 && driver.getCurrentUrl().contains("patient-assistance-tool-page.html")) {
+            if (driver.findElement(By.cssSelector(".questions")).getSize().getHeight() > driver.findElement(By.cssSelector(".assistance-tool")).getSize().getHeight()){
                 for (int i = 2; i < questions.size(); i += 2) {
                     action.moveToElement(questions.get(i == questions.size() - 1 ? i : i + 1)).build().perform();
                     waitForElementVisible(driver, questions.get(i == questions.size() - 1 ? i : i + 1));
@@ -656,18 +656,20 @@ public abstract class Screenshots {
             ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .start-over")));
             ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .update-response")));
             List<WebElement> results = driver.findElements(By.cssSelector(".assistance-tool .result"));
-            for (int i = 0; i < results.size(); i++) {
-                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", results.get(i));
-                waitForElementVisible(driver, results.get(i));
+            for (WebElement result : results) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", result);
+                waitForElementVisible(driver, result);
+                WebElement container = result.findElement(By.cssSelector(".results-container"));
+                int scrollHeight = toIntExact((Long) ((JavascriptExecutor) driver).executeScript("return arguments[0].scrollHeight;", container));
+                int visibleHeight = toIntExact((Long) ((JavascriptExecutor) driver).executeScript("return arguments[0].getBoundingClientRect().height;", container));
                 full(driver, isDesktop, currentPageIndex);
-                if (isDesktop && driver.getCurrentUrl().contains("patient-assistance-tool-page.html")) {
+                if (scrollHeight > visibleHeight) {
                     WebElement legal = driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"));
                     action.moveToElement(legal).build().perform();
                     waitForElementVisible(driver, legal);
                     full(driver, isDesktop, currentPageIndex);
-
                 }
-                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", results.get(i));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", result);
             }
 
             ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", driver.findElement(By.cssSelector(".assistance-tool .main")));
