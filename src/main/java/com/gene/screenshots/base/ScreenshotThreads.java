@@ -2,7 +2,6 @@ package com.gene.screenshots.base;
 
 import com.gene.screenshots.pdf.PDFMaker;
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import com.google.common.collect.Lists;
 
 import java.io.IOException;
 import java.util.*;
@@ -78,7 +77,7 @@ public abstract class ScreenshotThreads {
 
         if(SeleniumHeadless.isIfSinglePDF()) {
             // append mobile screenshots to desktop screenshots for 1 pdf
-            List<String> imageNames = Lists.newArrayList();
+            List<String> imageNames = new ArrayList<>();
             if(test.getDesktopScreenshots() != null)
                 imageNames.addAll(test.getDesktopScreenshots());
             if(test.getMobileScreenshots() != null)
@@ -87,12 +86,14 @@ public abstract class ScreenshotThreads {
             makePDF(new PDFMaker(), imageNames, pdfName);
         } else {
             if(test.getDesktopScreenshots() != null) {
-                List<String> desktopImages = Lists.newArrayList(test.getDesktopScreenshots());
+                List<String> desktopImages = new ArrayList<>();
+                desktopImages.addAll(test.getDesktopScreenshots());
                 Collections.sort(desktopImages, new AlphanumComparator());
                 makePDF(new PDFMaker(), desktopImages, "desktop_" + pdfName);
             }
             if(test.getMobileScreenshots() != null) {
-                List<String> mobileImages = Lists.newArrayList(test.getMobileScreenshots());
+                List<String> mobileImages = new ArrayList<>();
+                mobileImages.addAll(test.getMobileScreenshots());
                 Collections.sort(mobileImages, new AlphanumComparator());
                 makePDF(new PDFMaker(), mobileImages, "mobile_" + pdfName);
             }
