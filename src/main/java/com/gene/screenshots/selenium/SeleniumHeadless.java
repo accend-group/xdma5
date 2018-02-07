@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,16 +32,7 @@ import com.gene.screenshots.authentication.AuthorCredentials;
 public abstract class SeleniumHeadless extends Screenshots {
 
     protected String pdfName = this.getClass().getSimpleName();
-
-
-
     protected static BrandUrl domain;
-
-    // window.scrollBy(X, Y);
-    // https://stackoverflow.com/a/4403822
-    private static String SCROLL_TO_ELEMENT_FROM_XPATH = "document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(); ";
-
-
     private static boolean credentialsRequired = false;
 
     // suppress selenium console log
@@ -137,7 +127,7 @@ public abstract class SeleniumHeadless extends Screenshots {
                     getScreenshotForAccordion(threadDriver, isDesktop, currentPageNumber);
                     getScreenshotForSchemaForm(threadDriver, isDesktop, currentPageNumber);
                 } catch (Exception e) {
-                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile" + currentPageNumber));
+                    System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile"));
                     e.printStackTrace();
                 }
                 ChromeDriverManager.releaseDriver(threadDriver, isDesktop);
@@ -152,42 +142,6 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     public List<Thread> mobileAutomationTest() {
        return createScreenCaptureThreads(false);
-    }
-
-
-    // scrolls to the element and clicks it
-    protected static void scrollAndClickAt(WebDriver driver, String xpath) {
-        WebElement e = driver.findElement(By.xpath(xpath));
-        scrollAndClickAt(driver, e);
-    }
-
-
-    protected static void scrollAndClickAt(WebDriver driver, WebElement e) {
-        scrollToElement(driver, e);
-        e.click();
-    }
-
-    protected static void scrollToElement(WebDriver driver, WebElement e) {
-
-        ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, getXPath(driver, e));
-    }
-
-    protected static void scrollToElement(WebDriver driver, String xpath) {
-        ((JavascriptExecutor) driver).executeScript(SCROLL_TO_ELEMENT_FROM_XPATH, xpath);
-    }
-
-
-    protected static String getXPath(WebDriver driver, WebElement e) {
-        String jscript = "function getPathTo(node) {" +
-                "  var stack = [];" +
-                "  while(node.parentNode !== null) {" +
-                "    stack.unshift(node.tagName);" +
-                "    node = node.parentNode;" +
-                "  }" +
-                "  return stack.join('/');" +
-                "}" +
-                "return getPathTo(arguments[0]);";
-        return (String) ((JavascriptExecutor) driver).executeScript(jscript, e);
     }
 
     public static void isCredentialsRequired(boolean ifCredentials){
@@ -228,23 +182,6 @@ public abstract class SeleniumHeadless extends Screenshots {
         }
         return links;
     }
-
-    protected static void setStyle(WebDriver driver, String propertyValuePair, WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1]);", element, propertyValuePair);
-    }
-
-    protected static void setStyle(WebDriver driver, String propertyValuePair, String cssString) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1]);", driver.findElement(By.cssSelector(cssString)), propertyValuePair);
-    }
-
-    protected static void setClass(WebDriver driver, String classString, String cssString){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', arguments[1]);", driver.findElement(By.cssSelector(cssString)), classString);
-    }
-
-    protected static void setClass(WebDriver driver, String classString, WebElement element){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('class', arguments[1]);", element, classString);
-    }
-
 
     public void setPdfName(String name){
         pdfName = name;
