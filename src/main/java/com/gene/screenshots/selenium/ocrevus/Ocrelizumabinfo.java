@@ -26,7 +26,7 @@ public class Ocrelizumabinfo extends SeleniumHeadless {
         if(driver.getCurrentUrl().contains("index.html")) {
 
             // wait for modal
-            waitForElementVisiblyLocated(driver, ".gene-component--modal.gene-component--modal--interstitial.is-active");
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal.gene-component--modal--interstitial.is-active")));
             // wait for fade in animation
             try {
                 Thread.sleep(1000);
@@ -45,7 +45,7 @@ public class Ocrelizumabinfo extends SeleniumHeadless {
 
             // click third party modal
             driver.findElement(By.cssSelector("[href*='fda.gov']:not(.gene-component--button)")).click();
-            waitForElementVisiblyLocated(driver,".gene-component--modal.gene-component--modal--third-party.is-active");
+            waitForElementVisible(driver,driver.findElement(By.cssSelector(".gene-component--modal.gene-component--modal--third-party.is-active")));
             // wait for animation
             try {
                 Thread.sleep(1000);
@@ -57,7 +57,7 @@ public class Ocrelizumabinfo extends SeleniumHeadless {
             // remove hcp modal
             driver.navigate().refresh();
             waitForPageLoad(driver);
-            waitForElementVisiblyLocated(driver, ".gene-component--modal.gene-component--modal--interstitial.is-active");
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal.gene-component--modal--interstitial.is-active")));
             // fade in
             try {
                 Thread.sleep(1000);
