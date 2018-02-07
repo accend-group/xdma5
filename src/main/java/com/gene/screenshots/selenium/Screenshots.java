@@ -16,9 +16,6 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import com.gene.screenshots.Variables;
-import com.gene.screenshots.base.ScreenshotJob;
-import com.gene.screenshots.base.ScreenshotThreads;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -35,7 +32,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.assertthat.selenium_shutterbug.utils.file.FileUtil;
 import com.assertthat.selenium_shutterbug.utils.web.UnableTakeSnapshotException;
-import com.gene.screenshots.pdf.Log;
 
 /***
  * used Shutterbug https://github.com/assertthat/selenium-shutterbug as starting basis
@@ -60,7 +56,6 @@ public abstract class Screenshots {
 
     private String desktopSavePath;
     private String mobileSavePath;
-
 
 
     private static int mobileScaleFactor = 1;
@@ -109,11 +104,31 @@ public abstract class Screenshots {
         return mobileImagePaths;
     }
 
+    // click element and wait for the css selected element to be visible and wait for set time
+    public void full(WebDriver driver, boolean isDesktop, int currentPageIndex, WebElement clickElement, String cssString, long time){
+        handleFullScreenType(driver, isDesktop, currentPageIndex, clickElement, time, cssString, null);
+    }
+
+    // click element and wait for another element to become visible and wait for the set time
+    public void full(WebDriver driver, boolean isDesktop, int currentPageIndex, WebElement clickElement, WebElement waitForDynamicElement, long time){
+        handleFullScreenType(driver, isDesktop, currentPageIndex, clickElement, time, null, waitForDynamicElement);
+    }
+
+    // click element and wait for the set time
+    public void full(WebDriver driver, boolean ifDesktop, int currentPageIndex, WebElement clickElement, long time)  {
+        handleFullScreenType(driver, ifDesktop, currentPageIndex, clickElement, time, null, null);
+    }
+
+    // regular fullscreen
     public void full(WebDriver driver, boolean ifDesktop, int currentPageIndex)  {
+        handleFullScreenType(driver, ifDesktop, currentPageIndex, null, 0L, null, null);
+    }
+
+    private void handleFullScreenType(WebDriver driver, boolean ifDesktop, int currentPageIndex, WebElement clickElement, Long time, String cssString, WebElement waitForDynamicElement){
         int pageCount = ifDesktop ? desktopPageScreenshotCount[currentPageIndex]++ :mobilePageScreenshotCount[currentPageIndex]++;
         String screenshotName = String.format("%s-%s", currentPageIndex, pageCount);
         String path = ifDesktop ? desktopSavePath : mobileSavePath;
-        fullScreenshot(driver, ifDesktop, path, screenshotName, null, 0L);
+        fullScreenshot(driver, ifDesktop, screenshotName, clickElement, time, cssString, waitForDynamicElement);
         File outputImg = new File(path + "/" + screenshotName + ".png");
         if (ifDesktop)
             desktopScreenshots[currentPageIndex].add(outputImg.getAbsolutePath());
@@ -121,18 +136,6 @@ public abstract class Screenshots {
             mobileScreenshots[currentPageIndex].add(outputImg.getAbsolutePath());
     }
 
-    // click element before after resizing window
-    public void full(WebDriver driver, boolean ifDesktop, int currentPageIndex, WebElement e, Long time){
-        int pageCount = ifDesktop ? desktopPageScreenshotCount[currentPageIndex]++ :mobilePageScreenshotCount[currentPageIndex]++;
-        String screenshotName = String.format("%s-%s", currentPageIndex, pageCount);
-        String path = ifDesktop ? desktopSavePath : mobileSavePath;
-        fullScreenshot(driver, ifDesktop, path, screenshotName, e, time);
-        File outputImg = new File(path + "/" + screenshotName + ".png");
-        if (ifDesktop)
-            desktopScreenshots[currentPageIndex].add(outputImg.getAbsolutePath());
-        else
-            mobileScreenshots[currentPageIndex].add(outputImg.getAbsolutePath());
-    }
 
     public void visible(WebDriver driver, boolean ifDesktop, int currentPageIndex) {
         try {
@@ -171,10 +174,6 @@ public abstract class Screenshots {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
         return toIntExact(result);
-        /*//Object value = jse.executeScript("return document.body.getBoundingClientRect().height");//document.body.scrollHeight");
-        if(value instanceof Double)
-            return (int) Math.ceil((Double) value);
-        return toIntExact((Long) value);*/
     }
 
     protected int getCurrentScrollX(WebDriver driver) {
@@ -211,11 +210,11 @@ public abstract class Screenshots {
     // full site body screenshot
     // need to store current scroll position
     // click item after resizing window
-    protected void fullScreenshot(WebDriver driver, boolean ifDesktop, String location, String fileName, WebElement element, long time) {
+    protected void fullScreenshot(WebDriver driver, boolean ifDesktop, String fileName, WebElement clickElement, long time, String cssString, WebElement dynamicElement) {
 
         int xPos = getCurrentScrollX(driver);
         int yPos = getCurrentScrollY(driver);
-
+        String location = ifDesktop ? desktopSavePath : mobileSavePath;
         File screenshotFile = new File(location);
         if (!screenshotFile.exists()) {
             screenshotFile.mkdirs();
@@ -225,10 +224,10 @@ public abstract class Screenshots {
         scrollTo(driver, 0, 0);
 
         if (ifDesktop) {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, true, element, time), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, true, clickElement, time, cssString, dynamicElement), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT));
         } else {
-            FileUtil.writeImage(takeScreenshotEntirePage(driver, false, element, time), "PNG", outputImg);
+            FileUtil.writeImage(takeScreenshotEntirePage(driver, false, clickElement, time, cssString, dynamicElement), "PNG", outputImg);
             driver.manage().window().setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT));
         }
 
@@ -268,7 +267,7 @@ public abstract class Screenshots {
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
-    private BufferedImage takeScreenshotEntirePage(WebDriver driver, boolean isDesktop, WebElement e, long sleepTime) {
+    private BufferedImage takeScreenshotEntirePage(WebDriver driver, boolean isDesktop, WebElement clickElement, long sleepTime, String cssString, WebElement dynamicContent) {
 
         int scaleFactor = isDesktop ? 1 : getMobileScaleFactor();
 
@@ -283,7 +282,7 @@ public abstract class Screenshots {
             driver.manage().window().setSize(new Dimension(_docWidth, _docHeight));
 
         //click item after resizing window
-        _docHeight = clickAfterResizedWindow(driver, e, sleepTime);
+        _docHeight = clickAfterResizedWindow(driver, clickElement, sleepTime, cssString, dynamicContent);
 
         // scroll-stitch
         if(_docHeight > CHROME_HEIGHT_CAP || scaleFactor > 1){
@@ -294,7 +293,7 @@ public abstract class Screenshots {
             if(scaleFactor > 1) {
                 viewport = 2000; // larger values tend to not capture as much
                 driver.manage().window().setSize(new Dimension(_docWidth, viewport));
-                _docHeight = clickAfterResizedWindow(driver, e, sleepTime);
+                _docHeight = clickAfterResizedWindow(driver, clickElement, sleepTime, cssString, dynamicContent);
             }
             removeSafety(driver, isDesktop);
 
@@ -311,7 +310,7 @@ public abstract class Screenshots {
                 if(i == leftover - 1 && lastImageHeight != 0) {
                     driver.manage().window().setSize(new Dimension(_docWidth, lastImageHeight));
                     removeSafety(driver, isDesktop);
-                    clickAfterResizedWindow(driver, e, sleepTime);
+                    clickAfterResizedWindow(driver, clickElement, sleepTime, cssString, dynamicContent);
                 }
                 scrollTo(driver, 0, i * viewport);
                 try {
@@ -333,7 +332,7 @@ public abstract class Screenshots {
         return takeScreenshot(driver);
     }
 
-    private int clickAfterResizedWindow(WebDriver driver, WebElement e, long sleepTime) {
+    private int clickAfterResizedWindow(WebDriver driver, WebElement e, long sleepTime, String cssString, WebElement dynamicContent) {
         if (e != null) {
             try {
                 Actions builder = new Actions(driver);
@@ -342,6 +341,10 @@ public abstract class Screenshots {
                 forceClick(driver, e);
             }
             try {
+                if(cssString != null && !cssString.isEmpty())
+                    waitForElementVisiblyLocated(driver, cssString);
+                else if(dynamicContent != null)
+                    waitForElementVisible(driver, dynamicContent);
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
@@ -387,7 +390,7 @@ public abstract class Screenshots {
             mobileScaleFactor = 2;
     }
 
-    protected void waitForElementVisible(WebDriver driver, String cssString) {
+    protected void waitForElementVisiblyLocated(WebDriver driver, String cssString) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector(cssString))));
@@ -407,9 +410,9 @@ public abstract class Screenshots {
 
     protected void getScreenshotForDesktopNavigation(WebDriver driver, Actions action, int currentPageIndex) {
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent, .navbar-nav .has-dropdown"));
-        for (int i = 0; i < elements.size(); i++) {
-            action.moveToElement(elements.get(i).findElement(By.cssSelector(".gene-component--navigation__link--tab, .dropdown-toggle"))).build().perform();
-            waitForElementVisible(driver, elements.get(i).findElement(By.cssSelector(".gene-component--navigation__list, .dropdown-menu")));
+        for (WebElement e : elements) {
+            action.moveToElement(e.findElement(By.cssSelector(".gene-component--navigation__link--tab, .dropdown-toggle"))).build().perform();
+            waitForElementVisible(driver, e.findElement(By.cssSelector(".gene-component--navigation__list, .dropdown-menu")));
             visible(driver, true, currentPageIndex);
         }
         driver.navigate().refresh();
@@ -427,11 +430,11 @@ public abstract class Screenshots {
         }
         visible(driver, false, currentPageIndex);
         List<WebElement> elements = driver.findElements(By.cssSelector(".gene-component--navigation__tab--parent"));
-        for (int i = 0; i < elements.size(); i++) {
-            elements.get(i).findElement(By.cssSelector(".gene-component--navigation__icon--tab")).click();
-            waitForElementVisible(driver, elements.get(i).findElement(By.cssSelector(".gene-component--navigation__list")));
+        for (WebElement e : elements) {
+            e.findElement(By.cssSelector(".gene-component--navigation__icon--tab")).click();
+            waitForElementVisible(driver, e.findElement(By.cssSelector(".gene-component--navigation__list")));
             visible(driver, false, currentPageIndex);
-            elements.get(i).findElement(By.cssSelector(".gene-component--navigation__icon--tab")).click(); // collapse the current menu before going to the next one. So then the cursor won't hover over a submenu item.
+            e.findElement(By.cssSelector(".gene-component--navigation__icon--tab")).click(); // collapse the current menu before going to the next one. So then the cursor won't hover over a submenu item.
         }
         driver.navigate().refresh();
         waitForPageLoad(driver);
@@ -439,14 +442,16 @@ public abstract class Screenshots {
 
     protected void getScreenshotForAccordion(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         List<WebElement> tabs = driver.findElements(By.cssSelector(".gene-component--accordionTabs--accordiontype .gene-component--accordionTabs__item .gene-component--accordionTabs__header, .panel-heading"));
-        for (int i = 0; i < tabs.size(); i++) {
-            scrollTo(driver, 0, tabs.get(i).getLocation().getY());
+        for (WebElement tab : tabs) {
+            scrollTo(driver, 0, tab.getLocation().getY());
             try {
-                tabs.get(i).click();
+                Thread.sleep(500);
             }catch (Exception e){
-                forceClick(driver, tabs.get(i));
+                e.printStackTrace();
             }
-            waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
+            tab.click();
+
+            waitForElementVisible(driver, tab.findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
             scrollTo(driver, 0, 0); // scroll to the top to avoid the natural scrolling coming from the component and to force the recalculation of the height of the page.
             try {
                 Thread.sleep(500); // sleep so that we have enough time for the scrolling to finish
@@ -456,33 +461,35 @@ public abstract class Screenshots {
             }
             full(driver, isDesktop, currentPageIndex);
             try {
-                tabs.get(i).click(); //collapse the current one
+                Thread.sleep(500);
             }catch (Exception e){
-                forceClick(driver, tabs.get(i));
+                e.printStackTrace();
             }
-            waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
+            tab.click(); //collapse the current one
+
+            waitForElementNotVisible(driver, tab.findElement(By.xpath("following-sibling::*[1]")));
         }
     }
 
     protected void getScreenshotForTabs(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         List<WebElement> tabComponents = driver.findElements(By.cssSelector(".gene-component--accordionTabs--tabstype"));
-        for (int j = 0; j < tabComponents.size(); j++) {
-            List<WebElement> tabs = tabComponents.get(j).findElements(By.cssSelector(".gene-component--accordionTabs__item .gene-component--accordionTabs__header"));
+        for (WebElement tabComponent : tabComponents) {
+            List<WebElement> tabs = tabComponent.findElements(By.cssSelector(".gene-component--accordionTabs__item .gene-component--accordionTabs__header"));
             if (tabs.size() > 1) {
                 if (!isDesktop) {
                     scrollTo(driver, 0, tabs.get(0).getLocation().getY());
                     tabs.get(0).click(); // collapse the first tab on mobile
                     waitForElementNotVisible(driver, tabs.get(0).findElement(By.xpath("following-sibling::*[1]")));
                 }
-                for (int i = 1; i < tabs.size(); i++) {
-                    scrollTo(driver, 0, tabs.get(i).getLocation().getY());
-                    tabs.get(i).click();
-                    waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
+                for (WebElement tab : tabs) {
+                    scrollTo(driver, 0, tab.getLocation().getY());
+                    tab.click();
+                    waitForElementVisible(driver, tab.findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
                     scrollTo(driver, 0, getCurrentScrollY(driver) + 1); // scroll down a pixel so the height gets recalculated before we get the doc height.
                     full(driver, isDesktop, currentPageIndex);
                     if (!isDesktop) {
-                        tabs.get(i).click(); //collapse the current one
-                        waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
+                        tab.click(); //collapse the current one
+                        waitForElementNotVisible(driver, tab.findElement(By.xpath("following-sibling::*[1]")));
                     }
                 }
                 scrollTo(driver, 0, tabs.get(0).getLocation().getY());
@@ -590,7 +597,7 @@ public abstract class Screenshots {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         List<Object> geneUrls = (List<Object>) js.executeScript("return window.geneUrls;");
         if (geneUrls.size() > 0) {
-            for (Object url: geneUrls) {
+            for (Object url : geneUrls) {
                 if (url instanceof String) {
                     sb.append(":not([href*='").append(url).append("'])");
                 } else if (url instanceof Map) {
@@ -610,7 +617,7 @@ public abstract class Screenshots {
         } catch (InterruptedException e) {
             // failed to sleep :(
             e.printStackTrace();
-        } 
+        }
         visible(driver, isDesktop, currentPageIndex);
         driver.navigate().refresh();
         waitForPageLoad(driver);
@@ -618,8 +625,7 @@ public abstract class Screenshots {
 
     protected void getScreenshotForCarousels(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         List<WebElement> carousels = driver.findElements(By.cssSelector(".gene-component--hero-carousel"));
-        for (int i = 0; i < carousels.size(); i++) {
-            WebElement carousel = carousels.get(i);
+        for (WebElement carousel : carousels) {
             scrollTo(driver, 0, carousel.getLocation().getY());
             List<WebElement> dots = carousel.findElements(By.cssSelector(".dot"));
             if (dots.size() > 1) { // if the carousel has 0 or 1 item, don't bother trying to click the dots
@@ -636,9 +642,9 @@ public abstract class Screenshots {
     }
 
     protected void getScreenshotForPAT(WebDriver driver, Actions action, boolean isDesktop, int currentPageIndex) {
-        if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0) {
+        if (driver.findElements(By.cssSelector(".gene-component--pat")).size() > 0 || driver.findElements(By.cssSelector(".access-solutions")).size() > 0) {
             List<WebElement> questions = driver.findElements(By.cssSelector(".questions li"));
-            if (isDesktop && questions.size() > 2) {
+            if (isDesktop && questions.size() > 2 && driver.getCurrentUrl().contains("patient-assistance-tool-page.html")) {
                 for (int i = 2; i < questions.size(); i += 2) {
                     action.moveToElement(questions.get(i == questions.size() - 1 ? i : i + 1)).build().perform();
                     waitForElementVisible(driver, questions.get(i == questions.size() - 1 ? i : i + 1));
@@ -654,11 +660,12 @@ public abstract class Screenshots {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: block;')", results.get(i));
                 waitForElementVisible(driver, results.get(i));
                 full(driver, isDesktop, currentPageIndex);
-                if (isDesktop) {
+                if (isDesktop && driver.getCurrentUrl().contains("patient-assistance-tool-page.html")) {
                     WebElement legal = driver.findElement(By.cssSelector(".result[style='display: block;'] p:last-child"));
                     action.moveToElement(legal).build().perform();
                     waitForElementVisible(driver, legal);
                     full(driver, isDesktop, currentPageIndex);
+
                 }
                 ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: none;')", results.get(i));
             }
@@ -675,7 +682,7 @@ public abstract class Screenshots {
                 waitForElementVisible(driver, questions.get(j == questions.size() - 1 ? j : j + 1));
                 List<WebElement> moreInfo = question.findElements(By.cssSelector(".more-info"));
                 if (moreInfo.size() > 0) {
-                    full(driver, isDesktop, currentPageIndex, moreInfo.get(0), new Long(1000));
+                    full(driver, isDesktop, currentPageIndex, moreInfo.get(0), ".popover", 400L);
                 }
                 List<WebElement> options = driver.findElements(By.cssSelector(".assistance-tool .active:not(.disabled) button[data-action^='question_']"));
                 if (options.size() > 0) {
@@ -691,6 +698,7 @@ public abstract class Screenshots {
                 }
             }
             driver.navigate().refresh();
+            waitForPageLoad(driver);
         }
     }
 }
