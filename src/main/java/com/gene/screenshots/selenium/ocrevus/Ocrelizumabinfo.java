@@ -9,17 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Ocrelizumbainfo extends SeleniumHeadless {
-    // sitemap doesn't exist
-    @Override
-    public String getSiteMapUrl() {
-        return null;
-    }
-
-    @Override
-    public String getSiteMapSelector() {
-        return null;
-    }
+public class Ocrelizumabinfo extends SeleniumHeadless {
 
     @Override
     public List<String> getLinksFromSiteMap(WebDriver driver) {
@@ -36,7 +26,7 @@ public class Ocrelizumbainfo extends SeleniumHeadless {
         if(driver.getCurrentUrl().contains("index.html")) {
 
             // wait for modal
-            waitForElementVisible(driver, ".gene-component--modal.gene-component--modal--interstitial.is-active");
+            waitForElementVisiblyLocated(driver, ".gene-component--modal.gene-component--modal--interstitial.is-active");
             // wait for fade in animation
             try {
                 Thread.sleep(1000);
@@ -55,7 +45,7 @@ public class Ocrelizumbainfo extends SeleniumHeadless {
 
             // click third party modal
             driver.findElement(By.cssSelector("[href*='fda.gov']:not(.gene-component--button)")).click();
-            waitForElementVisible(driver,".gene-component--modal.gene-component--modal--third-party.is-active");
+            waitForElementVisiblyLocated(driver,".gene-component--modal.gene-component--modal--third-party.is-active");
             // wait for animation
             try {
                 Thread.sleep(1000);
@@ -67,7 +57,7 @@ public class Ocrelizumbainfo extends SeleniumHeadless {
             // remove hcp modal
             driver.navigate().refresh();
             waitForPageLoad(driver);
-            waitForElementVisible(driver, ".gene-component--modal.gene-component--modal--interstitial.is-active");
+            waitForElementVisiblyLocated(driver, ".gene-component--modal.gene-component--modal--interstitial.is-active");
             // fade in
             try {
                 Thread.sleep(1000);
