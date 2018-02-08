@@ -43,21 +43,18 @@ public class Her2treatment extends SeleniumHeadless{
     public List<Thread> desktopAutomationTest() {
 
         List<Thread> desktopTheads = new LinkedList<>();
-        List<String> links = new LinkedList<>();
 
         WebDriver driver = ChromeDriverManager.requestDesktopDriver();
-        try {
-            links = getLinksFromSiteMap(driver);
-            setNumberOfPageVisits(links.size(), true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        List<String> links = getLinksFromSiteMap(driver);
+        setNumberOfPageVisits(links.size(), true);
+
         ChromeDriverManager.releaseDesktopDriver(driver);
 
         int pageNumber = 0;
         for (String link : links) {
             final int currentPageNumber = pageNumber++;
-            desktopTheads.add(new Thread( ()-> {
+            desktopTheads.add(new Thread(() -> {
                 WebDriver threadDriver = ChromeDriverManager.requestDesktopDriver();
                 try {
                     goToUrl(threadDriver, link);
@@ -76,7 +73,7 @@ public class Her2treatment extends SeleniumHeadless{
                         getScreenshotForDownloadsFilter(threadDriver, true, currentPageNumber);
                         getScreenshotForSchemaForm(threadDriver, true, currentPageNumber);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for desktop");
                     e.printStackTrace();
                 }
@@ -84,7 +81,7 @@ public class Her2treatment extends SeleniumHeadless{
             }));
         }
         return desktopTheads;
-	}
+    }
 
     @Override
     public void getScreenshotForSchemaForm(WebDriver driver, boolean isDesktop, int currentPageIndex) {
@@ -159,16 +156,10 @@ public class Her2treatment extends SeleniumHeadless{
     @Override
     public List<Thread> mobileAutomationTest() {
         List<Thread> mobileTheads = new LinkedList<>();
-        List<String> links = new LinkedList<>();
 
         WebDriver driver = ChromeDriverManager.requestMobileDriver();
-        try {
-            links = getLinksFromSiteMap(driver);
-            setNumberOfPageVisits(links.size(), false);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<String> links = getLinksFromSiteMap(driver);
+        setNumberOfPageVisits(links.size(), false);
         ChromeDriverManager.releaseMobileDriver(driver);
         int pageNumber = 0;
         for (String link : links) {

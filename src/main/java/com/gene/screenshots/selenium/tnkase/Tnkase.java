@@ -37,15 +37,11 @@ public class Tnkase extends SeleniumHeadless {
     public List<Thread> desktopAutomationTest() {
 
         List<Thread> desktopThreads = new LinkedList<Thread>();
-        List<String> links = new LinkedList<String>();
         WebDriver driver = ChromeDriverManager.requestDriver(true);
 
-        try {
-            links = getLinksFromSiteMap(driver);
-            setNumberOfPageVisits(links.size(), true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<String> links = getLinksFromSiteMap(driver);
+        setNumberOfPageVisits(links.size(), true);
+
         ChromeDriverManager.releaseDriver(driver, true);
 
         int pageNumber = 0;
@@ -61,7 +57,7 @@ public class Tnkase extends SeleniumHeadless {
                         getScreenshotForDesktopNavigation(threadDriver, actions, currentPageNumber);
                     }
                     full(threadDriver, true, currentPageNumber);
-                    getScreenshotForSchemaForm(threadDriver,true, currentPageNumber);
+                    getScreenshotForSchemaForm(threadDriver, true, currentPageNumber);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
