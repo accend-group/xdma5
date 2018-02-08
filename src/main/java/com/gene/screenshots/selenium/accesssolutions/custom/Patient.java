@@ -13,11 +13,6 @@ import java.util.List;
 public class Patient extends AccessSolutionsBase {
 
     @Override
-    public String getSiteMapUrl() {
-        return null;
-    }
-
-    @Override
     public List<String> getLinksFromSiteMap(WebDriver driver) {
         List<String> links = new ArrayList<String>();
         links.add("/patient.html");
@@ -42,7 +37,6 @@ public class Patient extends AccessSolutionsBase {
         // drop down menu
         visible(driver, ifDesktop, pageCount);
 
-        //setStyle(driver, "display: block;", "#product-selector");
         List<WebElement> selectModal = driver.findElements(By.cssSelector(".product-popup"));
         for (WebElement modalLink : selectModal)
             if (modalLink.isDisplayed()) {
