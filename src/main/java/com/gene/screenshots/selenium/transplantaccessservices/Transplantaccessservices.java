@@ -45,6 +45,9 @@ public class Transplantaccessservices extends SeleniumHeadless {
             goToUrl(driver, "/genentech-access-to-care-foundation");
             full(driver, true, savePath, "access-to-care");
             
+            goToUrl(driver, "/site-map");
+            full(driver, true, savePath, "sitemap");
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
