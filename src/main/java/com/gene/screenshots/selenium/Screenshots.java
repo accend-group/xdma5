@@ -155,11 +155,6 @@ public abstract class Screenshots {
         }
     }
 
-    // uses javascript to click the element, even if its not visible
-    public static void forceClick(WebDriver driver, WebElement e){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", e);
-    }
-
     protected int getDocWidth(WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         long result = (Long) jse.executeScript("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);");
@@ -189,14 +184,6 @@ public abstract class Screenshots {
         jse.executeScript("window.scrollTo(arguments[0], arguments[1]);", x, y);
     }
 
-    protected void scrollBy(WebDriver driver, int x, int y) {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(arguments[0], arguments[1]);", x, y);
-    }
-
-    protected void scrollToElement(WebDriver driver, WebElement e) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", e);
-    }
 
     public static boolean isIfSinglePDF() {
         return ifSinglePDF;
@@ -205,7 +192,6 @@ public abstract class Screenshots {
     public static void setIfSinglePDF(boolean ifSinglePDF) {
         Screenshots.ifSinglePDF = ifSinglePDF;
     }
-
 
     // full site body screenshot
     // need to store current scroll position
@@ -251,16 +237,6 @@ public abstract class Screenshots {
         }
     }
 
-
-    // create tab and wait for tab to be available
-    private void createTab(WebDriver driver, String url){
-        ((JavascriptExecutor) driver).executeScript("window.open(arguments[0], '_blank');", url);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
-    }
 
     public static void waitForPageLoad(WebDriver driver){
         new WebDriverWait(driver, 10).until(
@@ -335,11 +311,13 @@ public abstract class Screenshots {
     private int clickAfterResizedWindow(WebDriver driver, WebElement e, long sleepTime, String cssString, WebElement dynamicContent) {
         if (e != null) {
             try {
-                Actions builder = new Actions(driver);
-                builder.moveToElement(e, 5, 5).click().build().perform();
+                scrollTo(driver, 0, e.getLocation().y);
+                Thread.sleep(500);
             } catch (Exception ex) {
-                forceClick(driver, e);
+                ex.printStackTrace();
             }
+            Actions builder = new Actions(driver);
+            builder.moveToElement(e, 5, 5).click().build().perform();
             try {
                 if(cssString != null && !cssString.isEmpty())
                     waitForElementVisiblyLocated(driver, cssString);
