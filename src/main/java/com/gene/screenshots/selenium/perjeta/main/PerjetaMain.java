@@ -107,7 +107,15 @@ public class PerjetaMain extends SeleniumHeadless {
             e.printStackTrace();
         }
         WebElement thirdPartyLinks = driver.findElement(By.cssSelector(".gene-template__safety a[href^='http']:not([href*='gene.com']):not([href*='racopay.com']):not([href*='genentech-access.com'])"));
-        forceClick(driver, thirdPartyLinks); // actions.moveToElement().click().build().perform() seems to fail on clicking
+
+        scrollTo(driver, 0, thirdPartyLinks.getLocation().y);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        thirdPartyLinks.click();
+        //forceClick(driver, thirdPartyLinks); // actions.moveToElement().click().build().perform() seems to fail on clicking
         js.executeScript("window.scrollTo(0, 0)");
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party")));
         try {
