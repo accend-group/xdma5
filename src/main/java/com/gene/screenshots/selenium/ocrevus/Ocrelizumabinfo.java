@@ -26,7 +26,7 @@ public class Ocrelizumabinfo extends SeleniumHeadless {
         if(driver.getCurrentUrl().contains("index.html")) {
 
             // wait for modal
-            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal.gene-component--modal--interstitial.is-active")));
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp")));
             // wait for fade in animation
             try {
                 Thread.sleep(1000);
@@ -36,7 +36,7 @@ public class Ocrelizumabinfo extends SeleniumHeadless {
             visible(driver, isDesktop, pageIndex);
 
             // close hcp modal
-            driver.findElement(By.cssSelector("[style='display: block;'] .gene-component--modal__button.gene-component--modal__button--confirm")).click();
+            driver.findElement(By.cssSelector(".gene-component--modal--hcp .gene-component--modal__button--confirm")).click();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -45,7 +45,7 @@ public class Ocrelizumabinfo extends SeleniumHeadless {
 
             // click third party modal
             driver.findElement(By.cssSelector("[href*='fda.gov']:not(.gene-component--button)")).click();
-            waitForElementVisible(driver,driver.findElement(By.cssSelector(".gene-component--modal.gene-component--modal--third-party.is-active")));
+            waitForElementVisible(driver,driver.findElement(By.cssSelector(".gene-component--modal--third-party")));
             // wait for animation
             try {
                 Thread.sleep(1000);
@@ -57,14 +57,14 @@ public class Ocrelizumabinfo extends SeleniumHeadless {
             // remove hcp modal
             driver.navigate().refresh();
             waitForPageLoad(driver);
-            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal.gene-component--modal--interstitial.is-active")));
+            waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp")));
             // fade in
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            driver.findElement(By.cssSelector("[style='display: block;'] .gene-component--modal__button.gene-component--modal__button--confirm")).click();
+            driver.findElement(By.cssSelector(" .gene-component--modal--hcp .gene-component--modal__button--confirm")).click();
             // fade out
             try {
                 Thread.sleep(1000);
