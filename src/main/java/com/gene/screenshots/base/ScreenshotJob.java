@@ -80,12 +80,12 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
         int expectedPDFs = screenshotCodes.size();
         for (int i = 0; i < expectedPDFs; i++) {
             if (SeleniumHeadless.isIfSinglePDF()) {
-                String filePath = screenshotCodes.get(i).getClass().getSimpleName() + ".pdf";
+                String filePath = screenshotCodes.get(i).getPdfName() + ".pdf";
                 if (ifFileExisits(filePath))
                     pdfNames.add(filePath);
             } else {
-                String desktopPath = "desktop_" + screenshotCodes.get(i).getClass().getSimpleName() + ".pdf";
-                String mobilePath = "mobile_" + screenshotCodes.get(i).getClass().getSimpleName() + ".pdf";
+                String desktopPath = "desktop_" + screenshotCodes.get(i).getPdfName() + ".pdf";
+                String mobilePath = "mobile_" + screenshotCodes.get(i).getPdfName() + ".pdf";
                 if (ifFileExisits(desktopPath))
                     pdfNames.add(desktopPath);
                 if (ifFileExisits(mobilePath))
@@ -105,7 +105,7 @@ public abstract class ScreenshotJob extends ScreenshotThreads {
 
     // screenshotCodes must only contain one script
     protected void sendPDFtoS3(AmazonS3 s3) {
-        String screenshotScriptName = screenshotCodes.get(0).getClass().getSimpleName();
+        String screenshotScriptName = screenshotCodes.get(0).getPdfName();
         String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         System.out.println("Sending " + getJobName() + " pdf file...");
         String filePath = pdfSavePath + "/" + screenshotScriptName + ".pdf";
