@@ -121,14 +121,11 @@ public class GenentechForum extends SeleniumHeadless {
     @Override
     public List<Thread> desktopAutomationTest() {
         List<Thread> desktopTheads = new LinkedList<>();
-        List<String> links = new LinkedList<>();
         WebDriver driver = ChromeDriverManager.requestDesktopDriver();
-        try {
-            links = getLinksFromSiteMap(driver);
-            setNumberOfPageVisits(links.size(), true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        List<String> links = getLinksFromSiteMap(driver);
+        setNumberOfPageVisits(links.size(), true);
+
         ChromeDriverManager.releaseDesktopDriver(driver);
 
         //--->start full page screenshot <---//
@@ -162,20 +159,16 @@ public class GenentechForum extends SeleniumHeadless {
     @Override
     public List<Thread> mobileAutomationTest() {
         List<Thread> mobileThreads = new LinkedList<>();
-        List<String> links = new LinkedList<>();
         WebDriver driver = ChromeDriverManager.requestMobileDriver();
-        try {
-            links = getLinksFromSiteMap(driver);
-            setNumberOfPageVisits(links.size(), false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        List<String> links = getLinksFromSiteMap(driver);
+        setNumberOfPageVisits(links.size(), false);
         ChromeDriverManager.releaseMobileDriver(driver);
         //--->start full page screenshot <---//
         for (int i = 0; i < links.size(); i++) {
             final int pageIndex = i;
             final String link = links.get(i);
-            mobileThreads.add(new Thread( ()-> {
+            mobileThreads.add(new Thread(() -> {
                 WebDriver threadDriver = ChromeDriverManager.requestMobileDriver();
                 try {
                     goToUrl(threadDriver, link);
