@@ -115,7 +115,6 @@ public class PerjetaMain extends SeleniumHeadless {
             e.printStackTrace();
         }
         thirdPartyLinks.click();
-        //forceClick(driver, thirdPartyLinks); // actions.moveToElement().click().build().perform() seems to fail on clicking
         js.executeScript("window.scrollTo(0, 0)");
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party")));
         try {
