@@ -89,16 +89,14 @@ public abstract class SeleniumHeadless extends Screenshots {
         return driver;
     }
     
-    public List<Thread> createScreenCaptureThreads(boolean isDesktop){
-        List<String> links = new LinkedList<String>();
+    public List<Thread> createScreenCaptureThreads(boolean isDesktop) {
+
         List<Thread> threads = new LinkedList<Thread>();
         WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
-        try {
-            links = getLinksFromSiteMap(driver);
-            setNumberOfPageVisits(links.size(), isDesktop);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        List<String> links = getLinksFromSiteMap(driver);
+        setNumberOfPageVisits(links.size(), isDesktop);
+
         ChromeDriverManager.releaseDriver(driver, isDesktop);
         int pageNumber = 0;
         for (String link : links) {
@@ -110,11 +108,10 @@ public abstract class SeleniumHeadless extends Screenshots {
                     goToUrl(threadDriver, link);
                     if (threadDriver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                         visible(threadDriver, isDesktop, currentPageNumber);
-                        if(isDesktop) {
+                        if (isDesktop) {
                             getScreenshotForDesktopNavigation(threadDriver, action, currentPageNumber);
                             getScreenshotForShareModal(threadDriver, currentPageNumber);
-                        }
-                        else {
+                        } else {
                             getScreenshotForMobileNavigation(threadDriver, currentPageNumber);
                         }
                         getScreenshotForThirdPartyModal(threadDriver, isDesktop, currentPageNumber);
