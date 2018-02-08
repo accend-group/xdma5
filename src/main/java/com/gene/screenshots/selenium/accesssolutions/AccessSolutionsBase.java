@@ -57,15 +57,12 @@ public class AccessSolutionsBase extends SeleniumHeadless {
     @Override
     public List<Thread> createScreenCaptureThreads(boolean isDesktop){
         List<Thread> threads = new ArrayList<>();
-        List<String> links = new ArrayList<>();
 
         WebDriver driver = ChromeDriverManager.requestDriver(isDesktop);
-        try {
-            links = getLinksFromSiteMap(driver);
-            setNumberOfPageVisits(links.size(), isDesktop);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        List<String> links  = getLinksFromSiteMap(driver);
+        setNumberOfPageVisits(links.size(), isDesktop);
+
         ChromeDriverManager.releaseDriver(driver, isDesktop);
 
         int pageNumber = 0;
@@ -96,15 +93,12 @@ public class AccessSolutionsBase extends SeleniumHeadless {
 
     // fade in divs from popover links
     protected void getScreenshotForLinkPopovers(WebDriver driver, boolean ifDesktop, int pageIndex) {
-        if(driver.getCurrentUrl().contains("patient-assistance-tool-page.html"))
-            return;
         List<WebElement> links = driver.findElements(By.cssSelector("[data-toggle='popover']"));
-        if (links.size() == 0)
-            return;
         for (WebElement link : links) {
             if (!link.isDisplayed()) // on mobile some links are not visible?
                 continue;
-            full(driver, ifDesktop, pageIndex, link, ".popover", 400L);
+            if(!link.findElement(By.xpath("..")).getAttribute("class").contains("question"))
+                full(driver, ifDesktop, pageIndex, link, ".popover", 400L);
         }
     }
 
