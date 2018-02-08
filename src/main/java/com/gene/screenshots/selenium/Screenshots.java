@@ -91,6 +91,8 @@ public abstract class Screenshots {
     }
     
     public LinkedList<String> getDesktopScreenshots() {
+        if(desktopScreenshots == null)
+            return null;
         LinkedList<String> desktopImagePaths = new LinkedList<>();
         for(LinkedList<String> paths : desktopScreenshots)
             desktopImagePaths.addAll(paths);
@@ -98,6 +100,8 @@ public abstract class Screenshots {
     }
 
     public LinkedList<String> getMobileScreenshots() {
+        if(mobileScreenshots == null)
+            return null;
         LinkedList<String> mobileImagePaths = new LinkedList<>();
         for(LinkedList<String> paths : mobileScreenshots)
             mobileImagePaths.addAll(paths);
