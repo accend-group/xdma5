@@ -60,13 +60,13 @@ public abstract class SeleniumHeadless extends Screenshots {
     public static WebDriver makeDesktopDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        options.addArguments("window-size=" + Constants.DESKTOP_WIDTH + "," + Constants.DESKTOP_HEIGHT);
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("disable-infobars");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
-        driver.manage().window().setSize(new Dimension(Constants.DESKTOP_WIDTH, Constants.DESKTOP_HEIGHT));
         if(credentialsRequired)
             authenticate(driver);
         return driver;
