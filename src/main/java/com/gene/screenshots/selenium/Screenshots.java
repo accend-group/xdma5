@@ -16,6 +16,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
+import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -223,6 +225,11 @@ public abstract class Screenshots {
 
         // scroll to the previous position before resize
         scrollTo(driver, xPos, yPos);
+        try {
+            Thread.sleep(500); // wait to make sure the scroll finished
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     // viewport screenshot
@@ -370,6 +377,14 @@ public abstract class Screenshots {
     public static void setMobileScaleFactor(boolean isScaled){
         if(isScaled)
             mobileScaleFactor = 2;
+    }
+
+    public void removeOpinionModal(WebDriver driver){
+        if(driver.findElements(By.cssSelector("img[usemap='#IPEMap']")).size() > 0)
+            ((JavascriptExecutor) driver).executeScript("clWin();");
+        List<WebElement> modal = driver.findElements(By.cssSelector("div[id^='IPE']"));
+        if(modal.size() > 0)
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style = 'display: none !important;'", modal.get(0));
     }
 
     protected void waitForElementVisiblyLocated(WebDriver driver, String cssString) {
@@ -612,6 +627,8 @@ public abstract class Screenshots {
 
     protected void getScreenshotForCarousels(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         List<WebElement> carousels = driver.findElements(By.cssSelector(".gene-component--hero-carousel"));
+        if(carousels.size() > 0)
+            removeOpinionModal(driver); // some other function refreshed the page before getScreenshotForCarousels is called?
         for (WebElement carousel : carousels) {
             scrollTo(driver, 0, carousel.getLocation().getY());
             List<WebElement> dots = carousel.findElements(By.cssSelector(".dot"));

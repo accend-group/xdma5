@@ -106,6 +106,7 @@ public abstract class SeleniumHeadless extends Screenshots {
                 try {
                     Actions action = new Actions(threadDriver);
                     goToUrl(threadDriver, link);
+                    removeOpinionModal(driver);
                     if (threadDriver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                         visible(threadDriver, isDesktop, currentPageNumber);
                         if (isDesktop) {
