@@ -47,7 +47,7 @@
                             <scripts>
                                 <script>
                                     <![CDATA[new org.reflections.Reflections("${jobs.location}")
-                                        .save("${project.build.outputDirectory}/META-INF/reflections/${project.artifactId}-reflections.xml")]]>
+                                        .save("target/classes/META-INF/reflections/${project.artifactId}-reflections.xml")]]>
                                 </script>
                             </scripts>
                         </configuration>
@@ -125,6 +125,27 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
+        </dependency>
+
+        <dependency>
+
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+
+        </dependency>
+
+        <dependency>
+            <groupId>net.lightbody.bmp</groupId>
+            <artifactId>browsermob-core</artifactId>
+            <version>2.1.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.lightbody.bmp</groupId>
+            <artifactId>browsermob-core</artifactId>
+            <version>RELEASE</version>
         </dependency>
     </dependencies>
 </project>

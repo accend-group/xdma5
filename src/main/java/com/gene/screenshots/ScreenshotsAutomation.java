@@ -122,6 +122,7 @@ public class ScreenshotsAutomation {
 
         // quit all mobile and desktop chrome drivers
         ChromeDriverManager.killAll();
+        SeleniumHeadless.proxy.stop();
 
         if(Variables.getBucketName() != null && Variables.getAwsSecretKey() != null && Variables.getAwsAccessKey() != null){
             System.out.println("Connecting to S3...");
