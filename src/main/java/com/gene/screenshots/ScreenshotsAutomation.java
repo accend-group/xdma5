@@ -11,21 +11,14 @@ import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.base.ScreenshotJob;
 import com.gene.screenshots.selenium.ChromeDriverManager;
 import com.gene.screenshots.selenium.SeleniumHeadless;
-import com.google.errorprone.annotations.Var;
-import org.reflections.Configuration;
 import org.reflections.Reflections;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
-import org.reflections.util.FilterBuilder;
 
 
-import java.io.*;
+
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Semaphore;
 
-import static com.gene.screenshots.EnvironmentType.*;
 
 /**
  * Starts the screenshot process from a jenkins job.
@@ -122,7 +115,6 @@ public class ScreenshotsAutomation {
 
         // quit all mobile and desktop chrome drivers
         ChromeDriverManager.killAll();
-        SeleniumHeadless.proxy.stop();
 
         if(Variables.getBucketName() != null && Variables.getAwsSecretKey() != null && Variables.getAwsAccessKey() != null){
             System.out.println("Connecting to S3...");
