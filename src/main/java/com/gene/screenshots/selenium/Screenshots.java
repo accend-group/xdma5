@@ -378,6 +378,11 @@ public abstract class Screenshots {
     }
 
     public void removeOpinionModal(WebDriver driver){
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(driver.findElements(By.cssSelector("img[usemap='#IPEMap']")).size() > 0)
             ((JavascriptExecutor) driver).executeScript("clWin();");
         List<WebElement> modal = driver.findElements(By.cssSelector("div[id^='IPE']"));

@@ -1,15 +1,10 @@
 package com.gene.screenshots.selenium;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.LogManager;
 
-import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.BrowserMobProxyServer;
-import net.lightbody.bmp.proxy.BlacklistEntry;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -40,29 +35,10 @@ public abstract class SeleniumHeadless extends Screenshots {
     protected static BrandUrl domain;
     private static boolean credentialsRequired = false;
 
-    public static BrowserMobProxy proxy;
-
     // suppress selenium console log
     static {
-
-        proxy = new BrowserMobProxyServer();
-        List<BlacklistEntry> allowed = new ArrayList<>();
-        allowed.add(new BlacklistEntry("^.*iperceptions.*", 404));
-        proxy.setBlacklist(allowed);
-
-            proxy.start(8080);
-
-        try {
-            System.out.println(proxy.getPort() + " " + proxy.getClientBindAddress() + " " + InetAddress.getLocalHost());
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-
-
         LogManager.getLogManager().reset();
     }
-
-
 
     public static void setChromeSystemProperty(String chromedriverPath) {
         System.setProperty("webdriver.chrome.driver", chromedriverPath);
@@ -83,15 +59,13 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     public static WebDriver makeDesktopDriver() {
         ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless");
-        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--headless");
         options.addArguments("window-size=" + Constants.DESKTOP_WIDTH + "," + Constants.DESKTOP_HEIGHT);
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("disable-infobars");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--hide-scrollbars");
-        options.addArguments("--proxy-server=localhost:" + proxy.getPort());
         ChromeDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         if(credentialsRequired)
             authenticate(driver);
@@ -100,8 +74,7 @@ public abstract class SeleniumHeadless extends Screenshots {
 
     public static WebDriver makeMobileDriver() {
         ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless");
-        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--headless");
         options.addArguments("window-size=" + Constants.MOBILE_WIDTH + "," + Constants.MOBILE_HEIGHT);
         options.addArguments("--use-mobile-user-agent=true");
         options.addArguments("--user-agent=Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
@@ -110,7 +83,6 @@ public abstract class SeleniumHeadless extends Screenshots {
         options.addArguments("--no-sandbox");
         options.addArguments("--force-device-scale-factor=" + getMobileScaleFactor());
         options.addArguments("--hide-scrollbars");
-        options.addArguments("--proxy-server=localhost:" + proxy.getPort());
         WebDriver driver = new ChromeDriver(new ChromeDriverService.Builder().usingAnyFreePort().withSilent(true).build(), options);
         if(credentialsRequired)
             authenticate(driver);
@@ -134,7 +106,7 @@ public abstract class SeleniumHeadless extends Screenshots {
                 try {
                     Actions action = new Actions(threadDriver);
                     goToUrl(threadDriver, link);
-                    /*removeOpinionModal(driver);
+                    removeOpinionModal(threadDriver);
                     if (threadDriver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                         visible(threadDriver, isDesktop, currentPageNumber);
                         if (isDesktop) {
@@ -145,13 +117,13 @@ public abstract class SeleniumHeadless extends Screenshots {
                         }
                         getScreenshotForThirdPartyModal(threadDriver, isDesktop, currentPageNumber);
                         getScreenshotForHCPModal(threadDriver, isDesktop, currentPageNumber);
-                    }*/;
+                    }
                     full(threadDriver, isDesktop, currentPageNumber);
-                    /*getScreenshotForPAT(threadDriver, action, isDesktop, currentPageNumber);
+                    getScreenshotForPAT(threadDriver, action, isDesktop, currentPageNumber);
                     getScreenshotForCarousels(threadDriver, isDesktop, currentPageNumber);
                     getScreenshotForTabs(threadDriver, isDesktop, currentPageNumber);
                     getScreenshotForAccordion(threadDriver, isDesktop, currentPageNumber);
-                    getScreenshotForSchemaForm(threadDriver, isDesktop, currentPageNumber);*/
+                    getScreenshotForSchemaForm(threadDriver, isDesktop, currentPageNumber);
                 } catch (Exception e) {
                     System.out.println("Issue at " + threadDriver.getCurrentUrl() + " for " + (isDesktop ? "desktop" : "mobile"));
                     e.printStackTrace();
