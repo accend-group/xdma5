@@ -474,23 +474,23 @@ public abstract class Screenshots {
 
     protected void getScreenshotForTabs(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         List<WebElement> tabComponents = driver.findElements(By.cssSelector(".gene-component--accordionTabs--tabstype"));
-        for (WebElement tabComponent : tabComponents) {
-            List<WebElement> tabs = tabComponent.findElements(By.cssSelector(".gene-component--accordionTabs__item .gene-component--accordionTabs__header"));
+        for (int j = 0; j < tabComponents.size(); j++) {
+            List<WebElement> tabs = tabComponents.get(j).findElements(By.cssSelector(".gene-component--accordionTabs__item .gene-component--accordionTabs__header"));
             if (tabs.size() > 1) {
                 if (!isDesktop) {
                     scrollTo(driver, 0, tabs.get(0).getLocation().getY());
                     tabs.get(0).click(); // collapse the first tab on mobile
                     waitForElementNotVisible(driver, tabs.get(0).findElement(By.xpath("following-sibling::*[1]")));
                 }
-                for (WebElement tab : tabs) {
-                    scrollTo(driver, 0, tab.getLocation().getY());
-                    tab.click();
-                    waitForElementVisible(driver, tab.findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
+                for (int i = 1; i < tabs.size(); i++) {
+                    scrollTo(driver, 0, tabs.get(i).getLocation().getY());
+                    tabs.get(i).click();
+                    waitForElementVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]"))); // use xpath to get sibling. can't seem to do it with css selector
                     scrollTo(driver, 0, getCurrentScrollY(driver) + 1); // scroll down a pixel so the height gets recalculated before we get the doc height.
                     full(driver, isDesktop, currentPageIndex);
                     if (!isDesktop) {
-                        tab.click(); //collapse the current one
-                        waitForElementNotVisible(driver, tab.findElement(By.xpath("following-sibling::*[1]")));
+                        tabs.get(i).click(); //collapse the current one
+                        waitForElementNotVisible(driver, tabs.get(i).findElement(By.xpath("following-sibling::*[1]")));
                     }
                 }
                 scrollTo(driver, 0, tabs.get(0).getLocation().getY());
