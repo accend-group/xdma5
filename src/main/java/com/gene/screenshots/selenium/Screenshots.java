@@ -417,6 +417,7 @@ public abstract class Screenshots {
         }
         driver.navigate().refresh();
         waitForPageLoad(driver);
+        removeIPerceptionModal(driver);
     }
 
     protected void getScreenshotForMobileNavigation(WebDriver driver, int currentPageIndex) {
@@ -438,6 +439,7 @@ public abstract class Screenshots {
         }
         driver.navigate().refresh();
         waitForPageLoad(driver);
+        removeIPerceptionModal(driver);
     }
 
     protected void getScreenshotForAccordion(WebDriver driver, boolean isDesktop, int currentPageIndex) {
@@ -523,6 +525,7 @@ public abstract class Screenshots {
             visible(driver, true, currentPageIndex);
             driver.navigate().refresh();
             waitForPageLoad(driver);
+            removeIPerceptionModal(driver);
         }
     }
 
@@ -587,6 +590,7 @@ public abstract class Screenshots {
                 visible(driver, isDesktop, currentPageIndex);
                 driver.navigate().refresh();
                 waitForPageLoad(driver);
+                removeIPerceptionModal(driver);
             }
         }
     }
@@ -626,12 +630,11 @@ public abstract class Screenshots {
         visible(driver, isDesktop, currentPageIndex);
         driver.navigate().refresh();
         waitForPageLoad(driver);
+        removeIPerceptionModal(driver);
     }
 
     protected void getScreenshotForCarousels(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         List<WebElement> carousels = driver.findElements(By.cssSelector(".gene-component--hero-carousel"));
-        if(carousels.size() > 0)
-            removeIPerceptionModal(driver); // some other function refreshed the page before getScreenshotForCarousels is called?
         for (WebElement carousel : carousels) {
             scrollTo(driver, 0, carousel.getLocation().getY());
             List<WebElement> dots = carousel.findElements(By.cssSelector(".dot"));
@@ -708,6 +711,7 @@ public abstract class Screenshots {
             }
             driver.navigate().refresh();
             waitForPageLoad(driver);
+            removeIPerceptionModal(driver);
         }
     }
 }

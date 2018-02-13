@@ -8,7 +8,6 @@ import java.util.logging.LogManager;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,6 +19,8 @@ import com.gene.screenshots.BrandUrl;
 import com.gene.screenshots.Variables;
 import com.gene.screenshots.authentication.AuthorAuthenticationException;
 import com.gene.screenshots.authentication.AuthorCredentials;
+
+import static com.gene.screenshots.EnvironmentType.PROD;
 
 /**
  * Abstract class for screenshot automation code
@@ -106,7 +107,7 @@ public abstract class SeleniumHeadless extends Screenshots {
                 try {
                     Actions action = new Actions(threadDriver);
                     goToUrl(threadDriver, link);
-                    removeOpinionModal(threadDriver);
+                    removeIPerceptionModal(threadDriver);
                     if (threadDriver.findElements(By.cssSelector(".gene-template--home")).size() > 0) {
                         visible(threadDriver, isDesktop, currentPageNumber);
                         if (isDesktop) {
