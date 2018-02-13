@@ -377,7 +377,7 @@ public abstract class Screenshots {
             mobileScaleFactor = 2;
     }
 
-    public void removeOpinionModal(WebDriver driver){
+    public void removeIPerceptionModal(WebDriver driver){
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
@@ -631,7 +631,7 @@ public abstract class Screenshots {
     protected void getScreenshotForCarousels(WebDriver driver, boolean isDesktop, int currentPageIndex) {
         List<WebElement> carousels = driver.findElements(By.cssSelector(".gene-component--hero-carousel"));
         if(carousels.size() > 0)
-            removeOpinionModal(driver); // some other function refreshed the page before getScreenshotForCarousels is called?
+            removeIPerceptionModal(driver); // some other function refreshed the page before getScreenshotForCarousels is called?
         for (WebElement carousel : carousels) {
             scrollTo(driver, 0, carousel.getLocation().getY());
             List<WebElement> dots = carousel.findElements(By.cssSelector(".dot"));
