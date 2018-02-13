@@ -257,6 +257,12 @@ public abstract class Screenshots {
         int scaleFactor = isDesktop ? 1 : getMobileScaleFactor();
 
         int _docWidth = isDesktop ? DESKTOP_WIDTH : MOBILE_WIDTH;
+        scrollTo(driver, 0, getCurrentScrollY(driver) + 1); // scroll in case the doc height is not correct
+        try {
+            Thread.sleep(350);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
         int _docHeight = getDocHeight(driver);
 
         // resize if using scroll-stitch method
