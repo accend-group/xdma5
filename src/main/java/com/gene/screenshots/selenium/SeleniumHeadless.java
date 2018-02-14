@@ -20,7 +20,6 @@ import com.gene.screenshots.Variables;
 import com.gene.screenshots.authentication.AuthorAuthenticationException;
 import com.gene.screenshots.authentication.AuthorCredentials;
 
-import static com.gene.screenshots.EnvironmentType.PROD;
 
 /**
  * Abstract class for screenshot automation code
