@@ -536,12 +536,6 @@ public abstract class Screenshots {
             visible(driver, true, currentPageIndex);
 
             closeOpenedModal(driver);
-            try {
-                Thread.sleep(400); // jQuery fadeIn slowly lows the modal in
-            } catch (InterruptedException e) {
-                // failed to sleep :(
-                e.printStackTrace();
-            }
         }
     }
 
