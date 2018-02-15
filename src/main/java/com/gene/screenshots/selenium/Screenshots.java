@@ -442,6 +442,7 @@ public abstract class Screenshots {
         }
 
         driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--close")).click();
+        waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--header__navigation")));
         try {
             Thread.sleep(400); // jQuery fadeIn takes 400 ms
         } catch (InterruptedException e) {
