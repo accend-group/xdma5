@@ -421,8 +421,6 @@ public abstract class Screenshots {
             waitForElementVisible(driver, e.findElement(By.cssSelector(".gene-component--navigation__list, .dropdown-menu")));
             visible(driver, true, currentPageIndex);
         }
-        // move mouse out of the way
-        action.moveToElement(driver.findElement(By.cssSelector("body")), 0, 0).build().perform();
     }
 
     protected void getScreenshotForMobileNavigation(WebDriver driver, int currentPageIndex) {
@@ -535,7 +533,13 @@ public abstract class Screenshots {
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success, .share-thank-you-message")));
             visible(driver, true, currentPageIndex);
 
-            closeOpenedModal(driver);
+            driver.findElement(By.cssSelector(".share-a-page-modal button.close")).click();
+            waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal__success, .share-thank-you-message")));
+            try {
+                Thread.sleep(400);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -598,27 +602,19 @@ public abstract class Screenshots {
                     e.printStackTrace();
                 } 
                 visible(driver, isDesktop, currentPageIndex);
-                closeOpenedModal(driver);
+                List<WebElement> closeButtons = driver.findElements(By.cssSelector(".hcp-modal button.close, .gene-component--modal--hcp-interstitial .gene-component--modal__close"));
+                for(WebElement closeButton : closeButtons)
+                    if(closeButton.isDisplayed()){
+                        closeButton.click();
+                        waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial, .hcp-modal")));
+                        try {
+                            Thread.sleep(400);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
             }
         }
-    }
-
-    public void closeOpenedModal(WebDriver driver){
-        List<WebElement> closeButtonTypes = driver.findElements(By.cssSelector(".gene-component--modal--hcp-interstitial .gene-component--modal__close"));
-        closeButtonTypes.addAll(driver.findElements(By.cssSelector(".gene-component--modal--third-party .gene-component--modal__close")));
-        closeButtonTypes.addAll(driver.findElements(By.cssSelector(".hcp-modal button.close")));
-        closeButtonTypes.addAll(driver.findElements(By.cssSelector(".share-a-page-modal button.close")));
-        closeButtonTypes.addAll(driver.findElements(By.cssSelector(".external-modal button.close")));
-        for(WebElement button : closeButtonTypes)
-            if(button.isDisplayed()) {
-                button.click();
-                try {
-                    Thread.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
     }
 
     protected void getScreenshotForThirdPartyModal(WebDriver driver, boolean isDesktop, int currentPageIndex) {
@@ -655,7 +651,17 @@ public abstract class Screenshots {
             e.printStackTrace();
         }
         visible(driver, isDesktop, currentPageIndex);
-        closeOpenedModal(driver);
+        List<WebElement> closeButtons = driver.findElements(By.cssSelector(".gene-component--modal--third-party .gene-component--modal__close, .external-modal button.close"));
+        for(WebElement closeButton : closeButtons)
+            if(closeButton.isDisplayed()){
+                closeButton.click();
+                waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party, .external-modal")));
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
     }
 
     protected void getScreenshotForCarousels(WebDriver driver, boolean isDesktop, int currentPageIndex) {
