@@ -421,9 +421,8 @@ public abstract class Screenshots {
             waitForElementVisible(driver, e.findElement(By.cssSelector(".gene-component--navigation__list, .dropdown-menu")));
             visible(driver, true, currentPageIndex);
         }
-        driver.navigate().refresh();
-        waitForPageLoad(driver);
-        removeIPerceptionModal(driver);
+        // move mouse out of the way
+        action.moveToElement(driver.findElement(By.cssSelector("body")), 0, 0).build().perform();
     }
 
     protected void getScreenshotForMobileNavigation(WebDriver driver, int currentPageIndex) {
@@ -443,9 +442,14 @@ public abstract class Screenshots {
             visible(driver, false, currentPageIndex);
             e.findElement(By.cssSelector(".gene-component--navigation__icon--tab")).click(); // collapse the current menu before going to the next one. So then the cursor won't hover over a submenu item.
         }
-        driver.navigate().refresh();
-        waitForPageLoad(driver);
-        removeIPerceptionModal(driver);
+
+        driver.findElement(By.cssSelector(".gene-component--header__toggle-icon--close")).click();
+        try {
+            Thread.sleep(400); // jQuery fadeIn takes 400 ms
+        } catch (InterruptedException e) {
+            // failed to sleep :(
+            e.printStackTrace();
+        }
     }
 
     protected void getScreenshotForAccordion(WebDriver driver, boolean isDesktop, int currentPageIndex) {
@@ -509,8 +513,9 @@ public abstract class Screenshots {
     }
 
     protected void getScreenshotForShareModal(WebDriver driver, int currentPageIndex) {
-        if (driver.findElements(By.cssSelector(".genentech-component--button--share, .share-a-page-button")).size() > 0) {
-            driver.findElement(By.cssSelector(".genentech-component--button--share, .share-a-page-button")).click();
+        List<WebElement> shareModalButton = driver.findElements(By.cssSelector(".genentech-component--button--share, .share-a-page-button"));
+        if(shareModalButton.size() > 0) {
+            shareModalButton.get(0).click();
             WebElement modal = driver.findElement(By.cssSelector(".gene-component--modal--share-via-email, .share-a-page-modal"));
             waitForElementVisible(driver, modal);
             try {
@@ -529,9 +534,14 @@ public abstract class Screenshots {
             modal.findElement(By.cssSelector("input[type='submit']")).click();
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success, .share-thank-you-message")));
             visible(driver, true, currentPageIndex);
-            driver.navigate().refresh();
-            waitForPageLoad(driver);
-            removeIPerceptionModal(driver);
+
+            closeOpenedModal(driver);
+            try {
+                Thread.sleep(400); // jQuery fadeIn slowly lows the modal in
+            } catch (InterruptedException e) {
+                // failed to sleep :(
+                e.printStackTrace();
+            }
         }
     }
 
@@ -578,7 +588,7 @@ public abstract class Screenshots {
                     } catch (InterruptedException e) {
                         // failed to sleep :(
                         e.printStackTrace();
-                    } 
+                    }
                     link.click();
                     clicked = true;
                     break;
@@ -594,11 +604,27 @@ public abstract class Screenshots {
                     e.printStackTrace();
                 } 
                 visible(driver, isDesktop, currentPageIndex);
-                driver.navigate().refresh();
-                waitForPageLoad(driver);
-                removeIPerceptionModal(driver);
+                closeOpenedModal(driver);
             }
         }
+    }
+
+    public void closeOpenedModal(WebDriver driver){
+        List<WebElement> closeButtonTypes = driver.findElements(By.cssSelector(".gene-component--modal--hcp-interstitial .gene-component--modal__close"));
+        closeButtonTypes.addAll(driver.findElements(By.cssSelector(".gene-component--modal--third-party .gene-component--modal__close")));
+        closeButtonTypes.addAll(driver.findElements(By.cssSelector(".hcp-modal button.close")));
+        closeButtonTypes.addAll(driver.findElements(By.cssSelector(".share-a-page-modal button.close")));
+        closeButtonTypes.addAll(driver.findElements(By.cssSelector(".external-modal button.close")));
+        for(WebElement button : closeButtonTypes)
+            if(button.isDisplayed()) {
+                button.click();
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
     }
 
     protected void getScreenshotForThirdPartyModal(WebDriver driver, boolean isDesktop, int currentPageIndex) {
@@ -625,6 +651,7 @@ public abstract class Screenshots {
             e.printStackTrace();
         }
         thirdPartyLink.click();
+
         scrollTo(driver, 0, 0);
         waitForElementVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party, .external-modal")));
         try {
@@ -634,9 +661,7 @@ public abstract class Screenshots {
             e.printStackTrace();
         }
         visible(driver, isDesktop, currentPageIndex);
-        driver.navigate().refresh();
-        waitForPageLoad(driver);
-        removeIPerceptionModal(driver);
+        closeOpenedModal(driver);
     }
 
     protected void getScreenshotForCarousels(WebDriver driver, boolean isDesktop, int currentPageIndex) {
@@ -715,9 +740,7 @@ public abstract class Screenshots {
                     ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', 'display: inline-block;')", driver.findElement(By.cssSelector(".footer .update-response")));
                 }
             }
-            driver.navigate().refresh();
-            waitForPageLoad(driver);
-            removeIPerceptionModal(driver);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.cssSelector(".start-over")));
         }
     }
 }
