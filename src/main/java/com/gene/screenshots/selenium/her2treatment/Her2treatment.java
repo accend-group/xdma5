@@ -144,9 +144,15 @@ public class Her2treatment extends SeleniumHeadless{
     @Override
     protected void getScreenshotForMobileNavigation(WebDriver driver, int currentPageIndex) {
         driver.findElement(By.cssSelector(".navbar-toggle")).click();
-        waitForElementVisiblyLocated(driver, "div.navbar-collapse.in");
+        waitForElementVisible(driver, driver.findElement(By.cssSelector("div.navbar-collapse")));
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         visible(driver, false, currentPageIndex);
         driver.findElement(By.cssSelector(".navbar-toggle")).click();
+        waitForElementNotVisible(driver, driver.findElement(By.cssSelector("div.navbar-collapse")));
         try {
             Thread.sleep(400);
         } catch (InterruptedException e) {
