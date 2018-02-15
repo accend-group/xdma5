@@ -60,8 +60,6 @@ public class Her2treatment extends SeleniumHeadless{
                     goToUrl(threadDriver, link);
                     if (threadDriver.findElement(By.tagName("body")).getAttribute("class").contains("home")) {
                         getScreenshotForSafetyTabs(threadDriver, true, currentPageNumber);
-                        threadDriver.navigate().refresh();
-                        waitForPageLoad(threadDriver);
                         getScreenshotForThirdPartyModal(threadDriver, true, currentPageNumber);
                         getScreenshotForHCPModal(threadDriver, true, currentPageNumber);
                         getScreenshotForShareModal(threadDriver, currentPageNumber);
@@ -115,7 +113,7 @@ public class Her2treatment extends SeleniumHeadless{
                     List<WebElement> moreInfo = indications.get(j).findElements(By.cssSelector(".more-info"));
                     if (moreInfo.size() > 0) {
                         // resizing the screen seems to turn off the popover. so we have to do the click after the screen is resized
-                        full(driver, isDesktop, currentPageIndex, moreInfo.get(0), new Long(1000));
+                        full(driver, isDesktop, currentPageIndex, moreInfo.get(0), ".popover", 400);
                     }
                 }
             }
@@ -137,19 +135,23 @@ public class Her2treatment extends SeleniumHeadless{
             if (isDesktop) {
                 visible(driver, isDesktop, currentPageIndex);
             }
-            int currentYPos = getCurrentScrollY(driver);
-            scrollTo(driver, 0, currentYPos + 1); // scrolling or resizing the window will forcibly get the new document height.
             full(driver, isDesktop, currentPageIndex);
-            scrollTo(driver, 0, currentYPos);
         }
+        if(tabs.size() > 0)
+            tabs.get(0).click();
     }
 
     @Override
     protected void getScreenshotForMobileNavigation(WebDriver driver, int currentPageIndex) {
         driver.findElement(By.cssSelector(".navbar-toggle")).click();
+        waitForElementVisiblyLocated(driver, "div.navbar-collapse.in");
         visible(driver, false, currentPageIndex);
-        driver.navigate().refresh();
-        waitForPageLoad(driver);
+        driver.findElement(By.cssSelector(".navbar-toggle")).click();
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -174,8 +176,6 @@ public class Her2treatment extends SeleniumHeadless{
                         getScreenshotForHCPModal(threadDriver, false, currentPageNumber);
                         getScreenshotForThirdPartyModal(threadDriver, false, currentPageNumber);
                         getScreenshotForSafetyTabs(threadDriver, false, currentPageNumber);
-                        threadDriver.navigate().refresh();
-                        waitForPageLoad(threadDriver);
                     } else {
                         if (threadDriver.findElements(By.cssSelector(".brand-page")).size() > 0) {
                             visible(threadDriver, false, currentPageNumber);
