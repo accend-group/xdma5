@@ -534,7 +534,7 @@ public abstract class Screenshots {
             waitForElementVisible(driver, modal.findElement(By.cssSelector(".gene-component--modal__success, .share-thank-you-message")));
             visible(driver, true, currentPageIndex);
 
-            driver.findElement(By.cssSelector(".share-a-page-modal button.close")).click();
+            driver.findElement(By.cssSelector(".gene-component--modal--share-via-email .gene-component--modal__close, .share-a-page-modal .close")).click();
             waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal__success, .share-thank-you-message")));
             try {
                 Thread.sleep(400);
@@ -601,19 +601,16 @@ public abstract class Screenshots {
                 } catch (InterruptedException e) {
                     // failed to sleep
                     e.printStackTrace();
-                } 
+                }
                 visible(driver, isDesktop, currentPageIndex);
-                List<WebElement> closeButtons = driver.findElements(By.cssSelector(".hcp-modal button.close, .gene-component--modal--hcp-interstitial .gene-component--modal__close"));
-                for(WebElement closeButton : closeButtons)
-                    if(closeButton.isDisplayed()){
-                        closeButton.click();
-                        waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial, .hcp-modal")));
-                        try {
-                            Thread.sleep(400);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                List<WebElement> closeButtons = driver.findElements(By.cssSelector(".hcp-modal .close, .gene-component--modal--hcp-interstitial .gene-component--modal__close"));
+                closeButtons.get(0).click();
+                waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial, .hcp-modal")));
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -652,17 +649,15 @@ public abstract class Screenshots {
             e.printStackTrace();
         }
         visible(driver, isDesktop, currentPageIndex);
-        List<WebElement> closeButtons = driver.findElements(By.cssSelector(".gene-component--modal--third-party .gene-component--modal__close, .external-modal button.close"));
-        for(WebElement closeButton : closeButtons)
-            if(closeButton.isDisplayed()){
-                closeButton.click();
-                waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party, .external-modal")));
-                try {
-                    Thread.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        List<WebElement> closeButtons = driver.findElements(By.cssSelector(".gene-component--modal--third-party .gene-component--modal__close, .external-modal .close"));
+
+        closeButtons.get(0).click();
+        waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party, .external-modal")));
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void getScreenshotForCarousels(WebDriver driver, boolean isDesktop, int currentPageIndex) {
