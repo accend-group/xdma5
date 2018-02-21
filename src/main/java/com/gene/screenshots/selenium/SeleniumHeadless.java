@@ -118,6 +118,7 @@ public abstract class SeleniumHeadless extends Screenshots {
                         getScreenshotForThirdPartyModal(threadDriver, isDesktop, currentPageNumber);
                         getScreenshotForHCPModal(threadDriver, isDesktop, currentPageNumber);
                     }
+                    resetCarousels(threadDriver);
                     full(threadDriver, isDesktop, currentPageNumber);
                     getScreenshotForPAT(threadDriver, action, isDesktop, currentPageNumber);
                     getScreenshotForCarousels(threadDriver, isDesktop, currentPageNumber);

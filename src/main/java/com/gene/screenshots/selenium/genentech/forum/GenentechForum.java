@@ -142,10 +142,8 @@ public class GenentechForum extends SeleniumHeadless {
                         visible(threadDriver, true, pageIndex);
                         getScreenshotForDesktopNavigation(threadDriver, action, pageIndex);
                         getScreenshotForShareModal(threadDriver, pageIndex);
-                        // click back the starting carousel dot in case the slide changed
-                        threadDriver.findElement(By.cssSelector(".carousel-indicators li")).click();
-                        waitForElementVisible(driver, threadDriver.findElement(By.cssSelector(".carousel-inner .item:nth-child(1)")));
                     }
+                    resetCarousels(threadDriver);
                     full(threadDriver, true, pageIndex);
                     getScreenshotForCarousels(threadDriver, true, pageIndex);
                     getScreenshotForSchemaForm(threadDriver, true, pageIndex);
@@ -180,6 +178,7 @@ public class GenentechForum extends SeleniumHeadless {
                         visible(threadDriver, false, pageIndex);
                         getScreenshotForMobileNavigation(threadDriver, pageIndex);
                     }
+                    resetCarousels(threadDriver);
                     full(threadDriver, false, pageIndex);
                     getScreenshotForCarousels(threadDriver, false, pageIndex);
                     getScreenshotForSchemaForm(threadDriver, false, pageIndex);
