@@ -603,8 +603,7 @@ public abstract class Screenshots {
                     e.printStackTrace();
                 }
                 visible(driver, isDesktop, currentPageIndex);
-                List<WebElement> closeButtons = driver.findElements(By.cssSelector(".hcp-modal .close, .gene-component--modal--hcp-interstitial .gene-component--modal__close"));
-                closeButtons.get(0).click();
+                driver.findElement(By.cssSelector(".hcp-modal .close, .gene-component--modal--hcp-interstitial .gene-component--modal__close")).click();
                 waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--hcp-interstitial, .hcp-modal")));
                 try {
                     Thread.sleep(400);
@@ -649,14 +648,25 @@ public abstract class Screenshots {
             e.printStackTrace();
         }
         visible(driver, isDesktop, currentPageIndex);
-        List<WebElement> closeButtons = driver.findElements(By.cssSelector(".gene-component--modal--third-party .gene-component--modal__close, .external-modal .close"));
-
-        closeButtons.get(0).click();
+        driver.findElement(By.cssSelector(".gene-component--modal--third-party .gene-component--modal__close, .external-modal .close")).click();
         waitForElementNotVisible(driver, driver.findElement(By.cssSelector(".gene-component--modal--third-party, .external-modal")));
         try {
             Thread.sleep(400);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    protected void resetCarousels(WebDriver driver){
+        List<WebElement> carouselsTypes = driver.findElements(By.cssSelector(".carousel.slide, .gene-component--hero-carousel"));
+        for(WebElement carousel : carouselsTypes) {
+            scrollTo(driver, 0, carousel.getLocation().getY());
+            List<WebElement> carouselDots = carousel.findElements(By.cssSelector(".carousel-indicators li, .dot"));
+            if (carouselDots.size() > 0) {
+                // click back the starting carousel dot in case the slide changed
+                carouselDots.get(0).click();
+                waitForElementVisible(driver, driver.findElement(By.cssSelector(".carousel-inner .item:nth-child(1), .gene-component--hero-carousel__cell--1")));
+            }
         }
     }
 
