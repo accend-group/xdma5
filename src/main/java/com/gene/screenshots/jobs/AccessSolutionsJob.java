@@ -6,7 +6,9 @@ import com.gene.screenshots.base.annotations.Environment;
 import com.gene.screenshots.base.annotations.Job;
 import com.gene.screenshots.selenium.SeleniumHeadless;
 import com.gene.screenshots.selenium.accesssolutions.AccessSolutionsBase;
+import com.gene.screenshots.selenium.accesssolutions.AccessSolutionsBaseHCP;
 import com.gene.screenshots.selenium.accesssolutions.custom.Patient;
+import com.gene.screenshots.selenium.accesssolutions.custom.hcp.HCP;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -61,6 +63,41 @@ public class AccessSolutionsJob extends ScreenshotJob {
         result.add(new AccessSolutionsBase("Venclexta"));
         result.add(new AccessSolutionsBase("Xolair"));
         result.add(new AccessSolutionsBase("Zelboraf"));
+
+        return result;
+    }
+    protected static List<SeleniumHeadless> createAccessSolutionsTestListHCP() {
+        List<SeleniumHeadless> result = new LinkedList<>();
+
+        // patient has its own class that extends AccessSolutionsBaseHCP
+        result.add(new HCP());
+
+        result.add(new AccessSolutionsBaseHCP("Actemra"));
+        result.add(new AccessSolutionsBaseHCP("Alecensa"));
+        result.add(new AccessSolutionsBaseHCP("Avastin"));
+        result.add(new AccessSolutionsBaseHCP("Cotellic"));
+        result.add(new AccessSolutionsBaseHCP("Erivedge"));
+        result.add(new AccessSolutionsBaseHCP("Esbriet"));
+        result.add(new AccessSolutionsBaseHCP("Gazyva"));
+        result.add(new AccessSolutionsBaseHCP("Hemlibra"));
+        result.add(new AccessSolutionsBaseHCP("Herceptin"));
+        result.add(new AccessSolutionsBaseHCP("Kadcyla"));
+        result.add(new AccessSolutionsBaseHCP("Lucentis"));
+        result.add(new AccessSolutionsBaseHCP("Ocrevus"));
+        // not up on prod, dev, and stage
+        // result.add(new AccessSolutionsBaseHCP("Pegasys"));
+
+        result.add(new AccessSolutionsBaseHCP("Perjeta"));
+        result.add(new AccessSolutionsBaseHCP("Pulmozyme"));
+        result.add(new AccessSolutionsBaseHCP("Rituxan/Rituxan-NHL-CLL"));
+        result.add(new AccessSolutionsBaseHCP("Rituxan/Rituxan-RA"));
+        result.add(new AccessSolutionsBaseHCP("Rituxan/Rituxan-GPAMPA"));
+        result.add(new AccessSolutionsBaseHCP("RituxanHycela"));
+        result.add(new AccessSolutionsBaseHCP("Tarceva"));
+        result.add(new AccessSolutionsBaseHCP("Tecentriq"));
+        result.add(new AccessSolutionsBaseHCP("Venclexta"));
+        result.add(new AccessSolutionsBaseHCP("Xolair"));
+        result.add(new AccessSolutionsBaseHCP("Zelboraf"));
 
         return result;
     }
